@@ -1,0 +1,275 @@
+
+%{
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#import "HBAst.h"
+
+#define YYDEBUG 1
+
+%}
+
+
+
+%union {
+	int ival;
+	char *sval;
+    NSString* nsString;
+    NSMutableArray* astArray;
+    HBAstNode* astNode;
+    HBAstKeyPathComponent* astPathComponent;
+    HBAstValue* astValue;
+    HBAstContextualValue* astContextualValue;
+    HBAstExpression* astExpression;
+    HBAstSimpleTag* astSimpleTag;
+    HBAstRawText* astRawText;
+    HBAstString* astString;
+    HBAstNumber* astNumber;
+    HBAstPartialTag* astPartialTag;
+    HBAstBlockTag* astBlockTag;
+    HBAstComment* astComment;
+}
+
+%token <ival> INTEGER
+%token <ival> BOOLEAN
+%token <nsString> TEXT_CONTENT
+%token <nsString> ID
+%token <nsString> STRING
+%token <nsString> PATH_SEPARATOR
+%token <nsString> COMMENT_CONTENT
+
+%type <astArray> statements else_tag_block;
+%type <astNode> program statement;
+%type <astPathComponent> path_component;
+%type <astValue> value;
+%type <astContextualValue> path contextual_value;
+%type <astExpression> expression block_tag_open block_tag_close inverse_tag_open;
+%type <astSimpleTag> simple_tag;
+%type <astRawText> raw_text;
+%type <astString> string;
+%type <astNumber> integer;
+%type <astNumber> boolean;
+%type <astContextualValue> data;
+%type <astValue> partial_name;
+%type <astPartialTag> partial_tag;
+%type <astBlockTag> block_tag;
+%type <astComment> comment
+%type <nsString> comment_content;
+
+%token BACKSLASH
+%token LEFT_MUSTACHE
+%token ESCAPED_OPEN
+%token ESCAPED_BACKSLASH
+%token COMMENT_START
+%token COMMENT_END
+%token DASHED_COMMENT_START
+%token DASHED_COMMENT_END
+%token OPEN
+%token OPEN_PARTIAL
+%token OPEN_BLOCK
+%token OPEN_ENDBLOCK
+%token OPEN_INVERSE
+%token OPEN_UNESCAPED
+%token OPEN_UNESCAPED_AMPERSAND
+%token CLOSE
+%token CLOSE_UNESCAPED
+%token EQUALS
+%token DATA
+%token UNKNOWN
+
+%right FORCE
+
+%pure-parser
+%error-verbose
+%debug
+%name-prefix="hb_"
+
+%parse-param { void * scanner }
+%lex-param {void * scanner}
+%parse-param { HBAstProgram** root }
+
+%{
+    /* Forward declarations will please compiler */
+
+    typedef void* yyscan_t;
+    int hb_lex_init ( yyscan_t * ptr_yy_globals ) ;
+    int hb_lex_destroy ( yyscan_t yyscanner ) ;
+    
+    void hb_error(yyscan_t scanner, HBAstProgram** root, const char *s);
+    int hb_lex ( YYSTYPE * lvalp, yyscan_t scanner );
+    FILE *yyin;
+    
+%}
+
+%%
+
+program
+: statements { HBAstProgram* program = [[HBAstProgram new] autorelease]; program.statements = $1; *root = program; }
+| { *root = nil; }
+;
+
+statements
+: statement  { NSMutableArray* statements = [[NSMutableArray new] autorelease]; [statements addObject:$1]; $$ = statements; }
+| statements statement { [$1 addObject:$2]; $$ = $1; }
+;
+
+statement
+: raw_text {}
+| simple_tag {}
+| partial_tag {}
+| block_tag {}
+| comment {}
+;
+
+comment
+: COMMENT_START comment_content COMMENT_END { HBAstComment* c = [[HBAstComment new] autorelease]; c.litteralValue = $2; $$ = c; }
+;
+
+comment_content
+: COMMENT_CONTENT
+| comment_content COMMENT_CONTENT { $$ = [$1 stringByAppendingString:$2]; }
+;
+
+raw_text
+: TEXT_CONTENT { HBAstRawText* rawText = [[HBAstRawText new] autorelease]; rawText.litteralValue = $1; $$ = rawText; }
+;
+
+simple_tag
+: OPEN expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; tag.escape = true; $$ = tag; }
+| OPEN_UNESCAPED expression CLOSE_UNESCAPED { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; $$ = tag; }
+| OPEN_UNESCAPED_AMPERSAND expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; $$ = tag; }
+;
+
+partial_tag
+: OPEN_PARTIAL partial_name CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; p.partialName = $2; $$ = p; }
+| OPEN_PARTIAL partial_name path CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; p.partialName = $2; p.context = $3; $$ = p; }
+;
+
+block_tag_open
+: OPEN_BLOCK expression CLOSE { $$ = $2; }
+;
+
+block_tag_close
+: OPEN_ENDBLOCK expression CLOSE { }
+;
+
+else_tag
+: OPEN_INVERSE CLOSE {}
+;
+
+inverse_tag_open
+: OPEN_INVERSE expression CLOSE { $$ = $2; }
+;
+
+block_tag
+: block_tag_open statements block_tag_close {
+    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
+    b.expression = $1;
+    b.statements = $2;
+    $$ = b;
+    }
+| block_tag_open block_tag_close {
+    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
+    b.expression = $1;
+    $$ = b;
+    }
+| block_tag_open statements else_tag_block {
+    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
+    b.expression = $1;
+    b.statements = $2;
+    b.inverseStatements = $3;
+    $$ = b;
+    }
+| block_tag_open else_tag_block {
+    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
+    b.expression = $1;
+    b.inverseStatements = $2;
+    $$ = b;
+    }
+| inverse_tag_open statements block_tag_close {
+    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
+    b.expression = $1;
+    b.inverseStatements = $2;
+    $$ = b;
+    }
+| inverse_tag_open block_tag_close {
+    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
+    b.expression = $1;
+    $$ = b;
+    }
+;
+
+else_tag_block
+: else_tag statements block_tag_close { $$ = $2; }
+| else_tag block_tag_close { $$ = nil; }
+;
+
+expression
+: contextual_value { HBAstExpression* expression = [[HBAstExpression new] autorelease]; expression.mainValue = $1; $$ = expression;  }
+| expression value { [$1 addPositionalParameter:$2]; $$ = $1; }
+| expression ID EQUALS value   { [$1 appendParameter:$4 forKey:$2]; $$ = $1; }
+;
+
+value
+: path { $$ = $1; }
+| string { $$ = $1; }
+| integer { $$ = $1; }
+| boolean { $$ = $1; }
+| data { $$ = $1; }
+;
+
+partial_name
+: path {}
+| string {}
+| integer {}
+;
+
+contextual_value
+: path {}
+| data {}
+;
+
+path
+: path PATH_SEPARATOR path_component {
+    $3.leadingSeparator = $2;
+    [$1.keyPath addObject:$3];
+    $$ = $1;
+    }
+| path_component {
+    HBAstContextualValue* contextualValue = [[HBAstContextualValue new] autorelease];
+    contextualValue.keyPath = [NSMutableArray arrayWithObject:$1];
+    $$ = contextualValue;
+    }
+
+path_component
+: ID { HBAstKeyPathComponent* component = [[HBAstKeyPathComponent new] autorelease] ; component.key = $1; $$ = component; }
+;
+
+string
+: STRING { HBAstString* s = [[HBAstString new] autorelease]; s.litteralValue = $1; $$ = s; }
+;
+
+integer
+: INTEGER { HBAstNumber* i = [[HBAstNumber new] autorelease]; i.litteralValue = @($1); $$ = i; }
+;
+
+boolean
+: BOOLEAN { HBAstNumber* b = [[HBAstNumber new] autorelease]; b.litteralValue = ($1 ? @true : @false); b.isBoolean = true; $$ = b; }
+;
+
+data
+: DATA path { $2.isDataValue = true; $$ = $2;  };
+;
+
+%%
+
+void yyerror(yyscan_t scanner, HBAstProgram** root, const char *s) {
+
+    NSException* myException = [NSException
+        exceptionWithName:@"ParsingError"
+        reason:[NSString stringWithFormat:@"Handlebars parse error %s", s]
+        userInfo:nil];
+        
+    @throw myException;
+}
