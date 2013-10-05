@@ -116,12 +116,12 @@ id astFromString(NSString* text)
     void* scanner;
     
     hb_lex_init (&scanner);
-    /*YY_BUFFER_STATE buffer =*/ yy_scan_bytes([utf8StringBuffer bytes], [utf8StringBuffer length], scanner);
+    YY_BUFFER_STATE buffer = yy_scan_bytes([utf8StringBuffer bytes], [utf8StringBuffer length], scanner);
 
     hb_parse(scanner, &root);
-    
+
+    yy_delete_buffer(buffer, scanner);
     hb_lex_destroy (scanner);
-    //yy_delete_buffer(buffer, scanner);
     
     return root;
 }
