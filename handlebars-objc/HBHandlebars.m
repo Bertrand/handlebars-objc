@@ -34,6 +34,8 @@
 #import "HBTemplate.h"
 #import "HBHelper.h"
 
+static HBLoggerBlock _loggerBlock = nil;
+
 @implementation HBHandlebars
 
 + (NSString*)renderTemplateString:(NSString*)template withContext:(id)context
@@ -94,6 +96,22 @@
     [[HBExecutionContext globalExecutionContext].partials removeAllPartials];
 }
 
+#pragma mark -
+#pragma mark Logger
+
++ (void) setLoggerWithBlock:(HBLoggerBlock)loggerBlock
+{
+    _loggerBlock = loggerBlock;
+}
+
++ (void) log:(NSInteger)level object:(id)object
+{
+    if (_loggerBlock) {
+        _loggerBlock(level, object);
+    } else {
+        NSLog(@"%@", [object description]);
+    }
+}
 
 #pragma mark -
 #pragma mark Utils
@@ -161,6 +179,15 @@
         CFStringAppendCharacters((CFMutableStringRef)buffer, unescapedStart, unescapedLength);
     }
     return buffer;
+}
+
++ (BOOL)evaluateObjectAsBool:(id)object
+{
+    if (!object) return false;
+    if ([object isKindOfClass:[NSNumber class]]) return [object boolValue];
+    if ([object isKindOfClass:[NSString class]]) return [object length] > 0;
+    if ([object isKindOfClass:[NSArray class]]) return [object count] > 0;
+    return false;
 }
 
 @end

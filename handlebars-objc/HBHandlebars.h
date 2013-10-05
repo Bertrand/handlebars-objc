@@ -36,6 +36,7 @@
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
 
+typedef NSString* (^HBLoggerBlock)(NSInteger level, id object);
 
 @interface HBHandlebars : NSObject
 
@@ -57,9 +58,14 @@
 + (void) unregisterPartialWithName:(NSString*)partialName;
 + (void) unregisterAllPartials;
 
+// logger
+
++ (void) setLoggerWithBlock:(HBLoggerBlock)loggerBlock;
++ (void) log:(NSInteger)level object:(id)object;
 
 // utils
 
 + (NSString *)escapeHTML:(NSString *)string;
++ (BOOL)evaluateObjectAsBool:(id)object;
 
 @end

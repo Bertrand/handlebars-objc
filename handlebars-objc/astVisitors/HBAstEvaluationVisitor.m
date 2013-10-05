@@ -81,14 +81,6 @@
     };
 }
 
-- (BOOL)evaluateObjectAsBool:(id)object
-{
-    if (!object) return false;
-    if ([object isKindOfClass:[NSNumber class]]) return [object boolValue];
-    if ([object isKindOfClass:[NSString class]]) return [object length] > 0;
-    return false;
-}
-
 - (BOOL) expressionCanBeHelperCall:(HBAstExpression*)expression
 {
     HBAstContextualValue* mainValue = expression.mainValue;
@@ -249,7 +241,7 @@
             
         } else {
             // String of scalar context
-            if ([self evaluateObjectAsBool:evaluatedExpression]) {
+            if ([HBHandlebars evaluateObjectAsBool:evaluatedExpression]) {
                 return forwardStatementsEvaluator(evaluatedExpression, currentData);
             } else {
                 return inverseStatementsEvaluator(evaluatedExpression, currentData);

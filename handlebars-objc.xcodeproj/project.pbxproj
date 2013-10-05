@@ -38,6 +38,8 @@
 		065C287D17FA166C00894DD4 /* HBContextStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C287B17FA166C00894DD4 /* HBContextStack.m */; };
 		06743FB517FB572B001793F7 /* HBContextRendering.h in Headers */ = {isa = PBXBuildFile; fileRef = 06743FB317FB572B001793F7 /* HBContextRendering.h */; };
 		06743FB617FB572B001793F7 /* HBContextRendering.m in Sources */ = {isa = PBXBuildFile; fileRef = 06743FB417FB572B001793F7 /* HBContextRendering.m */; };
+		06743FB918005CFB001793F7 /* HBBuiltinHelpersRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06743FB718005CFB001793F7 /* HBBuiltinHelpersRegistry.h */; };
+		06743FBA18005CFB001793F7 /* HBBuiltinHelpersRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 06743FB818005CFB001793F7 /* HBBuiltinHelpersRegistry.m */; };
 		06798D2F17F5AFA900FC40D7 /* HBAstSimpleTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 06798D2D17F5AFA900FC40D7 /* HBAstSimpleTag.h */; };
 		06798D3017F5AFA900FC40D7 /* HBAstSimpleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D2E17F5AFA900FC40D7 /* HBAstSimpleTag.m */; };
 		06798D3317F5B6EF00FC40D7 /* HBAstBlockTag.h in Headers */ = {isa = PBXBuildFile; fileRef = 06798D3117F5B6EF00FC40D7 /* HBAstBlockTag.h */; };
@@ -136,6 +138,8 @@
 		065C287B17FA166C00894DD4 /* HBContextStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBContextStack.m; sourceTree = "<group>"; };
 		06743FB317FB572B001793F7 /* HBContextRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBContextRendering.h; sourceTree = "<group>"; };
 		06743FB417FB572B001793F7 /* HBContextRendering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBContextRendering.m; sourceTree = "<group>"; };
+		06743FB718005CFB001793F7 /* HBBuiltinHelpersRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBBuiltinHelpersRegistry.h; sourceTree = "<group>"; };
+		06743FB818005CFB001793F7 /* HBBuiltinHelpersRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBBuiltinHelpersRegistry.m; sourceTree = "<group>"; };
 		06798D2D17F5AFA900FC40D7 /* HBAstSimpleTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstSimpleTag.h; sourceTree = "<group>"; };
 		06798D2E17F5AFA900FC40D7 /* HBAstSimpleTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstSimpleTag.m; sourceTree = "<group>"; };
 		06798D3117F5B6EF00FC40D7 /* HBAstBlockTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstBlockTag.h; sourceTree = "<group>"; };
@@ -424,6 +428,8 @@
 				0698F02417FEC78A005203F6 /* HBHelperCallingInfo.m */,
 				06D426BF17FC62A000C41476 /* HBHelperRegistry.h */,
 				06D426C017FC62A000C41476 /* HBHelperRegistry.m */,
+				06743FB718005CFB001793F7 /* HBBuiltinHelpersRegistry.h */,
+				06743FB818005CFB001793F7 /* HBBuiltinHelpersRegistry.m */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				06A81A9717F86ECE0006F16A /* HBAstVisitor.h in Headers */,
 				06556D9517FF178300070907 /* HBHandlebars.h in Headers */,
 				06E4790A17FC0CA90029C3D1 /* HBDataContext.h in Headers */,
+				06743FB918005CFB001793F7 /* HBBuiltinHelpersRegistry.h in Headers */,
 				06798D3717F5B70200FC40D7 /* HBAstTag.h in Headers */,
 				06556D8317FEFB7C00070907 /* HBPartialRegistry.h in Headers */,
 			);
@@ -577,6 +584,7 @@
 				065C287D17FA166C00894DD4 /* HBContextStack.m in Sources */,
 				06A81A9C17F879240006F16A /* HBAstParserTestVisitor.m in Sources */,
 				0698F02617FEC78A005203F6 /* HBHelperCallingInfo.m in Sources */,
+				06743FBA18005CFB001793F7 /* HBBuiltinHelpersRegistry.m in Sources */,
 				06798D3817F5B70200FC40D7 /* HBAstTag.m in Sources */,
 				06556D8017FEFB0C00070907 /* HBPartial.m in Sources */,
 				06798D5E17F5D7AD00FC40D7 /* HBAstRawText.m in Sources */,

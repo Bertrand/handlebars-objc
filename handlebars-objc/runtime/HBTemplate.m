@@ -31,6 +31,7 @@
 #import "HBAstEvaluationVisitor.h"
 #import "HBParser.h"
 #import "HBHelperRegistry.h"
+#import "HBBuiltinHelpersRegistry.h"
 #import "HBExecutionContext.h"
 #import "HBPartial.h"
 #import "HBPartialRegistry.h"
@@ -89,6 +90,7 @@
     helper = self.helpers[name];
     if (!helper && self.sharedExecutionContext) helper = self.sharedExecutionContext.helpers[name];
     if (!helper) helper = [HBExecutionContext globalExecutionContext].helpers[name];
+    if (!helper) helper = [HBBuiltinHelpersRegistry builtinRegistry][name];
     
     return helper;
 }
