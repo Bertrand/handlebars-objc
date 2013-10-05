@@ -78,8 +78,6 @@
 %token DATA
 %token UNKNOWN
 
-%right FORCE
-
 %pure-parser
 %error-verbose
 %debug

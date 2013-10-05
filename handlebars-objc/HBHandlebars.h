@@ -36,7 +36,6 @@
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
 
-@class HBHelperRegistry;
 
 @interface HBHandlebars : NSObject
 
