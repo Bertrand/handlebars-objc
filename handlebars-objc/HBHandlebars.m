@@ -99,7 +99,7 @@ static HBLoggerBlock _loggerBlock = nil;
 #pragma mark -
 #pragma mark Logger
 
-+ (void) setLoggerWithBlock:(HBLoggerBlock)loggerBlock
++ (void) setLoggerBlock:(HBLoggerBlock)loggerBlock
 {
     _loggerBlock = loggerBlock;
 }

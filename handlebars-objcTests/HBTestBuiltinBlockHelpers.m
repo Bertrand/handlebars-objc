@@ -57,150 +57,96 @@
     XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[], @"world": @"world"}]),
                           @"cruel world!");
     
-    /* We don't pass this handlebars.js test, but it makes no sense. I don't think I'll fix it */
     /*
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @0, @"world": @"world"}]),
-                          @"GOODBYE cruel world!");
+     We don't pass this handlebars.js test, but it makes no sense. I don't think I'll fix it, there is no way 0 should eval to true,
+     except in ruby, and this is the dumbest choice one could imagine.
+     */
+    
+    /*
+     XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @0, @"world": @"world"}]),
+     @"GOODBYE cruel world!");
      */
 }
 
-#if 0
-    // if with function argument
-    - (void) testIfWithFunctionArgument
-    {
-        id string = @"{{#if goodbye}}GOODBYE {{/if}}cruel {{world}}!";
-        shouldCompileTo(string, {goodbye: function() {return true;}, world: "world"}, "GOODBYE cruel world!",
-                        "if with function shows the contents when function returns true");
-        shouldCompileTo(string, {goodbye: function() {return this.world;}, world: "world"}, "GOODBYE cruel world!",
-                        "if with function shows the contents when function returns string");
-        shouldCompileTo(string, {goodbye: function() {return false;}, world: "world"}, "cruel world!",
-                        "if with function does not show the contents when returns false");
-        shouldCompileTo(string, {goodbye: function() {return this.foo;}, world: "world"}, "cruel world!",
-                        "if with function does not show the contents when returns undefined");
-    }
+// with
+- (void) testWith
+{
+    id string = @"{{#with person}}{{first}} {{last}}{{/with}}";
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"person": @{@"first": @"Alan", @"last": @"Johnson"}}]), @"Alan Johnson");
+    
 }
 
-describe('#with', function() {
-    // with
-    - (void) testWith
-    {
-        id string = @"{{#with person}}{{first}} {{last}}{{/with}}";
-        XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:{person: {first: "Alan"],
-	    	@last: "Johnson"}}
-                               
-                               // with with function argument
-                               - (void) testWithWithFunctionArgument
-        {
-            id string = @"{{#with person}}{{first}} {{last}}{{/with}}";
-      	    XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:{person: function() { return {first: "Alan"],
-                @last: "Johnson"};}}
-                                   
-                                   
-                                   describe('#each', function() {
-                // each
-                - (void) testEach
-                {
-                    id string = @"{{#each goodbyes}}{{text}}! {{/each}}cruel {{world}}!";
-                    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
-                    XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:hash],
-                                          @"goodbye! Goodbye! GOODBYE! cruel world!");
-                    
-                    XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:{goodbyes: [], world: "world"}],
-                                          @"cruel world!");
-                    
-                    
-                    // each with an object and @key
-                    - (void) testEachWithAnObjectAndAtkey
-                    {
-                        id string = @"{{#each goodbyes}}{{@key}}. {{text}}! {{/each}}cruel {{world}}!";
-                        var hashi     = {goodbyes: {"<b>#1</b>": {text: "goodbye"}, 2: {text: "GOODBYE"}}, world: "world"};
-                        
-                        // Object property iteration order is undefined according to ECMA spec,
-                        // so we need to check both possible orders
-                        // @see http://stackoverflow.com/questions/280713/elements-order-in-a-for-in-loop
-                        var actual = compileWithPartials(string, hash);
-                        var expected1 = "&lt;b&gt;#1&lt;/b&gt;. goodbye! 2. GOODBYE! cruel world!";
-                        var expected2 = "2. GOODBYE! &lt;b&gt;#1&lt;/b&gt;. goodbye! cruel world!";
-                        
-                        (actual === expected1 || actual === expected2).should.equal(true, "each with object argument iterates over the contents when not empty");
-                        XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:{goodbyes: [], world: "world"}],
-                                              @"cruel world!");
-                        
-                        
-                        // each with @index
-                        - (void) testEachWithAtindex
-                        {
-                            id string = @"{{#each goodbyes}}{{@index}}. {{text}}! {{/each}}cruel {{world}}!";
-                            id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
-                            
-                            var template = CompilerContext.compile(string);
-                            var result = template(hash);
-                            
-                            equal(result, "0. goodbye! 1. Goodbye! 2. GOODBYE! cruel world!", "The @index variable is used");
-                        }
-                        
-                        // each with nested @index
-                        - (void) testEachWithNestedAtindex
-                        {
-                            id string = @"{{#each goodbyes}}{{@index}}. {{text}}! {{#each ../goodbyes}}{{@index}} {{/each}}After {{@index}} {{/each}}{{@index}}cruel {{world}}!";
-                            id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
-                            
-                            var template = CompilerContext.compile(string);
-                            var result = template(hash);
-                            
-                            equal(result, "0. goodbye! 0 1 2 After 0 1. Goodbye! 0 1 2 After 1 2. GOODBYE! 0 1 2 After 2 cruel world!", "The @index variable is used");
-                        }
-                        
-                        // each with function argument
-                        - (void) testEachWithFunctionArgument
-                        {
-                            id string = @"{{#each goodbyes}}{{text}}! {{/each}}cruel {{world}}!";
-                            var hashi   = {goodbyes: function () { return [{text: "goodbye"}, {text: "Goodbye"}, {text: "GOODBYE"}];}, world: "world"};
-                            XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:hash],
-                                                  @"goodbye! Goodbye! GOODBYE! cruel world!");
-                            
-                            XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:{goodbyes: [], world: "world"}],
-                                                  @"cruel world!");
-                            
-                            
-                            // data passed to helpers
-                            - (void) testDataPassedToHelpers
-                            {
-                                id string = @"{{#each letters}}{{this}}{{detectDataInsideEach}}{{/each}}";
-                                id hash = @{ @"letters": @[ @"a" ,@"b" ,@"c" ] };
-                                
-                                var template = CompilerContext.compile(string);
-                                var result = template(hash, {
-                                data: {
-                                exclaim: '!'
-                                }
-                                }
-                                                      equal(result, 'a!b!c!', 'should output data');
-                                                      }
-                                                      
-                                                      Handlebars.registerHelper('detectDataInsideEach', function(options) {
-                                    return options.data && options.data.exclaim;
-                                }
-                                                                                }
-                                                                                
-                                                                                // #log
-                                                                                - (void) testSharpsignlog
-                                {
-                                    
-                                    id string = @"{{log blah}}";
-                                    id hash = @{ @"blah": @"whee" };
-                                    
-                                    var levelArg, logArg;
-                                    Handlebars.log = function(level, arg){ levelArg = level, logArg = arg; };
-                                    
-                                    XCTAssertEqualObjects([HBHandlebars renderTemplate:@string withContext:hash],
-                                                          @"");
-                                    
-                                    equals(1, levelArg, "should call log with 1");
-                                    equals("whee", logArg, "should call log with 'whee'");
-                                }
-                                                                                
-                                                                                }
 
-#endif
+// each
+- (void) testEach
+{
+    id string = @"{{#each goodbyes}}{{text}}! {{/each}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+                          @"goodbye! Goodbye! GOODBYE! cruel world!");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbyes": @[], @"world": @"world"}]),
+                          @"cruel world!");
+}
+
+// each with an object and @key
+- (void) testEachWithAnObjectAndAtkey
+{
+    id string = @"{{#each goodbyes}}{{@key}}. {{text}}! {{/each}}cruel {{world}}!";
+    id hash = @{@"goodbyes": @{@"<b>#1</b>": @{@"text": @"goodbye"}, @"2": @{@"text": @"GOODBYE"}}, @"world": @"world"};
+    
+    id actual = [HBHandlebars renderTemplateString:string withContext:hash];
+    id expected1 = @"&lt;b&gt;#1&lt;/b&gt;. goodbye! 2. GOODBYE! cruel world!";
+    id expected2 = @"2. GOODBYE! &lt;b&gt;#1&lt;/b&gt;. goodbye! cruel world!";
+    
+    XCTAssert([actual isEqual:expected1] || [actual isEqual:expected2], @"each with object argument iterates over the contents when not empty");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbyes": @[], @"world": @"world"}]),
+                          @"cruel world!");
+}
+
+// each with @index
+- (void) testEachWithAtindex
+{
+    id string = @"{{#each goodbyes}}{{@index}}. {{text}}! {{/each}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+                          @"0. goodbye! 1. Goodbye! 2. GOODBYE! cruel world!");
+}
+
+// each with nested @index
+- (void) testEachWithNestedAtindex
+{
+    id string = @"{{#each goodbyes}}{{@index}}. {{text}}! {{#each ../goodbyes}}{{@index}} {{/each}}After {{@index}} {{/each}}{{@index}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+                          @"0. goodbye! 0 1 2 After 0 1. Goodbye! 0 1 2 After 1 2. GOODBYE! 0 1 2 After 2 cruel world!");
+}
+
+
+// #log
+- (void) testLog
+{
+    id string = @"{{log blah}}";
+    id hash = @{ @"blah": @"whee" };
+
+    __block NSInteger levelArg = -1;
+    __block id objectArg = nil;
+
+    [HBHandlebars setLoggerBlock:^(NSInteger level, id object) {
+        levelArg = level;
+        objectArg = [[object retain] autorelease];
+        return (NSString*)nil;
+    }];
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+                          @"");
+    
+    XCTAssertEqual(1L, levelArg, @"should call log with 1");
+    XCTAssertEqualObjects(@"whee", objectArg, @"should call log with 'whee'");
+}
+
+
 @end

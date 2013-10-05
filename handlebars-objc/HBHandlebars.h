@@ -60,7 +60,7 @@ typedef NSString* (^HBLoggerBlock)(NSInteger level, id object);
 
 // logger
 
-+ (void) setLoggerWithBlock:(HBLoggerBlock)loggerBlock;
++ (void) setLoggerBlock:(HBLoggerBlock)loggerBlock;
 + (void) log:(NSInteger)level object:(id)object;
 
 // utils

@@ -78,7 +78,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             id<NSFastEnumeration> arrayLike = expression;
             
             NSInteger index = 0;
-            HBDataContext* arrayData = [currentData copy];
+            HBDataContext* arrayData = currentData ? [currentData copy] : [HBDataContext new];
             NSMutableString* result = [NSMutableString string];
             for (id arrayElement in arrayLike) {
                 arrayData[@"index"] = @(index);
@@ -100,7 +100,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             if (![expression conformsToProtocol:@protocol(NSFastEnumeration)]) return (NSString*)nil;
             id<NSFastEnumeration> dictionaryLike = expression;
 
-            HBDataContext* dictionaryData = [currentData copy];
+            HBDataContext* dictionaryData = currentData ? [currentData copy] : [HBDataContext new];
             NSMutableString* result = [NSMutableString string];
             for (id key in dictionaryLike) {
                 dictionaryData[@"key"] = key;
