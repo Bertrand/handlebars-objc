@@ -48,6 +48,14 @@ extern int hb_debug;
     return parsedString;
 }
 
+- (void) testParsingFailure
+{
+    XCTAssertThrows([self astString:@"a\na\na {{ string"], @"erroneus template should raise a parse exception");
+}
+
+
+// Tests from Handlebars.js
+
 - (void)testOnlyRawText
 {
     XCTAssertEqualObjects([self astString:@"a string"], @"CONTENT[ 'a string' ]\n", @"parse raw text");

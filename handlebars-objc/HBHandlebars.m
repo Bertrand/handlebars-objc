@@ -101,7 +101,10 @@ static HBLoggerBlock _loggerBlock = nil;
 
 + (void) setLoggerBlock:(HBLoggerBlock)loggerBlock
 {
-    _loggerBlock = loggerBlock;
+    if (_loggerBlock != loggerBlock) {
+        [_loggerBlock release];
+        _loggerBlock = [loggerBlock retain];
+    }
 }
 
 + (void) log:(NSInteger)level object:(id)object

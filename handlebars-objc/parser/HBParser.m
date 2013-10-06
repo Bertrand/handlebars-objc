@@ -27,14 +27,38 @@
 
 #import "HBParser.h"
 #import "HBAst.h"
+#import "HBHandlebars.h"
 
 extern id astFromString(NSString* text);
+
+extern int hb_column;
 
 @implementation HBParser
 
 + (HBAstProgram*)astFromString:(NSString*)text
 {
-    return astFromString(text);
+    HBAstProgram* program = nil;
+    
+    hb_column = 1;
+
+    @try {
+        program = astFromString(text);
+    }
+    @catch (NSException* e) {
+        NSDictionary* info = e.userInfo;
+        if (info && [info isKindOfClass:[NSDictionary class]] && info[@"lineNumber"] && info[@"positionInBuffer"]) {
+            NSInteger pos = [info[@"positionInBuffer"] integerValue];
+            NSInteger posMin = MAX(0, pos - 30);
+            NSInteger posMax = MIN(pos + 30, [text length] - 1);
+            
+            NSString* extractedText = [text substringWithRange:NSMakeRange(posMin, posMax - posMin)];
+            NSString* error = [NSString stringWithFormat:@"%@\nline %ld\n'%@'", e.reason, (long int)[info[@"lineNumber"] integerValue], extractedText];
+            [HBHandlebars log:1 object:error];
+        }
+        @throw;
+    }
+    
+    return program;
 }
 
 @end

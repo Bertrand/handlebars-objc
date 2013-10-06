@@ -8,7 +8,15 @@ NSString* nsStringFromQuotedString(char* quotedString, NSString* escapeSequence,
 void found(const char *s);
 void hb_error(HBAstProgram** root, const char *s);
 
+
 #include "y.tab.h"  // to get the token types that we return
+
+int hb_column = 1;
+
+#define YY_USER_ACTION yylloc->first_line = yylloc->last_line = yylineno; \
+yylloc->first_column = hb_column; \
+yylloc->last_column = hb_column + (int)yyleng - 1; \
+hb_column += yyleng;
 
 #define TRACE_LEXER 0
 
@@ -25,7 +33,7 @@ void hb_error(HBAstProgram** root, const char *s);
     reentrant --> so lexer doesn't use global variables
     nounput noinput noyy_top_state noyywrap--> needed to avoid generation of unneeded C functions that will make the compiler whine
  */
-%option stack reentrant bison-bridge nounput noinput noyy_top_state noyywrap
+%option stack reentrant yylineno bison-bridge bison-locations nounput noinput noyy_top_state noyywrap
 %option prefix="hb_"
 
 %x EXPRESSION

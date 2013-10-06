@@ -83,6 +83,8 @@
 %debug
 %name-prefix="hb_"
 
+%locations
+
 %parse-param { void * scanner }
 %lex-param {void * scanner}
 %parse-param { HBAstProgram** root }
@@ -94,8 +96,8 @@
     int hb_lex_init ( yyscan_t * ptr_yy_globals ) ;
     int hb_lex_destroy ( yyscan_t yyscanner ) ;
     
-    void hb_error(yyscan_t scanner, HBAstProgram** root, const char *s);
-    int hb_lex ( YYSTYPE * lvalp, yyscan_t scanner );
+    void hb_error(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, const char *s);
+    int hb_lex ( YYSTYPE * lvalp, YYLTYPE* lloc, yyscan_t scanner );
     FILE *yyin;
     
 %}
@@ -262,12 +264,12 @@ data
 
 %%
 
-void yyerror(yyscan_t scanner, HBAstProgram** root, const char *s) {
+void yyerror(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, const char *s) {
 
     NSException* myException = [NSException
         exceptionWithName:@"ParsingError"
         reason:[NSString stringWithFormat:@"Handlebars parse error %s", s]
-        userInfo:nil];
+        userInfo:@{ @"lineNumber" : @(loc->first_line), @"positionInBuffer" : @(loc->first_column) }];
         
     @throw myException;
 }
