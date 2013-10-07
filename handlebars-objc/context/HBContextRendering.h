@@ -27,11 +27,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString(HBContextRendering)
+// You can add your own rendering to an ObjC class by implementing the HBContextRendering
+// protocol.
+
+@protocol  HBContextRendering
 - (NSString*) renderValueForHandlebars;
 @end
 
-
-@interface NSNumber(HBContextRendering)
-- (NSString*) renderValueForHandlebars;
-@end
+extern NSString* renderForHandlebars(id object);

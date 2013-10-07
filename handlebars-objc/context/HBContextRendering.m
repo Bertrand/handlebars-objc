@@ -27,17 +27,31 @@
 
 #import "HBContextRendering.h"
 
-@implementation NSString(HBContextRendering)
-- (NSString*) renderValueForHandlebars
-{
-    return self;
-}
-@end
+// We used to use categories on NSNumber, NSString ... but on ios, we generate
+// a static library and using categories with categories requires adding -ObjC
+// to the linker, and this is not something we want.
+//
+// Instead we now use isKindOfClass (and this sucks).
+//
 
-@implementation NSNumber(HBContextRendering)
-- (NSString*) renderValueForHandlebars
+NSString* renderForHandlebars(id object)
 {
-    return [self description];
+    if (nil == object) return nil;
+    NSString* renderedValue = nil;
+    if ([object respondsToSelector:@selector(renderValueForHandlebars)]) {
+        renderedValue = [object renderValueForHandlebars];
+    } else {
+        // see remark about objc categories and static libraries above
+        if ([object isKindOfClass:[NSString class]]) {
+            renderedValue = object;
+        } else if ([object isKindOfClass:[NSNumber class]]) {
+            renderedValue = [object description];
+        } else {
+            // last resort, return nil. If wanted, another behaviour for individual classes can be provided via the implementation of HBContextRendering Protocol
+            renderedValue = nil;
+        }
+    }
+    return renderedValue;
 }
-@end
+
 

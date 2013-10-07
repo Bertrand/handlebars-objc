@@ -144,7 +144,7 @@
     XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
                           @"");
     
-    XCTAssertEqual(1L, levelArg, @"should call log with 1");
+    XCTAssert(1L == levelArg, @"should call log with 1");
     XCTAssertEqualObjects(@"whee", objectArg, @"should call log with 'whee'");
     [HBHandlebars setLoggerBlock:nil];
 }

@@ -11,7 +11,7 @@
 		0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B19417F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
 		0630B1A217F2EF9100EA7018 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18B17F2EF9100EA7018 /* Cocoa.framework */; };
-		0630B1A517F2EF9100EA7018 /* handlebars-objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18817F2EF9100EA7018 /* handlebars-objc.framework */; };
+		0630B1A517F2EF9100EA7018 /* handlebars-objc-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */; };
 		0630B1AB17F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B1A917F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1C117F2EFE600EA7018 /* handlebars-objc.lm in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1BA17F2EFE600EA7018 /* handlebars-objc.lm */; };
 		0630B1C217F2EFE600EA7018 /* handlebars-objc.ym in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1BB17F2EFE600EA7018 /* handlebars-objc.ym */; };
@@ -32,7 +32,7 @@
 		06556D9017FF177700070907 /* HBTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8B17FF177700070907 /* HBTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06556D9117FF177700070907 /* HBTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8C17FF177700070907 /* HBTemplate.m */; };
 		06556D9217FF177700070907 /* HBTemplate_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8D17FF177700070907 /* HBTemplate_Private.h */; };
-		06556D9517FF178300070907 /* HBHandlebars.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D9317FF178300070907 /* HBHandlebars.h */; };
+		06556D9517FF178300070907 /* HBHandlebars.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D9317FF178300070907 /* HBHandlebars.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06556D9617FF178300070907 /* HBHandlebars.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D9417FF178300070907 /* HBHandlebars.m */; };
 		065C287C17FA166C00894DD4 /* HBContextStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 065C287A17FA166C00894DD4 /* HBContextStack.h */; };
 		065C287D17FA166C00894DD4 /* HBContextStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C287B17FA166C00894DD4 /* HBContextStack.m */; };
@@ -86,6 +86,59 @@
 		06E478F617FAC87A0029C3D1 /* HBTestSimpleBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */; };
 		06E4790A17FC0CA90029C3D1 /* HBDataContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E4790817FC0CA90029C3D1 /* HBDataContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06E4790B17FC0CA90029C3D1 /* HBDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E4790917FC0CA90029C3D1 /* HBDataContext.m */; };
+		06E89C061802E24900A6F461 /* libhandlebars-objc-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */; };
+		06F493401802D07F0055B5BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4933F1802D07F0055B5BC /* Foundation.framework */; };
+		06F4934D1802D07F0055B5BC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
+		06F4934E1802D07F0055B5BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4933F1802D07F0055B5BC /* Foundation.framework */; };
+		06F493501802D07F0055B5BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4934F1802D07F0055B5BC /* UIKit.framework */; };
+		06F493621802D1500055B5BC /* HBHandlebars.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D9417FF178300070907 /* HBHandlebars.m */; };
+		06F493631802D1500055B5BC /* HBAstBlockTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D3217F5B6EF00FC40D7 /* HBAstBlockTag.m */; };
+		06F493641802D1500055B5BC /* HBAstComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81AA017F8D3750006F16A /* HBAstComment.m */; };
+		06F493651802D1500055B5BC /* HBAstNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1C917F33EB500EA7018 /* HBAstNode.m */; };
+		06F493661802D1500055B5BC /* HBAstPartialTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D3A17F5C5AE00FC40D7 /* HBAstPartialTag.m */; };
+		06F493671802D1500055B5BC /* HBAstProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1CD17F33EDA00EA7018 /* HBAstProgram.m */; };
+		06F493681802D1500055B5BC /* HBAstRawText.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D5C17F5D7AD00FC40D7 /* HBAstRawText.m */; };
+		06F493691802D1500055B5BC /* HBAstSimpleTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D2E17F5AFA900FC40D7 /* HBAstSimpleTag.m */; };
+		06F4936A1802D1500055B5BC /* HBAstTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D3617F5B70200FC40D7 /* HBAstTag.m */; };
+		06F4936B1802D1500055B5BC /* HBAstContextualValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4017F5CA3500FC40D7 /* HBAstContextualValue.m */; };
+		06F4936C1802D1500055B5BC /* HBAstExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4217F5CA3500FC40D7 /* HBAstExpression.m */; };
+		06F4936D1802D1500055B5BC /* HBAstKeyPathComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4417F5CA3500FC40D7 /* HBAstKeyPathComponent.m */; };
+		06F4936E1802D1500055B5BC /* HBAstNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4617F5CA3500FC40D7 /* HBAstNumber.m */; };
+		06F4936F1802D1500055B5BC /* HBAstString.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4817F5CA3500FC40D7 /* HBAstString.m */; };
+		06F493701802D1500055B5BC /* HBAstValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4A17F5CA3500FC40D7 /* HBAstValue.m */; };
+		06F493711802D1500055B5BC /* HBAstVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81A9617F86ECE0006F16A /* HBAstVisitor.m */; };
+		06F493721802D1500055B5BC /* HBAstParserTestVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81A9A17F879240006F16A /* HBAstParserTestVisitor.m */; };
+		06F493731802D1500055B5BC /* HBAstEvaluationVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D6317F9A12A00FC40D7 /* HBAstEvaluationVisitor.m */; };
+		06F493741802D1500055B5BC /* HBContextStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C287B17FA166C00894DD4 /* HBContextStack.m */; };
+		06F493751802D1500055B5BC /* HBContextState.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D6817F9B22D00FC40D7 /* HBContextState.m */; };
+		06F493761802D1500055B5BC /* HBContextRendering.m in Sources */ = {isa = PBXBuildFile; fileRef = 06743FB417FB572B001793F7 /* HBContextRendering.m */; };
+		06F493771802D1500055B5BC /* HBDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E4790917FC0CA90029C3D1 /* HBDataContext.m */; };
+		06F493781802D1500055B5BC /* HBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426BC17FC5E4200C41476 /* HBHelper.m */; };
+		06F493791802D1500055B5BC /* HBHelperCallingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0698F02417FEC78A005203F6 /* HBHelperCallingInfo.m */; };
+		06F4937A1802D1500055B5BC /* HBHelperRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426C017FC62A000C41476 /* HBHelperRegistry.m */; };
+		06F4937B1802D1500055B5BC /* HBBuiltinHelpersRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 06743FB818005CFB001793F7 /* HBBuiltinHelpersRegistry.m */; };
+		06F4937C1802D1500055B5BC /* handlebars-objc.lm in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1BA17F2EFE600EA7018 /* handlebars-objc.lm */; };
+		06F4937D1802D1500055B5BC /* handlebars-objc.ym in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1BB17F2EFE600EA7018 /* handlebars-objc.ym */; };
+		06F4937E1802D1500055B5BC /* HBParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1D817F466B800EA7018 /* HBParser.m */; };
+		06F4937F1802D1500055B5BC /* HBPartial.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D7E17FEFB0C00070907 /* HBPartial.m */; };
+		06F493801802D1500055B5BC /* HBPartialRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8217FEFB7C00070907 /* HBPartialRegistry.m */; };
+		06F493811802D1500055B5BC /* HBExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8A17FF177700070907 /* HBExecutionContext.m */; };
+		06F493821802D1500055B5BC /* HBTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8C17FF177700070907 /* HBTemplate.m */; };
+		06F493841802D1820055B5BC /* HBHandlebars.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D9317FF178300070907 /* HBHandlebars.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493851802D1820055B5BC /* HBDataContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E4790817FC0CA90029C3D1 /* HBDataContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493861802D1820055B5BC /* HBHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BB17FC5E4200C41476 /* HBHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0698F02317FEC78A005203F6 /* HBHelperCallingInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BF17FC62A000C41476 /* HBHelperRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493891802D1820055B5BC /* HBPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D7D17FEFB0C00070907 /* HBPartial.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8117FEFB7C00070907 /* HBPartialRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8917FF177700070907 /* HBExecutionContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8B17FF177700070907 /* HBTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493B61802D75E0055B5BC /* HBTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426B817FC554800C41476 /* HBTestHelpers.m */; };
+		06F493B71802D75E0055B5BC /* HBTestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81A9D17F87FFD0006F16A /* HBTestParser.m */; };
+		06F493B81802D75E0055B5BC /* HBTestPartials.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8617FF0B7600070907 /* HBTestPartials.m */; };
+		06F493B91802D75E0055B5BC /* HBTestSimpleBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */; };
+		06F493BA1802D75E0055B5BC /* HBTestSimpleTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F117FAC2CB0029C3D1 /* HBTestSimpleTags.m */; };
+		06F493BB1802D75E0055B5BC /* HBTestBuiltinBlockHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F317FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,10 +149,29 @@
 			remoteGlobalIDString = 0630B18717F2EF9100EA7018;
 			remoteInfo = "handlebars-objc";
 		};
+		06F493511802D07F0055B5BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0630B17F17F2EF9100EA7018 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 06F4933D1802D07F0055B5BC;
+			remoteInfo = "handlebars-objc-ios";
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		06F4933C1802D07F0055B5BC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		0630B18817F2EF9100EA7018 /* handlebars-objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "handlebars-objc.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "handlebars-objc-osx.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B18B17F2EF9100EA7018 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0630B18E17F2EF9100EA7018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0630B18F17F2EF9100EA7018 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -107,7 +179,7 @@
 		0630B19317F2EF9100EA7018 /* handlebars-objc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "handlebars-objc-Info.plist"; sourceTree = "<group>"; };
 		0630B19517F2EF9100EA7018 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0630B19717F2EF9100EA7018 /* handlebars-objc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "handlebars-objc-Prefix.pch"; sourceTree = "<group>"; };
-		0630B19F17F2EF9100EA7018 /* handlebars-objcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "handlebars-objcTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0630B19F17F2EF9100EA7018 /* handlebars-objc-osx-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "handlebars-objc-osx-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B1A017F2EF9100EA7018 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0630B1A817F2EF9100EA7018 /* handlebars-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "handlebars-objcTests-Info.plist"; sourceTree = "<group>"; };
 		0630B1AA17F2EF9100EA7018 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -187,6 +259,12 @@
 		06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestSimpleBlocks.m; sourceTree = "<group>"; };
 		06E4790817FC0CA90029C3D1 /* HBDataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBDataContext.h; sourceTree = "<group>"; };
 		06E4790917FC0CA90029C3D1 /* HBDataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBDataContext.m; sourceTree = "<group>"; };
+		06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libhandlebars-objc-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F4933F1802D07F0055B5BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "handlebars-objc-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F4934F1802D07F0055B5BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		06F493561802D07F0055B5BC /* handlebars-objc-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "handlebars-objc-iosTests-Info.plist"; sourceTree = "<group>"; };
+		06F493B51802D59F0055B5BC /* handlebars-objc-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "handlebars-objc-ios-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,9 +281,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0630B1A517F2EF9100EA7018 /* handlebars-objc.framework in Frameworks */,
+				0630B1A517F2EF9100EA7018 /* handlebars-objc-osx.framework in Frameworks */,
 				0630B1A217F2EF9100EA7018 /* Cocoa.framework in Frameworks */,
 				0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06F4933B1802D07F0055B5BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06F493401802D07F0055B5BC /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06F493491802D07F0055B5BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06E89C061802E24900A6F461 /* libhandlebars-objc-ios.a in Frameworks */,
+				06F4934D1802D07F0055B5BC /* XCTest.framework in Frameworks */,
+				06F493501802D07F0055B5BC /* UIKit.framework in Frameworks */,
+				06F4934E1802D07F0055B5BC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +315,7 @@
 				06798D5F17F9A06900FC40D7 /* doc */,
 				0630B19117F2EF9100EA7018 /* handlebars-objc */,
 				0630B1A617F2EF9100EA7018 /* handlebars-objcTests */,
+				06F493541802D07F0055B5BC /* handlebars-objc-iosTests */,
 				0630B18A17F2EF9100EA7018 /* Frameworks */,
 				0630B18917F2EF9100EA7018 /* Products */,
 			);
@@ -226,8 +324,10 @@
 		0630B18917F2EF9100EA7018 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0630B18817F2EF9100EA7018 /* handlebars-objc.framework */,
-				0630B19F17F2EF9100EA7018 /* handlebars-objcTests.xctest */,
+				0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */,
+				0630B19F17F2EF9100EA7018 /* handlebars-objc-osx-tests.xctest */,
+				06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */,
+				06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,6 +338,8 @@
 				0630B1C517F33CB700EA7018 /* libl.a */,
 				0630B18B17F2EF9100EA7018 /* Cocoa.framework */,
 				0630B1A017F2EF9100EA7018 /* XCTest.framework */,
+				06F4933F1802D07F0055B5BC /* Foundation.framework */,
+				06F4934F1802D07F0055B5BC /* UIKit.framework */,
 				0630B18D17F2EF9100EA7018 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -276,6 +378,7 @@
 				0630B19317F2EF9100EA7018 /* handlebars-objc-Info.plist */,
 				0630B19417F2EF9100EA7018 /* InfoPlist.strings */,
 				0630B19717F2EF9100EA7018 /* handlebars-objc-Prefix.pch */,
+				06F493B51802D59F0055B5BC /* handlebars-objc-ios-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -434,6 +537,22 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
+		06F493541802D07F0055B5BC /* handlebars-objc-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				06F493551802D07F0055B5BC /* Supporting Files */,
+			);
+			path = "handlebars-objc-iosTests";
+			sourceTree = "<group>";
+		};
+		06F493551802D07F0055B5BC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06F493561802D07F0055B5BC /* handlebars-objc-iosTests-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -476,12 +595,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06F493831802D1640055B5BC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06F493891802D1820055B5BC /* HBPartial.h in Headers */,
+				06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */,
+				06F493851802D1820055B5BC /* HBDataContext.h in Headers */,
+				06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */,
+				06F493861802D1820055B5BC /* HBHelper.h in Headers */,
+				06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */,
+				06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */,
+				06F493841802D1820055B5BC /* HBHandlebars.h in Headers */,
+				06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0630B18717F2EF9100EA7018 /* handlebars-objc */ = {
+		0630B18717F2EF9100EA7018 /* handlebars-objc-osx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0630B1B017F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objc" */;
+			buildConfigurationList = 0630B1B017F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objc-osx" */;
 			buildPhases = (
 				0630B18317F2EF9100EA7018 /* Sources */,
 				0630B18417F2EF9100EA7018 /* Frameworks */,
@@ -492,14 +627,14 @@
 			);
 			dependencies = (
 			);
-			name = "handlebars-objc";
+			name = "handlebars-objc-osx";
 			productName = "handlebars-objc";
-			productReference = 0630B18817F2EF9100EA7018 /* handlebars-objc.framework */;
+			productReference = 0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		0630B19E17F2EF9100EA7018 /* handlebars-objcTests */ = {
+		0630B19E17F2EF9100EA7018 /* handlebars-objc-osx-tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0630B1B317F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objcTests" */;
+			buildConfigurationList = 0630B1B317F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objc-osx-tests" */;
 			buildPhases = (
 				0630B19B17F2EF9100EA7018 /* Sources */,
 				0630B19C17F2EF9100EA7018 /* Frameworks */,
@@ -510,9 +645,45 @@
 			dependencies = (
 				0630B1A417F2EF9100EA7018 /* PBXTargetDependency */,
 			);
-			name = "handlebars-objcTests";
+			name = "handlebars-objc-osx-tests";
 			productName = "handlebars-objcTests";
-			productReference = 0630B19F17F2EF9100EA7018 /* handlebars-objcTests.xctest */;
+			productReference = 0630B19F17F2EF9100EA7018 /* handlebars-objc-osx-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		06F4933D1802D07F0055B5BC /* handlebars-objc-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06F4935C1802D0800055B5BC /* Build configuration list for PBXNativeTarget "handlebars-objc-ios" */;
+			buildPhases = (
+				06F4933A1802D07F0055B5BC /* Sources */,
+				06F4933B1802D07F0055B5BC /* Frameworks */,
+				06F4933C1802D07F0055B5BC /* CopyFiles */,
+				06F493831802D1640055B5BC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "handlebars-objc-ios";
+			productName = "handlebars-objc-ios";
+			productReference = 06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		06F4934B1802D07F0055B5BC /* handlebars-objc-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 06F4935F1802D0800055B5BC /* Build configuration list for PBXNativeTarget "handlebars-objc-iosTests" */;
+			buildPhases = (
+				06F493481802D07F0055B5BC /* Sources */,
+				06F493491802D07F0055B5BC /* Frameworks */,
+				06F4934A1802D07F0055B5BC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				06F493521802D07F0055B5BC /* PBXTargetDependency */,
+			);
+			name = "handlebars-objc-iosTests";
+			productName = "handlebars-objc-iosTests";
+			productReference = 06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -525,6 +696,9 @@
 				ORGANIZATIONNAME = Fotonauts;
 				TargetAttributes = {
 					0630B19E17F2EF9100EA7018 = {
+						TestTargetID = 0630B18717F2EF9100EA7018;
+					};
+					06F4934B1802D07F0055B5BC = {
 						TestTargetID = 0630B18717F2EF9100EA7018;
 					};
 				};
@@ -541,8 +715,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0630B18717F2EF9100EA7018 /* handlebars-objc */,
-				0630B19E17F2EF9100EA7018 /* handlebars-objcTests */,
+				0630B18717F2EF9100EA7018 /* handlebars-objc-osx */,
+				0630B19E17F2EF9100EA7018 /* handlebars-objc-osx-tests */,
+				06F4933D1802D07F0055B5BC /* handlebars-objc-ios */,
+				06F4934B1802D07F0055B5BC /* handlebars-objc-iosTests */,
 			);
 		};
 /* End PBXProject section */
@@ -562,6 +738,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0630B1AB17F2EF9100EA7018 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06F4934A1802D07F0055B5BC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,13 +804,71 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		06F4933A1802D07F0055B5BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06F493791802D1500055B5BC /* HBHelperCallingInfo.m in Sources */,
+				06F493751802D1500055B5BC /* HBContextState.m in Sources */,
+				06F4937A1802D1500055B5BC /* HBHelperRegistry.m in Sources */,
+				06F493771802D1500055B5BC /* HBDataContext.m in Sources */,
+				06F4937C1802D1500055B5BC /* handlebars-objc.lm in Sources */,
+				06F493711802D1500055B5BC /* HBAstVisitor.m in Sources */,
+				06F4937D1802D1500055B5BC /* handlebars-objc.ym in Sources */,
+				06F493821802D1500055B5BC /* HBTemplate.m in Sources */,
+				06F493651802D1500055B5BC /* HBAstNode.m in Sources */,
+				06F4936F1802D1500055B5BC /* HBAstString.m in Sources */,
+				06F4936B1802D1500055B5BC /* HBAstContextualValue.m in Sources */,
+				06F493721802D1500055B5BC /* HBAstParserTestVisitor.m in Sources */,
+				06F4936A1802D1500055B5BC /* HBAstTag.m in Sources */,
+				06F4937F1802D1500055B5BC /* HBPartial.m in Sources */,
+				06F493671802D1500055B5BC /* HBAstProgram.m in Sources */,
+				06F493681802D1500055B5BC /* HBAstRawText.m in Sources */,
+				06F493741802D1500055B5BC /* HBContextStack.m in Sources */,
+				06F493701802D1500055B5BC /* HBAstValue.m in Sources */,
+				06F493811802D1500055B5BC /* HBExecutionContext.m in Sources */,
+				06F493631802D1500055B5BC /* HBAstBlockTag.m in Sources */,
+				06F4936D1802D1500055B5BC /* HBAstKeyPathComponent.m in Sources */,
+				06F493691802D1500055B5BC /* HBAstSimpleTag.m in Sources */,
+				06F4937E1802D1500055B5BC /* HBParser.m in Sources */,
+				06F4936E1802D1500055B5BC /* HBAstNumber.m in Sources */,
+				06F493641802D1500055B5BC /* HBAstComment.m in Sources */,
+				06F493621802D1500055B5BC /* HBHandlebars.m in Sources */,
+				06F4937B1802D1500055B5BC /* HBBuiltinHelpersRegistry.m in Sources */,
+				06F493761802D1500055B5BC /* HBContextRendering.m in Sources */,
+				06F493731802D1500055B5BC /* HBAstEvaluationVisitor.m in Sources */,
+				06F4936C1802D1500055B5BC /* HBAstExpression.m in Sources */,
+				06F493661802D1500055B5BC /* HBAstPartialTag.m in Sources */,
+				06F493801802D1500055B5BC /* HBPartialRegistry.m in Sources */,
+				06F493781802D1500055B5BC /* HBHelper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		06F493481802D07F0055B5BC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				06F493B71802D75E0055B5BC /* HBTestParser.m in Sources */,
+				06F493B91802D75E0055B5BC /* HBTestSimpleBlocks.m in Sources */,
+				06F493B81802D75E0055B5BC /* HBTestPartials.m in Sources */,
+				06F493BB1802D75E0055B5BC /* HBTestBuiltinBlockHelpers.m in Sources */,
+				06F493BA1802D75E0055B5BC /* HBTestSimpleTags.m in Sources */,
+				06F493B61802D75E0055B5BC /* HBTestHelpers.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		0630B1A417F2EF9100EA7018 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0630B18717F2EF9100EA7018 /* handlebars-objc */;
+			target = 0630B18717F2EF9100EA7018 /* handlebars-objc-osx */;
 			targetProxy = 0630B1A317F2EF9100EA7018 /* PBXContainerItemProxy */;
+		};
+		06F493521802D07F0055B5BC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 06F4933D1802D07F0055B5BC /* handlebars-objc-ios */;
+			targetProxy = 06F493511802D07F0055B5BC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -682,7 +923,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -714,7 +955,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = "";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -752,7 +993,7 @@
 		0630B1B417F2EF9100EA7018 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc.framework/Versions/A/handlebars-objc";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc-osx.framework/Versions/A/handlebars-objc-osx";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -774,7 +1015,7 @@
 		0630B1B517F2EF9100EA7018 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc.framework/Versions/A/handlebars-objc";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc-osx.framework/Versions/A/handlebars-objc-osx";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -785,6 +1026,95 @@
 				INFOPLIST_FILE = "handlebars-objcTests/handlebars-objcTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		06F4935D1802D0800055B5BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/handlebars_objc_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "handlebars-objc/handlebars-objc-ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		06F4935E1802D0800055B5BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				DSTROOT = /tmp/handlebars_objc_ios.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "handlebars-objc/handlebars-objc-ios-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		06F493601802D0800055B5BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "handlebars-objc/handlebars-objc-ios-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "handlebars-objcTests/handlebars-objc-iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		06F493611802D0800055B5BC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "handlebars-objc/handlebars-objc-ios-Prefix.pch";
+				INFOPLIST_FILE = "handlebars-objcTests/handlebars-objc-iosTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -801,7 +1131,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0630B1B017F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objc" */ = {
+		0630B1B017F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objc-osx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0630B1B117F2EF9100EA7018 /* Debug */,
@@ -810,11 +1140,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0630B1B317F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objcTests" */ = {
+		0630B1B317F2EF9100EA7018 /* Build configuration list for PBXNativeTarget "handlebars-objc-osx-tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0630B1B417F2EF9100EA7018 /* Debug */,
 				0630B1B517F2EF9100EA7018 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06F4935C1802D0800055B5BC /* Build configuration list for PBXNativeTarget "handlebars-objc-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06F4935D1802D0800055B5BC /* Debug */,
+				06F4935E1802D0800055B5BC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		06F4935F1802D0800055B5BC /* Build configuration list for PBXNativeTarget "handlebars-objc-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06F493601802D0800055B5BC /* Debug */,
+				06F493611802D0800055B5BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

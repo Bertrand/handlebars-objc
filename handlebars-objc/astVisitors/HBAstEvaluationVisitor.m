@@ -343,8 +343,8 @@
     // native expressions
     {
         id evaluatedExpression = [self visitExpression:node.expression];
-        if (evaluatedExpression && [evaluatedExpression respondsToSelector:@selector(renderValueForHandlebars)]) {
-            NSString* renderedValue = [evaluatedExpression renderValueForHandlebars];
+        if (evaluatedExpression) {
+            NSString* renderedValue = renderForHandlebars(evaluatedExpression);
             if (node.escape) renderedValue = [HBHandlebars escapeHTML:renderedValue];
             return renderedValue;
         }

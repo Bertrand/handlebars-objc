@@ -445,9 +445,9 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 {
     HBHelperBlock goodbyeHelper = ^(HBHelperCallingInfo* callingInfo) {
         if ([callingInfo[@"print"] boolValue]) {
-            return [NSString stringWithFormat:@"GOODBYE %@ %@", callingInfo[@"cruel"], callingInfo[@"world"]];
+            return (NSString*)[NSString stringWithFormat:@"GOODBYE %@ %@", callingInfo[@"cruel"], callingInfo[@"world"]];
         } else {
-            return (id)@"NOT PRINTING";
+            return (NSString*)@"NOT PRINTING";
         }
     };
     
@@ -468,9 +468,9 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
     id hash = @{};
     HBHelperBlock greetingHelper = ^(HBHelperCallingInfo* callingInfo) {
         if (callingInfo[@"noprint"] && [callingInfo[@"noprint"] boolValue] == true) {
-            return (id)@"NOT PRINTING";
+            return (NSString*)@"NOT PRINTING";
         } else {
-            return [NSString stringWithFormat:@"GOODBYE %@ %@ %@ TIMES", callingInfo[@"cruel"], callingInfo.statements(callingInfo.context, callingInfo.data), callingInfo[@"times"]];
+            return (NSString*)[NSString stringWithFormat:@"GOODBYE %@ %@ %@ TIMES", callingInfo[@"cruel"], callingInfo.statements(callingInfo.context, callingInfo.data), callingInfo[@"times"]];
         }
     };
     
