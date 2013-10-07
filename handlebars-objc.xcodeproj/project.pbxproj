@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0607415A18030442007A9FD4 /* HBHandlebars.map in Headers */ = {isa = PBXBuildFile; fileRef = 0607415918030427007A9FD4 /* HBHandlebars.map */; settings = {ATTRIBUTES = (Public, ); }; };
+		0607416118030A72007A9FD4 /* HBAst.h in Headers */ = {isa = PBXBuildFile; fileRef = 0630B1D617F4265000EA7018 /* HBAst.h */; };
 		0630B18C17F2EF9100EA7018 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18B17F2EF9100EA7018 /* Cocoa.framework */; };
 		0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B19417F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
@@ -171,6 +173,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0607415918030427007A9FD4 /* HBHandlebars.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HBHandlebars.map; sourceTree = "<group>"; };
 		0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "handlebars-objc-osx.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B18B17F2EF9100EA7018 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0630B18E17F2EF9100EA7018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -358,6 +361,7 @@
 		0630B19117F2EF9100EA7018 /* handlebars-objc */ = {
 			isa = PBXGroup;
 			children = (
+				0607415918030427007A9FD4 /* HBHandlebars.map */,
 				06556D9317FF178300070907 /* HBHandlebars.h */,
 				06556D9417FF178300070907 /* HBHandlebars.m */,
 				0630B1C717F33E8700EA7018 /* ast */,
@@ -604,10 +608,12 @@
 				06F493851802D1820055B5BC /* HBDataContext.h in Headers */,
 				06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */,
 				06F493861802D1820055B5BC /* HBHelper.h in Headers */,
+				0607416118030A72007A9FD4 /* HBAst.h in Headers */,
 				06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */,
 				06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */,
 				06F493841802D1820055B5BC /* HBHandlebars.h in Headers */,
 				06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */,
+				0607415A18030442007A9FD4 /* HBHandlebars.map in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
