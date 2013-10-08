@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0607415A18030442007A9FD4 /* HBHandlebars.map in Headers */ = {isa = PBXBuildFile; fileRef = 0607415918030427007A9FD4 /* HBHandlebars.map */; settings = {ATTRIBUTES = (Public, ); }; };
-		0607416118030A72007A9FD4 /* HBAst.h in Headers */ = {isa = PBXBuildFile; fileRef = 0630B1D617F4265000EA7018 /* HBAst.h */; };
 		0630B18C17F2EF9100EA7018 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18B17F2EF9100EA7018 /* Cocoa.framework */; };
 		0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B19417F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
@@ -126,15 +124,15 @@
 		06F493801802D1500055B5BC /* HBPartialRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8217FEFB7C00070907 /* HBPartialRegistry.m */; };
 		06F493811802D1500055B5BC /* HBExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8A17FF177700070907 /* HBExecutionContext.m */; };
 		06F493821802D1500055B5BC /* HBTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8C17FF177700070907 /* HBTemplate.m */; };
-		06F493841802D1820055B5BC /* HBHandlebars.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D9317FF178300070907 /* HBHandlebars.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F493851802D1820055B5BC /* HBDataContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E4790817FC0CA90029C3D1 /* HBDataContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F493861802D1820055B5BC /* HBHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BB17FC5E4200C41476 /* HBHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0698F02317FEC78A005203F6 /* HBHelperCallingInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BF17FC62A000C41476 /* HBHelperRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F493891802D1820055B5BC /* HBPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D7D17FEFB0C00070907 /* HBPartial.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8117FEFB7C00070907 /* HBPartialRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8917FF177700070907 /* HBExecutionContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8B17FF177700070907 /* HBTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06F493841802D1820055B5BC /* HBHandlebars.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D9317FF178300070907 /* HBHandlebars.h */; };
+		06F493851802D1820055B5BC /* HBDataContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E4790817FC0CA90029C3D1 /* HBDataContext.h */; };
+		06F493861802D1820055B5BC /* HBHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BB17FC5E4200C41476 /* HBHelper.h */; };
+		06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0698F02317FEC78A005203F6 /* HBHelperCallingInfo.h */; };
+		06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BF17FC62A000C41476 /* HBHelperRegistry.h */; };
+		06F493891802D1820055B5BC /* HBPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D7D17FEFB0C00070907 /* HBPartial.h */; };
+		06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8117FEFB7C00070907 /* HBPartialRegistry.h */; };
+		06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8917FF177700070907 /* HBExecutionContext.h */; };
+		06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8B17FF177700070907 /* HBTemplate.h */; };
 		06F493B61802D75E0055B5BC /* HBTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426B817FC554800C41476 /* HBTestHelpers.m */; };
 		06F493B71802D75E0055B5BC /* HBTestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81A9D17F87FFD0006F16A /* HBTestParser.m */; };
 		06F493B81802D75E0055B5BC /* HBTestPartials.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D8617FF0B7600070907 /* HBTestPartials.m */; };
@@ -173,7 +171,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0607415918030427007A9FD4 /* HBHandlebars.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HBHandlebars.map; sourceTree = "<group>"; };
 		0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "handlebars-objc-osx.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B18B17F2EF9100EA7018 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0630B18E17F2EF9100EA7018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -242,6 +239,7 @@
 		06798D6317F9A12A00FC40D7 /* HBAstEvaluationVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstEvaluationVisitor.m; sourceTree = "<group>"; };
 		06798D6717F9B22D00FC40D7 /* HBContextState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBContextState.h; sourceTree = "<group>"; };
 		06798D6817F9B22D00FC40D7 /* HBContextState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBContextState.m; sourceTree = "<group>"; };
+		067A65FC18040ABF008A3B8E /* module.map */ = {isa = PBXFileReference; lastKnownFileType = text; path = module.map; sourceTree = "<group>"; };
 		0698F02317FEC78A005203F6 /* HBHelperCallingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelperCallingInfo.h; sourceTree = "<group>"; };
 		0698F02417FEC78A005203F6 /* HBHelperCallingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelperCallingInfo.m; sourceTree = "<group>"; };
 		0698F02717FED6D2005203F6 /* HBHelperCallingInfo_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBHelperCallingInfo_Private.h; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 		06F4933F1802D07F0055B5BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "handlebars-objc-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F4934F1802D07F0055B5BC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		06F493561802D07F0055B5BC /* handlebars-objc-iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "handlebars-objc-iosTests-Info.plist"; sourceTree = "<group>"; };
 		06F493B51802D59F0055B5BC /* handlebars-objc-ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "handlebars-objc-ios-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -318,7 +315,6 @@
 				06798D5F17F9A06900FC40D7 /* doc */,
 				0630B19117F2EF9100EA7018 /* handlebars-objc */,
 				0630B1A617F2EF9100EA7018 /* handlebars-objcTests */,
-				06F493541802D07F0055B5BC /* handlebars-objc-iosTests */,
 				0630B18A17F2EF9100EA7018 /* Frameworks */,
 				0630B18917F2EF9100EA7018 /* Products */,
 			);
@@ -361,9 +357,9 @@
 		0630B19117F2EF9100EA7018 /* handlebars-objc */ = {
 			isa = PBXGroup;
 			children = (
-				0607415918030427007A9FD4 /* HBHandlebars.map */,
 				06556D9317FF178300070907 /* HBHandlebars.h */,
 				06556D9417FF178300070907 /* HBHandlebars.m */,
+				067A65FC18040ABF008A3B8E /* module.map */,
 				0630B1C717F33E8700EA7018 /* ast */,
 				06A81A9417F86EAF0006F16A /* astVisitors */,
 				06798D6617F9B1F800FC40D7 /* context */,
@@ -541,22 +537,6 @@
 			path = helpers;
 			sourceTree = "<group>";
 		};
-		06F493541802D07F0055B5BC /* handlebars-objc-iosTests */ = {
-			isa = PBXGroup;
-			children = (
-				06F493551802D07F0055B5BC /* Supporting Files */,
-			);
-			path = "handlebars-objc-iosTests";
-			sourceTree = "<group>";
-		};
-		06F493551802D07F0055B5BC /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				06F493561802D07F0055B5BC /* handlebars-objc-iosTests-Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -608,12 +588,10 @@
 				06F493851802D1820055B5BC /* HBDataContext.h in Headers */,
 				06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */,
 				06F493861802D1820055B5BC /* HBHelper.h in Headers */,
-				0607416118030A72007A9FD4 /* HBAst.h in Headers */,
 				06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */,
 				06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */,
 				06F493841802D1820055B5BC /* HBHandlebars.h in Headers */,
 				06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */,
-				0607415A18030442007A9FD4 /* HBHandlebars.map in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +642,7 @@
 				06F4933B1802D07F0055B5BC /* Frameworks */,
 				06F4933C1802D07F0055B5BC /* CopyFiles */,
 				06F493831802D1640055B5BC /* Headers */,
+				067A65FD18040AEA008A3B8E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -755,6 +734,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		067A65FD18040AEA008A3B8E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Copying headers where XCode will find them\"\n\nS_SRC_ROOT=\"$SOURCE_ROOT/handlebars-objc\"\nS_DST_ROOT=\"$BUILT_PRODUCTS_DIR/include/\"\nmkdir -p \"$S_DST_ROOT\"\n\nfor i in module.map HBHandlebars.h runtime/HBTemplate.h runtime/HBExecutionContext.h context/HBDataContext.h helpers/HBHelper.h helpers/HBHelperRegistry.h helpers/HBHelperCallingInfo.h partials/HBPartial.h partials/HBPartialRegistry.h ; do\ncp \"$S_SRC_ROOT/$i\" \"$BUILT_PRODUCTS_DIR/include/\"\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0630B18317F2EF9100EA7018 /* Sources */ = {
