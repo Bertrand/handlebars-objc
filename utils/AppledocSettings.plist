@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>--project-name</key>
+	<string>FotopediaTracker</string>
+	<key>--project-version</key>
+	<string>0.1.0</string>
+	<key>--project-company</key>
+	<string>Fotopedia</string>
+	<key>--create-html</key>
+	<true/>
+	<key>--create-docset</key>
+	<false/>
+	<key>--clean-output</key>
+	<false/>
+	<key>--keep-intermediate-files</key>
+	<false/>
+	<key>--keep-undocumented-objects</key>
+	<true/>
+	<key>--keep-undocumented-members</key>
+	<true/>
+	<key>--search-undocumented-doc</key>
+	<true/>
+	<key>--repeat-first-par</key>
+	<false/>
+	<key>--print-information-block-titles</key>
+	<true/>
+</dict>
+</plist>

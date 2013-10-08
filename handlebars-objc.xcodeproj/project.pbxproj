@@ -747,7 +747,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Copying headers where XCode will find them\"\n\nS_SRC_ROOT=\"$SOURCE_ROOT/handlebars-objc\"\nS_DST_ROOT=\"$BUILT_PRODUCTS_DIR/include/\"\nmkdir -p \"$S_DST_ROOT\"\n\nfor i in module.map HBHandlebars.h runtime/HBTemplate.h runtime/HBExecutionContext.h context/HBDataContext.h helpers/HBHelper.h helpers/HBHelperRegistry.h helpers/HBHelperCallingInfo.h partials/HBPartial.h partials/HBPartialRegistry.h ; do\ncp \"$S_SRC_ROOT/$i\" \"$BUILT_PRODUCTS_DIR/include/\"\ndone";
+			shellScript = "echo \"Copying headers where XCode will find them\"\n\nS_DST_ROOT=\"$BUILT_PRODUCTS_DIR/include/\"\nmkdir -p \"$S_DST_ROOT\"\n\n\"$SOURCE_ROOT/utils/copy_public_headers.sh\" \"$S_DST_ROOT\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1074,7 +1074,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc-osx.framework/Versions/A/handlebars-objc-osx";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1101,6 +1101,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc-osx.framework/Versions/A/handlebars-objc-osx";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				FRAMEWORK_SEARCH_PATHS = (

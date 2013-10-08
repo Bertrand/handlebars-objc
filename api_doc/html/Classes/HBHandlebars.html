@@ -1,0 +1,532 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HBHandlebars Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">FotopediaTracker </a></h1>
+				<a id="developerHome" href="../index.html">Fotopedia</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HBHandlebars Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/escapeHTML:">&nbsp;&nbsp;&nbsp;&nbsp;+ escapeHTML:</option>
+	
+	<option value="//api/name/evaluateObjectAsBool:">&nbsp;&nbsp;&nbsp;&nbsp;+ evaluateObjectAsBool:</option>
+	
+	<option value="//api/name/log:object:">&nbsp;&nbsp;&nbsp;&nbsp;+ log:object:</option>
+	
+	<option value="//api/name/registerHelperBlock:withName:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerHelperBlock:withName:</option>
+	
+	<option value="//api/name/registerPartialString:withName:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerPartialString:withName:</option>
+	
+	<option value="//api/name/renderTemplateString:withContext:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:</option>
+	
+	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:</option>
+	
+	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</option>
+	
+	<option value="//api/name/setLoggerBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ setLoggerBlock:</option>
+	
+	<option value="//api/name/unregisterAllHelpers">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterAllHelpers</option>
+	
+	<option value="//api/name/unregisterAllPartials">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterAllPartials</option>
+	
+	<option value="//api/name/unregisterHelperWithName:">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterHelperWithName:</option>
+	
+	<option value="//api/name/unregisterPartialWithName:">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterPartialWithName:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/escapeHTML:">escapeHTML:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsBool:">evaluateObjectAsBool:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/log:object:">log:object:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlock:withName:">registerHelperBlock:withName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialString:withName:">registerPartialString:withName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:">renderTemplateString:withContext:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:">renderTemplateString:withContext:withHelperBlocks:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLoggerBlock:">setLoggerBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllHelpers">unregisterAllHelpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllPartials">unregisterAllPartials</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterHelperWithName:">unregisterHelperWithName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterPartialWithName:">unregisterPartialWithName:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HBHandlebars Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HBHandlebars Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HBHandlebars.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderTemplateString:withContext:">+&nbsp;renderTemplateString:withContext:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlock:withName:">+&nbsp;registerHelperBlock:withName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterHelperWithName:">+&nbsp;unregisterHelperWithName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllHelpers">+&nbsp;unregisterAllHelpers</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerPartialString:withName:">+&nbsp;registerPartialString:withName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterPartialWithName:">+&nbsp;unregisterPartialWithName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllPartials">+&nbsp;unregisterAllPartials</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLoggerBlock:">+&nbsp;setLoggerBlock:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/log:object:">+&nbsp;log:object:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/escapeHTML:">+&nbsp;escapeHTML:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/evaluateObjectAsBool:">+&nbsp;evaluateObjectAsBool:</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/escapeHTML:" title="escapeHTML:"></a>
+	<h3 class="subsubtitle method-title">escapeHTML:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)escapeHTML:(NSString *)<em>string</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/evaluateObjectAsBool:" title="evaluateObjectAsBool:"></a>
+	<h3 class="subsubtitle method-title">evaluateObjectAsBool:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)evaluateObjectAsBool:(id)<em>object</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/log:object:" title="log:object:"></a>
+	<h3 class="subsubtitle method-title">log:object:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)log:(NSInteger)<em>level</em> object:(id)<em>object</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlock:withName:" title="registerHelperBlock:withName:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlock:withName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)registerHelperBlock:(HBHelperBlock)<em>block</em> withName:(NSString *)<em>helperName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerPartialString:withName:" title="registerPartialString:withName:"></a>
+	<h3 class="subsubtitle method-title">registerPartialString:withName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)registerPartialString:(NSString *)<em>partialString</em> withName:(NSString *)<em>partialName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderTemplateString:withContext:" title="renderTemplateString:withContext:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:" title="renderTemplateString:withContext:withHelperBlocks:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:" title="renderTemplateString:withContext:withHelperBlocks:withPartialStrings:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em> withPartialStrings:(NSDictionary *)<em>partialStrings</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLoggerBlock:" title="setLoggerBlock:"></a>
+	<h3 class="subsubtitle method-title">setLoggerBlock:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)setLoggerBlock:(HBLoggerBlock)<em>loggerBlock</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllHelpers" title="unregisterAllHelpers"></a>
+	<h3 class="subsubtitle method-title">unregisterAllHelpers</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterAllHelpers</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllPartials" title="unregisterAllPartials"></a>
+	<h3 class="subsubtitle method-title">unregisterAllPartials</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterAllPartials</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterHelperWithName:" title="unregisterHelperWithName:"></a>
+	<h3 class="subsubtitle method-title">unregisterHelperWithName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterHelperWithName:(NSString *)<em>helperName</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterPartialWithName:" title="unregisterPartialWithName:"></a>
+	<h3 class="subsubtitle method-title">unregisterPartialWithName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterPartialWithName:(NSString *)<em>partialName</em></code></div>
+
+    
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Fotopedia. All rights reserved. (Last updated: 2013-10-08)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
