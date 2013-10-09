@@ -47,9 +47,27 @@
  
  ## Templates ##
 
- Templates must be written using Handlebars syntax documented on [Handlebars.js](http://handlebarsjs.com/) website.
+ Templates referred to in this API must be written using Handlebars syntax documented on [Handlebars.js](http://handlebarsjs.com/) website.
  
- @"hello {{word}}" is a valid (but useless) template.
+ @"hello {{word}}" is a valid (but useless) template, wrapped in an objective-C string literal.
+ 
+ 
+ ## Contexts ##
+ 
+ Contexts are in general property-list compatible objects. See [Apple documentation](https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/PropertyList.html) for a list of such objects. 
+ 
+ ## Helpers and partials ##
+ 
+ Helpers are functions implemented by the developer and which are then available for use in templates. Handlebars defines to type of helpers: expression helpers and block helpers. Please refer to Handlebars.js documentation](http://handlebarsjs.com/expressions.html) for more details regarding the difference between both.
+ 
+ In Handlebars-objc expression helpers and block helpers are added the same way, by registering objective-C blocks. Block type is declared as: 
+ 
+    typedef NSString* (^HBHelperBlock)(HBHelperCallingInfo* info);
+
+ Please see <HBHelperCallingInfo> for more details on block input parameters. 
+ 
+ Partials are just template chunks that can be reused in templates.
+
  
 */
 
@@ -68,7 +86,7 @@ This method is the simplest way to render a template with handlebars-objc. It in
 This method should be used only if you render templates in non mission-critical parts of your application. In particular, the provided template string is recompiled at each call. If your application calls it repeatedly, you should rather instantiate HBTemplate instances.
 
  @param template String containing the template to render
- @param context The object containing the data used in the template. Can be any property-list compatible object.
+ @param context The object containing the data used in the template. Can be any property-list compatible object for instance.
 
  @see HBTemplate
  

@@ -35,17 +35,53 @@
 
 @property (retain, nonatomic) NSString* templateString;
 
+/**
+ Designated initializer
+ 
+ This method initializes an HBTemplate object. If you want this template to be part of a shared execution context, please use <[HBExecutionContext templateWithString:]> instead.
+ 
+ @param string The template string
+ @see [HBExecutionContext templateWithString:]
+ @since v1.0
+ */
 - (id) initWithString:(NSString*)string;
 
+/**
+ Render a template 
+ 
+ This method renders the template for the provided context. Variables used in the template will be taken from the context. 
+ 
+ @param context The object containing the data used in the template. Can be any property-list compatible object for instance.
+ @since v1.0
+ */
 - (NSString*)renderWithContext:(id)context;
 
-// Compilation
+/** @name Compilation */
 
+/**
+ Compile the receiver. 
+ 
+ This method compiles the template string. This method can be safely called multiple time, template will only be compiled once. There is no need to call it before rendering, it'll be called lazily if needed, at render time. Calling this method provides a way to control when compilation should occur in your application lifetime. 
+ @since v1.0
+ */
 - (void) compile; // done automatically when rendering. Can be called at will, upfront if wanted.
 
-// Helpers and partials
+/** @name Helpers and partials */
 
+/**
+ Helpers registry. 
+ 
+ This method is the read accessor to the helpers local to this template.
+ Please see <HBHelperRegistry> for more details. 
+ */
 - (HBHelperRegistry*) helpers;
+
+/**
+ Helpers registry.
+ 
+ This method is the read accessor to the partials local to this template.
+ Please see <HBTemplateRegistry> for more details.
+ */
 - (HBPartialRegistry*) partials;
 
 @end

@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 961)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -70,6 +70,10 @@
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Compilation">Compilation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Helpers and partials">Helpers and partials</a></span></li>
 	
 </ul></li>
 
@@ -141,7 +145,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -154,35 +158,51 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/initWithString:">&ndash;&nbsp;initWithString:</a></code>
-		
+		<span class="tooltip"><p>Designated initializer</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/renderWithContext:">&ndash;&nbsp;renderWithContext:</a></code>
-		
+		<span class="tooltip"><p>Render a template</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Compilation" name="task_Compilation"></a>
+						<h3 class="subsubtitle task-title">Compilation</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/compile">&ndash;&nbsp;compile</a></code>
-		
+		<span class="tooltip"><p>Compile the receiver.</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Helpers and partials" name="task_Helpers and partials"></a>
+						<h3 class="subsubtitle task-title">Helpers and partials</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/helpers">&ndash;&nbsp;helpers</a></code>
-		
+		<span class="tooltip"><p>Helpers registry.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/partials">&ndash;&nbsp;partials</a></code>
-		
+		<span class="tooltip"><p>Helpers registry.</p></span>
 	</span>
 	
 	
@@ -225,10 +245,45 @@
 	<h3 class="subsubtitle method-title">compile</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Compile the receiver.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)compile</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method compiles the template string. This method can be safely called multiple time, template will only be compiled once. There is no need to call it before rendering, it&rsquo;ll be called lazily if needed, at render time. Calling this method provides a way to control when compilation should occur in your application lifetime.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBTemplate.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -236,10 +291,41 @@
 	<h3 class="subsubtitle method-title">helpers</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Helpers registry.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (HBHelperRegistry *)helpers</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is the read accessor to the helpers local to this template.
+Please see <a href="../Classes/HBHelperRegistry.html">HBHelperRegistry</a> for more details.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBTemplate.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -247,10 +333,64 @@
 	<h3 class="subsubtitle method-title">initWithString:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Designated initializer</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)initWithString:(NSString *)<em>string</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>string</em></dt>
+			<dd><p>The template string</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method initializes an HBTemplate object. If you want this template to be part of a shared execution context, please use <a href="../Classes/HBExecutionContext.html#//api/name/templateWithString:">[HBExecutionContext templateWithString:]</a> instead.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/templateWithString:">[HBExecutionContext templateWithString:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBTemplate.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -258,10 +398,41 @@
 	<h3 class="subsubtitle method-title">partials</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Helpers registry.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (HBPartialRegistry *)partials</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is the read accessor to the partials local to this template.
+Please see <HBTemplateRegistry> for more details.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBTemplate.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -269,10 +440,55 @@
 	<h3 class="subsubtitle method-title">renderWithContext:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Render a template</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (NSString *)renderWithContext:(id)<em>context</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The object containing the data used in the template. Can be any property-list compatible object for instance.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method renders the template for the provided context. Variables used in the template will be taken from the context.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBTemplate.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -290,7 +506,7 @@
 					<div class="footer-copyright">
 						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-09)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>
