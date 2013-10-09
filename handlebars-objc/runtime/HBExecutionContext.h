@@ -26,6 +26,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HBHelper.h"
 
 @class HBHelperRegistry;
 @class HBPartialRegistry;
@@ -36,11 +37,30 @@
 @property (retain, nonatomic) HBHelperRegistry* helpers;
 @property (retain, nonatomic) HBPartialRegistry* partials;
 
-// access the global execution context. Helpers and partials registered in the global
-// execution context are available to all templates.
+/**
+ Access the global execution context. 
+ 
+ Helpers and partials registered in the global execution context are available to all templates.
+ */
 + (instancetype) globalExecutionContext;
 
-// Creates a template that has access to the helpers and partials from this execution context
+/**
+ Creates a template that has access to the helpers and partials from receiver.
+ */
 - (HBTemplate*) templateWithString:(NSString*)string;
+
+/** @name registering helpers */
+
+- (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)name;
+- (void) registerHelperBlocks:(NSDictionary *)helperBlocks;
+- (void) unregisterHelperForName:(NSString*)name;
+- (void) unregisterAllHelpers;
+
+/** @name registering partials */
+
+- (void) registerPartialString:(NSString*)partialString forName:(NSString*)name;
+- (void) registerPartialStrings:(NSDictionary* /* NSString -> NSString */)partials;
+- (void) unregisterParialForName:(NSString*)name;
+- (void) unregisterAllPartials;
 
 @end

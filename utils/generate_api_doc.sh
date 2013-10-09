@@ -26,4 +26,4 @@ rm -rf "$PUBLIC_HEADERS_DIR"
 
 # Generate documentation
 mkdir -p "$API_DOC_DIR"
-appledoc --explicit-crossref --keep-undocumented-objects false --output "$API_DOC_DIR" "$SCRIPT_DIR/AppledocSettings.plist" "$PUBLIC_HEADERS_DIR" 
+appledoc false --output "$API_DOC_DIR" "$SCRIPT_DIR/AppledocSettings.plist" "$PUBLIC_HEADERS_DIR" 

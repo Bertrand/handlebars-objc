@@ -52,7 +52,7 @@ static HBLoggerBlock _loggerBlock = nil;
 {
     HBTemplate* hbTemplate = [[HBTemplate alloc] initWithString:template];
     if (helperBlocks) [hbTemplate.helpers registerHelperBlocks:helperBlocks];
-    if (partials) [hbTemplate.partials addPartialStrings:partials];
+    if (partials) [hbTemplate.partials registerPartialStrings:partials];
     
     NSString* renderedString = [hbTemplate renderWithContext:context];
     
@@ -63,14 +63,14 @@ static HBLoggerBlock _loggerBlock = nil;
 #pragma mark -
 #pragma mark Partials
 
-+ (void) registerHelperBlock:(HBHelperBlock)block withName:(NSString*)helperName
++ (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)helperName
 {
-    [[HBExecutionContext globalExecutionContext].helpers registerHelperBlock:block forKey:helperName];
+    [[HBExecutionContext globalExecutionContext].helpers registerHelperBlock:block forName:helperName];
 }
 
-+ (void) unregisterHelperWithName:(NSString*)helperName
++ (void) unregisterHelperForName:(NSString*)helperName
 {
-    [[HBExecutionContext globalExecutionContext].helpers removeHelperForKey:helperName];
+    [[HBExecutionContext globalExecutionContext].helpers removeHelperForName:helperName];
 }
 
 + (void) unregisterAllHelpers
@@ -81,19 +81,19 @@ static HBLoggerBlock _loggerBlock = nil;
 #pragma mark -
 #pragma mark Partials
 
-+ (void) registerPartialString:(NSString*)partialString withName:(NSString*)partialName
++ (void) registerPartialString:(NSString*)partialString forName:(NSString*)partialName
 {
-    [[HBExecutionContext globalExecutionContext].partials setPartialString:partialString forKey:partialName];
+    [[HBExecutionContext globalExecutionContext].partials registerPartialString:partialString forName:partialName];
 }
 
-+ (void) unregisterPartialWithName:(NSString*)partialName
++ (void) unregisterPartialForName:(NSString*)partialName
 {
-    [[HBExecutionContext globalExecutionContext].partials removePartialForKey:partialName];
+    [[HBExecutionContext globalExecutionContext].partials unregisterPartialForName:partialName];
 }
 
 + (void) unregisterAllPartials
 {
-    [[HBExecutionContext globalExecutionContext].partials removeAllPartials];
+    [[HBExecutionContext globalExecutionContext].partials unregisterAllPartials];
 }
 
 #pragma mark -

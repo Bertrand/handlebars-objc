@@ -36,36 +36,123 @@
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
 
+
+/** 
+ 
+*/
+
+
 typedef NSString* (^HBLoggerBlock)(NSInteger level, id object);
 
 @interface HBHandlebars : NSObject
 
-// rendering templates, simple API
+/** @name Rendering templates, convenience API */
 
+/**
+Render a string template for a data context.
+ 
+This method is the simplest way to render a template with handlebars-objc. It instanciates an HBTemplate instance compiles the template and renders it.
+ 
+This method should be used only if you render templates in non mission-critical parts of your application. In particular, the provided template string is recompiled at each call. If your application calls it repeatedly, you should rather instantiate HBTemplate instances.
+
+ @param template String containing the template to render
+ @param context The object containing the data used in the template. Can be any property-list compatible object.
+
+ @see HBTemplate
+ 
+ @since v1.0
+*/
 + (NSString*)renderTemplateString:(NSString*)template withContext:(id)context;
+
+/**
+ Render a string template for a data context using some helpers.
+ 
+ This method renders a template using helpers. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers.
+ See <+[HBHandlebars renderTemplateString:withContext:]> for a discussion regarding the performance implications of using this convenience API.
+ 
+ @param template String containing the template to render
+ @param context The object containing the data used in the template. Can be any property-list compatible object.
+ @param helperBlocks A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.
+ 
+ @since v1.0
+ */
 + (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks;
+
+/**
+ Render a string template for a data context using some helpers.
+ 
+ This method renders a template using helpers and partials. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers and partials.
+ See <+[HBHandlebars renderTemplateString:withContext:]> for a discussion regarding the performance implications of using this convenience API.
+ 
+ @param template String containing the template to render
+ @param context The object containing the data used in the template. Can be any property-list compatible object.
+ @param helperBlocks A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.
+ @param partialStrings A dictionary where keys are partial names and values are partials strings.
+ 
+ @since v1.0
+ */
 + (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks withPartialStrings:(NSDictionary*)partialStrings;
 
-// registering global helpers
 
-+ (void) registerHelperBlock:(HBHelperBlock)block withName:(NSString*)helperName;
-+ (void) unregisterHelperWithName:(NSString*)helperName;
+
+
+/** @name registering global helpers */
+
+/**
+ Register a global helper.
+ 
+ This method registers a global helper, visible to all templates. This method should be used if you frequently use the same helpers in your templates.
+ While it's totally fine to do so, if you find yourself using some helpers only in certain kind of templates, it is much cleaner to use HBExecutionContext instead.
+
+ Implementation-wise, this methods adds a helper to the global execution context, accessible via <[HBExecutionContext globalExecutionContext]>.
+ If you want a finer control over which templates a helper will be accessible from, you can create your own <HBExecutionContext> and register your helpers using <[HBExecutionContext registerHelperBlocks:]> or <[HBExecutionContext registerHelperBlock:forName:]>.
+ 
+ @param template String containing the template to render
+ @param context The object containing the data used in the template. Can be any property-list compatible object.
+ @param helperBlocks A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.
+ @param partialStrings A dictionary where keys are partial names and values are partials strings.
+ 
+ @see HBExecutionContext
+ @see [HBExecutionContext registerHelperBlocks]
+ @since v1.0
+ */
++ (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)helperName;
+
+/**
+ Unregister a global helper. 
+ 
+ This methods remove a helper from the global execution context. After calling this method, the corresponding helper will not be accessible from templates. 
+ 
+ @param helperName The name of the helper to unregister 
+ @see [HBExecutionContext unregisterHelperForName:]
+ @since v1.0
+ */
++ (void) unregisterHelperForName:(NSString*)helperName;
+
+/** 
+ Unregister all global helpers
+ 
+ This method remove all helpers from the global execution context. After calling this method, no global helper will be accessible from templates, until you add new ones.
+ 
+ @see [HBExecutionContext unregisterHelperForName:]
+ @since v1.0
+ */
 + (void) unregisterAllHelpers;
 
-// registering global partials
+/** @name registering global partials */
 
-+ (void) registerPartialString:(NSString*)partialString withName:(NSString*)partialName;
-+ (void) unregisterPartialWithName:(NSString*)partialName;
++ (void) registerPartialString:(NSString*)partialString forName:(NSString*)partialName;
++ (void) unregisterPartialForName:(NSString*)partialName;
 + (void) unregisterAllPartials;
 
-// logger
+/** @name logger */
 
 + (void) setLoggerBlock:(HBLoggerBlock)loggerBlock;
 + (void) log:(NSInteger)level object:(id)object;
 
-// utils
+/** @name Block helper utilities  */
 
-+ (NSString *)escapeHTML:(NSString *)string;
++ (NSString*)escapeHTML:(NSString *)string;
 + (BOOL)evaluateObjectAsBool:(id)object;
 
 @end

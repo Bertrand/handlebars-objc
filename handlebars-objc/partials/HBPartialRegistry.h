@@ -33,20 +33,20 @@
 
 // accessing partials
 
-- (HBPartial*) partialForKey:(NSString*)key;
+- (HBPartial*) partialForName:(NSString*)name;
 
 // adding partials
 
-- (void) setPartial:(HBPartial*)partial forKey:(NSString*)key;
-- (void) setPartialString:(NSString*)partialString forKey:(NSString*)key;
+- (void) registerPartial:(HBPartial*)partial forName:(NSString*)name;
+- (void) registerPartialString:(NSString*)partialString forName:(NSString*)name;
 
-- (void) addPartials:(NSDictionary* /* NSString -> HBPartial */)partials;
-- (void) addPartialStrings:(NSDictionary* /* NSString -> NSString */)partials;
+- (void) registerPartials:(NSDictionary* /* NSString -> HBPartial */)partials;
+- (void) registerPartialStrings:(NSDictionary* /* NSString -> NSString */)partials;
 
 // removing partials
 
-- (void) removePartialForKey:(NSString*)key;
-- (void) removeAllPartials;
+- (void) unregisterPartialForName:(NSString*)name;
+- (void) unregisterAllPartials;
 
 // objc litteral compatibility
 

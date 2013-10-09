@@ -65,8 +65,7 @@
 
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)aKey
 {
-    BOOL isString = [(NSObject*)aKey isKindOfClass:[NSString class]];
-    NSAssert(isString, @"data keys must be strings");
+    NSAssert([(NSObject*)aKey isKindOfClass:[NSString class]], @"data keys must be strings");
     [self setData:object forKey:(NSString*)aKey];
 }
 

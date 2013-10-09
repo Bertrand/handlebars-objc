@@ -109,7 +109,7 @@
     if (![self expressionCanBeHelperCall:expression]) return nil;
     
     NSString* helperName = [expression.mainValue.keyPath[0] key]; // we've checked this is valid right above
-    return [self.template helperWithName:helperName];
+    return [self.template helperForName:helperName];
 }
 
 - (void) evaluateContextualParametersInExpression:(HBAstExpression*)expression positionalParameters:(NSArray**)positionalParameters namedParameters:(NSDictionary**)namedParameters
@@ -270,7 +270,7 @@
         partialName = [(HBAstContextualValue*)partialNameNode sourceRepresentation];
     }
 
-    HBPartial* partial = [self.template partialWithName:partialName];
+    HBPartial* partial = [self.template partialForName:partialName];
     
     // throw if partial not found
     if (!partial) {

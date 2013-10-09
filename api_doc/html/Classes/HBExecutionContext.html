@@ -7,13 +7,13 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.1 (build 840)" />
+		<meta name="generator" content="appledoc 2.2 (build 961)" />
 	</head>
 	<body>
 		<header id="top_header">
 			<div id="library" class="hideInXcode">
-				<h1><a id="libraryTitle" href="../index.html">FotopediaTracker </a></h1>
-				<a id="developerHome" href="../index.html">Fotopedia</a>
+				<h1><a id="libraryTitle" href="../index.html">handlebars-objc </a></h1>
+				<a id="developerHome" href="../index.html">Fotonauts</a>
 			</div>
 			
 			<div id="title" role="banner">
@@ -54,7 +54,23 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/registerHelperBlock:forName:">&nbsp;&nbsp;&nbsp;&nbsp;- registerHelperBlock:forName:</option>
+	
+	<option value="//api/name/registerHelperBlocks:">&nbsp;&nbsp;&nbsp;&nbsp;- registerHelperBlocks:</option>
+	
+	<option value="//api/name/registerPartialString:forName:">&nbsp;&nbsp;&nbsp;&nbsp;- registerPartialString:forName:</option>
+	
+	<option value="//api/name/registerPartialStrings:">&nbsp;&nbsp;&nbsp;&nbsp;- registerPartialStrings:</option>
+	
 	<option value="//api/name/templateWithString:">&nbsp;&nbsp;&nbsp;&nbsp;- templateWithString:</option>
+	
+	<option value="//api/name/unregisterAllHelpers">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterAllHelpers</option>
+	
+	<option value="//api/name/unregisterAllPartials">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterAllPartials</option>
+	
+	<option value="//api/name/unregisterHelperForName:">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterHelperForName:</option>
+	
+	<option value="//api/name/unregisterParialForName:">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterParialForName:</option>
 	
 	
 	
@@ -69,6 +85,10 @@
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_registering helpers">registering helpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_registering partials">registering partials</a></span></li>
 	
 </ul></li>
 
@@ -96,7 +116,23 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlock:forName:">registerHelperBlock:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlocks:">registerHelperBlocks:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialString:forName:">registerPartialString:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialStrings:">registerPartialStrings:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/templateWithString:">templateWithString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllHelpers">unregisterAllHelpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllPartials">unregisterAllPartials</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterHelperForName:">unregisterHelperForName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterParialForName:">unregisterParialForName:</a></span></li>
 	
 </ul></li>
 
@@ -140,7 +176,7 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
@@ -160,13 +196,85 @@
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/globalExecutionContext">+&nbsp;globalExecutionContext</a></code>
-		
+		<span class="tooltip"><p>Access the global execution context.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/templateWithString:">&ndash;&nbsp;templateWithString:</a></code>
+		<span class="tooltip"><p>Creates a template that has access to the helpers and partials from receiver.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="registering helpers" name="task_registering helpers"></a>
+						<h3 class="subsubtitle task-title">registering helpers</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlock:forName:">&ndash;&nbsp;registerHelperBlock:forName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlocks:">&ndash;&nbsp;registerHelperBlocks:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterHelperForName:">&ndash;&nbsp;unregisterHelperForName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllHelpers">&ndash;&nbsp;unregisterAllHelpers</a></code>
+		
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="registering partials" name="task_registering partials"></a>
+						<h3 class="subsubtitle task-title">registering partials</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerPartialString:forName:">&ndash;&nbsp;registerPartialString:forName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerPartialStrings:">&ndash;&nbsp;registerPartialStrings:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterParialForName:">&ndash;&nbsp;unregisterParialForName:</a></code>
+		
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllPartials">&ndash;&nbsp;unregisterAllPartials</a></code>
 		
 	</span>
 	
@@ -219,10 +327,40 @@
 	<h3 class="subsubtitle method-title">globalExecutionContext</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Access the global execution context.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>+ (instancetype)globalExecutionContext</code></div>
 
     
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Helpers and partials registered in the global execution context are available to all templates.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -234,12 +372,125 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/registerHelperBlock:forName:" title="registerHelperBlock:forName:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlock:forName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)registerHelperBlock:(HBHelperBlock)<em>block</em> forName:(NSString *)<em>name</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlocks:" title="registerHelperBlocks:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlocks:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)registerHelperBlocks:(NSDictionary *)<em>helperBlocks</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerPartialString:forName:" title="registerPartialString:forName:"></a>
+	<h3 class="subsubtitle method-title">registerPartialString:forName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)registerPartialString:(NSString *)<em>partialString</em> forName:(NSString *)<em>name</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerPartialStrings:" title="registerPartialStrings:"></a>
+	<h3 class="subsubtitle method-title">registerPartialStrings:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)registerPartialStrings:(NSDictionary *)<em>partials</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/templateWithString:" title="templateWithString:"></a>
 	<h3 class="subsubtitle method-title">templateWithString:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a template that has access to the helpers and partials from receiver.</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (HBTemplate *)templateWithString:(NSString *)<em>string</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllHelpers" title="unregisterAllHelpers"></a>
+	<h3 class="subsubtitle method-title">unregisterAllHelpers</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterAllHelpers</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllPartials" title="unregisterAllPartials"></a>
+	<h3 class="subsubtitle method-title">unregisterAllPartials</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterAllPartials</code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterHelperForName:" title="unregisterHelperForName:"></a>
+	<h3 class="subsubtitle method-title">unregisterHelperForName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterHelperForName:(NSString *)<em>name</em></code></div>
+
+    
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterParialForName:" title="unregisterParialForName:"></a>
+	<h3 class="subsubtitle method-title">unregisterParialForName:</h3>
+	
+	
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterParialForName:(NSString *)<em>name</em></code></div>
 
     
 </div>
@@ -257,9 +508,9 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Fotopedia. All rights reserved. (Last updated: 2013-10-08)</span><br />
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-09)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
 						
 					</div>
 				</div>

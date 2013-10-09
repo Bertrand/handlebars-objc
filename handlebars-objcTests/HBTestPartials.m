@@ -120,7 +120,7 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
 // Global Partials
 - (void) testGlobalPartials
 {
-    [[HBExecutionContext globalExecutionContext].partials addPartialStrings:@{ @"global_test" : @"{{another_dude}}" }];
+    [[HBExecutionContext globalExecutionContext].partials registerPartialStrings:@{ @"global_test" : @"{{another_dude}}" }];
     
     id string = @"Dudes: {{> shared/dude}} {{> global_test}}";
     id dude = @"{{name}}";
@@ -134,7 +134,7 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
 // Multiple partial registration
 - (void) testMultiplePartialRegistration
 {
-    [[HBExecutionContext globalExecutionContext].partials addPartialStrings:@{ @"global_test" : @"{{another_dude}}", @"shared/dude": @"{{name}}" }];
+    [[HBExecutionContext globalExecutionContext].partials registerPartialStrings:@{ @"global_test" : @"{{another_dude}}", @"shared/dude": @"{{name}}" }];
     
     id string = @"Dudes: {{> shared/dude}} {{> global_test}}";
     id hash = @{ @"name": @"Jeepers", @"another_dude": @"Creepers" };

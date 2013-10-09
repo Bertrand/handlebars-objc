@@ -48,34 +48,34 @@
     return _helpers;
 }
 
-- (HBHelper*) helperForKey:(NSString*)key;
+- (HBHelper*) helperForName:(NSString*)name;
 {
     if (nil == self.helpers) return nil;
     HBHelper* result;
     @synchronized(self.helpers) {
-        result = self.helpers[key];
+        result = self.helpers[name];
     }
     return result;
 }
 
-- (void) setHelper:(HBHelper*)helper forKey:(NSString*)key;
+- (void) setHelper:(HBHelper*)helper forName:(NSString*)name;
 {
     @synchronized(self.helpers) {
-        self.helpers[key] = helper;
+        self.helpers[name] = helper;
     }
 }
 
 - (void) addHelpers:(NSDictionary*)helpers
 {
     for (NSString* name in helpers) {
-        [self setHelper:helpers[name] forKey:name];
+        [self setHelper:helpers[name] forName:name];
     }
 }
 
-- (void) removeHelperForKey:(NSString*)key
+- (void) removeHelperForName:(NSString*)name
 {
     @synchronized(self.helpers) {
-        [self.helpers removeObjectForKey:key];
+        [self.helpers removeObjectForKey:name];
     }
 }
 
@@ -90,34 +90,32 @@
 
 - (id) objectForKeyedSubscript:(id)key
 {
-    return [self helperForKey:key];
+    return [self helperForName:key];
 }
 
 - (void) setObject:(id)object forKeyedSubscript:(id < NSCopying >)aKey
 {
-    BOOL isString = [(NSObject*)aKey isKindOfClass:[NSString class]];
-    NSAssert(isString, @"helper names must be strings");
-    BOOL isHelper = [(NSObject*)object isKindOfClass:[HBHelper class]];
-    NSAssert(isHelper, @"helper objects must be substrings of HBHelper class");
+    NSAssert([(NSObject*)aKey isKindOfClass:[NSString class]], @"helper names must be strings");
+    NSAssert([(NSObject*)object isKindOfClass:[HBHelper class]], @"helper objects must be substrings of HBHelper class");
 
-    [self setHelper:object forKey:(NSString*)aKey];
+    [self setHelper:object forName:(NSString*)aKey];
 }
 
 #pragma mark -
 #pragma mark ObjC block API
 
-- (void) registerHelperBlock:(HBHelperBlock)block forKey:(NSString*)key
+- (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)name
 {
     HBHelper* helper = [HBHelper new];
     helper.block = block;
-    self[key] = helper;
+    self[name] = helper;
     [helper release];
 }
 
 - (void) registerHelperBlocks:(NSDictionary *)helperBlocks
 {
     for (NSString* name in helperBlocks) {
-        [self registerHelperBlock:helperBlocks[name] forKey:name];
+        [self registerHelperBlock:helperBlocks[name] forName:name];
     }
 }
 

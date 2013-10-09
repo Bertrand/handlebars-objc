@@ -34,22 +34,22 @@
 
 // user-friendly api, using blocks
 
-- (void) registerHelperBlock:(HBHelperBlock)block forKey:(NSString*)key;
+- (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)name;
 - (void) registerHelperBlocks:(NSDictionary *)helperBlocks;
 
 
 // accessing raw helpers
 
-- (HBHelper*) helperForKey:(NSString*)key;
+- (HBHelper*) helperForName:(NSString*)name;
 
 // adding raw helpers
 
-- (void) setHelper:(HBHelper*)helper forKey:(NSString*)key;
+- (void) setHelper:(HBHelper*)helper forName:(NSString*)name;
 - (void) addHelpers:(NSDictionary*)helpers;
 
 // removing raw helpers
 
-- (void) removeHelperForKey:(NSString*)key;
+- (void) removeHelperForName:(NSString*)name;
 - (void) removeAllHelpers;
 
 // objc litteral compatibility

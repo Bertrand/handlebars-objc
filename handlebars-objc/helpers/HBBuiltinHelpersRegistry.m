@@ -49,7 +49,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
         }
     };
-    [_builtinHelpersRegistry registerHelperBlock:ifBlock forKey:@"if"];
+    [_builtinHelpersRegistry registerHelperBlock:ifBlock forName:@"if"];
 }
 
 + (void) registerUnlessBlock
@@ -62,7 +62,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
         }
     };
-    [_builtinHelpersRegistry registerHelperBlock:unlessBlock forKey:@"unless"];
+    [_builtinHelpersRegistry registerHelperBlock:unlessBlock forName:@"unless"];
 }
 
 + (void) registerEachHelper
@@ -115,7 +115,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         return (NSString*)nil;
     };
     
-    [_builtinHelpersRegistry registerHelperBlock:eachBlock forKey:@"each"];
+    [_builtinHelpersRegistry registerHelperBlock:eachBlock forName:@"each"];
 }
 
 + (void) registerWithBlock
@@ -123,7 +123,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     HBHelperBlock withBlock = ^(HBHelperCallingInfo* callingInfo) {
             return callingInfo.statements(callingInfo[0], callingInfo.data);
     };
-    [_builtinHelpersRegistry registerHelperBlock:withBlock forKey:@"with"];
+    [_builtinHelpersRegistry registerHelperBlock:withBlock forName:@"with"];
 
 }
 
@@ -137,7 +137,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         [HBHandlebars log:level object:callingInfo[0]];
         return (NSString*)nil;
     };
-    [_builtinHelpersRegistry registerHelperBlock:logBlock forKey:@"log"];
+    [_builtinHelpersRegistry registerHelperBlock:logBlock forName:@"log"];
 }
 
 @end

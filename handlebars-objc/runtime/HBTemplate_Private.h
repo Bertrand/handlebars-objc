@@ -38,7 +38,7 @@
 @property (retain, nonatomic) HBExecutionContext* templateLocalExecutionContext;
 @property (retain, nonatomic) HBExecutionContext* sharedExecutionContext;
 
-- (HBHelper*) helperWithName:(NSString*)name;
-- (HBPartial*) partialWithName:(NSString*)name;
+- (HBHelper*) helperForName:(NSString*)name;
+- (HBPartial*) partialForName:(NSString*)name;
 
 @end

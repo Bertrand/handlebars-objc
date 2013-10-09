@@ -58,6 +58,28 @@
     return _helpers;
 }
 
+- (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)name
+{
+    [self.helpers registerHelperBlock:block forName:name];
+}
+
+- (void) registerHelperBlocks:(NSDictionary *)helperBlocks
+{
+    [self.helpers registerHelperBlocks:helperBlocks];
+}
+
+- (void) unregisterHelperForName:(NSString*)name
+{
+    [self.helpers removeHelperForName:name];
+}
+
+- (void) unregisterAllHelpers
+{
+    [self.helpers removeAllHelpers];
+}
+
+
+
 #pragma mark -
 #pragma mark Partials
 
@@ -68,6 +90,26 @@
         _partials = [HBPartialRegistry new];
     }
     return _partials;
+}
+
+- (void) registerPartialString:(NSString*)partialString forName:(NSString*)name
+{
+    [self.partials registerPartialString:partialString forName:name];
+}
+
+- (void) registerPartialStrings:(NSDictionary* /* NSString -> NSString */)partials
+{
+    [self.partials registerPartialStrings:partials];
+}
+
+- (void) unregisterParialForName:(NSString*)name
+{
+    [self.partials unregisterPartialForName:name];
+}
+
+- (void) unregisterAllPartials
+{
+    [self.partials unregisterAllPartials];
 }
 
 #pragma mark -

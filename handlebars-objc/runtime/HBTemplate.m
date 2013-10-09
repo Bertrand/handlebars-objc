@@ -83,7 +83,7 @@
     return self.templateLocalExecutionContext.helpers;
 }
 
-- (HBHelper*) helperWithName:(NSString*)name
+- (HBHelper*) helperForName:(NSString*)name
 {
     HBHelper* helper = nil;
     
@@ -106,7 +106,7 @@
     return self.templateLocalExecutionContext.partials;
 }
 
-- (HBPartial*) partialWithName:(NSString*)name
+- (HBPartial*) partialForName:(NSString*)name
 {
     HBPartial* partial = nil;
     

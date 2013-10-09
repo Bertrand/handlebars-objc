@@ -44,7 +44,7 @@
     return _partials;
 }
 
-- (HBPartial*) partialForKey:(NSString*)key;
+- (HBPartial*) partialForName:(NSString*)key;
 {
     if (nil == self.partials) return nil;
     HBPartial* result;
@@ -54,48 +54,48 @@
     return result;
 }
 
-- (void) setPartial:(HBPartial*)partial forKey:(NSString*)key;
+- (void) registerPartial:(HBPartial*)partial forName:(NSString*)key;
 {
     @synchronized(self.partials) {
         self.partials[key] = partial;
     }
 }
 
-- (void) setPartialString:(NSString*)partialString forKey:(NSString*)partialName
+- (void) registerPartialString:(NSString*)partialString forName:(NSString*)partialName
 {
     HBPartial* partial = [[HBPartial alloc] init];
     partial.string = partialString;
-    [self setPartial:partial forKey:partialName];
+    [self registerPartial:partial forName:partialName];
     [partial release];
 }
 
-- (void) addPartials:(NSDictionary*)partials
+- (void) registerPartials:(NSDictionary*)partials
 {
     for (NSString* name in partials) {
-        [self setPartial:partials[name] forKey:name];
+        [self registerPartial:partials[name] forName:name];
     }
 }
 
-- (void) addPartialStrings:(NSDictionary* /* NSString -> NSString */)partials
+- (void) registerPartialStrings:(NSDictionary* /* NSString -> NSString */)partials
 {
     for (NSString* partialName in partials) {
         NSString* partialString = partials[partialName];
         NSAssert([partialString isKindOfClass:[NSString class]], @"partial strings must be of class NSString");
         HBPartial* partial = [[HBPartial alloc] init];
         partial.string = partialString;
-        [self setPartial:partial forKey:partialName];
+        [self registerPartial:partial forName:partialName];
         [partial release];
     }
 }
 
-- (void) removePartialForKey:(NSString*)key
+- (void) unregisterPartialForName:(NSString*)name
 {
     @synchronized(self.partials) {
-        [self.partials removeObjectForKey:key];
+        [self.partials removeObjectForKey:name];
     }
 }
 
-- (void) removeAllPartials;
+- (void) unregisterAllPartials;
 {
     @synchronized(self.partials) {
         [self.partials removeAllObjects];
@@ -106,17 +106,15 @@
 
 - (id) objectForKeyedSubscript:(id)key
 {
-    return [self partialForKey:key];
+    return [self partialForName:key];
 }
 
 - (void) setObject:(id)object forKeyedSubscript:(id < NSCopying >)aKey
 {
-    BOOL isString = [(NSObject*)aKey isKindOfClass:[NSString class]];
-    NSAssert(isString, @"partial names must be strings");
-    BOOL ispartial = [(NSObject*)object isKindOfClass:[HBPartial class]];
-    NSAssert(ispartial, @"partial objects must be substrings of HBPartial class");
+    NSAssert([(NSObject*)aKey isKindOfClass:[NSString class]], @"partial names must be strings");
+    NSAssert([(NSObject*)object isKindOfClass:[HBPartial class]], @"partial objects must be substrings of HBPartial class");
     
-    [self setPartial:object forKey:(NSString*)aKey];
+    [self registerPartial:object forName:(NSString*)aKey];
 }
 
 
