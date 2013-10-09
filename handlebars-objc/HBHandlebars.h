@@ -39,6 +39,18 @@
 
 /** 
  
+ This class is the main entry point for beginners. Most methods declared here are just user-friendly facades
+ to functionality available in other dedicated classes. 
+ 
+ Unless you have specific needs and want more fine-grained control over the API, using the methods declared
+ on HBHandlebars class is totally fine. 
+ 
+ ## Templates ##
+
+ Templates must be written using Handlebars syntax documented on [Handlebars.js](http://handlebarsjs.com/) website.
+ 
+ @"hello {{word}}" is a valid (but useless) template.
+ 
 */
 
 
@@ -96,7 +108,7 @@ This method should be used only if you render templates in non mission-critical 
 
 
 
-/** @name registering global helpers */
+/** @name Registering global helpers */
 
 /**
  Register a global helper.
@@ -107,10 +119,8 @@ This method should be used only if you render templates in non mission-critical 
  Implementation-wise, this methods adds a helper to the global execution context, accessible via <[HBExecutionContext globalExecutionContext]>.
  If you want a finer control over which templates a helper will be accessible from, you can create your own <HBExecutionContext> and register your helpers using <[HBExecutionContext registerHelperBlocks:]> or <[HBExecutionContext registerHelperBlock:forName:]>.
  
- @param template String containing the template to render
- @param context The object containing the data used in the template. Can be any property-list compatible object.
- @param helperBlocks A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.
- @param partialStrings A dictionary where keys are partial names and values are partials strings.
+ @param block A helper blocks of type HBHelperBlock.
+ @param helperName The name this helper is referred as in templates.
  
  @see HBExecutionContext
  @see [HBExecutionContext registerHelperBlocks]
@@ -139,20 +149,98 @@ This method should be used only if you render templates in non mission-critical 
  */
 + (void) unregisterAllHelpers;
 
-/** @name registering global partials */
 
+
+/** @name Registering global partials */
+
+/**
+ Register a global partial.
+ 
+ This method registers a global partial, visible to all templates. This method should be used if you frequently use the same partials in your templates.
+ If you find yourself using some helpers only in certain kind of templates, it is much cleaner to use HBExecutionContext instead. Please see the discussion in <[HBHandlebars registerHelperBlock:forName:]> regarding this matter.
+
+ @param partialString String containing the partial
+ @param partialName The name this partial will be referred as in templates.
+ 
+ @see HBExecutionContext
+ @see [HBExecutionContext registerPartialString:forName:]
+ @since v1.0
+ */
 + (void) registerPartialString:(NSString*)partialString forName:(NSString*)partialName;
+
+/**
+ Unregister a global partial.
+ 
+ This method removes a partial from the global execution context. After calling this method, the corresponding partial will not be accessible from templates.
+ 
+ @param partialName The name of the partial to unregister
+ @see [HBExecutionContext unregisterPartialForName:]
+ @since v1.0
+ */
 + (void) unregisterPartialForName:(NSString*)partialName;
+
+/**
+ Unregister all global partials
+ 
+ This method remove all partials from the global execution context. After calling this method, no global partial will be accessible from templates, until you add new ones.
+ 
+ @see [HBExecutionContext unregisterPartialForName:]
+ @since v1.0
+ */
 + (void) unregisterAllPartials;
 
-/** @name logger */
 
+
+/** @name Logging */
+
+/**
+ Set the global logger.
+ 
+ This method sets the global logger, used when handlebars needs to display a message to the developer. If set to nil, then NSLog is used. 
+ 
+ Log messages can be sent from templates using the "log" builtin helper.
+ 
+ @since v1.0
+ */
 + (void) setLoggerBlock:(HBLoggerBlock)loggerBlock;
+
+/**
+ Log a message.
+ 
+ This method can be used in helper implementations to log messages using the default logger.
+ 
+ @param level level of the log message.
+ @param object object to log. Any object responding to -[NSObject description] can be used.
+ @since v1.0
+ */
 + (void) log:(NSInteger)level object:(id)object;
+
+
 
 /** @name Block helper utilities  */
 
+/**
+ Escape HTML characters in a string
+ 
+ This method escapes a string so it will display properly if used in an HTML document. 
+ It should be used in helpers implementation when returning a value.
+ 
+ @param string the string to HTML-escape.
+ @since v1.0
+ */
 + (NSString*)escapeHTML:(NSString *)string;
+
+/**
+ Evaluate the boolean value of any object. 
+ 
+ This method evaluate any object as a @true of @false value. 
+ - NSNumber : return true if the corresponding value is greater than zero, false otherwise.
+ - NSString : return true if the string is not empty. 
+ - NSArray : return true if the array is not empty. 
+ - otherwise : return false
+ @param object the object to evaluate
+ @since v1.0
+ */
 + (BOOL)evaluateObjectAsBool:(id)object;
 
 @end
