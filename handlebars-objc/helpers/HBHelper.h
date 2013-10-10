@@ -32,11 +32,25 @@ typedef NSString* (^HBHelperBlock)(HBHelperCallingInfo* info);
 
 #import "HBHelperCallingInfo.h"
 
+/** 
+ 
+ HBHelper is the class representing Handlebars helpers. Currently, the only way to implement a helper in handlebars-objc is to provide a block of type HBHelperBlock: 
+ 
+    typedef NSString* (^HBHelperBlock)(HBHelperCallingInfo* callingInfo);
 
+ You generally do not create HBHelper instances directly, but instead directly provide a block helper to the global execution context (see HBTemplate  (See <
+ In templates, helpers can be called with parameters (see [Handlebars.js]( http://handlebarsjs.com/expressions.html )).
+ Those calling parameters as well as the current context are available in the callingInfo parameter. 
+ 
+ Please see <HBHelperCallingInfo> for more details.
+ */
 @class HBDataContext;
 
 @interface HBHelper : NSObject
 
+/** 
+ block executed by helper
+ */
 @property (copy) HBHelperBlock block;
 
 @end

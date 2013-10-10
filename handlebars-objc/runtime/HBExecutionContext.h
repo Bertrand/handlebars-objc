@@ -49,14 +49,14 @@
  */
 - (HBTemplate*) templateWithString:(NSString*)string;
 
-/** @name registering helpers */
+/** @name managing helpers */
 
 - (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)name;
 - (void) registerHelperBlocks:(NSDictionary *)helperBlocks;
 - (void) unregisterHelperForName:(NSString*)name;
 - (void) unregisterAllHelpers;
 
-/** @name registering partials */
+/** @name managing partials */
 
 - (void) registerPartialString:(NSString*)partialString forName:(NSString*)name;
 - (void) registerPartialStrings:(NSDictionary* /* NSString -> NSString */)partials;

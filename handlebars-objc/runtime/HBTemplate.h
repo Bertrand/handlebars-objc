@@ -71,7 +71,7 @@
 /**
  Helpers registry. 
  
- This method is the read accessor to the helpers local to this template.
+ This method gives access to the helpers specific to this template.
  Please see <HBHelperRegistry> for more details. 
  */
 - (HBHelperRegistry*) helpers;
@@ -79,7 +79,7 @@
 /**
  Helpers registry.
  
- This method is the read accessor to the partials local to this template.
+ This method gives access to the partials specific to this template.
  Please see <HBTemplateRegistry> for more details.
  */
 - (HBPartialRegistry*) partials;
