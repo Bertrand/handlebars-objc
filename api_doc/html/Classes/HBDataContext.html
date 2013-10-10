@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -61,10 +63,18 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_accessing variables">accessing variables</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Copying data contexts">Copying data contexts</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_objc litteral compatibility">objc litteral compatibility</a></span></li>
 	
 </ul></li>
 
@@ -122,6 +132,30 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Handlebars.js supports private variables set by block helpers and available to
+descendant scopes (See <a href="http://handlebarsjs.com/block_helpers.html">block helpers</a>
+on Handlebars.js).</p>
+
+<p>Support for private data is provided by data context. In addition to context,
+helpers receive an HBDataContext in their calling info (see <a href="../Classes/HBHelperCallingInfo.html#//api/name/data">[HBHelperCallingInfo data]</a>)
+holding all currently set private variables.</p>
+
+<p>Variables can be accessed using the dataForKey/setData:forKey accessors or directly
+using objective-C keyed subscripting operators.</p>
+
+<h2>Setting variables in helpers</h2>
+
+<p>When setting variables in a helper, you <em>MUST NEVER</em> modify passed context directly.
+You <em>MUST</em> copy the data context your received, copy it (using <a href="#//api/name/copy">copy</a>), modify it
+and then pass it to children statements (See <a href="../Classes/HBHelperCallingInfo.html#//api/name/statements">[HBHelperCallingInfo statements]</a> for more
+information about statements)</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -129,42 +163,58 @@
 						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
 						
-						
-						
+						<a title="accessing variables" name="task_accessing variables"></a>
+						<h3 class="subsubtitle task-title">accessing variables</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/dataForKey:">&ndash;&nbsp;dataForKey:</a></code>
-		
+		<span class="tooltip"><p>get the value of a private variable</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setData:forKey:">&ndash;&nbsp;setData:forKey:</a></code>
-		
+		<span class="tooltip"><p>set the value of a private variable</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Copying data contexts" name="task_Copying data contexts"></a>
+						<h3 class="subsubtitle task-title">Copying data contexts</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/copy">&ndash;&nbsp;copy</a></code>
-		
+		<span class="tooltip"><p>copy receiver</p></span>
 	</span>
 	
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="objc litteral compatibility" name="task_objc litteral compatibility"></a>
+						<h3 class="subsubtitle task-title">objc litteral compatibility</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/objectForKeyedSubscript:">&ndash;&nbsp;objectForKeyedSubscript:</a></code>
-		
+		<span class="tooltip"><p>keyed subscripting read accessor</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setObject:forKeyedSubscript:">&ndash;&nbsp;setObject:forKeyedSubscript:</a></code>
-		
+		<span class="tooltip"><p>keyed subscripting write accessor</p></span>
 	</span>
 	
 	
@@ -190,10 +240,47 @@
 	<h3 class="subsubtitle method-title">copy</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>copy receiver</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)copy</code></div>
 
     
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a copy of the receiver</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Using this method is the roper way to copy data context in helpers implementation.
+This is generally done only when setting a new private variable passed to
+children scopes.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBDataContext.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -201,10 +288,50 @@
 	<h3 class="subsubtitle method-title">dataForKey:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>get the value of a private variable</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)dataForKey:(NSString *)<em>key</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>name of the private variable to retrieve</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the value of private variable. Can be any objective-C value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBDataContext.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -212,10 +339,56 @@
 	<h3 class="subsubtitle method-title">objectForKeyedSubscript:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>keyed subscripting read accessor</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)objectForKeyedSubscript:(id)<em>key</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>name of the private variable to retrieve</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the value of private variable. Can be any objective-C value.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>You generally do not call this method directly. Instead, use objective-C subscripting operators.
+This method calls &lt;setData:forKey>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBDataContext.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -223,10 +396,50 @@
 	<h3 class="subsubtitle method-title">setData:forKey:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>set the value of a private variable</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)setData:(id)<em>data</em> forKey:(NSString *)<em>key</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>value of private variable</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>the name of the private variable</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBDataContext.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -234,10 +447,56 @@
 	<h3 class="subsubtitle method-title">setObject:forKeyedSubscript:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>keyed subscripting write accessor</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)setObject:(id)<em>object</em> forKeyedSubscript:(id&lt;NSCopying&gt;)<em>aKey</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>aKey</em></dt>
+			<dd><p>name of the private variable to retrieve</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>data</em></dt>
+			<dd><p>value of private variable</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>You generally do not call this method directly. Instead, use objective-C subscripting operators.
+This method calls &lt;setData:forKey>.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBDataContext.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -253,7 +512,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-09)</span><br />
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-10)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

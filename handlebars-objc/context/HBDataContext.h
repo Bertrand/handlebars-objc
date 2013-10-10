@@ -26,19 +26,81 @@
 //
 
 #import <Foundation/Foundation.h>
-
+/**
+ Handlebars.js supports private variables set by block helpers and available to 
+ descendant scopes (See [block helpers](http://handlebarsjs.com/block_helpers.html)
+ on Handlebars.js).
+ 
+ Support for private data is provided by data context. In addition to context, 
+ helpers receive an HBDataContext in their calling info (see <[HBHelperCallingInfo data]>)
+ holding all currently set private variables. 
+ 
+ Variables can be accessed using the dataForKey/setData:forKey accessors or directly 
+ using objective-C keyed subscripting operators. 
+ 
+ ## Setting variables in helpers ##
+ 
+ When setting variables in a helper, you *MUST NEVER* modify passed context directly.
+ You *MUST* copy the data context your received, copy it (using <copy>), modify it
+ and then pass it to children statements (See <-[HBHelperCallingInfo statements]> for more
+ information about statements)
+ 
+ */
 @interface HBDataContext : NSObject
 
+/** @name accessing variables */
+
+/**
+ get the value of a private variable
+ 
+ @param key name of the private variable to retrieve
+ @return the value of private variable. Can be any objective-C value.
+*/
 - (id) dataForKey:(NSString*)key;
+
+/**
+ set the value of a private variable
+ 
+ @param data value of private variable 
+ @param key the name of the private variable
+ */
 - (void) setData:(id)data forKey:(NSString*)key;
 
-// Proper way to copy data context in helpers implementation
+/** @name Copying data contexts */
 
+/**
+ copy receiver
+ 
+ Using this method is the roper way to copy data context in helpers implementation. 
+ This is generally done only when setting a new private variable passed to 
+ children scopes. 
+ 
+ @return a copy of the receiver
+*/
 - (id) copy; 
 
-// objc litteral compatibility
+/** @name objc litteral compatibility */
 
+/** 
+ keyed subscripting read accessor 
+ 
+ You generally do not call this method directly. Instead, use objective-C subscripting operators.
+ This method calls <setData:forKey>. 
+ 
+ @param key name of the private variable to retrieve
+ @return the value of private variable. Can be any objective-C value.
+*/
 - (id)objectForKeyedSubscript:(id)key;
+
+/**
+ keyed subscripting write accessor
+ 
+ You generally do not call this method directly. Instead, use objective-C subscripting operators.
+ This method calls <setData:forKey>.
+ 
+ @param data value of private variable
+ @param aKey name of the private variable to retrieve
+ */
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)aKey;
 
 @end
