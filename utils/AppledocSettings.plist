@@ -8,10 +8,6 @@
 	<string>0.5.0</string>
 	<key>--project-company</key>
 	<string>Fotonauts</string>
-	<key>--create-html</key>
-	<true/>
-	<key>--create-docset</key>
-	<false/>
 	<key>--clean-output</key>
 	<false/>
 	<key>--keep-intermediate-files</key>

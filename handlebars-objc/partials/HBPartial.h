@@ -27,8 +27,14 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ HBPartial is the class representing partials in HBHandlebars
+ */
 @interface HBPartial : NSObject
 
+/**
+ partial string 
+ */
 @property (retain, nonatomic) NSString* string;
 
 @end

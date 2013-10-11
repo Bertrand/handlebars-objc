@@ -31,8 +31,23 @@
 @class HBHelperRegistry;
 @class HBPartialRegistry;
 
+/** 
+ The HBTemplate is the class representing templates in HBHandlebars. 
+ 
+ You create template with <initWithString:>. 
+ 
+ You can then optionnaly compile them with the <compile> method. If you don't do it, the template will be compiled automatically the first time your application tries to render it. Compilation is cached, meaning that it's done once only.
+ 
+ You can render a template with the <renderWithContext:> method. Please see <HBHandlebars> for a discussion of what a context object is. 
+ 
+ Templates can also have "local" helpers and partial, ie helpers and partials that are only available to this template. To register local helpers, use the <helpers> property and manipulate the corresponsing registry directly. To add local partial use <partial> property. 
+ */
+
 @interface HBTemplate : NSObject
 
+/** 
+ the actual template string 
+ */
 @property (retain, nonatomic) NSString* templateString;
 
 /**

@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 961)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -26,6 +26,8 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
 	
 	
 	
@@ -69,6 +71,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -138,6 +142,23 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>HBPartialRegistry instances are objects holding a set of partials available to templates.
+They are the actual objects used by [HBExecutionContext] instances to store partials.</p>
+
+<p>You generally do not use a registry directly but use the corresponding shorcut methods on [HBExecutionContext]</p>
+
+<p>Partial registries implement the objective-C keyed subscripting API though, meaning that you can read and write partials using subscripting operators. For instance :</p>
+
+<p>HBExecutionContext<em> e = [[HBExecutionContext] new] autorelease];
+HBPartial</em> p = &hellip;;
+e.partials[@&ldquo;my_partial&rdquo;] = p;</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -152,63 +173,63 @@
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/partialForName:">&ndash;&nbsp;partialForName:</a></code>
-		
+		<span class="tooltip"><p>Retrieve a partial by name from the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerPartial:forName:">&ndash;&nbsp;registerPartial:forName:</a></code>
-		
+		<span class="tooltip"><p>register a partial object  into the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerPartialString:forName:">&ndash;&nbsp;registerPartialString:forName:</a></code>
-		
+		<span class="tooltip"><p>register a partial string  into the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerPartials:">&ndash;&nbsp;registerPartials:</a></code>
-		
+		<span class="tooltip"><p>Register several partial objects at once into the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/registerPartialStrings:">&ndash;&nbsp;registerPartialStrings:</a></code>
-		
+		<span class="tooltip"><p>Register several partial strings at once into the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/unregisterPartialForName:">&ndash;&nbsp;unregisterPartialForName:</a></code>
-		
+		<span class="tooltip"><p>Unregister a partial from the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/unregisterAllPartials">&ndash;&nbsp;unregisterAllPartials</a></code>
-		
+		<span class="tooltip"><p>Unregister all partials from the registry</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/objectForKeyedSubscript:">&ndash;&nbsp;objectForKeyedSubscript:</a></code>
-		
+		<span class="tooltip"><p>Retrieve a partial by name using the objective-C keyed subscripting API</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/setObject:forKeyedSubscript:">&ndash;&nbsp;setObject:forKeyedSubscript:</a></code>
-		
+		<span class="tooltip"><p>Add a partial using the objective-C keyed subscripting API</p></span>
 	</span>
 	
 	
@@ -234,10 +255,63 @@
 	<h3 class="subsubtitle method-title">objectForKeyedSubscript:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve a partial by name using the objective-C keyed subscripting API</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)objectForKeyedSubscript:(id)<em>key</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>name of the partial</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the partial object (an HBPartial instance)</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method lets you access a partial by its name using objective-C subscripting operators.
+For instance:</p>
+
+<p>HBPartial* p = registry[@&ldquo;my_partial&rdquo;];</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -245,10 +319,50 @@
 	<h3 class="subsubtitle method-title">partialForName:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve a partial by name from the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (HBPartial *)partialForName:(NSString *)<em>name</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the partial to retrieve</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -256,10 +370,55 @@
 	<h3 class="subsubtitle method-title">registerPartial:forName:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>register a partial object  into the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)registerPartial:(HBPartial *)<em>partial</em> forName:(NSString *)<em>name</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partial</em></dt>
+			<dd><p>the partial to register</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the partial</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -267,10 +426,55 @@
 	<h3 class="subsubtitle method-title">registerPartialString:forName:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>register a partial string  into the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)registerPartialString:(NSString *)<em>partialString</em> forName:(NSString *)<em>name</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialString</em></dt>
+			<dd><p>the partial string to register</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>the name of the partial</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -278,10 +482,50 @@
 	<h3 class="subsubtitle method-title">registerPartialStrings:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Register several partial strings at once into the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)registerPartialStrings:(NSDictionary *)<em>partials</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partials</em></dt>
+			<dd><p>an NSDictionary containing partial strings where keys are partial names and values are partial strings.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -289,10 +533,50 @@
 	<h3 class="subsubtitle method-title">registerPartials:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Register several partial objects at once into the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)registerPartials:(NSDictionary *)<em>partials</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partials</em></dt>
+			<dd><p>an NSDictionary containing partials objects where keys are partial names and values are partial objects ([HBPartial] instances)</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -300,10 +584,64 @@
 	<h3 class="subsubtitle method-title">setObject:forKeyedSubscript:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a partial using the objective-C keyed subscripting API</p>
+	</div>		
+	
+    
 
-	<div class="method-subsection method-declaration"><code>- (void)setObject:(id)<em>object</em> forKeyedSubscript:(id&lt;NSCopying&gt;)<em>aKey</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (void)setObject:(id)<em>object</em> forKeyedSubscript:(id&lt;NSCopying&gt;)<em>key</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>the partial to set (an [HBPartial] instance)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>name of the partial</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method lets you set a partial using objective-C subscripting operators.
+For instance</p>
+
+<p>HBPartial* p = &hellip;;
+registry[@&ldquo;my_partial&rdquo;] = p;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -311,10 +649,40 @@
 	<h3 class="subsubtitle method-title">unregisterAllPartials</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister all partials from the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)unregisterAllPartials</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -322,10 +690,50 @@
 	<h3 class="subsubtitle method-title">unregisterPartialForName:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister a partial from the registry</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (void)unregisterPartialForName:(NSString *)<em>name</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>the name of the partial to unregister</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBPartialRegistry.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -343,7 +751,7 @@
 					<div class="footer-copyright">
 						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-11)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>

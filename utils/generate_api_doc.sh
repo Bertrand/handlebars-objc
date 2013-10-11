@@ -26,4 +26,5 @@ rm -rf "$PUBLIC_HEADERS_DIR"
 
 # Generate documentation
 mkdir -p "$API_DOC_DIR"
-appledoc false --output "$API_DOC_DIR" "$SCRIPT_DIR/AppledocSettings.plist" "$PUBLIC_HEADERS_DIR" 
+appledoc --create-html --no-create-docset --index-desc "$ROOT_DIR/README.md" --output "$API_DOC_DIR" "$SCRIPT_DIR/AppledocSettings.plist" "$PUBLIC_HEADERS_DIR" 
+#appledoc --no-create-html --install-docset true --index-desc "$ROOT_DIR/README.md" --output "/tmp" "$SCRIPT_DIR/AppledocSettings.plist" "$PUBLIC_HEADERS_DIR" 
