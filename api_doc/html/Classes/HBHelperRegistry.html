@@ -1,0 +1,949 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HBHelperRegistry Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">handlebars-objc </a></h1>
+				<a id="developerHome" href="../index.html">Fotonauts</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HBHelperRegistry Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/registry">&nbsp;&nbsp;&nbsp;&nbsp;+ registry</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/addHelpers:">&nbsp;&nbsp;&nbsp;&nbsp;- addHelpers:</option>
+	
+	<option value="//api/name/helperForName:">&nbsp;&nbsp;&nbsp;&nbsp;- helperForName:</option>
+	
+	<option value="//api/name/objectForKeyedSubscript:">&nbsp;&nbsp;&nbsp;&nbsp;- objectForKeyedSubscript:</option>
+	
+	<option value="//api/name/registerHelperBlock:forName:">&nbsp;&nbsp;&nbsp;&nbsp;- registerHelperBlock:forName:</option>
+	
+	<option value="//api/name/registerHelperBlocks:">&nbsp;&nbsp;&nbsp;&nbsp;- registerHelperBlocks:</option>
+	
+	<option value="//api/name/removeAllHelpers">&nbsp;&nbsp;&nbsp;&nbsp;- removeAllHelpers</option>
+	
+	<option value="//api/name/removeHelperForName:">&nbsp;&nbsp;&nbsp;&nbsp;- removeHelperForName:</option>
+	
+	<option value="//api/name/setHelper:forName:">&nbsp;&nbsp;&nbsp;&nbsp;- setHelper:forName:</option>
+	
+	<option value="//api/name/setObject:forKeyedSubscript:">&nbsp;&nbsp;&nbsp;&nbsp;- setObject:forKeyedSubscript:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Managing raw helpers">Managing raw helpers</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registry">registry</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addHelpers:">addHelpers:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/helperForName:">helperForName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/objectForKeyedSubscript:">objectForKeyedSubscript:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlock:forName:">registerHelperBlock:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlocks:">registerHelperBlocks:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeAllHelpers">removeAllHelpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/removeHelperForName:">removeHelperForName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setHelper:forName:">setHelper:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setObject:forKeyedSubscript:">setObject:forKeyedSubscript:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HBHelperRegistry Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HBHelperRegistry Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HBHelperRegistry.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>HBHelperRegistry instances are objects holding a set of helpers available to templates.
+They are the actual objects used by [HBExecutionContext] instances to store helpers.</p>
+
+<p>You generally do not use a registry directly but use the corresponding shorcut methods on [HBExecutionContext]</p>
+
+<p>Helper registries implement the objective-C keyed subscripting API though, meaning that you can read and write helpers using subscripting operators. For instance :</p>
+
+<p>HBExecutionContext<em> e = [[HBExecutionContext] new] autorelease];
+HBHelper</em> h = &hellip;;
+e.helpers[@&ldquo;my_helper&rdquo;] = h;</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registry">+&nbsp;registry</a></code>
+		<span class="tooltip"><p>Create a new registry</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlock:forName:">&ndash;&nbsp;registerHelperBlock:forName:</a></code>
+		<span class="tooltip"><p>Register a helper in the registry</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlocks:">&ndash;&nbsp;registerHelperBlocks:</a></code>
+		<span class="tooltip"><p>Register several helpers at once in the registry</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Managing raw helpers" name="task_Managing raw helpers"></a>
+						<h3 class="subsubtitle task-title">Managing raw helpers</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/helperForName:">&ndash;&nbsp;helperForName:</a></code>
+		<span class="tooltip"><p>Retrieve a helper by name</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setHelper:forName:">&ndash;&nbsp;setHelper:forName:</a></code>
+		<span class="tooltip"><p>Adding a helper object</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addHelpers:">&ndash;&nbsp;addHelpers:</a></code>
+		<span class="tooltip"><p>Adding several helper objects at once</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeHelperForName:">&ndash;&nbsp;removeHelperForName:</a></code>
+		<span class="tooltip"><p>remove a helper</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/removeAllHelpers">&ndash;&nbsp;removeAllHelpers</a></code>
+		<span class="tooltip"><p>remove all helpers at once</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/objectForKeyedSubscript:">&ndash;&nbsp;objectForKeyedSubscript:</a></code>
+		<span class="tooltip"><p>Retrieve a helper by name using the objective-C keyed subscripting API</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setObject:forKeyedSubscript:">&ndash;&nbsp;setObject:forKeyedSubscript:</a></code>
+		<span class="tooltip"><p>Add a helper using the objective-C keyed subscripting API</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/registry" title="registry"></a>
+	<h3 class="subsubtitle method-title">registry</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Create a new registry</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)registry</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Actually, you should not use this method :)
+Will be moved soon to a private header</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/addHelpers:" title="addHelpers:"></a>
+	<h3 class="subsubtitle method-title">addHelpers:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adding several helper objects at once</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)addHelpers:(NSDictionary *)<em>helpers</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helpers</em></dt>
+			<dd><p>an NSDictionary containing the helpers to add where keys are the name of the helpers and values are HBHelper objects.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method if you want to add multiple helpers at once. See the discussion in <a href="#//api/name/setHelper:forName:">setHelper:forName:</a> regarding the usefulness of using this method.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/helperForName:" title="helperForName:"></a>
+	<h3 class="subsubtitle method-title">helperForName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve a helper by name</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (HBHelper *)helperForName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the helper to retrieve</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/objectForKeyedSubscript:" title="objectForKeyedSubscript:"></a>
+	<h3 class="subsubtitle method-title">objectForKeyedSubscript:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Retrieve a helper by name using the objective-C keyed subscripting API</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (id)objectForKeyedSubscript:(id)<em>key</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>name of the helper</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the helper object</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method lets you access a helper by its name using objective-C subscripting operators.
+For instance:</p>
+
+<pre><code>HBHelper* h = registry[@"my_helper"]; 
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlock:forName:" title="registerHelperBlock:forName:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlock:forName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a helper in the registry</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)registerHelperBlock:(HBHelperBlock)<em>block</em> forName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>block implementation of the helper</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the helper</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method registers a helper in the receiving registry.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/registerHelperBlock:forName:">[HBExecutionContext registerHelperBlock:forName:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlocks:" title="registerHelperBlocks:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlocks:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register several helpers at once in the registry</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)registerHelperBlocks:(NSDictionary *)<em>helperBlocks</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helperBlocks</em></dt>
+			<dd><p>a dictionary whose keys are helper names and value are helper blocks</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method registers several helpers at once in the receiving registry.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeAllHelpers" title="removeAllHelpers"></a>
+	<h3 class="subsubtitle method-title">removeAllHelpers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>remove all helpers at once</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removeAllHelpers</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/removeHelperForName:" title="removeHelperForName:"></a>
+	<h3 class="subsubtitle method-title">removeHelperForName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>remove a helper</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)removeHelperForName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the helper to remove</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setHelper:forName:" title="setHelper:forName:"></a>
+	<h3 class="subsubtitle method-title">setHelper:forName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Adding a helper object</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setHelper:(HBHelper *)<em>helper</em> forName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helper</em></dt>
+			<dd><p>the helper object</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>the name of the helper</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method it you want to register a helper object directly (instead of a helper block). This method is of very limited usefulness in this version of the API since HBHelper objects are merely wrappers around blocks</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setObject:forKeyedSubscript:" title="setObject:forKeyedSubscript:"></a>
+	<h3 class="subsubtitle method-title">setObject:forKeyedSubscript:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a helper using the objective-C keyed subscripting API</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)setObject:(id)<em>object</em> forKeyedSubscript:(id&lt;NSCopying&gt;)<em>key</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>the helper to set (an [HBHelper] instance)</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>name of the helper</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method lets you set a helper using objective-C subscripting operators.
+For instance</p>
+
+<pre><code> HBHelper* h = ...;
+ registry[@"my_helper"] = h; 
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperRegistry.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-12)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

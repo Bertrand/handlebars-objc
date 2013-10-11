@@ -1,0 +1,1306 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HBHandlebars Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">handlebars-objc </a></h1>
+				<a id="developerHome" href="../index.html">Fotonauts</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HBHandlebars Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/escapeHTML:">&nbsp;&nbsp;&nbsp;&nbsp;+ escapeHTML:</option>
+	
+	<option value="//api/name/evaluateObjectAsBool:">&nbsp;&nbsp;&nbsp;&nbsp;+ evaluateObjectAsBool:</option>
+	
+	<option value="//api/name/log:object:">&nbsp;&nbsp;&nbsp;&nbsp;+ log:object:</option>
+	
+	<option value="//api/name/registerHelperBlock:forName:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerHelperBlock:forName:</option>
+	
+	<option value="//api/name/registerPartialString:forName:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerPartialString:forName:</option>
+	
+	<option value="//api/name/renderTemplateString:withContext:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:</option>
+	
+	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:</option>
+	
+	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</option>
+	
+	<option value="//api/name/setLoggerBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ setLoggerBlock:</option>
+	
+	<option value="//api/name/unregisterAllHelpers">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterAllHelpers</option>
+	
+	<option value="//api/name/unregisterAllPartials">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterAllPartials</option>
+	
+	<option value="//api/name/unregisterHelperForName:">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterHelperForName:</option>
+	
+	<option value="//api/name/unregisterPartialForName:">&nbsp;&nbsp;&nbsp;&nbsp;+ unregisterPartialForName:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Rendering templates, convenience API">Rendering templates, convenience API</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Registering global helpers">Registering global helpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Registering global partials">Registering global partials</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Logging">Logging</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Block helper utilities">Block helper utilities</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/escapeHTML:">escapeHTML:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsBool:">evaluateObjectAsBool:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/log:object:">log:object:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlock:forName:">registerHelperBlock:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialString:forName:">registerPartialString:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:">renderTemplateString:withContext:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:">renderTemplateString:withContext:withHelperBlocks:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLoggerBlock:">setLoggerBlock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllHelpers">unregisterAllHelpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllPartials">unregisterAllPartials</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterHelperForName:">unregisterHelperForName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterPartialForName:">unregisterPartialForName:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HBHandlebars Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HBHandlebars Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HBHandlebars.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This class is the main entry point for beginners. Most methods declared here are just user-friendly facades
+to functionality available in other dedicated classes.</p>
+
+<p>Unless you have specific needs and want more fine-grained control over the API, using the methods declared
+on HBHandlebars class is totally fine.</p>
+
+<h2>Templates</h2>
+
+<p>Templates referred to in this API must be written using Handlebars syntax documented on <a href="http://handlebarsjs.com/">Handlebars.js</a> website.</p>
+
+<p>@&ldquo;hello {{word}}&rdquo; is a valid (but useless) template, wrapped in an objective-C string literal.</p>
+
+<h2>Contexts</h2>
+
+<p>Contexts are in general property-list compatible objects. See <a href="https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/PropertyList.html">Apple documentation</a> for a list of such objects.</p>
+
+<h2>Helpers and partials</h2>
+
+<p>Helpers are functions implemented by the developer and which are then available for use in templates. Handlebars defines to type of helpers: expression helpers and block helpers. Please refer to Handlebars.js documentation](http://handlebarsjs.com/expressions.html) for more details regarding the difference between both.</p>
+
+<p>In Handlebars-objc expression helpers and block helpers are added the same way, by registering objective-C blocks. Block type is declared as:</p>
+
+<pre><code>typedef NSString* (^HBHelperBlock)(HBHelperCallingInfo* info);
+</code></pre>
+
+<p>Please see <a href="../Classes/HBHelperCallingInfo.html">HBHelperCallingInfo</a> for more details on block input parameters.</p>
+
+<p>Partials are just template chunks that can be reused in templates.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						<a title="Rendering templates, convenience API" name="task_Rendering templates, convenience API"></a>
+						<h3 class="subsubtitle task-title">Rendering templates, convenience API</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderTemplateString:withContext:">+&nbsp;renderTemplateString:withContext:</a></code>
+		<span class="tooltip"><p>Render a string template for a data context.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:</a></code>
+		<span class="tooltip"><p>Render a string template for a data context using some helpers.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</a></code>
+		<span class="tooltip"><p>Render a string template for a data context using some helpers.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Registering global helpers" name="task_Registering global helpers"></a>
+						<h3 class="subsubtitle task-title">Registering global helpers</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlock:forName:">+&nbsp;registerHelperBlock:forName:</a></code>
+		<span class="tooltip"><p>Register a global helper.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterHelperForName:">+&nbsp;unregisterHelperForName:</a></code>
+		<span class="tooltip"><p>Unregister a global helper.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllHelpers">+&nbsp;unregisterAllHelpers</a></code>
+		<span class="tooltip"><p>Unregister all global helpers</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Registering global partials" name="task_Registering global partials"></a>
+						<h3 class="subsubtitle task-title">Registering global partials</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerPartialString:forName:">+&nbsp;registerPartialString:forName:</a></code>
+		<span class="tooltip"><p>Register a global partial.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterPartialForName:">+&nbsp;unregisterPartialForName:</a></code>
+		<span class="tooltip"><p>Unregister a global partial.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllPartials">+&nbsp;unregisterAllPartials</a></code>
+		<span class="tooltip"><p>Unregister all global partials</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Logging" name="task_Logging"></a>
+						<h3 class="subsubtitle task-title">Logging</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setLoggerBlock:">+&nbsp;setLoggerBlock:</a></code>
+		<span class="tooltip"><p>Set the global logger.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/log:object:">+&nbsp;log:object:</a></code>
+		<span class="tooltip"><p>Log a message.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="Block helper utilities" name="task_Block helper utilities"></a>
+						<h3 class="subsubtitle task-title">Block helper utilities</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/escapeHTML:">+&nbsp;escapeHTML:</a></code>
+		<span class="tooltip"><p>Escape HTML characters in a string</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/evaluateObjectAsBool:">+&nbsp;evaluateObjectAsBool:</a></code>
+		<span class="tooltip"><p>Evaluate the boolean value of any object.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/escapeHTML:" title="escapeHTML:"></a>
+	<h3 class="subsubtitle method-title">escapeHTML:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Escape HTML characters in a string</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)escapeHTML:(NSString *)<em>string</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>string</em></dt>
+			<dd><p>the string to HTML-escape.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method escapes a string so it will display properly if used in an HTML document.
+It should be used in helpers implementation when returning a value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/evaluateObjectAsBool:" title="evaluateObjectAsBool:"></a>
+	<h3 class="subsubtitle method-title">evaluateObjectAsBool:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Evaluate the boolean value of any object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)evaluateObjectAsBool:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>the object to evaluate</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method evaluate any object as a @true of @false value.
+&ndash; NSNumber : return true if the corresponding value is greater than zero, false otherwise.
+&ndash; NSString : return true if the string is not empty.
+&ndash; NSArray : return true if the array is not empty.
+&ndash; otherwise : return false</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/log:object:" title="log:object:"></a>
+	<h3 class="subsubtitle method-title">log:object:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Log a message.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)log:(NSInteger)<em>level</em> object:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>level</em></dt>
+			<dd><p>level of the log message.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>object to log. Any object responding to &ndash;[NSObject description] can be used.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method can be used in helper implementations to log messages using the default logger.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlock:forName:" title="registerHelperBlock:forName:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlock:forName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a global helper.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)registerHelperBlock:(HBHelperBlock)<em>block</em> forName:(NSString *)<em>helperName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>A helper blocks of type HBHelperBlock.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helperName</em></dt>
+			<dd><p>The name this helper is referred as in templates.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method registers a global helper, visible to all templates. This method should be used if you frequently use the same helpers in your templates.
+While it&rsquo;s totally fine to do so, if you find yourself using some helpers only in certain kind of templates, it is much cleaner to use HBExecutionContext instead.</p>
+
+<p>Implementation-wise, this methods adds a helper to the global execution context, accessible via <a href="../Classes/HBExecutionContext.html#//api/name/globalExecutionContext">[HBExecutionContext globalExecutionContext]</a>.
+If you want a finer control over which templates a helper will be accessible from, you can create your own <a href="../Classes/HBExecutionContext.html">HBExecutionContext</a> and register your helpers using <a href="../Classes/HBExecutionContext.html#//api/name/registerHelperBlocks:">[HBExecutionContext registerHelperBlocks:]</a> or <a href="../Classes/HBExecutionContext.html#//api/name/registerHelperBlock:forName:">[HBExecutionContext registerHelperBlock:forName:]</a>.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html">HBExecutionContext</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/registerHelperBlocks:">[HBExecutionContext registerHelperBlocks:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerPartialString:forName:" title="registerPartialString:forName:"></a>
+	<h3 class="subsubtitle method-title">registerPartialString:forName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a global partial.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)registerPartialString:(NSString *)<em>partialString</em> forName:(NSString *)<em>partialName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialString</em></dt>
+			<dd><p>String containing the partial</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialName</em></dt>
+			<dd><p>The name this partial will be referred as in templates.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method registers a global partial, visible to all templates. This method should be used if you frequently use the same partials in your templates.
+If you find yourself using some helpers only in certain kind of templates, it is much cleaner to use HBExecutionContext instead. Please see the discussion in <a href="#//api/name/registerHelperBlock:forName:">[HBHandlebars registerHelperBlock:forName:]</a> regarding this matter.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html">HBExecutionContext</a></p></code></li>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/registerPartialString:forName:">[HBExecutionContext registerPartialString:forName:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderTemplateString:withContext:" title="renderTemplateString:withContext:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Render a string template for a data context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>template</em></dt>
+			<dd><p>String containing the template to render</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The object containing the data used in the template. Can be any property-list compatible object for instance.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is the simplest way to render a template with handlebars-objc. It instanciates an HBTemplate instance compiles the template and renders it.</p>
+
+<p>This method should be used only if you render templates in non mission-critical parts of your application. In particular, the provided template string is recompiled at each call. If your application calls it repeatedly, you should rather instantiate HBTemplate instances.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBTemplate.html">HBTemplate</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:" title="renderTemplateString:withContext:withHelperBlocks:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Render a string template for a data context using some helpers.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>template</em></dt>
+			<dd><p>String containing the template to render</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The object containing the data used in the template. Can be any property-list compatible object.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helperBlocks</em></dt>
+			<dd><p>A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method renders a template using helpers. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers.
+See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars renderTemplateString:withContext:]</a> for a discussion regarding the performance implications of using this convenience API.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:" title="renderTemplateString:withContext:withHelperBlocks:withPartialStrings:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Render a string template for a data context using some helpers.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em> withPartialStrings:(NSDictionary *)<em>partialStrings</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>template</em></dt>
+			<dd><p>String containing the template to render</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>context</em></dt>
+			<dd><p>The object containing the data used in the template. Can be any property-list compatible object.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helperBlocks</em></dt>
+			<dd><p>A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialStrings</em></dt>
+			<dd><p>A dictionary where keys are partial names and values are partials strings.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method renders a template using helpers and partials. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers and partials.
+See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars renderTemplateString:withContext:]</a> for a discussion regarding the performance implications of using this convenience API.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setLoggerBlock:" title="setLoggerBlock:"></a>
+	<h3 class="subsubtitle method-title">setLoggerBlock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the global logger.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)setLoggerBlock:(HBLoggerBlock)<em>loggerBlock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>loggerBlock</em></dt>
+			<dd><p>a block executed everytime something is logged.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method sets the global logger, used when handlebars needs to display a message to the developer. If set to nil, then NSLog is used.</p>
+
+<p>Log messages can be sent from templates using the &ldquo;log&rdquo; builtin helper.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllHelpers" title="unregisterAllHelpers"></a>
+	<h3 class="subsubtitle method-title">unregisterAllHelpers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister all global helpers</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterAllHelpers</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method remove all helpers from the global execution context. After calling this method, no global helper will be accessible from templates, until you add new ones.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/unregisterHelperForName:">[HBExecutionContext unregisterHelperForName:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllPartials" title="unregisterAllPartials"></a>
+	<h3 class="subsubtitle method-title">unregisterAllPartials</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister all global partials</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterAllPartials</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method remove all partials from the global execution context. After calling this method, no global partial will be accessible from templates, until you add new ones.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/unregisterPartialForName:">[HBExecutionContext unregisterPartialForName:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterHelperForName:" title="unregisterHelperForName:"></a>
+	<h3 class="subsubtitle method-title">unregisterHelperForName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister a global helper.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterHelperForName:(NSString *)<em>helperName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helperName</em></dt>
+			<dd><p>The name of the helper to unregister</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This methods remove a helper from the global execution context. After calling this method, the corresponding helper will not be accessible from templates.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/unregisterHelperForName:">[HBExecutionContext unregisterHelperForName:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterPartialForName:" title="unregisterPartialForName:"></a>
+	<h3 class="subsubtitle method-title">unregisterPartialForName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister a global partial.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)unregisterPartialForName:(NSString *)<em>partialName</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialName</em></dt>
+			<dd><p>The name of the partial to unregister</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method removes a partial from the global execution context. After calling this method, the corresponding partial will not be accessible from templates.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBExecutionContext.html#//api/name/unregisterPartialForName:">[HBExecutionContext unregisterPartialForName:]</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHandlebars.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-12)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

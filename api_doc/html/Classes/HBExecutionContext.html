@@ -1,0 +1,1033 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>HBExecutionContext Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">handlebars-objc </a></h1>
+				<a id="developerHome" href="../index.html">Fotonauts</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">HBExecutionContext Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/helpers">&nbsp;&nbsp;&nbsp;&nbsp;helpers</option>
+	
+	<option value="//api/name/partials">&nbsp;&nbsp;&nbsp;&nbsp;partials</option>
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/globalExecutionContext">&nbsp;&nbsp;&nbsp;&nbsp;+ globalExecutionContext</option>
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/registerHelperBlock:forName:">&nbsp;&nbsp;&nbsp;&nbsp;- registerHelperBlock:forName:</option>
+	
+	<option value="//api/name/registerHelperBlocks:">&nbsp;&nbsp;&nbsp;&nbsp;- registerHelperBlocks:</option>
+	
+	<option value="//api/name/registerPartialString:forName:">&nbsp;&nbsp;&nbsp;&nbsp;- registerPartialString:forName:</option>
+	
+	<option value="//api/name/registerPartialStrings:">&nbsp;&nbsp;&nbsp;&nbsp;- registerPartialStrings:</option>
+	
+	<option value="//api/name/templateWithString:">&nbsp;&nbsp;&nbsp;&nbsp;- templateWithString:</option>
+	
+	<option value="//api/name/unregisterAllHelpers">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterAllHelpers</option>
+	
+	<option value="//api/name/unregisterAllPartials">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterAllPartials</option>
+	
+	<option value="//api/name/unregisterHelperForName:">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterHelperForName:</option>
+	
+	<option value="//api/name/unregisterPartialForName:">&nbsp;&nbsp;&nbsp;&nbsp;- unregisterPartialForName:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_managing helpers">managing helpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_managing partials">managing partials</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/helpers">helpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/partials">partials</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/globalExecutionContext">globalExecutionContext</a></span></li>
+	
+</ul></li>
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlock:forName:">registerHelperBlock:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerHelperBlocks:">registerHelperBlocks:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialString:forName:">registerPartialString:forName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialStrings:">registerPartialStrings:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/templateWithString:">templateWithString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllHelpers">unregisterAllHelpers</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterAllPartials">unregisterAllPartials</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterHelperForName:">unregisterHelperForName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unregisterPartialForName:">unregisterPartialForName:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="HBExecutionContext Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">HBExecutionContext Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">HBExecutionContext.h</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>HBExecutionContexts are objects you can create if your application generates documents that use different sets of partials and helpers.</p>
+
+<p>In this case, rather than registering your helpers and partial at the global level, you create an HBExecutionContext instance, add your helpers (using the <a href="#//api/name/registerHelperBlocks:">registerHelperBlocks:</a> method for instance), add your partials (using the <a href="#//api/name/registerPartialStrings:">registerPartialStrings:</a> method for instance).</p>
+
+<p>You can then create templates (using <a href="#//api/name/templateWithString:">templateWithString:</a>) that automatically have access to all the helpers and partials you&rsquo;ve registered in the execution context instance they&rsquo;ve been created from.</p>
+
+<p>Note that templates created from an execution context will also have access to any helper and partial added <em>after</em> the template was created.</p>
+
+<p>Please note also that templates created from an execution context <em>still have access</em> to the global helpers and partials.</p>
+
+<p>As an implementation note, all methods on [HBHandlebars] that register global helpers and partials actually register them in a singleton execution context available using the <a href="#//api/name/globalExecutionContext">globalExecutionContext</a> method. It is totally fine to manipulate the global execution context directly.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/helpers">&nbsp;&nbsp;helpers</a></code>
+		<span class="tooltip"><p>Helper registry. This is the actual place where helpers of the execution context are registered.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/partials">&nbsp;&nbsp;partials</a></code>
+		<span class="tooltip"><p>Partial registry. This is the actual place where partials of the execution context are registered.</p></span>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/globalExecutionContext">+&nbsp;globalExecutionContext</a></code>
+		<span class="tooltip"><p>Access the global execution context.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/templateWithString:">&ndash;&nbsp;templateWithString:</a></code>
+		<span class="tooltip"><p>Creates a template that has access to the helpers and partials from the receiver.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="managing helpers" name="task_managing helpers"></a>
+						<h3 class="subsubtitle task-title">managing helpers</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlock:forName:">&ndash;&nbsp;registerHelperBlock:forName:</a></code>
+		<span class="tooltip"><p>Register a helper in the execution context</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerHelperBlocks:">&ndash;&nbsp;registerHelperBlocks:</a></code>
+		<span class="tooltip"><p>Register several helpers at once in the execution context</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterHelperForName:">&ndash;&nbsp;unregisterHelperForName:</a></code>
+		<span class="tooltip"><p>Unregister a helper form the execution context</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllHelpers">&ndash;&nbsp;unregisterAllHelpers</a></code>
+		<span class="tooltip"><p>Unregister all helpers from the execution context</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						<a title="managing partials" name="task_managing partials"></a>
+						<h3 class="subsubtitle task-title">managing partials</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerPartialString:forName:">&ndash;&nbsp;registerPartialString:forName:</a></code>
+		<span class="tooltip"><p>Register a partial in the execution context</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/registerPartialStrings:">&ndash;&nbsp;registerPartialStrings:</a></code>
+		<span class="tooltip"><p>Register several partials at once in the execution context.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterPartialForName:">&ndash;&nbsp;unregisterPartialForName:</a></code>
+		<span class="tooltip"><p>Unregister a partial from execution context</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/unregisterAllPartials">&ndash;&nbsp;unregisterAllPartials</a></code>
+		<span class="tooltip"><p>Unregister all partials from the execution context</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/helpers" title="helpers"></a>
+	<h3 class="subsubtitle method-title">helpers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Helper registry. This is the actual place where helpers of the execution context are registered.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (retain, nonatomic) HBHelperRegistry *helpers</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/partials" title="partials"></a>
+	<h3 class="subsubtitle method-title">partials</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Partial registry. This is the actual place where partials of the execution context are registered.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (retain, nonatomic) HBPartialRegistry *partials</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/globalExecutionContext" title="globalExecutionContext"></a>
+	<h3 class="subsubtitle method-title">globalExecutionContext</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Access the global execution context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (instancetype)globalExecutionContext</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Helpers and partials registered in the global execution context are available to all templates.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlock:forName:" title="registerHelperBlock:forName:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlock:forName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a helper in the execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)registerHelperBlock:(HBHelperBlock)<em>block</em> forName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>block</em></dt>
+			<dd><p>block implementation of the helper</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the helper</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method registers a helper in the receiving execution context.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerHelperBlocks:" title="registerHelperBlocks:"></a>
+	<h3 class="subsubtitle method-title">registerHelperBlocks:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register several helpers at once in the execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)registerHelperBlocks:(NSDictionary *)<em>helperBlocks</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>helperBlocks</em></dt>
+			<dd><p>a dictionary whose keys are helper names and value are helper blocks</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method registers several helpers at once in the receiving execution context.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerPartialString:forName:" title="registerPartialString:forName:"></a>
+	<h3 class="subsubtitle method-title">registerPartialString:forName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register a partial in the execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)registerPartialString:(NSString *)<em>partialString</em> forName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partialString</em></dt>
+			<dd><p>the partial itself</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the partial</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/registerPartialStrings:" title="registerPartialStrings:"></a>
+	<h3 class="subsubtitle method-title">registerPartialStrings:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register several partials at once in the execution context.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)registerPartialStrings:(NSDictionary *)<em>partials</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>partials</em></dt>
+			<dd><p>an NSDictionary whose keys are partial names and values are partial strings</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/templateWithString:" title="templateWithString:"></a>
+	<h3 class="subsubtitle method-title">templateWithString:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Creates a template that has access to the helpers and partials from the receiver.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (HBTemplate *)templateWithString:(NSString *)<em>string</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>string</em></dt>
+			<dd><p>template string</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllHelpers" title="unregisterAllHelpers"></a>
+	<h3 class="subsubtitle method-title">unregisterAllHelpers</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister all helpers from the execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterAllHelpers</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method to unregister all the helpers you have registered in the receiving execution context.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterAllPartials" title="unregisterAllPartials"></a>
+	<h3 class="subsubtitle method-title">unregisterAllPartials</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister all partials from the execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterAllPartials</code></div>
+
+    
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method to unregister all the partials you have registered in the receiving execution context.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterHelperForName:" title="unregisterHelperForName:"></a>
+	<h3 class="subsubtitle method-title">unregisterHelperForName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister a helper form the execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterHelperForName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the helper to unregister</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method to unregister a previously registered helper. Unregistering a helper which has not been registered will have no effect.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/unregisterPartialForName:" title="unregisterPartialForName:"></a>
+	<h3 class="subsubtitle method-title">unregisterPartialForName:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Unregister a partial from execution context</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)unregisterPartialForName:(NSString *)<em>name</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the partial to unregister</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this method to unregister a partial you have previously registered in the receiving execution context. Unregistering a partial which has not yet been registered will have no effect.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBExecutionContext.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-12)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
