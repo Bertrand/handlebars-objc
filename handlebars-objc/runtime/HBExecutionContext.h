@@ -46,6 +46,7 @@
 
 /**
  Creates a template that has access to the helpers and partials from receiver.
+ @param string template string
  */
 - (HBTemplate*) templateWithString:(NSString*)string;
 
@@ -60,7 +61,7 @@
 
 - (void) registerPartialString:(NSString*)partialString forName:(NSString*)name;
 - (void) registerPartialStrings:(NSDictionary* /* NSString -> NSString */)partials;
-- (void) unregisterParialForName:(NSString*)name;
+- (void) unregisterPartialForName:(NSString*)name;
 - (void) unregisterAllPartials;
 
 @end

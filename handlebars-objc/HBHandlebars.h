@@ -141,7 +141,7 @@ This method should be used only if you render templates in non mission-critical 
  @param helperName The name this helper is referred as in templates.
  
  @see HBExecutionContext
- @see [HBExecutionContext registerHelperBlocks]
+ @see [HBExecutionContext registerHelperBlocks:]
  @since v1.0
  */
 + (void) registerHelperBlock:(HBHelperBlock)block forName:(NSString*)helperName;
@@ -218,6 +218,7 @@ This method should be used only if you render templates in non mission-critical 
  
  Log messages can be sent from templates using the "log" builtin helper.
  
+ @param loggerBlock a block executed everytime something is logged.
  @since v1.0
  */
 + (void) setLoggerBlock:(HBLoggerBlock)loggerBlock;

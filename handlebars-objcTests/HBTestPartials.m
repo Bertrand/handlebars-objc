@@ -127,7 +127,7 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
     id hash = @{ @"name": @"Jeepers", @"another_dude": @"Creepers" };
     
     NSString* result = renderWithPartials(string, hash, @{@"shared/dude": dude});
-    [[HBExecutionContext globalExecutionContext].partials removeAllPartials]; // cleanup global partials list
+    [[HBExecutionContext globalExecutionContext].partials unregisterAllPartials]; // cleanup global partials list
     XCTAssertEqualObjects(result, @"Dudes: Jeepers Creepers");
 }
 
@@ -140,7 +140,7 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
     id hash = @{ @"name": @"Jeepers", @"another_dude": @"Creepers" };
     
     NSString* result = renderWithPartials(string, hash, @{});
-    [[HBExecutionContext globalExecutionContext].partials removeAllPartials]; // cleanup global partials list
+    [[HBExecutionContext globalExecutionContext].partials unregisterAllPartials]; // cleanup global partials list
     XCTAssertEqualObjects(result, @"Dudes: Jeepers Creepers");
 }
 

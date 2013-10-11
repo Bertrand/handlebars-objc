@@ -26,6 +26,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 /**
  Handlebars.js supports private variables set by block helpers and available to 
  descendant scopes (See [block helpers](http://handlebarsjs.com/block_helpers.html)
@@ -98,7 +99,7 @@
  You generally do not call this method directly. Instead, use objective-C subscripting operators.
  This method calls <setData:forKey>.
  
- @param data value of private variable
+ @param object value of private variable
  @param aKey name of the private variable to retrieve
  */
 - (void)setObject:(id)object forKeyedSubscript:(id < NSCopying >)aKey;

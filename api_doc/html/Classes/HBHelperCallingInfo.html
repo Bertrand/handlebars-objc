@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -70,10 +72,14 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
 <li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Accessing calling parameters using Objective-C subscripting notation">Accessing calling parameters using Objective-C subscripting notation</a></span></li>
 	
 </ul></li>
 
@@ -141,6 +147,89 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Understanding HBHelperCallingInfo is central to the development of Handlebars helpers in handlebars-objc. If you&rsquo;re not trying to develop a helper, you don&rsquo;t need to read this document.</p>
+
+<p>If you are trying to develop a helper, you <em>need</em> to read this documentation in details.</p>
+
+<h2>Prerequisites</h2>
+
+<p>This page assumes you know enough about herlps and their usage in Handlebars templates.</p>
+
+<p>Please see <a href="http://handlebars.js">Handlebars.js documentation</a> for details about helpers. In particular, please read the &ldquo;Helpers&rdquo; section in Handlebars.js documentation of <a href="http://handlebarsjs.com/expressions.html">expressions</a> and the page specific to <a href="http://handlebarsjs.com/block_helpers.html">block helpers</a>.</p>
+
+<p>In particular, make sure you understand what is a Handlebars context, what are helper parameters, and the difference between expression helpers and block helpers.</p>
+
+<p>Now let&rsquo;s dive a little bit deeper into HBHelperCallingInfo.</p>
+
+<h2>What is HBHelperCallingInfo</h2>
+
+<p>The typical implementation of a helper using an objective-C block looks like the following:</p>
+
+<pre><code> HBHelperBlock myHelper = (^)(HBHelperCallingInfo* callingInfo) {
+     // helper code
+     // ....
+     return result; // where result is a string containing what we'll be inserted in the evaluated template where the helper was called.
+ }
+</code></pre>
+
+<p>As you can see, the helper implementation blocks receive an single argument of class HBHelperCallingInfo which holds all the contextual information usable by the helper at calling time:</p>
+
+<ul>
+<li>Handlebars context</li>
+<li>Private data set by other helpers in parent scopes</li>
+<li>Parameters passed to the helpers in template expression</li>
+<li>Template block passed to the helper (Block helpers only)</li>
+<li>Inverse section passed to the helper (Block helpers only).</li>
+</ul>
+
+
+<h2>Context</h2>
+
+<p>You access the context using the <a href="#//api/name/context">context</a> property:</p>
+
+<pre><code>NSString* authorName = callingInfo.context[@"author_name"]; 
+</code></pre>
+
+<p>Contexts are usual objective-C objects, provided by the application using handlebars-objc, and your application should consider those objects immutable. It is a <em>huge</em> mistake to modify contexts passed to your helper. You can try to copy them, you can even replace them by new objects when evaluating blocks passed to the helper, but you should never modify the context you do not own. Really.</p>
+
+<h2>Helper parameters</h2>
+
+<p>One of the key feature of Handlebars.js is the ability for template writers to pass parameters to the helpers. Those parameters, directly specified in the template (and not in the context), can be general view configuration settings (that&rsquo;s why they should never be set in context), and can be anything, valid in a Handlebars expression (context identifiers, string or number literals, boolean literals or private variables).</p>
+
+<p>Your helper implementation can access parameters using the <a href="#//api/name/positionalParameters">positionalParameters</a> and <a href="#//api/name/namedParameters">namedParameters</a> properties.</p>
+
+<h2>Private variables</h2>
+
+<p>Another important feature of Handlebars.js is the ability for block helpers to write private variables available to descendant blocks. Please see <a href="http://handlebarsjs.com/block_helpers.html">Handlebars.js helper page</a> for some information about private variables in block helpers.</p>
+
+<p>You access private variables set by parent helpers using the <a href="#//api/name/data">data</a> property.</p>
+
+<p>If your helper needs to set a private variable, please make sure to carefully read the documentation of <a href="../Classes/HBDataContext.html">HBDataContext</a>.</p>
+
+<h2>Executing the block passed to the helper</h2>
+
+<p>Block helpers generally receive a sub-template to execute. In handlebars-objc, they are called &ldquo;Helper statements&rdquo;.
+Depending on the nature of your helper, this block can be used to iterate over some contextual value (like for instance the #each built-in helper), or act as a conditional block (like the #if built-in template).</p>
+
+<p>To access and evaluate the statements, use the <a href="#//api/name/statements">statements</a> property.</p>
+
+<p>Note that even if a template uses your helper with an empty block or as an expression helper, handlebars-objc always provide a non-nil <a href="#//api/name/statements">statements</a> value (which is a no-op).</p>
+
+<h2>Inverse section</h2>
+
+<p>Block helper used as conditional in Handlebars templates can optionally receive an inverse section that is executed when the helper condition is not met.
+(Please see the #if built-in helper in Handlebars.js <a href="http://handlebarsjs.com/block_helpers.html">documentation</a> for an example).</p>
+
+<p>You access the inverse section using the <inverseStatement> property.</p>
+
+<p>Note that even when a templates provides no inverse section, handlebars-objc always sets one (that is a no-op) in the callingInfo. In other words you can safely assume you can evaluate the inverse statements of a helper in your implementation.</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -149,62 +238,70 @@
 						
 						
 						
-						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
 
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/context">&nbsp;&nbsp;context</a></code>
-		
+		<span class="tooltip"><p>Handlebars context</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
-		
+		<span class="tooltip"><p>Handlebars private variables</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/positionalParameters">&nbsp;&nbsp;positionalParameters</a></code>
-		
+		<span class="tooltip"><p>helper positional parameters</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/namedParameters">&nbsp;&nbsp;namedParameters</a></code>
-		
+		<span class="tooltip"><p>named parameters</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/statements">&nbsp;&nbsp;statements</a></code>
-		
+		<span class="tooltip"><p>block statements (block helpers only)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/inverseStatements">&nbsp;&nbsp;inverseStatements</a></code>
-		
+		<span class="tooltip"><p>inverse block statements (block helpers only)</p></span>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
-</li><li>
+</li>
+						</ul>
+						
+						
+						<a title="Accessing calling parameters using Objective-C subscripting notation" name="task_Accessing calling parameters using Objective-C subscripting notation"></a>
+						<h3 class="subsubtitle task-title">Accessing calling parameters using Objective-C subscripting notation</h3>
+
+						<ul class="task-list">
+							<li>
 	<span class="tooltip">
 		<code><a href="#//api/name/objectAtIndexedSubscript:">&ndash;&nbsp;objectAtIndexedSubscript:</a></code>
-		
+		<span class="tooltip"><p>Access positional parameters</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
 		<code><a href="#//api/name/objectForKeyedSubscript:">&ndash;&nbsp;objectForKeyedSubscript:</a></code>
-		
+		<span class="tooltip"><p>Access named parameters</p></span>
 	</span>
 	
 	
@@ -226,10 +323,48 @@
 	<h3 class="subsubtitle method-title">context</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Handlebars context</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, retain, nonatomic) id context</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Handlebars context is the data model provided to the template for rendering.
+It can be any objective-C object, but unless you know what you&rsquo;re doing, you
+should make sure you provide property-list objects.
+See <a href="https://developer.apple.com/library/mac/documentation/general/conceptual/devpedia-cocoacore/PropertyList.html">Apple documentation</a> for a list of such objects.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -237,10 +372,57 @@
 	<h3 class="subsubtitle method-title">data</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Handlebars private variables</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, retain, nonatomic) HBDataContext *data</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Handlebars supports setting and accessing private variables in helpers and in templates. For example, the #each helper, while iterating over an array, sets a private variable containing the current index. This private variable is named &ldquo;index&rdquo; and can be referred to as @index in templates and via the data access on HBHelperCallingInfo within helpers implementation.
+While helpers can read and set private variables, they should never modify the data context they received directly but instead copy it first and modify the copy before passing it to descendant contexts.</p>
+
+<p>Please see <a href="../Classes/HBDataContext.html">HBDataContext</a> for more information.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/HBDataContext.html">HBDataContext</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -248,10 +430,54 @@
 	<h3 class="subsubtitle method-title">inverseStatements</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>inverse block statements (block helpers only)</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, copy, nonatomic) HBStatementsEvaluator inverseStatements</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Block helpers can have inverse sections (see <a href="http://handlebarsjs.com/block_helpers.html">Handlebars.js documentation</a>). Helpers implementation can evaluate the inverse section by using the inverseStatement property. See <a href="#//api/name/statements">statements</a> for a discussion on how to evaluate statements.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/statements">@property statements</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -259,10 +485,49 @@
 	<h3 class="subsubtitle method-title">namedParameters</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>named parameters</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, retain, nonatomic) NSDictionary *namedParameters</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Handlebars helpers can be called with parameters within templates:</p>
+
+<p>{{render param1 param2 name1=param3 name2=param4}}</p>
+
+<p>The namedParameters accessor on HBHelperCallingInfo lets helpers developper access the set of named parameters (param3 and param4 in our example) as a dictionary where keys are parameter names and values are parameters value.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -270,10 +535,50 @@
 	<h3 class="subsubtitle method-title">positionalParameters</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>helper positional parameters</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, retain, nonatomic) NSArray *positionalParameters</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Handlebars helpers can be called with parameters within templates:</p>
+
+<pre><code>{{render param1 param2 name1=param3 name2=param4}}
+</code></pre>
+
+<p>The parameters accessor on HBHelperCallingInfo lets helpers developper access the first set of ordered and unamed parameters (param1 and param2 in our example) as an array.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -281,10 +586,81 @@
 	<h3 class="subsubtitle method-title">statements</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>block statements (block helpers only)</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>@property (readonly, copy, nonatomic) HBStatementsEvaluator statements</code></div>
 
     
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Block helpers (see <a href="http://handlebarsjs.com/block_helpers.html">Handlebars.js documentation</a>) are helpers than can invoke the passed block with a new context.
+For instance:</p>
+
+<pre><code>{{#each a}}
+    {{value}} is a prime number.
+{{/each}}
+</code></pre>
+
+<p>and the following context:</p>
+
+<pre><code>{a : [ {value: 1}, {value: 3}, {value: 5}, {value: 7} ]} as
+</code></pre>
+
+<p>will render as:</p>
+
+<pre><code>1 is a prime number. 3 is a prime number. 5 is a prime number. 7 is a prime number.
+</code></pre>
+
+<p>In this case, the &ldquo;each&rdquo; helper will iterate over the array parameter and will call the passed block (ie &ldquo;{{value}} is a prime number.&rdquo;) with each array element as the new context.</p>
+
+<p>The statements accessor on HBHelperCallingInfo is the way helpers implementers render the passed block.</p>
+
+<p>For example the following helper implementation:</p>
+
+<pre><code>^(HBHelperCallingInfo* callInfo) {
+    return callInfo.statements(@{ @"value" : "one" }, callInfo.data);
+}
+</code></pre>
+
+<p>Will evaluate the passed block with context { value: &ldquo;one&rdquo;} (in json notation).</p>
+
+<p>And if we register this helper in the runtime as &ldquo;valueOne&rdquo;, the following Handlebars template</p>
+
+<pre><code>{{#valueOne}} Value is {{value}} {{/valueOne}} 
+</code></pre>
+
+<p>will evaluate to &ldquo;Value is one&rdquo;</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -302,10 +678,68 @@
 	<h3 class="subsubtitle method-title">objectAtIndexedSubscript:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Access positional parameters</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)objectAtIndexedSubscript:(NSUInteger)<em>index</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>index</em></dt>
+			<dd><p>index of parameter to read</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the parameter value (can be nil)</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Positional parameters can be accessed using objective-C indexed subscripting API.
+For instance,</p>
+
+<pre><code>callInfo[1] 
+</code></pre>
+
+<p>will return the value of calling parameter at index 1</p>
+
+<p>Accessing a non-existing index will return nil without raising any exception.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 						<div class="section-method">
@@ -313,10 +747,68 @@
 	<h3 class="subsubtitle method-title">objectForKeyedSubscript:</h3>
 	
 	
+	
+	<div class="method-subsection brief-description">
+		<p>Access named parameters</p>
+	</div>		
+	
+    
 
 	<div class="method-subsection method-declaration"><code>- (id)objectForKeyedSubscript:(id)<em>key</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>the name of the parameter to read</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>the parameter value (can be nil)</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Named parameters can be accessed using objective-C keyed subscripting API.
+For instance</p>
+
+<pre><code>callInfo[@"lang"]
+</code></pre>
+
+<p>will return the value of calling parameter named &ldquo;lang&rdquo;.</p>
+
+<p>Accessing a non-existing parameter will return nil without raising any exception.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperCallingInfo.h</code><br />
+	</div>				
+	
+	
 </div>
 						
 					</div>
@@ -332,7 +824,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-10)</span><br />
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-11)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
 						

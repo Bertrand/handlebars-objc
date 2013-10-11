@@ -102,7 +102,7 @@
     [self.partials registerPartialStrings:partials];
 }
 
-- (void) unregisterParialForName:(NSString*)name
+- (void) unregisterPartialForName:(NSString*)name
 {
     [self.partials unregisterPartialForName:name];
 }
