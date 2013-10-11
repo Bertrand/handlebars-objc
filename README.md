@@ -68,13 +68,23 @@ Render your first template
 
 If you've enabled modules, add this import clause to your objective-C implementation 
 
+```objc
   @import HBHandlebars; 
+```
 
 (otherwise, replace this clause with '#import "HBHandlebars.h"')
 
 Then add 
 
+```objc
   NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" withContext:@{ @"value" : @"Bertrand"}]; 
   NSLog(@"handlebars template evaluated to : %@", result); 
+```
+
+Run your application, and in your logs, you should see "Hello Bertrand!". 
+
+Congratulations! You've just rendered your first Handlebars template. 
+
+
 
 
