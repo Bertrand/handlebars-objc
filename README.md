@@ -36,3 +36,45 @@ Handlebars-objc doesn't try to be more versatile than other Handlebars implement
 Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache]). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general). Plus, GRMustache doesn't increase global warming. 
 
 
+Getting Started
+===============
+
+Integrate handlebars-objc into your project
+-------------------------------------------
+
+CocoaPods submission coming soon. 
+
+In the meantime here's how to integrate HBHandlebars as a subproject. 
+
+  - copy the sources of handlebars-objc into your project directory (or best, use a git submodule)
+  - add handlebars-objc.xcodeproj to your project (no need to add the whole sources to your project)
+
+(Optional)
+  - in the "Apple LLVM 5.0 - Languages - Module" section of your project build settings, set "Enable Modules" to YES. 
+
+Then if your project targets iOS:
+
+  - modify your project build settings and add "$(TEMP_ROOT)/Headers" to your headers search path (without the quotes). 
+  - add handlebars-objc-ios as a target dependency to your target
+  - link against libhandlebars-objc-ios.a
+
+If your project targets MacOS 
+  
+  - add handlebars-objc-osx as a target dependency to your target
+  - link against handlebars-objc-osx.framework
+
+Render your first template 
+--------------------------
+
+If you've enabled modules, add this import clause to your objective-C implementation 
+
+  @import HBHandlebars; 
+
+(otherwise, replace this clause with '#import "HBHandlebars.h"')
+
+Then add 
+
+  NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" withContext:@{ @"value" : @"Bertrand"}]; 
+  NSLog(@"handlebars template evaluated to : %@", result); 
+
+
