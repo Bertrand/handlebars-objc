@@ -11,7 +11,7 @@
 		0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B19417F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
 		0630B1A217F2EF9100EA7018 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18B17F2EF9100EA7018 /* Cocoa.framework */; };
-		0630B1A517F2EF9100EA7018 /* handlebars-objc-osx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */; };
+		0630B1A517F2EF9100EA7018 /* HBHandlebars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18817F2EF9100EA7018 /* HBHandlebars.framework */; };
 		0630B1AB17F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B1A917F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1C117F2EFE600EA7018 /* handlebars-objc.lm in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1BA17F2EFE600EA7018 /* handlebars-objc.lm */; };
 		0630B1C217F2EFE600EA7018 /* handlebars-objc.ym in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1BB17F2EFE600EA7018 /* handlebars-objc.ym */; };
@@ -171,7 +171,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "handlebars-objc-osx.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0630B18817F2EF9100EA7018 /* HBHandlebars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HBHandlebars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B18B17F2EF9100EA7018 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0630B18E17F2EF9100EA7018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0630B18F17F2EF9100EA7018 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -239,7 +239,6 @@
 		06798D6317F9A12A00FC40D7 /* HBAstEvaluationVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstEvaluationVisitor.m; sourceTree = "<group>"; };
 		06798D6717F9B22D00FC40D7 /* HBContextState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBContextState.h; sourceTree = "<group>"; };
 		06798D6817F9B22D00FC40D7 /* HBContextState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBContextState.m; sourceTree = "<group>"; };
-		067A65FC18040ABF008A3B8E /* module.map */ = {isa = PBXFileReference; lastKnownFileType = text; path = module.map; sourceTree = "<group>"; };
 		0698F02317FEC78A005203F6 /* HBHelperCallingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelperCallingInfo.h; sourceTree = "<group>"; };
 		0698F02417FEC78A005203F6 /* HBHelperCallingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelperCallingInfo.m; sourceTree = "<group>"; };
 		0698F02717FED6D2005203F6 /* HBHelperCallingInfo_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBHelperCallingInfo_Private.h; sourceTree = "<group>"; };
@@ -281,7 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0630B1A517F2EF9100EA7018 /* handlebars-objc-osx.framework in Frameworks */,
+				0630B1A517F2EF9100EA7018 /* HBHandlebars.framework in Frameworks */,
 				0630B1A217F2EF9100EA7018 /* Cocoa.framework in Frameworks */,
 				0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */,
 			);
@@ -323,7 +322,7 @@
 		0630B18917F2EF9100EA7018 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */,
+				0630B18817F2EF9100EA7018 /* HBHandlebars.framework */,
 				0630B19F17F2EF9100EA7018 /* handlebars-objc-osx-tests.xctest */,
 				06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */,
 				06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */,
@@ -359,7 +358,6 @@
 			children = (
 				06556D9317FF178300070907 /* HBHandlebars.h */,
 				06556D9417FF178300070907 /* HBHandlebars.m */,
-				067A65FC18040ABF008A3B8E /* module.map */,
 				0630B1C717F33E8700EA7018 /* ast */,
 				06A81A9417F86EAF0006F16A /* astVisitors */,
 				06798D6617F9B1F800FC40D7 /* context */,
@@ -613,7 +611,7 @@
 			);
 			name = "handlebars-objc-osx";
 			productName = "handlebars-objc";
-			productReference = 0630B18817F2EF9100EA7018 /* handlebars-objc-osx.framework */;
+			productReference = 0630B18817F2EF9100EA7018 /* HBHandlebars.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		0630B19E17F2EF9100EA7018 /* handlebars-objc-osx-tests */ = {
@@ -971,7 +969,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "handlebars-objc/handlebars-objc-Prefix.pch";
 				INFOPLIST_FILE = "handlebars-objc/handlebars-objc-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HBHandlebars;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -986,7 +984,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "handlebars-objc/handlebars-objc-Prefix.pch";
 				INFOPLIST_FILE = "handlebars-objc/handlebars-objc-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HBHandlebars;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
