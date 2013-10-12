@@ -49,9 +49,6 @@ In the meantime here's how to integrate HBHandlebars as a subproject.
   - copy the sources of handlebars-objc into your project directory (or best, use a git submodule)
   - add handlebars-objc.xcodeproj to your project (no need to add the whole sources to your project)
 
-(Optional)
-  - in the "Apple LLVM 5.0 - Languages - Module" section of your project build settings, set "Enable Modules" to YES. 
-
 Then if your project targets iOS:
 
   - modify your project build settings and add "$(TEMP_ROOT)/Headers" to your headers search path (without the quotes). 
@@ -66,13 +63,11 @@ If your project targets MacOS
 Render your first template 
 --------------------------
 
-If you've enabled modules, add this import clause to your objective-C implementation 
+Add this import clause to your objective-C implementation 
 
 ```objc
-  @import HBHandlebars; 
+  #import <HBHandlebars/HBHandlebars>; 
 ```
-
-(otherwise, replace this clause with '#import "HBHandlebars.h"')
 
 Then add 
 
