@@ -46,7 +46,7 @@ In this case model.date sets a positional parameter (with index 0) and with_year
 
 Helpers can use as many parameters as they need. Positional parameters are obviously ordered, and the come first. Named parameters come then and can be given in any order. 
 
-## Writing Helpers ##
+## Writing Helpers in Objective-C ##
 
 In handlebars-objc, helpers are Objective-C blocks with the following signature 
 
