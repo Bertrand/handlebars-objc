@@ -107,6 +107,3 @@ NSLog(@"rendered value : %@", renderedTemplate);
 // --> rendered value : Date is: Oct 13, 2013
 ```
 
-### Using positional parameters ### 
-
-Let's write a helper that 
