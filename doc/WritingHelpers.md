@@ -304,6 +304,95 @@ can be written
 NSString* dateFormatParameter = callingInfo[@"date_format"];
 ```
 
+### Writing block helpers ###
+
+In the introduction above, we've described a block helper that named "sort" that would sort an array using any attribute of its elements. 
+Let's write it!
+
+```objc
+// helper implementation
+HBHelperBlock sortHelper = ^(HBHelperCallingInfo* callingInfo)
+{
+    // retrieve the value to sort
+    id value = callingInfo[0];
+    if (!value) return (NSString*)nil;
+    
+    // retrieve sort criterion
+    NSString* criterion = callingInfo[@"criterion"];
+    if (!criterion) return (NSString*)nil;
+    
+    // retrieve sort order
+    NSInteger order = 1;
+    NSString* orderParameter = callingInfo[@"order"];
+    if ([orderParameter isEqualToString:@"descending"]) order = -1;
+    
+    // transform the value into an array. It it's already an NSArray, this is a no-op;
+    NSArray* array = [HBHelperUtils arrayFromValue:value];
+    
+    // actual sort
+    NSArray* sortedArray = [array sortedArrayWithOptions:0 usingComparator:^(id obj1, id obj2) {
+        
+        id value1 = [HBHelperUtils valueOf:obj1 forKey:criterion];
+        id value2 = [HBHelperUtils valueOf:obj2 forKey:criterion];
+
+        return order * [value1 compare:value2];
+    }];
+    
+    // prepare empty result string.
+    NSMutableString* result = [NSMutableString string];
+    
+    // iterate over sorted elements
+    for (id object in sortedArray) {
+        // invoke block statements
+        NSString* iterationResult = callingInfo.statements(object, callingInfo.data);
+        // concatenate iteration evaluation with helper result
+        if (iterationResult) [result appendString:iterationResult];
+    }
+    
+    return (NSString*)result;
+};
+
+[HBHandlebars registerHelperBlock:sortHelper forName:@"sort"];
+```
+
+Let's use it:
+
+```objc
+id context = @{ @"elements":
+                    @[
+                     @{ @"first_name": @"Alan", @"last_name": @"Turing" },
+                     @{ @"first_name": @"David", @"last_name": @"Hilbert" },
+                     @{ @"first_name": @"Daniel", @"last_name": @"Goossens" }
+                     ] 
+                };
+
+NSString* template = @"Elements sorted by ascending first name:\n\
+{{#sort elements criterion='first_name' order='ascending'}}\
+{{first_name}} {{last_name}}\n\
+{{/sort}}\n\
+Elements sorted by descending last name:\n\
+{{#sort elements criterion='last_name' order='descending'}}\
+{{first_name}} {{last_name}}\n\
+{{/sort}}";
+
+renderedTemplate = [HBHandlebars renderTemplateString:template withContext:context];
+
+NSLog(@"rendered value : '%@'", renderedTemplate);
+```
+
+In your console you should see: 
+```
+rendered value : 'Elements sorted by ascending first name:
+Alan Turing
+Daniel Goossens
+David Hilbert
+
+Elements sorted by descending last name:
+Alan Turing
+David Hilbert
+Daniel Goossens
+'
+```
 
 
 
