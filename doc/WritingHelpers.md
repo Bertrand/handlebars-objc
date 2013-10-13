@@ -22,7 +22,7 @@ In this case, short_date_format is a simple helper that  transforms a parameter 
 The parameter value is model.date in our example and thus use values coming from the context. 
 As we'll see in later examples, parameters can also be litteral (string, numbers, boolean).
 
-An application could also provide a helper named "reverse_each" that iterates over an array in reverse order and execute a block of statements at each step: 
+An application could also provide a helper named "reverse_each" that iterates over an array in reverse order and executes a block of statements at each step: 
 
 Templates may then use it this way: 
 
@@ -169,33 +169,33 @@ Let's make our formatted_date helper a bit more useful, let's add a date paramet
 If this parameter is set by template, we'll render the passed date, otherwise we'll fallback on previous behaviour and format current date. 
 
 ```objc
-    // helper implementation
-    HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
-    {
-        
-        // the date is the first positional parameter, or current date if no parameter is passed.
-        NSDate* date = nil;
-        if (callingInfo.positionalParameters.count > 0) {
-            NSString* dateString = callingInfo.positionalParameters[0];
-            date = [NSDate dateWithNaturalLanguageString:dateString];
-        } else {
-            date = [NSDate date];
-        }
-        
-        // create a date formatter
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        
-        // format the date
-        NSString* result = [dateFormatter stringFromDate:date];
-        
-        return result;
-    };
-
+// helper implementation
+HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
+{
     
-    // register the helper globally
-    [HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
+    // the date is the first positional parameter, or current date if no parameter is passed.
+    NSDate* date = nil;
+    if (callingInfo.positionalParameters.count > 0) {
+        NSString* dateString = callingInfo.positionalParameters[0];
+        date = [NSDate dateWithNaturalLanguageString:dateString];
+    } else {
+        date = [NSDate date];
+    }
+    
+    // create a date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    // format the date
+    NSString* result = [dateFormatter stringFromDate:date];
+    
+    return result;
+}
+// register the helper globally
+[HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
 ```
+(Note that I strongly encourage you not to use the +[NSDate dateWithNaturalLanguageString] method. I used it for brievity's sake only). 
+
 Now let's render a template
 ```
     // render a template using the helper
@@ -212,10 +212,100 @@ rendered value : 'Birthday is: Jan 23, 1862'
 
 Note that you can also access positional parameters by using the obj-C indexed subscripting operator on callingInfo. 
 The following expression:
-```objc
+```
 NSString* dateString = callingInfo.positionalParameters[0];
 ```
 can thus be rewritten
-```objc 
+```
 NSString* dateString = callingInfo[0];
 ```
+
+### Using named parameters ###
+
+Using positional parameters is fine if you helper doesn't take more than one parameter. 
+As soon as you have two parameters, the meaning of those is in many case less obvious for those reading a template. 
+
+In this case, it's much better to use another great features of Handlebars: Named Parameters. 
+
+Let's add an extra paramter to our formatted_date helper that will let the template decide how to format the date. 
+Since we'll use a named parameter, let's name it "date_format". 
+
+```objc
+// helper implementation
+HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
+{
+    
+    // the date is the first positional parameter, or current date if no parameter is passed.
+    NSDate* date = nil;
+    if (callingInfo.positionalParameters.count > 0) {
+        NSString* dateString = callingInfo.positionalParameters[0];
+        date = [NSDate dateWithNaturalLanguageString:dateString];
+    } else {
+        date = [NSDate date];
+    }
+    
+    // Initialize a dictionary that will help us map date_format string parameter
+    // to an NSDateFormatterStyle value. And let's do it in a thread safe way.
+    static NSDictionary* formatStyleMapping = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        formatStyleMapping = @{ @"short"    : @(NSDateFormatterShortStyle),
+                                @"medium"   : @(kCFDateFormatterMediumStyle),
+                                @"long"     : @(kCFDateFormatterLongStyle),
+                                @"full"     : @(kCFDateFormatterFullStyle)
+                                };
+    });
+
+    // get the date_format named parameter
+    NSDateFormatterStyle formatStyle = NSDateFormatterMediumStyle; // default value
+    NSString* dateFormatParameter = callingInfo.namedParameters[@"date_format"];
+    if (dateFormatParameter && formatStyleMapping[dateFormatParameter]) {
+        formatStyle = [formatStyleMapping[dateFormatParameter] unsignedIntegerValue];
+    }
+    
+    // create a date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:formatStyle];
+    
+    // format the date
+    NSString* result = [dateFormatter stringFromDate:date];
+    
+    return result;
+};
+
+
+// register the helper globally
+[HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
+```
+The thread safe string-to-enum mapping is a useless optimization here. We could have simply reinstanciated 
+the mapping dictionary at each run. But since helpers can be called quite often during template rendering, it's 
+good to know how to avoid re-instantiating the same objects over and over. 
+
+Now let's render a template using our new parameter:
+```objc
+// render a template using the helper
+NSString* renderedTemplate =
+    [HBHandlebars renderTemplateString:@"Birthday is: {{formatted_date birthday_date date_format='full'}}"
+                           withContext:@{ @"birthday_date": @"01/23/1862"}];
+
+NSLog(@"rendered value : '%@'", renderedTemplate);
+```
+And in your console, you should see:
+```
+rendered value : 'Birthday is: Thursday, January 23, 1862'
+```
+
+As with positional parameters, named parameters can be accessed using keyed subscripting operator: 
+```
+NSString* dateFormatParameter = callingInfo.namedParameters[@"date_format"];
+```
+can be written
+```
+NSString* dateFormatParameter = callingInfo[@"date_format"];
+```
+
+
+
+
+
+
