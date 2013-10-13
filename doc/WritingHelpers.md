@@ -1,15 +1,15 @@
 # Writing Helpers #
 
 The most important feature of handlebars is the ability for the hosting application to provide application-specific formatting features to templates. 
-This ability is enabled by the use of helpers. 
+This ability is provided by the use of helpers. 
 
 
 
 There are two kinds of helpers. Handlebars.js documentation calls them "helpers" and "block helpers":
- - Simple Helpers are used to transform values. Those values are passed by template writers as parameters. In the example above, model.date is the only parameter passed to short_date helpers. 
+ - Helpers are used to transform values. Those values are passed by template writers as parameters. 
  - Block Helpers generally provide iterative or conditional constructs. Like normal helpers, they are passed parameters, but they also enclose block statements. 
 
-For example, suppose the hosting application need to display dates in a localed-dependent short format. 
+For example, suppose the hosting application needs to display dates in a locale-dependent short format. 
 The application could define a helper named "short_date_format" that takes an iso8601 date value and tranforms it into a short date format in users locale. 
 
  Templates may then use it this way:
@@ -18,21 +18,68 @@ The application could define a helper named "short_date_format" that takes an is
    Date is {{short_date_format model.date}}. 
  ```
 
-In this case, short_date_format is a simple helper that simple transforms a parameter into a formatted date string. 
+In this case, short_date_format is a simple helper that  transforms a parameter into a formatted date string. 
+The parameter value is model.date in our example and thus use values coming from the context. 
+As we'll see in later examples, parameters can also be litteral (string, numbers, boolean).
 
 An application could also provide a helper named "reverse_each" that iterates over an array in reverse order and execute a block of statements at each step: 
 
 Templates may then use it this way: 
 
 ```
-  Sorted elements from last to first :
+  Sorted elements from last to first:
   {{reverse_each model.elements}}
     element value : {{value}}
   {{/reverse_each}}
 ```
 
-In this case, reverse_each is a block helper. 
+In this case, reverse_each is a block helper that also take one parameter. 
 
+Last, let's see a more complex example. 
+The hypothetical 'sort' helper would sort an array of elements based on values inside those elements. 
+
+```mustache
+ Elements sorted by ascending first name: 
+ {{sort model.elements criteria="first_name" order="ascending"}}
+  {{first_name}} {{last_name}}
+ {{/sort}}
+ 
+ Elements sorted by descending last name: 
+ {{sort model.elements criteria="last_name" order="descending"}}
+  {{first_name}} {{last_name}}
+ {{/sort}}
+```
+
+Evaluated against the following context
+
+```json
+{ "elements": 
+  [
+    { "first_name": "Alan", "last_name": "Turing" },
+    { "first_name": "David", "last_name": "Hilbert" }, 
+    { "first_name": "Daniel", "last_name": "Goossens" }
+  ] 
+}
+```
+
+That would give 
+
+```
+ Elements sorted by ascending first name: 
+  Alan Turing
+  Daniel Goossens
+  David Hilbert
+  
+ Elements sorted by descending last name: 
+  Alan Turing
+  David Hilbert
+  Daniel Goossens
+```
+
+In this case, the sort helper takes 3 parameters. At invocation time, our template uses values 
+ from the context (model.elements), and  litteral values ("last_name", "ascending", ...)
+ 
+The ability to use litteral values in helpers is one of the features that make Handlebars so powerful compared to other Mustache-like implementations. 
 
 ## Helper parameters ##
 
