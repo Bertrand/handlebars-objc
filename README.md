@@ -62,7 +62,6 @@ If your project targets MacOS
 
 Render your first template 
 --------------------------
-
 Add this import clause to your objective-C implementation 
 
 ```objc
@@ -80,6 +79,11 @@ Run your application, and in your logs, you should see "Hello Bertrand!".
 
 Congratulations! You've just rendered your first Handlebars template. 
 
+Going Further
+-------------
+If you like to read reference documentation, read the [public API reference documentation](http://fotonauts.github.io/handlebars-objc/api_doc/).
 
-
+The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
+ - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md) (This guide)
+ - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md) (Work in progress)
 
