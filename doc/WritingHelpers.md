@@ -122,7 +122,7 @@ In addition, block helpers have access to the following block information:
 
 ### Our first helper ###
 
-Let's write a helper than simply prints the current date and register it as a global helper available to all templates:
+Let's write a helper than simply prints the current date and registers it as a global helper available to all templates:
 
 ```objc
 // helper implementation
@@ -144,13 +144,78 @@ HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
 
 // register the helper globally
 [HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
+```
 
+No let's use our new helper 
+
+```objc
 // render a template using the helper
 NSString* renderedTemplate =
     [HBHandlebars renderTemplateString:@"Date is: {{formatted_date}}"
                            withContext:@{}];
 
-NSLog(@"rendered value : %@", renderedTemplate);
-// --> rendered value : Date is: Oct 13, 2013
+NSLog(@"rendered value : '%@'", renderedTemplate);
+```
+In your console, you should see: 
+```
+rendered value : 'Date is: Oct 13, 2013'
 ```
 
+Well, if you run this code on October 13 2013. 
+
+### Using positional parameters ###
+
+Let's make our formatted_date helper a bit more useful, let's add a date parameter. 
+If this parameter is set by template, we'll render the passed date, otherwise we'll fallback on previous behaviour and format current date. 
+
+```objc
+    // helper implementation
+    HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
+    {
+        
+        // the date is the first positional parameter, or current date if no parameter is passed.
+        NSDate* date = nil;
+        if (callingInfo.positionalParameters.count > 0) {
+            NSString* dateString = callingInfo.positionalParameters[0];
+            date = [NSDate dateWithNaturalLanguageString:dateString];
+        } else {
+            date = [NSDate date];
+        }
+        
+        // create a date formatter
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        
+        // format the date
+        NSString* result = [dateFormatter stringFromDate:date];
+        
+        return result;
+    };
+
+    
+    // register the helper globally
+    [HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
+```
+Now let's render a template
+```
+    // render a template using the helper
+    NSString* renderedTemplate =
+        [HBHandlebars renderTemplateString:@"Birthday is: {{formatted_date birthday_date}}"
+                               withContext:@{ @"birthday_date": @"01/23/1862"}];
+    
+    NSLog(@"rendered value : '%@'", renderedTemplate);
+```
+And you should see the following in your console:
+```
+rendered value : 'Birthday is: Jan 23, 1862'
+```
+
+Note that you can also access positional parameters by using the obj-C indexed subscripting operator on callingInfo. 
+The following expression:
+```objc
+NSString* dateString = callingInfo.positionalParameters[0];
+```
+can thus be rewritten
+```objc 
+NSString* dateString = callingInfo[0];
+```
