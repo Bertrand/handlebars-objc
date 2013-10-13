@@ -241,7 +241,7 @@
             
         } else {
             // String of scalar context
-            if ([HBHandlebars evaluateObjectAsBool:evaluatedExpression]) {
+            if ([HBHelperUtils evaluateObjectAsBool:evaluatedExpression]) {
                 return forwardStatementsEvaluator(evaluatedExpression, currentData);
             } else {
                 return inverseStatementsEvaluator(evaluatedExpression, currentData);
@@ -345,7 +345,7 @@
         id evaluatedExpression = [self visitExpression:node.expression];
         if (evaluatedExpression) {
             NSString* renderedValue = renderForHandlebars(evaluatedExpression);
-            if (node.escape) renderedValue = [HBHandlebars escapeHTML:renderedValue];
+            if (node.escape) renderedValue = [HBHelperUtils escapeHTML:renderedValue];
             return renderedValue;
         }
     }

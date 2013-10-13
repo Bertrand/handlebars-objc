@@ -35,6 +35,7 @@
 #import "HBPartial.h"
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
+#import "HBHelperUtils.h"
 
 
 /** 
@@ -233,33 +234,5 @@ This method should be used only if you render templates in non mission-critical 
  @since v1.0
  */
 + (void) log:(NSInteger)level object:(id)object;
-
-
-
-/** @name Block helper utilities  */
-
-/**
- Escape HTML characters in a string
- 
- This method escapes a string so it will display properly if used in an HTML document. 
- It should be used in helpers implementation when returning a value.
- 
- @param string the string to HTML-escape.
- @since v1.0
- */
-+ (NSString*)escapeHTML:(NSString *)string;
-
-/**
- Evaluate the boolean value of any object. 
- 
- This method evaluate any object as a @true of @false value. 
- - NSNumber : return true if the corresponding value is greater than zero, false otherwise.
- - NSString : return true if the string is not empty. 
- - NSArray : return true if the array is not empty. 
- - otherwise : return false
- @param object the object to evaluate
- @since v1.0
- */
-+ (BOOL)evaluateObjectAsBool:(id)object;
 
 @end

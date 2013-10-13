@@ -42,7 +42,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerIfBlock
 {
     HBHelperBlock ifBlock = ^(HBHelperCallingInfo* callingInfo) {
-        BOOL boolarg = [HBHandlebars evaluateObjectAsBool:callingInfo[0]];
+        BOOL boolarg = [HBHelperUtils evaluateObjectAsBool:callingInfo[0]];
         if (boolarg) {
             return callingInfo.statements(callingInfo.context, callingInfo.data);
         } else {
@@ -55,7 +55,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerUnlessBlock
 {
     HBHelperBlock unlessBlock = ^(HBHelperCallingInfo* callingInfo) {
-        BOOL boolarg = [HBHandlebars evaluateObjectAsBool:callingInfo[0]];
+        BOOL boolarg = [HBHelperUtils evaluateObjectAsBool:callingInfo[0]];
         if (!boolarg) {
             return callingInfo.statements(callingInfo.context, callingInfo.data);
         } else {

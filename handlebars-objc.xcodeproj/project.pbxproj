@@ -81,6 +81,10 @@
 		06D426C117FC62A000C41476 /* HBHelperRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BF17FC62A000C41476 /* HBHelperRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06D426C217FC62A000C41476 /* HBHelperRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426C017FC62A000C41476 /* HBHelperRegistry.m */; };
 		06D426C317FC6CC500C41476 /* HBTestHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426B817FC554800C41476 /* HBTestHelpers.m */; };
+		06D4DBD7180B4E4700278279 /* HBHelperUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D4DBD5180B4E4700278279 /* HBHelperUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06D4DBD8180B4E4700278279 /* HBHelperUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D4DBD5180B4E4700278279 /* HBHelperUtils.h */; };
+		06D4DBD9180B4E4700278279 /* HBHelperUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D4DBD6180B4E4700278279 /* HBHelperUtils.m */; };
+		06D4DBDA180B4E4700278279 /* HBHelperUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D4DBD6180B4E4700278279 /* HBHelperUtils.m */; };
 		06E478F217FAC2CB0029C3D1 /* HBTestSimpleTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F117FAC2CB0029C3D1 /* HBTestSimpleTags.m */; };
 		06E478F417FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F317FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m */; };
 		06E478F617FAC87A0029C3D1 /* HBTestSimpleBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */; };
@@ -254,6 +258,8 @@
 		06D426BC17FC5E4200C41476 /* HBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelper.m; sourceTree = "<group>"; };
 		06D426BF17FC62A000C41476 /* HBHelperRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelperRegistry.h; sourceTree = "<group>"; };
 		06D426C017FC62A000C41476 /* HBHelperRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelperRegistry.m; sourceTree = "<group>"; };
+		06D4DBD5180B4E4700278279 /* HBHelperUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelperUtils.h; sourceTree = "<group>"; };
+		06D4DBD6180B4E4700278279 /* HBHelperUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelperUtils.m; sourceTree = "<group>"; };
 		06E478F117FAC2CB0029C3D1 /* HBTestSimpleTags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestSimpleTags.m; sourceTree = "<group>"; };
 		06E478F317FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestBuiltinBlockHelpers.m; sourceTree = "<group>"; };
 		06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestSimpleBlocks.m; sourceTree = "<group>"; };
@@ -529,6 +535,8 @@
 				0698F02417FEC78A005203F6 /* HBHelperCallingInfo.m */,
 				06D426BF17FC62A000C41476 /* HBHelperRegistry.h */,
 				06D426C017FC62A000C41476 /* HBHelperRegistry.m */,
+				06D4DBD5180B4E4700278279 /* HBHelperUtils.h */,
+				06D4DBD6180B4E4700278279 /* HBHelperUtils.m */,
 				06743FB718005CFB001793F7 /* HBBuiltinHelpersRegistry.h */,
 				06743FB818005CFB001793F7 /* HBBuiltinHelpersRegistry.m */,
 			);
@@ -567,6 +575,7 @@
 				06A81A9B17F879240006F16A /* HBAstParserTestVisitor.h in Headers */,
 				06743FB517FB572B001793F7 /* HBContextRendering.h in Headers */,
 				06798D6417F9A12A00FC40D7 /* HBAstEvaluationVisitor.h in Headers */,
+				06D4DBD7180B4E4700278279 /* HBHelperUtils.h in Headers */,
 				06A81AA117F8D3750006F16A /* HBAstComment.h in Headers */,
 				06A81A9717F86ECE0006F16A /* HBAstVisitor.h in Headers */,
 				06556D9517FF178300070907 /* HBHandlebars.h in Headers */,
@@ -583,6 +592,7 @@
 			files = (
 				06F493891802D1820055B5BC /* HBPartial.h in Headers */,
 				06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */,
+				06D4DBD8180B4E4700278279 /* HBHelperUtils.h in Headers */,
 				06F493851802D1820055B5BC /* HBDataContext.h in Headers */,
 				06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */,
 				06F493861802D1820055B5BC /* HBHelper.h in Headers */,
@@ -771,6 +781,7 @@
 				06556D8017FEFB0C00070907 /* HBPartial.m in Sources */,
 				06798D5E17F5D7AD00FC40D7 /* HBAstRawText.m in Sources */,
 				0630B1C217F2EFE600EA7018 /* handlebars-objc.ym in Sources */,
+				06D4DBD9180B4E4700278279 /* HBHelperUtils.m in Sources */,
 				06E4790B17FC0CA90029C3D1 /* HBDataContext.m in Sources */,
 				0630B1C117F2EFE600EA7018 /* handlebars-objc.lm in Sources */,
 				06798D5617F5CA3500FC40D7 /* HBAstValue.m in Sources */,
@@ -824,6 +835,7 @@
 				06F493671802D1500055B5BC /* HBAstProgram.m in Sources */,
 				06F493681802D1500055B5BC /* HBAstRawText.m in Sources */,
 				06F493741802D1500055B5BC /* HBContextStack.m in Sources */,
+				06D4DBDA180B4E4700278279 /* HBHelperUtils.m in Sources */,
 				06F493701802D1500055B5BC /* HBAstValue.m in Sources */,
 				06F493811802D1500055B5BC /* HBExecutionContext.m in Sources */,
 				06F493631802D1500055B5BC /* HBAstBlockTag.m in Sources */,
@@ -992,7 +1004,6 @@
 		0630B1B417F2EF9100EA7018 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc-osx.framework/Versions/A/handlebars-objc-osx";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1014,7 +1025,6 @@
 		0630B1B517F2EF9100EA7018 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/handlebars-objc-osx.framework/Versions/A/handlebars-objc-osx";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
