@@ -260,11 +260,12 @@
 		06A81A9D17F87FFD0006F16A /* HBTestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestParser.m; sourceTree = "<group>"; };
 		06A81A9F17F8D3750006F16A /* HBAstComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstComment.h; sourceTree = "<group>"; };
 		06A81AA017F8D3750006F16A /* HBAstComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstComment.m; sourceTree = "<group>"; };
-		06AB0B0F180BDA29005A7610 /* WritingHelpers.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = WritingHelpers.md; path = "../../../../handlebars-objc/doc/WritingHelpers.md"; sourceTree = "<group>"; };
+		06AB0B0F180BDA29005A7610 /* WritingHelpers.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = WritingHelpers.md; sourceTree = "<group>"; };
 		06AB0B11180BDA48005A7610 /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		06AB0B12180BDA48005A7610 /* convert-js-test.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = "convert-js-test.rb"; sourceTree = "<group>"; };
 		06AB0B13180BDA49005A7610 /* copy_public_headers.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = copy_public_headers.sh; sourceTree = "<group>"; };
 		06AB0B14180BDA49005A7610 /* generate_api_doc.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_api_doc.sh; sourceTree = "<group>"; };
+		06C5F6F6180C722200AD9210 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		06D426B817FC554800C41476 /* HBTestHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestHelpers.m; sourceTree = "<group>"; };
 		06D426BB17FC5E4200C41476 /* HBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelper.h; sourceTree = "<group>"; };
 		06D426BC17FC5E4200C41476 /* HBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelper.m; sourceTree = "<group>"; };
@@ -339,6 +340,7 @@
 		0630B17E17F2EF9100EA7018 = {
 			isa = PBXGroup;
 			children = (
+				06C5F6F6180C722200AD9210 /* README.md */,
 				06798D5F17F9A06900FC40D7 /* doc */,
 				0630B19117F2EF9100EA7018 /* handlebars-objc */,
 				0630B1A617F2EF9100EA7018 /* handlebars-objcTests */,
@@ -508,7 +510,7 @@
 				06AB0B0F180BDA29005A7610 /* WritingHelpers.md */,
 			);
 			name = doc;
-			path = "../../doolittle/Submodules/handlebars-objc/doc";
+			path = ../doc;
 			sourceTree = "<group>";
 		};
 		06798D6617F9B1F800FC40D7 /* context */ = {

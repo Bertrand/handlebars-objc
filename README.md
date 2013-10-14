@@ -71,7 +71,8 @@ Add this import clause to your objective-C implementation
 Then add 
 
 ```objc
-  NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" withContext:@{ @"value" : @"Bertrand"}]; 
+  NSError* error = nil;
+  NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" withContext:@{ @"value" : @"Bertrand"} error:&error]; 
   NSLog(@"handlebars template evaluated to : %@", result); 
 ```
 
