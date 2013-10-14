@@ -306,7 +306,7 @@ NSString* dateFormatParameter = callingInfo[@"date_format"];
 
 ### Writing block helpers ###
 
-In the introduction above, we've described a block helper that named "sort" that would sort an array using any attribute of its elements. 
+In the introduction above, we've described a block helper named "sort" that would sort an array using any attribute of its elements. 
 Let's write it!
 
 ```objc
