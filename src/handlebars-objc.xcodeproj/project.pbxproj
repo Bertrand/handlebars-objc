@@ -774,7 +774,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Copying headers where XCode will find them\"\n\nS_DST_ROOT=\"$TEMP_ROOT/Headers/\"\nmkdir -p \"$S_DST_ROOT\"\n\n\"$SOURCE_ROOT/utils/copy_public_headers.sh\" \"$S_DST_ROOT\"\n";
+			shellScript = "echo \"Copying headers where XCode will find them\"\n\nS_DST_ROOT=\"$TEMP_ROOT/Headers/HBHandlebars\"\nmkdir -p \"$S_DST_ROOT\"\n\n\"$SOURCE_ROOT/utils/copy_public_headers.sh\" \"$S_DST_ROOT\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
