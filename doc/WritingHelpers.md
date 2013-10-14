@@ -279,7 +279,7 @@ HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
 // register the helper globally
 [HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
 ```
-The thread safe string-to-enum mapping is a useless optimization here. We could have simply reinstanciated 
+The thread safe string-to-enum mapping might look like a pedantic optimization. We could have simply reinstanciated
 the mapping dictionary at each run. But since helpers can be called quite often during template rendering, it's 
 good to know how to avoid re-instantiating the same objects over and over. 
 
@@ -400,6 +400,37 @@ Daniel Goossens
 '
 ```
 
+Let's come back to this new help implementation. 
+
+Many things in this implementation are similar to what we've seen before. In the first part, we retrieve the parameters. We've done this in other helpers. Business as usual. However, one line is new:
+
+```objc
+    NSArray* array = [HBHelperUtils arrayFromValue:value];
+```
+
+The HBHelperUtils class contains some methods useful when you write helpers. The method we've used here (<[HBHelperUtils arrayFromValue:]>) should be used everytime you want to manipulate a parameter as an NSArray object.
+
+Once we've got all the calling parameters, we actually sort the array. Once again, we'll use a method from HBHelperUtils: 
+
+```objc
+id value1 = [HBHelperUtils valueOf:obj1 forKey:criterion];
+```
+
+The method <[HBHelperUtils valueOf:forKey:]> is what you should use when you try to access the key of a dictionary-like value in your helpers. 
+
+The reason why you should use those methods form HBHelperUtils rather than directly cast parameters is beyond the scope of this article and will be covered elsewhere. For now, just keep in mind this is how to property write your helpers. 
+
+Once the array is properly sorted comes the moment to evaluate the block passed to our helper. After have created an empty string buffer, we iterate over the element array and at each iteration we call the passed block this way:
+
+```objc
+NSString* iterationResult = callingInfo.statements(object, callingInfo.data);
+```
+
+The 'statements' property in callingInfo is an objective-C block that you invoke each time you want to execute the block passed to your helper. It takes two parameters: 
+    - a context 
+    - a private data context
+    
+In our case, since we iterate over array elements, at each iteration we passed the current element as the context to the statements block. And since we don't add any private data, we simply pass the data context we received in callingInfo as is. 
 
 
 
