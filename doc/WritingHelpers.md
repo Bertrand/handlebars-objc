@@ -427,10 +427,13 @@ NSString* iterationResult = callingInfo.statements(object, callingInfo.data);
 ```
 
 The 'statements' property in callingInfo is an objective-C block that you invoke each time you want to execute the block passed to your helper. It takes two parameters: 
-    - a context 
-    - a private data context
+ - a context 
+ - a private data context
     
 In our case, since we iterate over array elements, at each iteration we passed the current element as the context to the statements block. And since we don't add any private data, we simply pass the data context we received in callingInfo as is. 
+
+When invoked, the block returns a string containing the evaluation of the block for the given context.
+In our helper, we take this string an concatenate it to our helper result string.
 
 
 
