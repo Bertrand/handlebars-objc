@@ -86,5 +86,5 @@ If you like to read reference documentation, read the [public API reference docu
 
 The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
  - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md) (This guide)
- - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md) (Work in progress)
+ - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md)
 
