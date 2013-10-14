@@ -316,6 +316,10 @@ HBHelperBlock sortHelper = ^(HBHelperCallingInfo* callingInfo)
     // retrieve the value to sort
     id value = callingInfo[0];
     if (!value) return (NSString*)nil;
+        
+    // transform the value into an array. It it's already an NSArray, this is a no-op;
+    NSArray* array = [HBHelperUtils arrayFromValue:value];
+    if (!array) return (NSString*)nil;
     
     // retrieve sort criterion
     NSString* criterion = callingInfo[@"criterion"];
@@ -325,9 +329,7 @@ HBHelperBlock sortHelper = ^(HBHelperCallingInfo* callingInfo)
     NSInteger order = 1;
     NSString* orderParameter = callingInfo[@"order"];
     if ([orderParameter isEqualToString:@"descending"]) order = -1;
-    
-    // transform the value into an array. It it's already an NSArray, this is a no-op;
-    NSArray* array = [HBHelperUtils arrayFromValue:value];
+
     
     // actual sort
     NSArray* sortedArray = [array sortedArrayWithOptions:0 usingComparator:^(id obj1, id obj2) {
