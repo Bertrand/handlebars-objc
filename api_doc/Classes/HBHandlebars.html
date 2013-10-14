@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 961)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -48,11 +48,11 @@
 	
 	<option value="//api/name/registerPartialString:forName:">&nbsp;&nbsp;&nbsp;&nbsp;+ registerPartialString:forName:</option>
 	
-	<option value="//api/name/renderTemplateString:withContext:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:</option>
+	<option value="//api/name/renderTemplateString:withContext:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:error:</option>
 	
-	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:</option>
+	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:error:</option>
 	
-	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</option>
+	<option value="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:">&nbsp;&nbsp;&nbsp;&nbsp;+ renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:</option>
 	
 	<option value="//api/name/setLoggerBlock:">&nbsp;&nbsp;&nbsp;&nbsp;+ setLoggerBlock:</option>
 	
@@ -106,11 +106,11 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/registerPartialString:forName:">registerPartialString:forName:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:">renderTemplateString:withContext:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:error:">renderTemplateString:withContext:error:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:">renderTemplateString:withContext:withHelperBlocks:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:error:">renderTemplateString:withContext:withHelperBlocks:error:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setLoggerBlock:">setLoggerBlock:</a></span></li>
 	
@@ -206,21 +206,21 @@ on HBHandlebars class is totally fine.</p>
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/renderTemplateString:withContext:">+&nbsp;renderTemplateString:withContext:</a></code>
+		<code><a href="#//api/name/renderTemplateString:withContext:error:">+&nbsp;renderTemplateString:withContext:error:</a></code>
 		<span class="tooltip"><p>Render a string template for a data context.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:</a></code>
+		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:error:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:error:</a></code>
 		<span class="tooltip"><p>Render a string template for a data context using some helpers.</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</a></code>
+		<code><a href="#//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:">+&nbsp;renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:</a></code>
 		<span class="tooltip"><p>Render a string template for a data context using some helpers.</p></span>
 	</span>
 	
@@ -346,7 +346,7 @@ on HBHandlebars class is totally fine.</p>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>object</em></dt>
-			<dd><p>object to log. Any object responding to -[NSObject description] can be used.</p></dd>
+			<dd><p>object to log. Any object responding to &ndash;[NSObject description] can be used.</p></dd>
 		</dl>
 		
 	</div>
@@ -531,8 +531,8 @@ If you find yourself using some helpers only in certain kind of templates, it is
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/renderTemplateString:withContext:" title="renderTemplateString:withContext:"></a>
-	<h3 class="subsubtitle method-title">renderTemplateString:withContext:</h3>
+	<a name="//api/name/renderTemplateString:withContext:error:" title="renderTemplateString:withContext:error:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:error:</h3>
 	
 	
 	
@@ -542,7 +542,7 @@ If you find yourself using some helpers only in certain kind of templates, it is
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> error:(NSError **)<em>error</em></code></div>
 
     
 	
@@ -557,6 +557,11 @@ If you find yourself using some helpers only in certain kind of templates, it is
 		<dl class="argument-def parameter-def">
 			<dt><em>context</em></dt>
 			<dd><p>The object containing the data used in the template. Can be any property-list compatible object for instance.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>pointer to an NSError object that is set if an error occurs during parsing or evaluation of template. Can be nil.</p></dd>
 		</dl>
 		
 	</div>
@@ -603,8 +608,8 @@ If you find yourself using some helpers only in certain kind of templates, it is
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:" title="renderTemplateString:withContext:withHelperBlocks:"></a>
-	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:</h3>
+	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:error:" title="renderTemplateString:withContext:withHelperBlocks:error:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:error:</h3>
 	
 	
 	
@@ -614,7 +619,7 @@ If you find yourself using some helpers only in certain kind of templates, it is
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em> error:(NSError **)<em>error</em></code></div>
 
     
 	
@@ -636,6 +641,11 @@ If you find yourself using some helpers only in certain kind of templates, it is
 			<dd><p>A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.</p></dd>
 		</dl>
 		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>pointer to an NSError object that is set if an error occurs during parsing or evaluation of template. Can be nil.</p></dd>
+		</dl>
+		
 	</div>
 	
 	
@@ -652,7 +662,7 @@ If you find yourself using some helpers only in certain kind of templates, it is
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This method renders a template using helpers. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers.
-See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars renderTemplateString:withContext:]</a> for a discussion regarding the performance implications of using this convenience API.</p>
+See <a href="#//api/name/renderTemplateString:withContext:error:">[HBHandlebars renderTemplateString:withContext:error:]</a> for a discussion regarding the performance implications of using this convenience API.</p>
 	</div>
 	
 	
@@ -670,8 +680,8 @@ See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars render
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:" title="renderTemplateString:withContext:withHelperBlocks:withPartialStrings:"></a>
-	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:</h3>
+	<a name="//api/name/renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:" title="renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:"></a>
+	<h3 class="subsubtitle method-title">renderTemplateString:withContext:withHelperBlocks:withPartialStrings:error:</h3>
 	
 	
 	
@@ -681,7 +691,7 @@ See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars render
 	
     
 
-	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em> withPartialStrings:(NSDictionary *)<em>partialStrings</em></code></div>
+	<div class="method-subsection method-declaration"><code>+ (NSString *)renderTemplateString:(NSString *)<em>template</em> withContext:(id)<em>context</em> withHelperBlocks:(NSDictionary *)<em>helperBlocks</em> withPartialStrings:(NSDictionary *)<em>partialStrings</em> error:(NSError **)<em>error</em></code></div>
 
     
 	
@@ -708,6 +718,11 @@ See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars render
 			<dd><p>A dictionary where keys are partial names and values are partials strings.</p></dd>
 		</dl>
 		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>pointer to an NSError object that is set if an error occurs during parsing or evaluation of template. Can be nil.</p></dd>
+		</dl>
+		
 	</div>
 	
 	
@@ -724,7 +739,7 @@ See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars render
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This method renders a template using helpers and partials. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers and partials.
-See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars renderTemplateString:withContext:]</a> for a discussion regarding the performance implications of using this convenience API.</p>
+See <a href="#//api/name/renderTemplateString:withContext:error:">[HBHandlebars renderTemplateString:withContext:error:]</a> for a discussion regarding the performance implications of using this convenience API.</p>
 	</div>
 	
 	
@@ -1056,7 +1071,7 @@ See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars render
 					<div class="footer-copyright">
 						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-14)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>
