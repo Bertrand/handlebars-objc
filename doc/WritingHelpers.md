@@ -435,6 +435,59 @@ In our case, since we iterate over array elements, at each iteration we passed t
 When invoked, the block returns a string containing the evaluation of the block for the given context.
 In our helper, we take this string an concatenate it to our helper result string.
 
+### Conditional block helpers - Inverse section - Private variables ###
 
+Block helpers can be used to implement conditional constructs. Since this is a quite obvious modification of the block helper implementation we've already seen, we'll use this example to see two other features:
+ - inverse sections: block passed to the helper that is executed when a helper condition is not meant 
+ - private variables: variables that helper can set and that is available to descendant scopes
+ - 
+Let's write a helper that executes a block when its parameter is positive and execute another statement when it's negative. 
+In addition, a private data named @isZero is set to true when parameter is zero. 
 
+```objc
+// helper implementation
+HBHelperBlock ifPositiveHelper = ^(HBHelperCallingInfo* callingInfo)
+{
+    // retrieve the value
+    id value = callingInfo[0];
+    
+    // compute conditionals
+    NSInteger conditional = [HBHelperUtils evaluateObjectAsInteger:value] >= 0;
+    BOOL isZero = [HBHelperUtils evaluateObjectAsInteger:value] == 0;
+    
+    // prepare a new data context. We MUST NEVER modify data context we receive in helpers.
+    HBDataContext* currentDataContext = callingInfo.data;
+    HBDataContext* descendantDataContext = currentDataContext ? [currentDataContext copy] : [HBDataContext new];
+    descendantDataContext[@"isZero"] = @(isZero);
+    
+    if (conditional) {
+        // condition is met: call block statements
+        return callingInfo.statements(callingInfo.context, descendantDataContext);
+    } else {
+        // condition is not met: call inverse section statements
+        return callingInfo.inverseStatements(callingInfo.context, descendantDataContext);
+    }
+};
 
+[HBHandlebars registerHelperBlock:ifPositiveHelper forName:@"ifPositive"];
+    
+NSString* template = @"temperature '{{temperature}}' is {{#ifPositive temperature}}not negative {{#@isZero}}(but not positive either){{/@isZero}} {{else}}negative{{/ifPositive}}.";
+
+NSError* error = nil;
+NSLog(@"%@", [HBHandlebars renderTemplateString:template withContext:@{ @"temperature" : @(10) } error:&error]);
+NSLog(@"%@", [HBHandlebars renderTemplateString:template withContext:@{ @"temperature" : @(-10) } error:&error]);
+NSLog(@"%@", [HBHandlebars renderTemplateString:template withContext:@{ @"temperature" : @(0) } error:&error]);
+```
+
+In your console you should see: 
+
+```
+temperature '10' is not negative  .
+temperature '-10' is negative.
+temperature '0' is not negative (but not positive either) .
+```
+
+You know enough now to understand the example by reading its sources. Two comments though: 
+
+ - When setting (or changing) a private variable for the descendant scope, you must always create a new data context (as in the example). 
+ - Invoking the inverse statements of your helper is lot like calling its normal statements except that you invoke the 'inverseStatements' block provided in HBHelperCallingInfo.
