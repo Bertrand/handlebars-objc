@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.1 (build 840)" />
+		<meta name="generator" content="appledoc 2.2 (build 961)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -41,10 +41,6 @@
 	
 	
 	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/escapeHTML:">&nbsp;&nbsp;&nbsp;&nbsp;+ escapeHTML:</option>
-	
-	<option value="//api/name/evaluateObjectAsBool:">&nbsp;&nbsp;&nbsp;&nbsp;+ evaluateObjectAsBool:</option>
 	
 	<option value="//api/name/log:object:">&nbsp;&nbsp;&nbsp;&nbsp;+ log:object:</option>
 	
@@ -94,8 +90,6 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Logging">Logging</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#task_Block helper utilities">Block helper utilities</a></span></li>
-	
 </ul></li>
 
 
@@ -105,10 +99,6 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/escapeHTML:">escapeHTML:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsBool:">evaluateObjectAsBool:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/log:object:">log:object:</a></span></li>
 	
@@ -318,28 +308,6 @@ on HBHandlebars class is totally fine.</p>
 </li>
 						</ul>
 						
-						
-						<a title="Block helper utilities" name="task_Block helper utilities"></a>
-						<h3 class="subsubtitle task-title">Block helper utilities</h3>
-
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/escapeHTML:">+&nbsp;escapeHTML:</a></code>
-		<span class="tooltip"><p>Escape HTML characters in a string</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/evaluateObjectAsBool:">+&nbsp;evaluateObjectAsBool:</a></code>
-		<span class="tooltip"><p>Evaluate the boolean value of any object.</p></span>
-	</span>
-	
-	
-</li>
-						</ul>
-						
 					</div>
 					
 					
@@ -351,123 +319,6 @@ on HBHandlebars class is totally fine.</p>
 					<div class="section section-methods">
 						<a title="Class Methods" name="class_methods"></a>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/escapeHTML:" title="escapeHTML:"></a>
-	<h3 class="subsubtitle method-title">escapeHTML:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Escape HTML characters in a string</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (NSString *)escapeHTML:(NSString *)<em>string</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>string</em></dt>
-			<dd><p>the string to HTML-escape.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection availability">
-		<h4 class="method-subtitle parameter-title">Availability</h4>
-		<p>v1.0</p>
-	</div>
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This method escapes a string so it will display properly if used in an HTML document.
-It should be used in helpers implementation when returning a value.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBHandlebars.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/evaluateObjectAsBool:" title="evaluateObjectAsBool:"></a>
-	<h3 class="subsubtitle method-title">evaluateObjectAsBool:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Evaluate the boolean value of any object.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (BOOL)evaluateObjectAsBool:(id)<em>object</em></code></div>
-
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>object</em></dt>
-			<dd><p>the object to evaluate</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection availability">
-		<h4 class="method-subtitle parameter-title">Availability</h4>
-		<p>v1.0</p>
-	</div>
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This method evaluate any object as a @true of @false value.
-&ndash; NSNumber : return true if the corresponding value is greater than zero, false otherwise.
-&ndash; NSString : return true if the string is not empty.
-&ndash; NSArray : return true if the array is not empty.
-&ndash; otherwise : return false</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBHandlebars.h</code><br />
-	</div>				
-	
-	
-</div>
 						
 						<div class="section-method">
 	<a name="//api/name/log:object:" title="log:object:"></a>
@@ -495,7 +346,7 @@ It should be used in helpers implementation when returning a value.</p>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>object</em></dt>
-			<dd><p>object to log. Any object responding to &ndash;[NSObject description] can be used.</p></dd>
+			<dd><p>object to log. Any object responding to -[NSObject description] can be used.</p></dd>
 		</dl>
 		
 	</div>
@@ -1203,9 +1054,9 @@ See <a href="#//api/name/renderTemplateString:withContext:">[HBHandlebars render
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-12)</span><br />
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-14)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
 						
 					</div>
 				</div>

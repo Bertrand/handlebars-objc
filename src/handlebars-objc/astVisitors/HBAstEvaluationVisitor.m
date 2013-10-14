@@ -40,6 +40,7 @@
 #import "HBTemplate_Private.h"
 #import "HBPartial.h"
 #import "HBPartial_Private.h"
+#import "HBErrorHandling_Private.h"
 
 @interface HBAstEvaluationVisitor()
 @property (retain, nonatomic) HBContextStack* contextStack;
@@ -53,7 +54,7 @@
 - (id) initWithTemplate:(HBTemplate*)template
 {
     self.template = template;
-    [template compile];
+    NSAssert(template.program != nil, @"Invalid condition: template provided to HBAstEvaluationVisitor is not compiled or compilation failed");
     self = [self initWithRootAstNode:template.program];
     return self;
 }
@@ -136,25 +137,6 @@
     }
 }
 
-- (void) throwHelperNotFoundException:(NSString*)helperName
-{
-    NSException* myException = [NSException
-                                exceptionWithName:@"HelperNotFound"
-                                reason:[NSString stringWithFormat:@"Helper '%@' could not be found", helperName]
-                                userInfo:nil];
-    
-    @throw myException;
-}
-
-- (void) throwPartialNotFoundException:(NSString*)partialName
-{
-    NSException* myException = [NSException
-                                exceptionWithName:@"PartialNotFound"
-                                reason:[NSString stringWithFormat:@"Partial '%@' could not be found", partialName]
-                                userInfo:nil];
-    
-    @throw myException;
-}
 
 #pragma mark -
 #pragma mark Visiting High-level nodes
@@ -189,7 +171,11 @@
         // This is a block helper. Evaluate expression params and invoke helper
         
         HBHelper* helper = (HBHelper*)[self helperForExpression:node.expression];
-        if (!helper) [self throwHelperNotFoundException:[node.expression.mainValue.keyPath[0] key]];
+        if (!helper) {
+            if (!self.error) // we report only one error for now.
+                self.error = [HBHelperMissingError HBHelperMissingErrorWithHelperName:[node.expression.mainValue.keyPath[0] key]];
+            return nil;
+        }
         
         NSArray* positionalParameters = nil;
         NSDictionary* namedParameters = nil;
@@ -258,6 +244,7 @@
 
 - (id) visitPartialTag:(HBAstPartialTag*)node
 {
+    if (self.error) return nil;
     HBAstValue* partialNameNode = node.partialName;
     NSString* partialName = nil;
     
@@ -271,10 +258,19 @@
     }
 
     HBPartial* partial = [self.template partialForName:partialName];
-    
-    // throw if partial not found
     if (!partial) {
-        [self throwPartialNotFoundException:partialName];
+        if (!self.error) // we report only one error for now.
+            self.error = [HBPartialMissingError HBPartialMissingErrorWithPartialName:partialName];
+        return nil;
+    }
+    
+    NSError* partialParseError = nil;
+    [partial compile:&partialParseError];
+    
+    if (partialParseError) {
+        if (!self.error) // we report only one error for now.
+            self.error = partialParseError;
+        return nil;
     }
     
     BOOL shouldPopContext = false;
@@ -320,7 +316,12 @@
     // helpers
     if ([self expressionIsHelperCall:node.expression]) {
         HBHelper* helper = (HBHelper*)[self helperForExpression:node.expression];
-        if (!helper) [self throwHelperNotFoundException:[node.expression.mainValue.keyPath[0] key]];
+        if (!helper) {
+            if (!self.error) // we report only one error for now.
+                self.error = [HBHelperMissingError HBHelperMissingErrorWithHelperName:[node.expression.mainValue.keyPath[0] key]];
+            return nil;
+        }
+        
         NSArray* positionalParameters = nil;
         NSDictionary* namedParameters = nil;
         [self evaluateContextualParametersInExpression:node.expression positionalParameters:&positionalParameters namedParameters:&namedParameters];

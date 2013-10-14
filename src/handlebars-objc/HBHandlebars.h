@@ -36,7 +36,7 @@
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
 #import "HBHelperUtils.h"
-
+#import "HBErrorHandling.h"
 
 /** 
  
@@ -73,6 +73,7 @@
 */
 
 
+// Logger type definition
 typedef NSString* (^HBLoggerBlock)(NSInteger level, id object);
 
 @interface HBHandlebars : NSObject
@@ -88,12 +89,12 @@ This method should be used only if you render templates in non mission-critical 
 
  @param template String containing the template to render
  @param context The object containing the data used in the template. Can be any property-list compatible object for instance.
-
+ @param error pointer to an NSError object that is set if an error occurs during parsing or evaluation of template. Can be nil.
  @see HBTemplate
  
  @since v1.0
 */
-+ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context;
++ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context error:(NSError**)error;
 
 /**
  Render a string template for a data context using some helpers.
@@ -104,10 +105,10 @@ This method should be used only if you render templates in non mission-critical 
  @param template String containing the template to render
  @param context The object containing the data used in the template. Can be any property-list compatible object.
  @param helperBlocks A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.
- 
+ @param error pointer to an NSError object that is set if an error occurs during parsing or evaluation of template. Can be nil.
  @since v1.0
  */
-+ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks;
++ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks error:(NSError**)error;
 
 /**
  Render a string template for a data context using some helpers.
@@ -119,10 +120,10 @@ This method should be used only if you render templates in non mission-critical 
  @param context The object containing the data used in the template. Can be any property-list compatible object.
  @param helperBlocks A dictionary where keys are helper names and values are helper blocks of type HBHelperBlock.
  @param partialStrings A dictionary where keys are partial names and values are partials strings.
- 
+ @param error pointer to an NSError object that is set if an error occurs during parsing or evaluation of template. Can be nil.
  @since v1.0
  */
-+ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks withPartialStrings:(NSDictionary*)partialStrings;
++ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks withPartialStrings:(NSDictionary*)partialStrings error:(NSError**)error;
 
 
 

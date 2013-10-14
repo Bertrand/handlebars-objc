@@ -31,18 +31,17 @@
 
 @implementation HBPartial
 
-- (void) compile
+- (void) compile:(NSError**)error
 {
     @synchronized(self) {
         if (!self._program) {
-            self._program = [HBParser astFromString:self.string];
+            self._program = [HBParser astFromString:self.string error:error];
         }
     }
 }
 
 - (NSArray*) astStatements
 {
-    [self compile];
     return self._program.statements;
 }
 

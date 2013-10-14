@@ -6,7 +6,7 @@ NSString* nsString(char* utf8String);
 NSString* nsStringFromQuotedString(char* quotedString, NSString* escapeSequence, NSString* replacement);
 
 void found(const char *s);
-void hb_error(HBAstProgram** root, const char *s);
+void hb_error(HBAstProgram** root, NSError** error, const char *s);
 
 
 #include "y.tab.h"  // to get the token types that we return
@@ -114,9 +114,9 @@ NSString* nsStringFromQuotedString(char* quotedString, NSString* escapeSequence,
     return [escapedString stringByReplacingOccurrencesOfString:escapeSequence withString:replacement];
 }
 
-int hb_parse(void* scanner, HBAstProgram** root);
+int hb_parse(void* scanner, HBAstProgram** root, NSError** error);
 
-id astFromString(NSString* text)
+id astFromString(NSString* text, NSError** error)
 {
     NSData* utf8StringBuffer = [text dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -126,7 +126,7 @@ id astFromString(NSString* text)
     hb_lex_init (&scanner);
     YY_BUFFER_STATE buffer = yy_scan_bytes([utf8StringBuffer bytes], [utf8StringBuffer length], scanner);
 
-    hb_parse(scanner, &root);
+    hb_parse(scanner, &root, error);
 
     yy_delete_buffer(buffer, scanner);
     hb_lex_destroy (scanner);

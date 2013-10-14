@@ -67,9 +67,10 @@
  This method renders the template for the provided context. Variables used in the template will be taken from the context. 
  
  @param context The object containing the data used in the template. Can be any property-list compatible object for instance.
+ @param error Pointer to an NSError object that will be set in case an error occurs during rendering.
  @since v1.0
  */
-- (NSString*)renderWithContext:(id)context;
+- (NSString*)renderWithContext:(id)context error:(NSError**)error;
 
 /** @name Compilation */
 
@@ -77,9 +78,10 @@
  Compile the receiver. 
  
  This method compiles the template string. This method can be safely called multiple time, template will only be compiled once. There is no need to call it before rendering, it'll be called lazily if needed, at render time. Calling this method provides a way to control when compilation should occur in your application lifetime. 
+ @param error pointer to an error object that is set in case of parsing error.
  @since v1.0
  */
-- (void) compile; // done automatically when rendering. Can be called at will, upfront if wanted.
+- (void) compile:(NSError**)error; // done automatically when rendering. Can be called at will, upfront if wanted.
 
 /** @name Helpers and partials */
 

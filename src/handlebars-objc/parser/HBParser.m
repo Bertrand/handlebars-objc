@@ -28,37 +28,46 @@
 #import "HBParser.h"
 #import "HBAst.h"
 #import "HBHandlebars.h"
+#import "HBErrorHandling_Private.h"
 
-extern id astFromString(NSString* text);
+
+extern id astFromString(NSString* text, NSError** error);
 
 extern int hb_column;
 
 @implementation HBParser
 
-+ (HBAstProgram*)astFromString:(NSString*)text
++ (HBAstProgram*)astFromString:(NSString*)text error:(NSError **)error
 {
     HBAstProgram* program = nil;
     
     hb_column = 1;
 
-    @try {
-        program = astFromString(text);
-    }
-    @catch (NSException* e) {
-        NSDictionary* info = e.userInfo;
-        if (info && [info isKindOfClass:[NSDictionary class]] && info[@"lineNumber"] && info[@"positionInBuffer"]) {
-            NSInteger pos = [info[@"positionInBuffer"] integerValue];
-            NSInteger posMin = MAX(0, pos - 30);
-            NSInteger posMax = MIN(pos + 30, [text length] - 1);
-            
-            NSString* extractedText = [text substringWithRange:NSMakeRange(posMin, posMax - posMin)];
-            NSString* error = [NSString stringWithFormat:@"%@\nline %ld\n'%@'", e.reason, (long int)[info[@"lineNumber"] integerValue], extractedText];
-            [HBHandlebars log:1 object:error];
-        }
-        @throw;
+    NSError* lowerLevelError = nil;
+    program = astFromString(text, &lowerLevelError);
+    
+    if (lowerLevelError == nil) return program;
+    
+    // everything from now on is error handling
+    if ([lowerLevelError isKindOfClass:[HBParseError class]]) {
+        HBParseError* parseError = (HBParseError*)lowerLevelError;
+    
+        NSInteger pos = parseError.positionInBuffer;
+        NSInteger posMin = MAX(0, pos - 30);
+        NSInteger posMax = MIN(pos + 30, [text length] - 1);
+        
+        NSString* extractedText = [text substringWithRange:NSMakeRange(posMin, posMax - posMin)];
+    
+    
+        NSString* error = [NSString stringWithFormat:@"%@\nline %ld\n'%@'", parseError.lowLevelParserDescription, (long int)parseError.lineNumber, extractedText];
+        [HBHandlebars log:1 object:error];
+        
+        if (error) lowerLevelError = [HBParseError parseErrorWithLineNumber:parseError.lineNumber positionInBuffer:parseError.positionInBuffer contextInBuffer:extractedText lowLevelParserDescription:parseError.lowLevelParserDescription];
     }
     
-    return program;
+    if (error) *error = lowerLevelError;
+    
+    return nil;
 }
 
 @end

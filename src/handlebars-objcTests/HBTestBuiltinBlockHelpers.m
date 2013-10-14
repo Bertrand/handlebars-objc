@@ -39,24 +39,32 @@
 - (void) testIf
 {
     id string = @"{{#if goodbye}}GOODBYE {{/if}}cruel {{world}}!";
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{ @"world": @"world", @"goodbye" : @"true"} ]),
+    NSError* error = nil;
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{ @"world": @"world", @"goodbye" : @"true"} error:&error]),
                           @"GOODBYE cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
     
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @"dummy", @"world": @"world"}]),
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @"dummy", @"world": @"world"} error:&error]),
                           @"GOODBYE cruel world!");
-    
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @false, @"world": @"world"}]),
+    XCTAssert(!error, @"evaluation should not generate an error");
+
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @false, @"world": @"world"} error:&error]),
                           @"cruel world!");
-    
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"world": @"world"}]),
+    XCTAssert(!error, @"evaluation should not generate an error");
+
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"world": @"world"} error:&error]),
                           @"cruel world!");
-    
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[@"foo"], @"world": @"world"}]),
+    XCTAssert(!error, @"evaluation should not generate an error");
+
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[@"foo"], @"world": @"world"} error:&error]),
                           @"GOODBYE cruel world!");
-    
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[], @"world": @"world"}]),
+    XCTAssert(!error, @"evaluation should not generate an error");
+
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[], @"world": @"world"} error:&error]),
                           @"cruel world!");
-    
+    XCTAssert(!error, @"evaluation should not generate an error");
+
     /*
      We don't pass this handlebars.js test, but it makes no sense. I don't think I'll fix it, there is no way 0 should eval to true,
      except in ruby, and this is the dumbest choice one could imagine.
@@ -71,64 +79,76 @@
 // with
 - (void) testWith
 {
+    NSError* error = nil;
     id string = @"{{#with person}}{{first}} {{last}}{{/with}}";
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"person": @{@"first": @"Alan", @"last": @"Johnson"}}]), @"Alan Johnson");
-    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"person": @{@"first": @"Alan", @"last": @"Johnson"}} error:&error]), @"Alan Johnson");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 
 // each
 - (void) testEach
 {
+    NSError* error = nil;
     id string = @"{{#each goodbyes}}{{text}}! {{/each}}cruel {{world}}!";
     id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
                           @"goodbye! Goodbye! GOODBYE! cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
     
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbyes": @[], @"world": @"world"}]),
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbyes": @[], @"world": @"world"} error:&error]),
                           @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // each with an object and @key
 - (void) testEachWithAnObjectAndAtkey
 {
+    NSError* error = nil;
+    
     id string = @"{{#each goodbyes}}{{@key}}. {{text}}! {{/each}}cruel {{world}}!";
     id hash = @{@"goodbyes": @{@"<b>#1</b>": @{@"text": @"goodbye"}, @"2": @{@"text": @"GOODBYE"}}, @"world": @"world"};
     
-    id actual = [HBHandlebars renderTemplateString:string withContext:hash];
+    id actual = [HBHandlebars renderTemplateString:string withContext:hash error:&error];
     id expected1 = @"&lt;b&gt;#1&lt;/b&gt;. goodbye! 2. GOODBYE! cruel world!";
     id expected2 = @"2. GOODBYE! &lt;b&gt;#1&lt;/b&gt;. goodbye! cruel world!";
     
     XCTAssert([actual isEqual:expected1] || [actual isEqual:expected2], @"each with object argument iterates over the contents when not empty");
     
-    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbyes": @[], @"world": @"world"}]),
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbyes": @[], @"world": @"world"} error:&error]),
                           @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // each with @index
 - (void) testEachWithAtindex
 {
+    NSError* error = nil;
     id string = @"{{#each goodbyes}}{{@index}}. {{text}}! {{/each}}cruel {{world}}!";
     id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
     
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
                           @"0. goodbye! 1. Goodbye! 2. GOODBYE! cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // each with nested @index
 - (void) testEachWithNestedAtindex
 {
+    NSError* error = nil;
     id string = @"{{#each goodbyes}}{{@index}}. {{text}}! {{#each ../goodbyes}}{{@index}} {{/each}}After {{@index}} {{/each}}{{@index}}cruel {{world}}!";
     id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
     
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
                           @"0. goodbye! 0 1 2 After 0 1. Goodbye! 0 1 2 After 1 2. GOODBYE! 0 1 2 After 2 cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 
 // #log
 - (void) testLog
 {
+    NSError* error = nil;
     id string = @"{{log blah}}";
     id hash = @{ @"blah": @"whee" };
 
@@ -141,9 +161,10 @@
         return (NSString*)nil;
     }];
     
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
                           @"");
-    
+    XCTAssert(!error, @"evaluation should not generate an error");
+
     XCTAssert(1L == levelArg, @"should call log with 1");
     XCTAssertEqualObjects(@"whee", objectArg, @"should call log with 'whee'");
     [HBHandlebars setLoggerBlock:nil];

@@ -33,6 +33,7 @@
 @interface HBAstEvaluationVisitor : HBAstVisitor
 
 @property (retain, nonatomic) HBTemplate* template;
+@property (retain, nonatomic) NSError* error;
 
 - (id) initWithTemplate:(HBTemplate*)template;
 

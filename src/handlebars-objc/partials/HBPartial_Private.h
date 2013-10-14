@@ -32,7 +32,7 @@
 
 @property (retain, nonatomic) HBAstProgram* _program;
 
-- (void) compile;
+- (void) compile:(NSError**)error;
 - (NSArray*) astStatements;
 
 @end

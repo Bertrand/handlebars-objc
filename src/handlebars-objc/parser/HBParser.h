@@ -31,6 +31,6 @@
 
 @interface HBParser : NSObject
 
-+ (HBAstProgram*)astFromString:(NSString*)text;
++ (HBAstProgram*)astFromString:(NSString*)text error:(NSError**)error;
 
 @end

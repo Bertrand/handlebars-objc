@@ -34,27 +34,28 @@
 #import "HBTemplate.h"
 #import "HBHelper.h"
 
+
 static HBLoggerBlock _loggerBlock = nil;
 
 @implementation HBHandlebars
 
-+ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context
++ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context error:(NSError**)error
 {
-    return [self renderTemplateString:template withContext:context withHelperBlocks:nil withPartialStrings:nil];
+    return [self renderTemplateString:template withContext:context withHelperBlocks:nil withPartialStrings:nil error:error];
 }
 
-+ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks;
++ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks error:(NSError**)error;
 {
-    return [self renderTemplateString:template withContext:context withHelperBlocks:helperBlocks withPartialStrings:nil];
+    return [self renderTemplateString:template withContext:context withHelperBlocks:helperBlocks withPartialStrings:nil error:error];
 }
 
-+ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks withPartialStrings:(NSDictionary*)partials
++ (NSString*)renderTemplateString:(NSString*)template withContext:(id)context withHelperBlocks:(NSDictionary*)helperBlocks withPartialStrings:(NSDictionary*)partials error:(NSError**)error
 {
     HBTemplate* hbTemplate = [[HBTemplate alloc] initWithString:template];
     if (helperBlocks) [hbTemplate.helpers registerHelperBlocks:helperBlocks];
     if (partials) [hbTemplate.partials registerPartialStrings:partials];
     
-    NSString* renderedString = [hbTemplate renderWithContext:context];
+    NSString* renderedString = [hbTemplate renderWithContext:context error:error];
     
     [hbTemplate release];
     return renderedString;

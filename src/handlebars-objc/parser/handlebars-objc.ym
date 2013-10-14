@@ -4,9 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#import "HBHandlebars.h"
 #import "HBAst.h"
+#import "HBErrorHandling_Private.h"
 
-#define YYDEBUG 1
+#define YYDEBUG 0
 
 %}
 
@@ -88,6 +90,7 @@
 %parse-param { void * scanner }
 %lex-param {void * scanner}
 %parse-param { HBAstProgram** root }
+%parse-param { NSError** error }
 
 %{
     /* Forward declarations will please compiler */
@@ -96,7 +99,7 @@
     int hb_lex_init ( yyscan_t * ptr_yy_globals ) ;
     int hb_lex_destroy ( yyscan_t yyscanner ) ;
     
-    void hb_error(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, const char *s);
+    void hb_error(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, NSError** error, const char *s);
     int hb_lex ( YYSTYPE * lvalp, YYLTYPE* lloc, yyscan_t scanner );
     FILE *yyin;
     
@@ -264,12 +267,16 @@ data
 
 %%
 
-void yyerror(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, const char *s) {
-
-    NSException* myException = [NSException
-        exceptionWithName:@"ParsingError"
-        reason:[NSString stringWithFormat:@"Handlebars parse error %s", s]
-        userInfo:@{ @"lineNumber" : @(loc->first_line), @"positionInBuffer" : @(loc->first_column) }];
-        
-    @throw myException;
+void yyerror(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, NSError** error, const char *s)
+{
+    if (error) *error = [HBParseError parseErrorWithLineNumber:loc->first_line
+                            positionInBuffer:loc->first_column
+                            contextInBuffer:@""
+                            lowLevelParserDescription:[NSString stringWithFormat:@"%s", s]
+                            ];
 }
+
+
+
+
+

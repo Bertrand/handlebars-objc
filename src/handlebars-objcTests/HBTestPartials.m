@@ -32,9 +32,15 @@
 
 @end
 
+NSString* renderWithPartialsReturningError(NSString* string, id context, NSDictionary* partials, NSError** error)
+{
+    return [HBHandlebars renderTemplateString:string withContext:context withHelperBlocks:nil withPartialStrings:partials error:error];
+}
+
+
 NSString* renderWithPartials(NSString* string, id context, NSDictionary* partials)
 {
-    return [HBHandlebars renderTemplateString:string withContext:context withHelperBlocks:nil withPartialStrings:partials];
+    return renderWithPartialsReturningError(string, context, partials, nil);
 }
 
 
@@ -81,7 +87,9 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
     id string = @"{{> whatever}}";
     id hash = @{};
     
-    XCTAssertThrows(renderWithPartials(string, hash, @{}), @"using an undefined partial should raise a PartialNotFound exception");
+    NSError* error = nil;
+    renderWithPartialsReturningError(string, hash, @{}, &error);
+    XCTAssert(nil != error, @"using an undefined partial should return an error at render time");
 }
 
 // GH-14: a partial preceding a selector

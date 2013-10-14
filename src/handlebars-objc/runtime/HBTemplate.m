@@ -57,19 +57,29 @@
     }
 }
 
-- (NSString*)renderWithContext:(id)context
+- (NSString*)renderWithContext:(id)context error:(NSError**)error
 {
+    NSError* parseError = nil;
+    [self compile:&parseError];
+    
+    if (parseError) {
+        if (error) *error = parseError;
+        return nil;
+    }
+    
     HBAstEvaluationVisitor* visitor = [[HBAstEvaluationVisitor alloc] initWithTemplate:self];
     NSString* renderedString = [visitor evaluateWithContext:context];
+    
+    if (error) *error = [[visitor.error retain] autorelease];
     [visitor release];
     
     return renderedString;
 }
 
-- (void) compile
+- (void) compile:(NSError**)error
 {
     if (self.program) return;
-    self.program = [HBParser astFromString:self.templateString];
+    self.program = [HBParser astFromString:self.templateString error:error];
 }
 
 #pragma mark - 

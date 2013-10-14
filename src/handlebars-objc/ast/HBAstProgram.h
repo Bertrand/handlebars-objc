@@ -30,6 +30,7 @@
 @interface HBAstProgram : HBAstNode
 
 @property (strong, nonatomic) NSArray* /* HBAstStatement */ statements;
+@property (retain, nonatomic) NSError* parseError;
 
 - (NSString*)formalDump;
 

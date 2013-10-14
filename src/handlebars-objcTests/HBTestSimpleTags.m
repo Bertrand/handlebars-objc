@@ -39,14 +39,18 @@
 
 - (void)testRawTextOnly
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"some raw text" withContext:nil],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"some raw text" withContext:nil error:&error],
                           @"some raw text");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 - (void)testTagWithSimpleKey
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{a}}" withContext:@{ @"a" : @"a simple value"}],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{a}}" withContext:@{ @"a" : @"a simple value"} error:&error],
                           @"a simple value");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 #pragma mark -
@@ -55,126 +59,168 @@
 // escaping
 - (void) testEscaping
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\{{foo}}" withContext:@{ @"foo" : @"food" }],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\{{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
                           @"{{foo}}");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\\\{{foo}}" withContext:@{ @"foo" : @"food" }],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\\\{{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
                           @"\\food");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\\\ {{foo}}" withContext:@{ @"foo" : @"food" }],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\\\ {{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
                           @"\\\\ food");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // compiling with a basic context
 - (void) testCompilingWithABasicContext
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye\n{{cruel}}\n{{world}}!" withContext:(@{ @"cruel": @"cruel", @"world": @"world" })],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye\n{{cruel}}\n{{world}}!" withContext:(@{ @"cruel": @"cruel", @"world": @"world" }) error:&error],
                           @"Goodbye\ncruel\nworld!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // comments
 - (void) testComments
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{! Goodbye}}Goodbye\n{{cruel}}\n{{world}}!" withContext:(@{ @"cruel": @"cruel", @"world": @"world"})],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{! Goodbye}}Goodbye\n{{cruel}}\n{{world}}!" withContext:(@{ @"cruel": @"cruel", @"world": @"world"}) error:&error],
                           @"Goodbye\ncruel\nworld!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // boolean
 - (void) testBoolean
 {
+    NSError* error = nil;
     NSString* string   = @"{{#goodbye}}GOODBYE {{/goodbye}}cruel {{world}}!";
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:(@{@"goodbye": @true, @"world": @"world"})],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:(@{@"goodbye": @true, @"world": @"world"}) error:&error],
                           @"GOODBYE cruel world!");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:(@{@"goodbye": @false, @"world": @"world"})],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:(@{@"goodbye": @false, @"world": @"world"}) error:&error],
                           @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // zeros
 - (void) testZeros
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"num1: {{num1}}, num2: {{num2}}" withContext:(@{@"num1": @(42), @"num2": @(0)})],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"num1: {{num1}}, num2: {{num2}}" withContext:(@{@"num1": @(42), @"num2": @(0)}) error:&error],
                           @"num1: 42, num2: 0");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"num: {{.}}" withContext:@0],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"num: {{.}}" withContext:@0 error:&error],
                           @"num: 0");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"num: {{num1/num2}}" withContext:(@{ @"num1": @{ @"num2": @0}})],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"num: {{num1/num2}}" withContext:(@{ @"num1": @{ @"num2": @0}}) error:&error],
                           @"num: 0");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // newlines
 - (void) testNewlines
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Alan's\nTest" withContext:nil],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Alan's\nTest" withContext:nil error:&error],
                           @"Alan's\nTest");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Alan's\rTest" withContext:nil],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Alan's\rTest" withContext:nil error:&error],
                           @"Alan's\rTest");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // escaping text
 - (void) testEscapingText
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome's" withContext:nil],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome's" withContext:nil error:&error],
                           @"Awesome's");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome\\" withContext:nil],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome\\" withContext:nil error:&error],
                           @"Awesome\\");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome\\\\ foo" withContext:nil],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome\\\\ foo" withContext:nil error:&error],
                           @"Awesome\\\\ foo");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome {{foo}}" withContext:@{@"foo": @"\\"}],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Awesome {{foo}}" withContext:@{@"foo": @"\\"} error:&error],
                           @"Awesome \\");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@" \" \" " withContext:nil],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@" \" \" " withContext:nil error:&error],
                           @" \" \" ");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // escaping expressions
 - (void) testEscapingExpressions
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{{awesome}}}" withContext:@{ @"awesome": @"&\"\\<>" }],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{{awesome}}}" withContext:@{ @"awesome": @"&\"\\<>" } error:&error],
                           @"&\"\\<>");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{&awesome}}" withContext:@{ @"awesome": @"&\"\\<>" }],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{&awesome}}" withContext:@{ @"awesome": @"&\"\\<>" } error:&error],
                           @"&\"\\<>");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{awesome}}" withContext:@{ @"awesome": @"&\"'`\\<>"}],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{awesome}}" withContext:@{ @"awesome": @"&\"'`\\<>"} error:&error],
                           @"&amp;&quot;&apos;`\\&lt;&gt;");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{awesome}}" withContext:@{ @"awesome": @"Escaped, <b> looks like: &lt;b&gt;"}],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{awesome}}" withContext:@{ @"awesome": @"Escaped, <b> looks like: &lt;b&gt;"} error:&error],
                           @"Escaped, &lt;b&gt; looks like: &amp;lt;b&amp;gt;");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // paths with hyphens
 - (void) testPathsWithHyphens
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{foo-bar}}" withContext:@{@"foo-bar": @"baz"}],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{foo-bar}}" withContext:@{@"foo-bar": @"baz"} error:&error],
                           @"baz");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{foo.foo-bar}}" withContext:(@{ @"foo": @{@"foo-bar": @"baz"}})],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{foo.foo-bar}}" withContext:(@{ @"foo": @{@"foo-bar": @"baz"}}) error:&error],
                           @"baz");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{foo/foo-bar}}" withContext:(@{ @"foo": @{ @"foo-bar": @"baz"}})],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{foo/foo-bar}}" withContext:(@{ @"foo": @{ @"foo-bar": @"baz"}}) error:&error],
                           @"baz");
+    XCTAssert(!error, @"evaluation should not generate an error");
     
 }
 
 // nested paths
 - (void) testNestedPaths
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{alan/expression}} world!" withContext:@{@"alan": @{@"expression": @"beautiful"}}],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{alan/expression}} world!" withContext:@{@"alan": @{@"expression": @"beautiful"}} error:&error],
                           @"Goodbye beautiful world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // nested paths with empty string value
 - (void) testNestedPathsWithEmptyStringValue
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{alan/expression}} world!" withContext:(@{@"alan": @{@"expression": @""}})],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{alan/expression}} world!" withContext:(@{@"alan": @{@"expression": @""}}) error:&error],
                           @"Goodbye  world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // literal paths
 - (void) testLiteralPaths
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{[@alan]/expression}} world!" withContext:(@{@"@alan": @{@"expression": @"beautiful"}})],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{[@alan]/expression}} world!" withContext:(@{@"@alan": @{@"expression": @"beautiful"}}) error:&error],
                           @"Goodbye beautiful world!");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{[foo bar]/expression}} world!" withContext:(@{@"foo bar": @{@"expression": @"beautiful"}})],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{[foo bar]/expression}} world!" withContext:(@{@"foo bar": @{@"expression": @"beautiful"}}) error:&error],
                           @"Goodbye beautiful world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // literal references
 - (void) testLiteralReferences
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{[foo bar]}} world!" withContext:(@{@"foo bar": @"beautiful"})],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Goodbye {{[foo bar]}} world!" withContext:(@{@"foo bar": @"beautiful"}) error:&error],
                           @"Goodbye beautiful world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // that current context path ({{.}}) doesn't hit helpers
@@ -187,24 +233,30 @@
 // complex but empty paths
 - (void) testComplexButEmptyPaths
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{person/name}}" withContext:(@{@"person": @{@"name": @{}}})],
+    NSError* error = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{person/name}}" withContext:(@{@"person": @{@"name": @{}}}) error:&error],
                           @"");
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{person/name}}" withContext:(@{@"person": @{}})],
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{person/name}}" withContext:(@{@"person": @{}}) error:&error],
                           @"");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // this keyword in paths
 - (void) testThisKeywordInPaths
 {
+    NSError* error = nil;
     NSString* string = @"{{#goodbyes}}{{this}}{{/goodbyes}}";
     id hash = @{@"goodbyes": @[@"goodbye", @"Goodbye", @"GOODBYE"]};
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
                           @"goodbyeGoodbyeGOODBYE");
     
+    XCTAssert(!error, @"evaluation should not generate an error");
     string = @"{{#hellos}}{{this/text}}{{/hellos}}";
     hash = @{@"hellos": @[@{@"text": @"hello"}, @{@"text": @"Hello"}, @{@"text": @"HELLO"}]};
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash],
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
                           @"helloHelloHELLO");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 

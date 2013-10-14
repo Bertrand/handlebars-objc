@@ -34,16 +34,22 @@
 
 @end
 
-
-NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
+NSString* renderWithHelpersReturningError(NSString* string, id context, NSDictionary* blocks, NSError** error)
 {
     HBTemplate* template = [[HBTemplate alloc] initWithString:string];
     [template.helpers registerHelperBlocks:blocks];
     
-    NSString* result = [template renderWithContext:context];
+    NSString* result = [template renderWithContext:context error:error];
     [template release];
     return result;
 }
+
+NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
+{
+    return renderWithHelpersReturningError(string, context, blocks, nil);
+}
+
+
 
 @implementation HBTestHelpers
 
@@ -208,7 +214,7 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 // block helper for undefined value
 - (void) testBlockHelperForUndefinedValue
 {
-    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{#empty}}shouldn't render{{/empty}}" withContext:@{}], @"");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"{{#empty}}shouldn't render{{/empty}}" withContext:@{} error:nil], @"");
 }
 
 // block helper passing a new context
@@ -372,7 +378,9 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 {
     id string = @"Message: {{hello wo\"rld\"}}";
     HBTemplate* template = [[HBTemplate alloc] initWithString:string];
-    XCTAssertThrows([template compile], @"erroneus template should raise a parse exception");
+    NSError* error = nil;
+    [template compile:&error];
+    XCTAssert(error != nil, @"erroneus template should generate a parse error");
     [template release];
 }
 
@@ -497,7 +505,10 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
     id string = @"{{hello}} {{link_to world}}";
     id hash = @{};
     
-    XCTAssertThrows(renderWithHelpers(string, hash, @{}), @"using an undefined helper should raise a HelperNotFound exception");
+    NSError* error = nil;
+    renderWithHelpersReturningError(string, hash, @{}, &error);
+    
+    XCTAssert(nil != error, @"using an undefined helper should return an error at render time");
 }
 
 

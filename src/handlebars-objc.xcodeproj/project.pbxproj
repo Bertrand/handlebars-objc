@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061ACEA1180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; };
+		061ACEA2180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; };
+		061ACEA3180C1C8E00081763 /* HBErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 061ACEA0180C1C8E00081763 /* HBErrorHandling.m */; };
+		061ACEA4180C1C8E00081763 /* HBErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 061ACEA0180C1C8E00081763 /* HBErrorHandling.m */; };
 		0630B18C17F2EF9100EA7018 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18B17F2EF9100EA7018 /* Cocoa.framework */; };
 		0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B19417F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
@@ -175,6 +179,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		061ACE9F180C1C8E00081763 /* HBErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBErrorHandling.h; sourceTree = "<group>"; };
+		061ACEA0180C1C8E00081763 /* HBErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBErrorHandling.m; sourceTree = "<group>"; };
+		061ACEA5180C209400081763 /* HBErrorHandling_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBErrorHandling_Private.h; sourceTree = "<group>"; };
 		0630B18817F2EF9100EA7018 /* HBHandlebars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HBHandlebars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B18B17F2EF9100EA7018 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0630B18E17F2EF9100EA7018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -319,6 +326,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061ACE9B180C1B1100081763 /* errorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				061ACE9F180C1C8E00081763 /* HBErrorHandling.h */,
+				061ACEA5180C209400081763 /* HBErrorHandling_Private.h */,
+				061ACEA0180C1C8E00081763 /* HBErrorHandling.m */,
+			);
+			path = errorHandling;
+			sourceTree = "<group>";
+		};
 		0630B17E17F2EF9100EA7018 = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +390,7 @@
 				0630B1C717F33E8700EA7018 /* ast */,
 				06A81A9417F86EAF0006F16A /* astVisitors */,
 				06798D6617F9B1F800FC40D7 /* context */,
+				061ACE9B180C1B1100081763 /* errorHandling */,
 				06D426BA17FC5DDD00C41476 /* helpers */,
 				0630B1B617F2EFE600EA7018 /* parser */,
 				0698F01E17FEA5EF005203F6 /* partials */,
@@ -601,6 +619,7 @@
 				06E4790A17FC0CA90029C3D1 /* HBDataContext.h in Headers */,
 				06743FB918005CFB001793F7 /* HBBuiltinHelpersRegistry.h in Headers */,
 				06798D3717F5B70200FC40D7 /* HBAstTag.h in Headers */,
+				061ACEA1180C1C8E00081763 /* HBErrorHandling.h in Headers */,
 				06556D8317FEFB7C00070907 /* HBPartialRegistry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +634,7 @@
 				06F493851802D1820055B5BC /* HBDataContext.h in Headers */,
 				06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */,
 				06F493861802D1820055B5BC /* HBHelper.h in Headers */,
+				061ACEA2180C1C8E00081763 /* HBErrorHandling.h in Headers */,
 				06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */,
 				06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */,
 				06F493841802D1820055B5BC /* HBHandlebars.h in Headers */,
@@ -711,7 +731,7 @@
 						TestTargetID = 0630B18717F2EF9100EA7018;
 					};
 					06F4934B1802D07F0055B5BC = {
-						TestTargetID = 0630B18717F2EF9100EA7018;
+						TestTargetID = 06F4933D1802D07F0055B5BC;
 					};
 				};
 			};
@@ -806,6 +826,7 @@
 				06798D5617F5CA3500FC40D7 /* HBAstValue.m in Sources */,
 				06798D3C17F5C5AE00FC40D7 /* HBAstPartialTag.m in Sources */,
 				06A81AA217F8D3750006F16A /* HBAstComment.m in Sources */,
+				061ACEA3180C1C8E00081763 /* HBErrorHandling.m in Sources */,
 				06798D5017F5CA3500FC40D7 /* HBAstKeyPathComponent.m in Sources */,
 				06D426BE17FC5E4200C41476 /* HBHelper.m in Sources */,
 				06743FB617FB572B001793F7 /* HBContextRendering.m in Sources */,
@@ -860,6 +881,7 @@
 				06F493631802D1500055B5BC /* HBAstBlockTag.m in Sources */,
 				06F4936D1802D1500055B5BC /* HBAstKeyPathComponent.m in Sources */,
 				06F493691802D1500055B5BC /* HBAstSimpleTag.m in Sources */,
+				061ACEA4180C1C8E00081763 /* HBErrorHandling.m in Sources */,
 				06F4937E1802D1500055B5BC /* HBParser.m in Sources */,
 				06F4936E1802D1500055B5BC /* HBAstNumber.m in Sources */,
 				06F493641802D1500055B5BC /* HBAstComment.m in Sources */,
@@ -1023,6 +1045,7 @@
 		0630B1B417F2EF9100EA7018 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HBHandlebars.framework/Versions/A/HBHandlebars";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1044,6 +1067,7 @@
 		0630B1B517F2EF9100EA7018 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HBHandlebars.framework/Versions/A/HBHandlebars";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1118,7 +1142,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1140,7 +1163,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
 			};
