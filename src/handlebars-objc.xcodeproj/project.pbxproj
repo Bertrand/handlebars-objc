@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		061ACEA1180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; };
+		061ACEA1180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		061ACEA2180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; };
 		061ACEA3180C1C8E00081763 /* HBErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 061ACEA0180C1C8E00081763 /* HBErrorHandling.m */; };
 		061ACEA4180C1C8E00081763 /* HBErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 061ACEA0180C1C8E00081763 /* HBErrorHandling.m */; };

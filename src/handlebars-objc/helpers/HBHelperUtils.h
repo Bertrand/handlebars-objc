@@ -55,6 +55,19 @@
 + (BOOL)evaluateObjectAsBool:(id)object;
 
 /**
+ Get the NSInteger value of any object.
+ 
+ This method evaluate any object as an integer.
+ - NSNumber : the result of -[NSNumber integerValue].
+ - NSString : return the length of the string.
+ - NSArray : return the length of the array.
+ - otherwise : return 0
+ @param object the object to evaluate
+ @since v1.0
+ */
++ (NSInteger)evaluateObjectAsInteger:(id)object;
+
+/**
  Return an array containing the elements of an enumerable indexed value.
  
  This method returns an NSArray for any enumerable array-like value supported by handlebars-objc

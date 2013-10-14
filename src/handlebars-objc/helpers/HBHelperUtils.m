@@ -104,6 +104,14 @@
     return false;
 }
 
++ (NSInteger)evaluateObjectAsInteger:(id)object
+{
+    if (!object) return 0;
+    if ([object isKindOfClass:[NSNumber class]]) return [object integerValue];
+    if ([object isKindOfClass:[NSString class]]) return [object length];
+    if ([object isKindOfClass:[NSArray class]]) return [object count];
+    return 0;
+}
 
 + (NSArray*) arrayFromValue:(id)value
 {
