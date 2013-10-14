@@ -104,7 +104,7 @@ NSString* (^HBHelperBlock)(HBHelperCallingInfo* callingInfo)
 }
 ```
 
-All contextual information a helper can use if provided in the callingInfo object: 
+All contextual information a helper can use is provided in the callingInfo object: 
 
 
  - positional parameters 
