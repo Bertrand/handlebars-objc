@@ -1,8 +1,8 @@
 #!/bin/sh
 
 SCRIPT_DIR=`dirname $0`
-ROOT_DIR="$SCRIPT_DIR/.."
-SRC_DIR="$ROOT_DIR/handlebars-objc"
+ROOT_DIR="$SCRIPT_DIR/../.."
+SRC_DIR="$ROOT_DIR/src/handlebars-objc"
 
 DEST_DIR="$1"
 

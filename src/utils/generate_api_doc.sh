@@ -11,7 +11,7 @@
 command -v appledoc >/dev/null 2>&1 || { echo >&2 "appledoc not installed. 'brew install appledoc' is your friend. Aborting."; exit 1; }
 
 SCRIPT_DIR=`dirname $0`
-ROOT_DIR="$SCRIPT_DIR/.."
+ROOT_DIR="$SCRIPT_DIR/../.."
 API_DOC_DIR="$ROOT_DIR/api_doc"
 SRC_DIR="$ROOT_DIR/handlebars-objc"
 
