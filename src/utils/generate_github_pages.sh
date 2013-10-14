@@ -25,7 +25,7 @@ pushd .
 cd "$ROOT_DIR"
 
 git checkout gh-pages
-cp -RPf "$TMP_FOLDER/*" . 
+cp -RPf "$TMP_FOLDER/"* . 
 git commit -a -m "update github pages" 
 git push 
 
