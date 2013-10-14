@@ -54,5 +54,34 @@
  */
 + (BOOL)evaluateObjectAsBool:(id)object;
 
+/**
+ Return an array containing the elements of an enumerable indexed value.
+ 
+ This method returns an NSArray for any enumerable array-like value supported by handlebars-objc
+ If the value is already an NSArray, it is directly returned. 
+ 
+ Enumerable array-like values must conform to the NSFastEnumeration protocol and must also implement the indexed subscripting method: 
+ 
+    - (id) objectAtIndexedSubscript:(NSUInteger)index;
+
+ @param object enumerable indexed value
+ @since v1.0
+ */
++ (NSArray*) arrayFromValue:(id)value;
+
+/**
+ Return the value of a dictionary-like object for a key
+ 
+ For any object implementing the keyed subscripting method: 
+    - (id)objectForKeyedSubscript:(id)key;
+ 
+ return the result of value[key]
+ 
+ 
+ @param value value supporting keyed subscripting access
+ @param key the key
+ @since v1.0
+ */
++ (id) valueOf:(id)value forKey:(NSString*)key;
 
 @end

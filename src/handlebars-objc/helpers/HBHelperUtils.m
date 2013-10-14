@@ -104,4 +104,27 @@
     return false;
 }
 
+
++ (NSArray*) arrayFromValue:(id)value
+{
+    // if value is already an object simply return it.
+    if ([value isKindOfClass:[NSArray class]]) return value;
+    
+    // value is not an array but might conform to the necessary protocols.
+    if (![value conformsToProtocol:@protocol(NSFastEnumeration)]) return nil;
+    if (![value respondsToSelector:@selector(objectAtIndexedSubscript:)]) return nil;
+    
+    NSMutableArray* array = [NSMutableArray array];
+    for (id object in value) {
+        [array addObject:object];
+    }
+    
+    return array;
+}
+
++ (id) valueOf:(id)value forKey:(NSString*)key
+{
+   return [value respondsToSelector:@selector(objectForKeyedSubscript:)] ? value[key] : nil;
+}
+
 @end
