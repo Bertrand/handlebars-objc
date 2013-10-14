@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 961)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -27,6 +27,8 @@
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
 	
+	<option value="overview">Overview</option>
+	
 	
 	
 	
@@ -40,9 +42,15 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/arrayFromValue:">&nbsp;&nbsp;&nbsp;&nbsp;+ arrayFromValue:</option>
+	
 	<option value="//api/name/escapeHTML:">&nbsp;&nbsp;&nbsp;&nbsp;+ escapeHTML:</option>
 	
 	<option value="//api/name/evaluateObjectAsBool:">&nbsp;&nbsp;&nbsp;&nbsp;+ evaluateObjectAsBool:</option>
+	
+	<option value="//api/name/evaluateObjectAsInteger:">&nbsp;&nbsp;&nbsp;&nbsp;+ evaluateObjectAsInteger:</option>
+	
+	<option value="//api/name/valueOf:forKey:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueOf:forKey:</option>
 	
 	
 	
@@ -55,6 +63,8 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
 
 
 
@@ -70,9 +80,15 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/arrayFromValue:">arrayFromValue:</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/escapeHTML:">escapeHTML:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsBool:">evaluateObjectAsBool:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsInteger:">evaluateObjectAsInteger:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueOf:forKey:">valueOf:forKey:</a></span></li>
 	
 </ul></li>
 
@@ -110,6 +126,14 @@
 					
 					
 					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>HBHelperUtils is a class containing methods useful when writing helpers.</p>
+					</div>
+					
+					
+					
 					
 					
 					<div class="section section-tasks">
@@ -135,6 +159,27 @@
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/evaluateObjectAsInteger:">+&nbsp;evaluateObjectAsInteger:</a></code>
+		<span class="tooltip"><p>Get the NSInteger value of any object.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/arrayFromValue:">+&nbsp;arrayFromValue:</a></code>
+		<span class="tooltip"><p>Return an array containing the elements of an enumerable indexed value.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/valueOf:forKey:">+&nbsp;valueOf:forKey:</a></code>
+		<span class="tooltip"><p>Return the value of a dictionary-like object for a key</p></span>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -149,6 +194,68 @@
 					<div class="section section-methods">
 						<a title="Class Methods" name="class_methods"></a>
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/arrayFromValue:" title="arrayFromValue:"></a>
+	<h3 class="subsubtitle method-title">arrayFromValue:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return an array containing the elements of an enumerable indexed value.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSArray *)arrayFromValue:(id)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>enumerable indexed value</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method returns an NSArray for any enumerable array-like value supported by handlebars-objc
+If the value is already an NSArray, it is directly returned.</p>
+
+<p>Enumerable array-like values must conform to the NSFastEnumeration protocol and must also implement the indexed subscripting method:</p>
+
+<pre><code>- (id) objectAtIndexedSubscript:(NSUInteger)index;
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperUtils.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/escapeHTML:" title="escapeHTML:"></a>
@@ -247,10 +354,136 @@ It should be used in helpers implementation when returning a value.</p>
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>This method evaluate any object as a @true of @false value.
-- NSNumber : return true if the corresponding value is greater than zero, false otherwise.
-- NSString : return true if the string is not empty.
-- NSArray : return true if the array is not empty.
-- otherwise : return false</p>
+&ndash; NSNumber : return true if the corresponding value is greater than zero, false otherwise.
+&ndash; NSString : return true if the string is not empty.
+&ndash; NSArray : return true if the array is not empty.
+&ndash; otherwise : return false</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperUtils.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/evaluateObjectAsInteger:" title="evaluateObjectAsInteger:"></a>
+	<h3 class="subsubtitle method-title">evaluateObjectAsInteger:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get the NSInteger value of any object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSInteger)evaluateObjectAsInteger:(id)<em>object</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>object</em></dt>
+			<dd><p>the object to evaluate</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method evaluate any object as an integer.
+&ndash; NSNumber : the result of &ndash;[NSNumber integerValue].
+&ndash; NSString : return the length of the string.
+&ndash; NSArray : return the length of the array.
+&ndash; otherwise : return 0</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperUtils.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/valueOf:forKey:" title="valueOf:forKey:"></a>
+	<h3 class="subsubtitle method-title">valueOf:forKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the value of a dictionary-like object for a key</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (id)valueOf:(id)<em>value</em> forKey:(NSString *)<em>key</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>value supporting keyed subscripting access</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>key</em></dt>
+			<dd><p>the key</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>For any object implementing the keyed subscripting method:</p>
+
+<pre><code>- (id)objectForKeyedSubscript:(id)key;
+</code></pre>
+
+<p>return the result of value[key]</p>
 	</div>
 	
 	
@@ -284,7 +517,7 @@ It should be used in helpers implementation when returning a value.</p>
 					<div class="footer-copyright">
 						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-14)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>

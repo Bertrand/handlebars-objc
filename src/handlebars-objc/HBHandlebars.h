@@ -100,7 +100,7 @@ This method should be used only if you render templates in non mission-critical 
  Render a string template for a data context using some helpers.
  
  This method renders a template using helpers. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers.
- See <+[HBHandlebars renderTemplateString:withContext:]> for a discussion regarding the performance implications of using this convenience API.
+ See <+[HBHandlebars renderTemplateString:withContext:error:]> for a discussion regarding the performance implications of using this convenience API.
  
  @param template String containing the template to render
  @param context The object containing the data used in the template. Can be any property-list compatible object.
@@ -114,7 +114,7 @@ This method should be used only if you render templates in non mission-critical 
  Render a string template for a data context using some helpers.
  
  This method renders a template using helpers and partials. It instanciates an HBTemplate instance compiles the template and renders it with the provided helpers and partials.
- See <+[HBHandlebars renderTemplateString:withContext:]> for a discussion regarding the performance implications of using this convenience API.
+ See <+[HBHandlebars renderTemplateString:withContext:error:]> for a discussion regarding the performance implications of using this convenience API.
  
  @param template String containing the template to render
  @param context The object containing the data used in the template. Can be any property-list compatible object.

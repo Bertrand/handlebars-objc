@@ -30,29 +30,63 @@
 
 extern NSString* HBErrorDomain;
 
+/**
+ pouet
+ */
 typedef NS_ENUM(NSInteger, HBErrorCode) {
     HBErrorCodeGenericParseError    = 0,
     HBErrorCodeHelperMissingError   = 100,
     HBErrorCodePartialMissingError  = 200
 };
 
+/**
+ HBParseError errors can be generated when a template file contains errors.
+ */
 @interface HBParseError: NSError
 
+/**
+ line number where error can be found
+ */
 - (NSInteger) lineNumber;
+
+/**
+ position in buffer of error 
+ */
 - (NSInteger) positionInBuffer;
-- (NSString*) contextInBuffer; 
+
+/** 
+ string containing the buffer area around error
+ */
+- (NSString*) contextInBuffer;
+
+/**
+ a detailed error string returned by low-level parser.
+ */
 - (NSString*) lowLevelParserDescription;
 
 @end
 
+
+/** 
+ HBHelperMissingError instances can be generated when a helper was invoked in a template but could not be found at runtime.
+ */
 @interface HBHelperMissingError: NSError
 
+/**
+ name of the missing helper
+ */
 - (NSString*) helperName;
 
 @end
 
+/**
+ HBPartialMissingError instances can be generated when a partial was referenced in a template but could not be found at runtime.
+ */
 @interface HBPartialMissingError: NSError
 
+/**
+ name of the missing partial 
+ */
 - (NSString*) partialName;
 
 @end

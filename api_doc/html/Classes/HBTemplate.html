@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 961)" />
+		<meta name="generator" content="appledoc 2.1 (build 840)" />
 	</head>
 	<body>
 		<header id="top_header">
@@ -49,7 +49,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/compile">&nbsp;&nbsp;&nbsp;&nbsp;- compile</option>
+	<option value="//api/name/compile:">&nbsp;&nbsp;&nbsp;&nbsp;- compile:</option>
 	
 	<option value="//api/name/helpers">&nbsp;&nbsp;&nbsp;&nbsp;- helpers</option>
 	
@@ -57,7 +57,7 @@
 	
 	<option value="//api/name/partials">&nbsp;&nbsp;&nbsp;&nbsp;- partials</option>
 	
-	<option value="//api/name/renderWithContext:">&nbsp;&nbsp;&nbsp;&nbsp;- renderWithContext:</option>
+	<option value="//api/name/renderWithContext:error:">&nbsp;&nbsp;&nbsp;&nbsp;- renderWithContext:error:</option>
 	
 	
 	
@@ -97,7 +97,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compile">compile</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/compile:">compile:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/helpers">helpers</a></span></li>
 	
@@ -105,7 +105,7 @@
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/partials">partials</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderWithContext:">renderWithContext:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/renderWithContext:error:">renderWithContext:error:</a></span></li>
 	
 </ul></li>
 
@@ -148,9 +148,9 @@
 
 <p>You create template with <a href="#//api/name/initWithString:">initWithString:</a>.</p>
 
-<p>You can then optionnaly compile them with the <a href="#//api/name/compile">compile</a> method. If you don&rsquo;t do it, the template will be compiled automatically the first time your application tries to render it. Compilation is cached, meaning that it&rsquo;s done once only.</p>
+<p>You can then optionnaly compile them with the <compile> method. If you don&rsquo;t do it, the template will be compiled automatically the first time your application tries to render it. Compilation is cached, meaning that it&rsquo;s done once only.</p>
 
-<p>You can render a template with the <a href="#//api/name/renderWithContext:">renderWithContext:</a> method. Please see <a href="../Classes/HBHandlebars.html">HBHandlebars</a> for a discussion of what a context object is.</p>
+<p>You can render a template with the &lt;renderWithContext:> method. Please see <a href="../Classes/HBHandlebars.html">HBHandlebars</a> for a discussion of what a context object is.</p>
 
 <p>Templates can also have &ldquo;local&rdquo; helpers and partial, ie helpers and partials that are only available to this template. To register local helpers, use the <a href="#//api/name/helpers">helpers</a> property and manipulate the corresponsing registry directly. To add local partial use <partial> property.</p>
 					</div>
@@ -184,7 +184,7 @@
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/renderWithContext:">&ndash;&nbsp;renderWithContext:</a></code>
+		<code><a href="#//api/name/renderWithContext:error:">&ndash;&nbsp;renderWithContext:error:</a></code>
 		<span class="tooltip"><p>Render a template</p></span>
 	</span>
 	
@@ -199,7 +199,7 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/compile">&ndash;&nbsp;compile</a></code>
+		<code><a href="#//api/name/compile:">&ndash;&nbsp;compile:</a></code>
 		<span class="tooltip"><p>Compile the receiver.</p></span>
 	</span>
 	
@@ -286,8 +286,8 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/compile" title="compile"></a>
-	<h3 class="subsubtitle method-title">compile</h3>
+	<a name="//api/name/compile:" title="compile:"></a>
+	<h3 class="subsubtitle method-title">compile:</h3>
 	
 	
 	
@@ -297,9 +297,19 @@
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)compile</code></div>
+	<div class="method-subsection method-declaration"><code>- (void)compile:(NSError **)<em>error</em></code></div>
 
     
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>pointer to an error object that is set in case of parsing error.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
@@ -481,8 +491,8 @@ Please see <HBTemplateRegistry> for more details.</p>
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/renderWithContext:" title="renderWithContext:"></a>
-	<h3 class="subsubtitle method-title">renderWithContext:</h3>
+	<a name="//api/name/renderWithContext:error:" title="renderWithContext:error:"></a>
+	<h3 class="subsubtitle method-title">renderWithContext:error:</h3>
 	
 	
 	
@@ -492,7 +502,7 @@ Please see <HBTemplateRegistry> for more details.</p>
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (NSString *)renderWithContext:(id)<em>context</em></code></div>
+	<div class="method-subsection method-declaration"><code>- (NSString *)renderWithContext:(id)<em>context</em> error:(NSError **)<em>error</em></code></div>
 
     
 	
@@ -502,6 +512,11 @@ Please see <HBTemplateRegistry> for more details.</p>
 		<dl class="argument-def parameter-def">
 			<dt><em>context</em></dt>
 			<dd><p>The object containing the data used in the template. Can be any property-list compatible object for instance.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>error</em></dt>
+			<dd><p>Pointer to an NSError object that will be set in case an error occurs during rendering.</p></dd>
 		</dl>
 		
 	</div>
@@ -551,7 +566,7 @@ Please see <HBTemplateRegistry> for more details.</p>
 					<div class="footer-copyright">
 						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-14)</span><br />
 						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 961)</a>.</span></p>
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						
 					</div>
 				</div>

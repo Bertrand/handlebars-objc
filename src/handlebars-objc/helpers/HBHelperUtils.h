@@ -27,6 +27,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ HBHelperUtils is a class containing methods useful when writing helpers. 
+ 
+ */
 
 @interface HBHelperUtils : NSObject
 
@@ -77,7 +81,7 @@
  
     - (id) objectAtIndexedSubscript:(NSUInteger)index;
 
- @param object enumerable indexed value
+ @param value enumerable indexed value
  @since v1.0
  */
 + (NSArray*) arrayFromValue:(id)value;

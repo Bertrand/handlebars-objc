@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>HBPartial Class Reference</title>
+		<title>HBParseError Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">HBPartial Class Reference</h1>
+				<h1 class="hideInXcode">HBParseError Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -38,13 +38,19 @@
 	
 	
 	
-	<option value="properties">Properties</option>
-	
-	<option value="//api/name/string">&nbsp;&nbsp;&nbsp;&nbsp;string</option>
 	
 	
 	
 	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/contextInBuffer">&nbsp;&nbsp;&nbsp;&nbsp;- contextInBuffer</option>
+	
+	<option value="//api/name/lineNumber">&nbsp;&nbsp;&nbsp;&nbsp;- lineNumber</option>
+	
+	<option value="//api/name/lowLevelParserDescription">&nbsp;&nbsp;&nbsp;&nbsp;- lowLevelParserDescription</option>
+	
+	<option value="//api/name/positionInBuffer">&nbsp;&nbsp;&nbsp;&nbsp;- positionInBuffer</option>
 	
 	
 	
@@ -68,22 +74,28 @@
 
 
 
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/string">string</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contextInBuffer">contextInBuffer</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineNumber">lineNumber</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lowLevelParserDescription">lowLevelParserDescription</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/positionInBuffer">positionInBuffer</a></span></li>
 	
 </ul></li>
-
-
-
-
 
 
 			</ul>
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="HBPartial Class Reference" name="top"></a>
+				<a title="HBParseError Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -92,7 +104,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">HBPartial Class Reference</h1>
+						<h1 class="title title-header">HBParseError Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -100,10 +112,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<td class="specification-value">NSError</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">HBPartial.h</td>
+	<td class="specification-value">HBErrorHandling.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -113,7 +125,7 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>HBPartial is the class representing partials in HBHandlebars</p>
+						<p>HBParseError errors can be generated when a template file contains errors.</p>
 					</div>
 					
 					
@@ -131,10 +143,31 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/string">&nbsp;&nbsp;string</a></code>
-		<span class="tooltip"><p>partial string</p></span>
+		<code><a href="#//api/name/lineNumber">&ndash;&nbsp;lineNumber</a></code>
+		<span class="tooltip"><p>line number where error can be found</p></span>
 	</span>
-	<span class="task-item-suffix">property</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/positionInBuffer">&ndash;&nbsp;positionInBuffer</a></code>
+		<span class="tooltip"><p>position in buffer of error</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/contextInBuffer">&ndash;&nbsp;contextInBuffer</a></code>
+		<span class="tooltip"><p>string containing the buffer area around error</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lowLevelParserDescription">&ndash;&nbsp;lowLevelParserDescription</a></code>
+		<span class="tooltip"><p>a detailed error string returned by low-level parser.</p></span>
+	</span>
+	
 	
 </li>
 						</ul>
@@ -145,23 +178,27 @@
 					
 					
 					
+					
+					
+					
+					
 					<div class="section section-methods">
-						<a title="Properties" name="properties"></a>
-						<h2 class="subtitle subtitle-methods">Properties</h2>
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/string" title="string"></a>
-	<h3 class="subsubtitle method-title">string</h3>
+	<a name="//api/name/contextInBuffer" title="contextInBuffer"></a>
+	<h3 class="subsubtitle method-title">contextInBuffer</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>partial string</p>
+		<p>string containing the buffer area around error</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (retain, nonatomic) NSString *string</code></div>
+	<div class="method-subsection method-declaration"><code>- (NSString *)contextInBuffer</code></div>
 
     
 	
@@ -179,17 +216,121 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBPartial.h</code><br />
+		<code class="declared-in-ref">HBErrorHandling.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lineNumber" title="lineNumber"></a>
+	<h3 class="subsubtitle method-title">lineNumber</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>line number where error can be found</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)lineNumber</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBErrorHandling.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lowLevelParserDescription" title="lowLevelParserDescription"></a>
+	<h3 class="subsubtitle method-title">lowLevelParserDescription</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>a detailed error string returned by low-level parser.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)lowLevelParserDescription</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBErrorHandling.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/positionInBuffer" title="positionInBuffer"></a>
+	<h3 class="subsubtitle method-title">positionInBuffer</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>position in buffer of error</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)positionInBuffer</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBErrorHandling.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 					</div>
-					
-					
-					
-					
 					
 					
 				</div>
