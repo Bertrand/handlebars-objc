@@ -1,1 +1,10 @@
-pod 'handlebars-objc', :path => "../../../../"
+
+target 'osx-app', :exclusive => true do
+  	platform :osx, '10.8'
+	pod 'handlebars-objc', :path => "../../../../"
+end
+
+target 'ios-app', :exclusive => true do
+  	platform :ios, '7.0'
+  	pod 'handlebars-objc', :path => "../../../../"
+end
