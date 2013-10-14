@@ -19,7 +19,7 @@ TMP_FOLDER="/tmp/gh_page_generation"
 rm -rf "$TMP_FOLDER"
 mkdir -p "$TMP_FOLDER"
 
-cp -RPf "$ROOT_DIR/api_doc/html "$TMP_FOLDER/api_doc"
+cp -RPf "$ROOT_DIR/api_doc/html" "$TMP_FOLDER/api_doc"
 
 pushd . 
 cd "$ROOT_DIR"
