@@ -150,9 +150,10 @@ No let's use our new helper
 
 ```objc
 // render a template using the helper
+NSError* error = nil;
 NSString* renderedTemplate =
     [HBHandlebars renderTemplateString:@"Date is: {{formatted_date}}"
-                           withContext:@{}];
+                           withContext:@{} error:&error];
 
 NSLog(@"rendered value : '%@'", renderedTemplate);
 ```
@@ -199,9 +200,10 @@ HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
 Now let's render a template
 ```
     // render a template using the helper
+    NSError* error = nil;
     NSString* renderedTemplate =
         [HBHandlebars renderTemplateString:@"Birthday is: {{formatted_date birthday_date}}"
-                               withContext:@{ @"birthday_date": @"01/23/1862"}];
+                               withContext:@{ @"birthday_date": @"01/23/1862"} error:&error];
     
     NSLog(@"rendered value : '%@'", renderedTemplate);
 ```
@@ -284,9 +286,10 @@ good to know how to avoid re-instantiating the same objects over and over.
 Now let's render a template using our new parameter:
 ```objc
 // render a template using the helper
+NSError* error = nil;
 NSString* renderedTemplate =
     [HBHandlebars renderTemplateString:@"Birthday is: {{formatted_date birthday_date date_format='full'}}"
-                           withContext:@{ @"birthday_date": @"01/23/1862"}];
+                           withContext:@{ @"birthday_date": @"01/23/1862"} error:&error];
 
 NSLog(@"rendered value : '%@'", renderedTemplate);
 ```
@@ -377,7 +380,8 @@ Elements sorted by descending last name:\n\
 {{first_name}} {{last_name}}\n\
 {{/sort}}";
 
-renderedTemplate = [HBHandlebars renderTemplateString:template withContext:context];
+NSError* error = nil;
+NSString* renderedTemplate = [HBHandlebars renderTemplateString:template withContext:context error:&error];
 
 NSLog(@"rendered value : '%@'", renderedTemplate);
 ```
