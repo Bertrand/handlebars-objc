@@ -24,16 +24,16 @@ Helpers generally help formatting raw data from your models (think iso 8601 date
 
 Blocks helpers have even been used to implement a clean cache-compatible compositional view system in ruby-on-rails. 
 
-Handlebars implementations are available for [Javascript](http://handlebarsjs.com/), [Java](https://github.com/jknack/handlebars.java) or [Ruby](https://github.com/cowboyd/handlebars.rb). 
+Handlebars implementations are available for [Javascript](http://handlebarsjs.com/), [Java](https://github.com/jknack/handlebars.java), [Ruby](https://github.com/cowboyd/handlebars.rb)  (via [therubyracer](https://github.com/cowboyd/therubyracer)) and [PHP](https://github.com/XaminProject/handlebars.php). 
 
 In short, if your looking for a templating system with a clean view/model separation and want to render them in Objective-C and in Javascript (or Java), Handlebars is probably what you need. 
 
 What handlebars-objc is not 
 ===========================
 
-Handlebars-objc doesn't try to be more versatile than other Handlebars implementations. As such it doesn't try to give control over rendering to the hosting application. beyond helpers implementation. Helpers are generally simple to write and can easily be ported to other Handlebars implementation. Any other mechanism would break potential compatibility with other Handlebars implementation, and would probably increase global warming. 
+Handlebars-objc doesn't try to be more versatile than other Handlebars implementations. As such it doesn't try to give control over rendering to the hosting application beyond helpers implementation. Helpers are generally simple to write and can easily be ported to other Handlebars implementation. Any other mechanism would potentially break compatibility with other Handlebars implementation, and would thus increase global warming. 
 
-Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache]). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general). Plus, GRMustache doesn't increase global warming. 
+Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache]). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general) from your hosting application. Plus, GRMustache doesn't increase global warming. 
 
 
 Getting Started
