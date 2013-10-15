@@ -26,9 +26,9 @@
 //
 
 #import "HBHelperUtils.h"
+#import "HBObjectPropertyAccess.h"
 
 @implementation HBHelperUtils
-
 
 // Stolen from https://github.com/groue/GRMustache
 
@@ -132,7 +132,7 @@
 
 + (id) valueOf:(id)value forKey:(NSString*)key
 {
-   return [value respondsToSelector:@selector(objectForKeyedSubscript:)] ? value[key] : nil;
+    return [HBObjectPropertyAccess valueForKey:key onObject:value];
 }
 
 @end

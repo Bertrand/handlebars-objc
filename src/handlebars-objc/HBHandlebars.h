@@ -73,6 +73,13 @@
 */
 
 
+// Protocol your classes should implement to filter what keys can be accessed by Handlebars templates.
+// If you don't only objective-C properties will be accessible.
+@protocol HBHandlebarsKVCValidation
++ (NSArray*) validKeysForHandlebars;
+@end
+
+
 // Logger type definition
 typedef NSString* (^HBLoggerBlock)(NSInteger level, id object);
 
@@ -83,7 +90,7 @@ typedef NSString* (^HBLoggerBlock)(NSInteger level, id object);
 /**
 Render a string template for a data context.
  
-This method is the simplest way to render a template with handlebars-objc. It instanciates an HBTemplate instance compiles the template and renders it.
+This method is the simplest way to render a template with handlebars-objc. It instanciates an HBTemplate instance, compiles the template and renders it.
  
 This method should be used only if you render templates in non mission-critical parts of your application. In particular, the provided template string is recompiled at each call. If your application calls it repeatedly, you should rather instantiate HBTemplate instances.
 

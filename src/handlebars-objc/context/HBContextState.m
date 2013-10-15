@@ -28,6 +28,7 @@
 #import "HBContextState.h"
 #import "HBAstContextualValue.h" 
 #import "HBDataContext.h" 
+#import "HBObjectPropertyAccess.h"
 
 @implementation HBContextState
 
@@ -43,16 +44,14 @@
 {
     if (!context) return nil;
     id result;
-    if ([context respondsToSelector:@selector(objectForKeyedSubscript:)]) {
-        @try {
-            result = [context objectForKeyedSubscript:key];
-        }
-        @catch (NSException* e) {
-            result = nil;
-        }
-    } else {
+
+    @try {
+        result = [HBObjectPropertyAccess valueForKey:key onObject:context];
+    }
+    @catch (NSException* e) {
         result = nil;
     }
+
     return result;
 }
 

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060EEF55180D7460009F2C0A /* HBObjectPropertyAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 060EEF53180D7460009F2C0A /* HBObjectPropertyAccess.h */; };
+		060EEF56180D7460009F2C0A /* HBObjectPropertyAccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 060EEF53180D7460009F2C0A /* HBObjectPropertyAccess.h */; };
+		060EEF57180D7460009F2C0A /* HBObjectPropertyAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF54180D7460009F2C0A /* HBObjectPropertyAccess.m */; };
+		060EEF58180D7460009F2C0A /* HBObjectPropertyAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF54180D7460009F2C0A /* HBObjectPropertyAccess.m */; };
+		060EEF5A180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */; };
+		060EEF5B180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */; };
 		061ACEA1180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		061ACEA2180C1C8E00081763 /* HBErrorHandling.h in Headers */ = {isa = PBXBuildFile; fileRef = 061ACE9F180C1C8E00081763 /* HBErrorHandling.h */; };
 		061ACEA3180C1C8E00081763 /* HBErrorHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = 061ACEA0180C1C8E00081763 /* HBErrorHandling.m */; };
@@ -179,6 +185,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		060EEF53180D7460009F2C0A /* HBObjectPropertyAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBObjectPropertyAccess.h; sourceTree = "<group>"; };
+		060EEF54180D7460009F2C0A /* HBObjectPropertyAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBObjectPropertyAccess.m; sourceTree = "<group>"; };
+		060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestAccessToObjectProperties.m; sourceTree = "<group>"; };
 		061ACE9F180C1C8E00081763 /* HBErrorHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBErrorHandling.h; sourceTree = "<group>"; };
 		061ACEA0180C1C8E00081763 /* HBErrorHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBErrorHandling.m; sourceTree = "<group>"; };
 		061ACEA5180C209400081763 /* HBErrorHandling_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HBErrorHandling_Private.h; sourceTree = "<group>"; };
@@ -416,6 +425,7 @@
 		0630B1A617F2EF9100EA7018 /* handlebars-objcTests */ = {
 			isa = PBXGroup;
 			children = (
+				060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */,
 				06D426B817FC554800C41476 /* HBTestHelpers.m */,
 				06A81A9D17F87FFD0006F16A /* HBTestParser.m */,
 				06556D8617FF0B7600070907 /* HBTestPartials.m */,
@@ -524,6 +534,8 @@
 				06743FB417FB572B001793F7 /* HBContextRendering.m */,
 				06E4790817FC0CA90029C3D1 /* HBDataContext.h */,
 				06E4790917FC0CA90029C3D1 /* HBDataContext.m */,
+				060EEF53180D7460009F2C0A /* HBObjectPropertyAccess.h */,
+				060EEF54180D7460009F2C0A /* HBObjectPropertyAccess.m */,
 			);
 			path = context;
 			sourceTree = "<group>";
@@ -619,6 +631,7 @@
 				06A81A9717F86ECE0006F16A /* HBAstVisitor.h in Headers */,
 				06556D9517FF178300070907 /* HBHandlebars.h in Headers */,
 				06E4790A17FC0CA90029C3D1 /* HBDataContext.h in Headers */,
+				060EEF55180D7460009F2C0A /* HBObjectPropertyAccess.h in Headers */,
 				06743FB918005CFB001793F7 /* HBBuiltinHelpersRegistry.h in Headers */,
 				06798D3717F5B70200FC40D7 /* HBAstTag.h in Headers */,
 				061ACEA1180C1C8E00081763 /* HBErrorHandling.h in Headers */,
@@ -632,6 +645,7 @@
 			files = (
 				06F493891802D1820055B5BC /* HBPartial.h in Headers */,
 				06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */,
+				060EEF56180D7460009F2C0A /* HBObjectPropertyAccess.h in Headers */,
 				06D4DBD8180B4E4700278279 /* HBHelperUtils.h in Headers */,
 				06F493851802D1820055B5BC /* HBDataContext.h in Headers */,
 				06F493881802D1820055B5BC /* HBHelperRegistry.h in Headers */,
@@ -820,6 +834,7 @@
 				06743FBA18005CFB001793F7 /* HBBuiltinHelpersRegistry.m in Sources */,
 				06798D3817F5B70200FC40D7 /* HBAstTag.m in Sources */,
 				06556D8017FEFB0C00070907 /* HBPartial.m in Sources */,
+				060EEF57180D7460009F2C0A /* HBObjectPropertyAccess.m in Sources */,
 				06798D5E17F5D7AD00FC40D7 /* HBAstRawText.m in Sources */,
 				0630B1C217F2EFE600EA7018 /* handlebars-objc.ym in Sources */,
 				06D4DBD9180B4E4700278279 /* HBHelperUtils.m in Sources */,
@@ -848,6 +863,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06E478F417FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m in Sources */,
+				060EEF5A180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */,
 				06556D8717FF0B7600070907 /* HBTestPartials.m in Sources */,
 				06E478F617FAC87A0029C3D1 /* HBTestSimpleBlocks.m in Sources */,
 				06E478F217FAC2CB0029C3D1 /* HBTestSimpleTags.m in Sources */,
@@ -875,6 +891,7 @@
 				06F4936A1802D1500055B5BC /* HBAstTag.m in Sources */,
 				06F4937F1802D1500055B5BC /* HBPartial.m in Sources */,
 				06F493671802D1500055B5BC /* HBAstProgram.m in Sources */,
+				060EEF58180D7460009F2C0A /* HBObjectPropertyAccess.m in Sources */,
 				06F493681802D1500055B5BC /* HBAstRawText.m in Sources */,
 				06F493741802D1500055B5BC /* HBContextStack.m in Sources */,
 				06D4DBDA180B4E4700278279 /* HBHelperUtils.m in Sources */,
@@ -903,6 +920,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06F493B71802D75E0055B5BC /* HBTestParser.m in Sources */,
+				060EEF5B180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */,
 				06F493B91802D75E0055B5BC /* HBTestSimpleBlocks.m in Sources */,
 				06F493B81802D75E0055B5BC /* HBTestPartials.m in Sources */,
 				06F493BB1802D75E0055B5BC /* HBTestBuiltinBlockHelpers.m in Sources */,
