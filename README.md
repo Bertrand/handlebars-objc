@@ -1,7 +1,7 @@
 handlebars-objc
 ===============
 
-handlebars-objc is a complete implementation of Handlebars.js for Objective-C that aim at being 100% compatible with the original Javascript version. 
+handlebars-objc is a feature complete implementation of Handlebars.js for Objective-C that is and will reamin 100% compatible with the Javascript version. 
 
 
 What is Handlebars?
