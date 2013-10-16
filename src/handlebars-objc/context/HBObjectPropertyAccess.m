@@ -18,9 +18,9 @@
     
     while (class) {
         
-        unsigned int outCount, i;
-        objc_property_t *properties = class_copyPropertyList(class, &outCount);
-        for (i = 0; i < outCount; i++) {
+        unsigned int propertyCount, i;
+        objc_property_t *properties = class_copyPropertyList(class, &propertyCount);
+        for (i = 0; i < propertyCount; i++) {
             objc_property_t property = properties[i];
             [propertySet addObject:@(property_getName(property))];
         }
@@ -67,9 +67,51 @@
     return nil;
 }
 
++ (NSSet*) validKeysForCoreDataEntity:(id)entity
+{
+    static NSMutableDictionary* _perEntityNameValidKeys = nil;
+    
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        _perEntityNameValidKeys = [[NSMutableDictionary alloc] init];
+    });
+    
+    NSString* entityName = [entity name];
+    @synchronized(_perEntityNameValidKeys) {
+        if (!_perEntityNameValidKeys[entityName]) {
+            NSArray* entityPropertyKeys = [[entity propertiesByName] allKeys];
+            if ([entityPropertyKeys count] > 0) {
+                _perEntityNameValidKeys[entityName] = [NSSet setWithArray:entityPropertyKeys];
+            } else {
+                _perEntityNameValidKeys[entityName] = [NSNull null];
+            }
+        }
+        
+        id validKeys = _perEntityNameValidKeys[entityName];
+        return validKeys == [NSNull null] ? nil : validKeys;
+        
+    }
+    
+    return nil;
+}
+
++ (NSSet*) validKeysForInstance:(id)instance
+{
+    static Class managedObjectClass = nil;
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
+        managedObjectClass = NSClassFromString(@"NSManagedObject");
+    });
+    
+    if (![instance isKindOfClass:managedObjectClass]) return nil;
+    
+    // This is a CoreData managed object. Use its entity
+    return [self validKeysForCoreDataEntity:[instance entity]];
+}
+
 + (BOOL) isKey:(NSString*)key validForKVCOnObject:(id)object
 {
-    return [[self validKeysForClass:[object class]] containsObject:key];
+    return [[self validKeysForClass:[object class]] containsObject:key] || [[self validKeysForInstance:object] containsObject:key];
 }
 
 + (id) valueForKey:(NSString *)key onObject:(id)object
