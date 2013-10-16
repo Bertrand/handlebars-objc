@@ -113,14 +113,21 @@
     return 0;
 }
 
++ (BOOL) isArrayLikeValue:(id)value
+{
+    if (!value) return NO;
+    if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSOrderedSet class]] || [value isKindOfClass:[NSSet class]]) return true;
+    
+    return [value conformsToProtocol:@protocol(NSFastEnumeration)] && ([value respondsToSelector:@selector(objectAtIndex:)] || [value respondsToSelecto@selector(objectAtIndexedSubscript:)]);
+}
+
+
 + (NSArray*) arrayFromValue:(id)value
 {
+    if (![self isArrayLikeValue:value]) return nil;
+    
     // if value is already an object simply return it.
     if ([value isKindOfClass:[NSArray class]]) return value;
-    
-    // value is not an array but might conform to the necessary protocols.
-    if (![value conformsToProtocol:@protocol(NSFastEnumeration)]) return nil;
-    if (![value respondsToSelector:@selector(objectAtIndexedSubscript:)]) return nil;
     
     NSMutableArray* array = [NSMutableArray array];
     for (id object in value) {

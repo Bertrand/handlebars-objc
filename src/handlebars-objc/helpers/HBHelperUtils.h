@@ -71,6 +71,23 @@
  */
 + (NSInteger)evaluateObjectAsInteger:(id)object;
 
+/** 
+ Test if a value can be enumerated as an array
+ 
+ This method tests several heuristics in order to determine if value is an array-like object. 
+ An object is considered as an array-like value by handlebars-objc if it's an NSArray subclass, an NSOrderedSet subclass or an NSSet subclass or if:
+ - if conforms to the [NSFastEnumeration](https://developer.apple.com/library/ios/documentation/cocoa/Reference/NSFastEnumeration_protocol/Reference/NSFastEnumeration.html) protocol
+ - it responds to objectAtIndex: or to objectAtIndexedSubscript:
+ 
+ If calling this method on an object returns true, then <arrayFromValue:> can be used to access the value as an array.
+ 
+ @param value the value to test
+ @return true is the value is an array-like value, false otherwise. 
+ @see arrayFromValue:
+ @since v1.0.0
+ */
++ (BOOL) isArrayLikeValue:(id)value;
+
 /**
  Return an array containing the elements of an enumerable indexed value.
  

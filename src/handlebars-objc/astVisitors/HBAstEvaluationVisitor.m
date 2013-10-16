@@ -200,7 +200,7 @@
         id evaluatedExpression = [self visitExpression:node.expression];
         HBDataContext* currentData = [[self.contextStack current] dataContext];
                                       
-        if (evaluatedExpression && [evaluatedExpression respondsToSelector:@selector(objectAtIndexedSubscript:)]) {
+        if ([HBHelperUtils isArrayLikeValue:evaluatedExpression] ) {
             // Array-like context
             id<NSFastEnumeration> arrayLike = evaluatedExpression;
             NSInteger index = 0;
@@ -221,17 +221,16 @@
                 return result;
             }
             
-        } else if (evaluatedExpression && [evaluatedExpression respondsToSelector:@selector(objectForKeyedSubscript:)]) {
-            // Dictionary-like context
-            return forwardStatementsEvaluator(evaluatedExpression, currentData);
-            
-        } else {
+        } else if (evaluatedExpression == nil || [evaluatedExpression isKindOfClass:[NSString class]] || [evaluatedExpression isKindOfClass:[NSNumber class]]) {
             // String of scalar context
             if ([HBHelperUtils evaluateObjectAsBool:evaluatedExpression]) {
                 return forwardStatementsEvaluator(evaluatedExpression, currentData);
             } else {
                 return inverseStatementsEvaluator(evaluatedExpression, currentData);
             }
+        } else {
+            // Dictionary-like context
+            return forwardStatementsEvaluator(evaluatedExpression, currentData);            
         }
     }
     return nil;
