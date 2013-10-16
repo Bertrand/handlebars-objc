@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "handlebars-objc"
-  s.version      = "0.5.0"
+  s.version      = "1.0.0"
   s.summary      = "handlebars-objc is an implementation of Handlebars.js for Objective-C"
   s.homepage     = "https://github.com/fotonauts/handlebars-objc"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
