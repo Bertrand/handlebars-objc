@@ -144,6 +144,56 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+// each with @first
+- (void) testEachWithAtFirst
+{
+    NSError* error = nil;
+    id string = @"{{#each goodbyes}}{{#if @first}}{{text}}! {{/if}}{{/each}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
+                          @"goodbye! cruel world!", @"The @first variable is used");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
+
+// each with nested @first
+- (void) testEachWithNestedAtFirst
+{
+    NSError* error = nil;
+    id string = @"{{#each goodbyes}}({{#if @first}}{{text}}! {{/if}}{{#each ../goodbyes}}{{#if @first}}{{text}}!{{/if}}{{/each}}{{#if @first}} {{text}}!{{/if}}) {{/each}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
+                          @"(goodbye! goodbye! goodbye!) (goodbye!) (goodbye!) cruel world!", @"The @first variable is used");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
+// each with @last
+- (void) testEachWithAtLast
+{
+    NSError* error = nil;
+    id string = @"{{#each goodbyes}}{{#if @last}}{{text}}! {{/if}}{{/each}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
+                          @"GOODBYE! cruel world!", @"The @last variable is used");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
+
+// each with nested @last
+- (void) testEachWithNestedAtLast
+{
+    NSError* error = nil;
+    id string = @"{{#each goodbyes}}({{#if @last}}{{text}}! {{/if}}{{#each ../goodbyes}}{{#if @last}}{{text}}!{{/if}}{{/each}}{{#if @last}} {{text}}!{{/if}}) {{/each}}cruel {{world}}!";
+    id hash = @{ @"goodbyes": @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ], @"world": @"world" };
+    
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
+                          @"(GOODBYE!) (GOODBYE!) (GOODBYE! GOODBYE! GOODBYE!) cruel world!", @"The @last variable is used");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
 
 // #log
 - (void) testLog

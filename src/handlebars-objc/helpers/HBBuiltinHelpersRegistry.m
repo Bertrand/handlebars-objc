@@ -79,8 +79,13 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             NSInteger index = 0;
             HBDataContext* arrayData = currentData ? [currentData copy] : [HBDataContext new];
             NSMutableString* result = [NSMutableString string];
+            NSInteger objectCount = 0;
+            for (id arrayElement in arrayLike) { objectCount++; } // compute element counts. Should be in helper utils and optimized in trivial cases.
             for (id arrayElement in arrayLike) {
                 arrayData[@"index"] = @(index);
+                arrayData[@"first"] = @(index == 0);
+                arrayData[@"last"] = @(index == (objectCount-1));
+                
                 id statementEvaluation = callingInfo.statements(arrayElement, arrayData);
                 if (statementEvaluation) [result appendString:statementEvaluation];
                 index++;
