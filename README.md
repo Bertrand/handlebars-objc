@@ -85,6 +85,7 @@ Going Further
 If you like to read reference documentation, read the [public API reference documentation](http://fotonauts.github.io/handlebars-objc/api_doc/).
 
 The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
- - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md) (This guide)
- - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md)
+ - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md): This guide
+ - [Context Objects](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ContextObjects.md): How Handlebars accesses data in your context objects
+ - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md): Learn how to write your own helpers
 
