@@ -156,6 +156,67 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+- (void) testAccessToCoreDataProperties
+{
+	NSManagedObjectModel *model = [[NSManagedObjectModel alloc] init];
+    
+	// create the entity
+	NSEntityDescription *entity = [[NSEntityDescription alloc] init];
+	[entity setName:@"Person"];
+	[entity setManagedObjectClassName:@"Person"];
+    
+	// create the attributes
+	NSMutableArray *properties = [NSMutableArray array];
+    
+	NSAttributeDescription *nameAttribute = [[NSAttributeDescription alloc] init];
+	[nameAttribute setName:@"name"];
+	[nameAttribute setAttributeType:NSStringAttributeType];
+	[nameAttribute setOptional:NO];
+	[properties addObject:nameAttribute];
+    
+    // add attributes to entity
+	[entity setProperties:properties];
+    
+	// add entity to model
+	[model setEntities:[NSArray arrayWithObject:entity]];
+    
+ 
+    // setup persistent store coordinator
+	NSURL *storeURL = [NSURL fileURLWithPath:[@"/tmp/" stringByAppendingPathComponent:@"handlebars-objc-teststore"]];
+    
+	NSError *error = nil;
+	NSPersistentStoreCoordinator* persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+    
+	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+	{
+		// inconsistent model/store
+		[[NSFileManager defaultManager] removeItemAtURL:storeURL error:NULL];
+        
+		// retry once
+		if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error])
+		{
+			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+			abort();
+		}
+	}
+    
+	// create MOC
+	NSManagedObjectContext* managedObjectContext = [[NSManagedObjectContext alloc] init];
+	[managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
+    
+    NSManagedObject* person = [[NSManagedObject alloc]
+                      initWithEntity:entity
+                      insertIntoManagedObjectContext:managedObjectContext];
+    
+    [person setValue:@"paulo" forKey:@"name"];
+    
+    NSError* renderError = nil;
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"Hello {{name}}" withContext:person error:&renderError],
+                          @"Hello paulo");
+    XCTAssert(!renderError, @"evaluation should not generate an error");
+}
+
+
 @end
 
 
