@@ -17,7 +17,7 @@ In many case, you'll want context objects to be existing objects from your appli
 Don't panic, this is totally fine. And we'll see in a moment how to do it.
 
 
-## Access to Objects properties ##
+## How handlebars-objc accesses Objects properties ##
 
 Handlebars tries several methods in order when accessing a property on an object: 
 
@@ -67,9 +67,63 @@ This is the way to go if you don't know up-front what properties your object may
 Suppose your objects are wrappers around arbitrary XML objects your receive from the network. You don't know at implementation-time what properties your objects will respond to.
 In this case, using the keyed subscripting method is the way to go. 
 
+## Iterable collections ##
+
+In many cases, Handlebars needs to know if an object should be treated as an iterable collection or not.  
+This section explains why, and then explains how handlebars-objc decides if an object is an iterable-collection.
+
+### The need to identify iterable collections ###
+
+Lets take an example. The following Handlebars template: 
+
+```
+{{#object}}{{name}}{{/object}}
+```
+
+will not at all do the same operations if the context is: 
+
+```
+@{ @"object" : @[ @{ @"name" : @"Allan" }, @{ @"name" : @"David" } ] }
+```
+
+or if the context is 
+```
+@{ @"object" : @{ @"name" : @"Daniel" } }
+```
+
+In the first case, object is an NSArray and in this case '{{#object}}' means "iterate over the element of object".  
+In the second case, object is an NSDictionary, and in this case '{{#object}}' means "context is now 'object'".
+
+If handlebars-objc did not know it should iterate on NSArray objects, it would try to access the property 'name' on 'object' (an NSArray instance) and this would return nothing. 
+
+In our example, the response is easy. An NSArray is a iterable collection, an NSDictionary is not. 
+
+But if you provide your own objects as contexts to handlebars-objc, how does it decide which ones are collections and which ones are not? 
+
+### How handlebars-objc decides that an object is an iterable collection ###
+
+First rule: if an oject is a subclass of NSArray, NSOrderedSet or NSSet, it is considered as an iterable collection. 
+
+If you use your own objects as contexts, chances are you will one day want Handlebars to see some of your Classes as iterable collections. 
+
+Second rule: 
+ - if an object implements the [FastEnumeration](https://developer.apple.com/library/ios/documentation/cocoa/Reference/NSFastEnumeration_protocol/Reference/NSFastEnumeration.html) objective-C protocol 
+AND
+ - if an object responds to 'objectAtIndex:' or 'objectAtIndexedSubscript:'
+ 
+Then handlebars-objc will identify it as an iterable collection. It will then use fast iteration to iterate over its members. 
 
 
-## Why limiting the attributes accessible using Key-Value Coding ? ##
+## FAQ ##
+
+### Can I use CoreData objects as contexts ###
+
+Yes!
+
+Handlebars-objc considers core data properties as valid for KVC access (attributes, relationships, fetched properties). 
+And since CoreData proxies to-many relationships as NSSet subclasses (if relationship is unordered) or NSArray subclasses (if relationship is ordered), handlebars-objc will also happily iterate over your to-many relationships. 
+
+### Why limiting the attributes accessible using Key-Value Coding ? ###
 
 Allowing arbitrary access from templates to properties of an object through Key-Value Coding is rather dangerous.
 
