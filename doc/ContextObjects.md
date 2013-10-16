@@ -35,7 +35,9 @@ In short this means handlebars-objc is able to read your objects' attributes wit
 
 However, for security reasons, handlebars-objc will not run valueForKey: for any key.
 
-**By default, only attributes declared as objective-C properties will be available to templates**
+**By default, only attributes declared as objective-C properties will be available to templates.**
+
+There is an exception to this principle. All CoreData properties are also accessible on NSManagedObject instances. 
 
 If this doesn't fit your needs, **you can override that behaviour** by implementing the following method on your object class: 
 
