@@ -10,6 +10,11 @@
 #import "HBHandlebars.h"
 #import <objc/runtime.h>
 
+@interface NSObject(CoreDataMethods)
+- (NSDictionary*)propertiesByName;
+- (id)entity;
+@end
+
 @implementation HBObjectPropertyAccess
 
 + (id /* NSSet or nil */) objectiveCPropertyNamesForClass:(Class)class
@@ -50,7 +55,7 @@
                 // if class implements the HBHandlebarsKVCValidation protocol, then what's returned
                 // by +[class validKeysForHandlebars] is authoritative.
                 NSArray* validKeysAsArray = [class validKeysForHandlebars];
-                computedValidKeys = validKeysAsArray ? [NSSet setWithArray:validKeysAsArray] : [NSNull null];
+                computedValidKeys = validKeysAsArray ? [NSSet setWithArray:validKeysAsArray] : (id)[NSNull null];
                 
             } else {
                 // class doesn't explicitely tell what keys are valid, let's fallback on objectiveC properties.

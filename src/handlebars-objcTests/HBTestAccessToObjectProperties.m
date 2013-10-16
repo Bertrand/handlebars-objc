@@ -9,7 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "HBHandlebars.h"
 #import "HBObjectPropertyAccess.h"
-
+#import <CoreData/CoreData.h>
 
 
 @interface AClass : NSObject
