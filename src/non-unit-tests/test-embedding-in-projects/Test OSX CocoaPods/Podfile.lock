@@ -1,5 +1,5 @@
 PODS:
-  - handlebars-objc (0.5.0)
+  - handlebars-objc (1.0.0)
 
 DEPENDENCIES:
   - handlebars-objc (from `../../../../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../../../../
 
 SPEC CHECKSUMS:
-  handlebars-objc: 963b9c5e220cf3c3e1bc7bc153753accfdaa5dfc
+  handlebars-objc: a3b199b10c54f68f3abeefe85b0c9930deb00754
 
 COCOAPODS: 0.26.2
