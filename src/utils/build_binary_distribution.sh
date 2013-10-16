@@ -31,12 +31,12 @@ mkdir -p "$IOS_FRAMEWORK_DIR/Versions/A/Headers"
 BUILD_DIRECTORY="/tmp/handlebars-objc/build"
 rm -rf "$BUILD_DIRECTORY"
 
-xcodebuild -project "$XCODE_PROJECT" -target handlebars-objc-ios SYMROOT="$BUILD_DIRECTORY/symroot-ios-armv7" DSTROOT="$BUILD_DIRECTORY/dstroot" OBJROOT="$BUILD_DIRECTORY/objroot-ios-armv7"  SDKROOT=iphoneos6.0 ARCHS="armv7 armv7s" install
+xcodebuild -project "$XCODE_PROJECT" -target handlebars-objc-ios SYMROOT="$BUILD_DIRECTORY/symroot-ios-armv7" DSTROOT="$BUILD_DIRECTORY/dstroot-ios-armv7" OBJROOT="$BUILD_DIRECTORY/objroot-ios-armv7"  SDKROOT=iphoneos6.0 ARCHS="armv7 armv7s" install
 
-xcodebuild -project "$XCODE_PROJECT" -target handlebars-objc-ios SYMROOT="$BUILD_DIRECTORY/symroot-ios-emulator" DSTROOT="$BUILD_DIRECTORY/dstroot" OBJROOT="$BUILD_DIRECTORY/objroot-ios-emulator"  SDKROOT=iphonesimulator6.0 ARCHS="i386 x86_64" install
+xcodebuild -project "$XCODE_PROJECT" -target handlebars-objc-ios SYMROOT="$BUILD_DIRECTORY/symroot-ios-emulator" DSTROOT="$BUILD_DIRECTORY/dstroot-ios-emulator" OBJROOT="$BUILD_DIRECTORY/objroot-ios-emulator"  SDKROOT=iphonesimulator6.0 ARCHS="i386 x86_64" install
 
 
-xcodebuild -project "$XCODE_PROJECT" -target handlebars-objc-ios SYMROOT="$BUILD_DIRECTORY/symroot-ios-arm64" DSTROOT="$BUILD_DIRECTORY/dstroot" OBJROOT="$BUILD_DIRECTORY/objroot-ios-arm64"  SDKROOT=iphoneos6.0 ARCHS="arm64" install
+xcodebuild -project "$XCODE_PROJECT" -target handlebars-objc-ios SYMROOT="$BUILD_DIRECTORY/symroot-ios-arm64" DSTROOT="$BUILD_DIRECTORY/dstroot-ios-arm64" OBJROOT="$BUILD_DIRECTORY/objroot-ios-arm64"  SDKROOT=iphoneos6.0 ARCHS="arm64" install
 
 # mix all variants in a fat binary inside our framework skeleton 
 lipo -create "$BUILD_DIRECTORY/objroot-ios-armv7/UninstalledProducts/libhandlebars-objc-ios.a" "$BUILD_DIRECTORY/objroot-ios-emulator/UninstalledProducts/libhandlebars-objc-ios.a" "$BUILD_DIRECTORY/objroot-ios-arm64/UninstalledProducts/libhandlebars-objc-ios.a" -output "$IOS_FRAMEWORK_DIR/HBHandlebars"
