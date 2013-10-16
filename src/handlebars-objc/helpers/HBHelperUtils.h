@@ -91,7 +91,7 @@
  @see arrayFromValue:
  @since v1.0.0
  */
-+ (BOOL) isArrayLikeValue:(id)value;
++ (BOOL) isEnumerableByIndex:(id)value;
 
 
 /**

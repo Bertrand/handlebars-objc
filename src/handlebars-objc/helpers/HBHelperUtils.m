@@ -113,7 +113,7 @@
     return 0;
 }
 
-+ (BOOL) isArrayLikeValue:(id)value
++ (BOOL) isEnumerableByIndex:(id)value
 {
     if (!value) return NO;
     if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSOrderedSet class]] || [value isKindOfClass:[NSSet class]]) return true;
@@ -124,7 +124,7 @@
 
 + (NSArray*) arrayFromValue:(id)value
 {
-    if (![self isArrayLikeValue:value]) return nil;
+    if (![self isEnumerableByIndex:value]) return nil;
     
     // if value is already an object simply return it.
     if ([value isKindOfClass:[NSArray class]]) return value;

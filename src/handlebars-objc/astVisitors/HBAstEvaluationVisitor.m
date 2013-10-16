@@ -200,7 +200,7 @@
         id evaluatedExpression = [self visitExpression:node.expression];
         HBDataContext* currentData = [[self.contextStack current] dataContext];
                                       
-        if ([HBHelperUtils isArrayLikeValue:evaluatedExpression] ) {
+        if ([HBHelperUtils isEnumerableByIndex:evaluatedExpression] ) {
             // Array-like context
             id<NSFastEnumeration> arrayLike = evaluatedExpression;
             NSInteger index = 0;

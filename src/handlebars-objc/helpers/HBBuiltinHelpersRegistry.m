@@ -72,7 +72,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         id expression = callingInfo[0];
         HBDataContext* currentData = callingInfo.data;
         
-        if (expression && [HBHelperUtils isArrayLikeValue:expression]) {
+        if (expression && [HBHelperUtils isEnumerableByIndex:expression]) {
             // Array-like context
             id<NSFastEnumeration> arrayLike = expression;
             
