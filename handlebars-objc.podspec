@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/fotonauts/handlebars-objc"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Bertrand Guiheneuf" => "guiheneuf@gmail.com" }
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.8'
   s.source       = { :git => "https://github.com/fotonauts/handlebars-objc.git", :tag => "v#{s.version}" }
   s.source_files  = 'src/handlebars-objc', 'src/handlebars-objc/**/*.{h,m,ym,lm}'

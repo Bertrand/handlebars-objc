@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../../../../
 
 SPEC CHECKSUMS:
-  handlebars-objc: e2538cbf95646045cc116ae936b08ad5931372dd
+  handlebars-objc: 963b9c5e220cf3c3e1bc7bc153753accfdaa5dfc
 
-COCOAPODS: 0.25.0
+COCOAPODS: 0.26.2
