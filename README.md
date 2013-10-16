@@ -65,7 +65,7 @@ Render your first template
 Add this import clause to your objective-C implementation 
 
 ```objc
-#import <HBHandlebars/HBHandlebars>;
+#import <HBHandlebars/HBHandlebars>
 ```
 
 Then add 
