@@ -50,6 +50,10 @@
 	
 	<option value="//api/name/evaluateObjectAsInteger:">&nbsp;&nbsp;&nbsp;&nbsp;+ evaluateObjectAsInteger:</option>
 	
+	<option value="//api/name/isEnumerableByIndex:">&nbsp;&nbsp;&nbsp;&nbsp;+ isEnumerableByIndex:</option>
+	
+	<option value="//api/name/isEnumerableByKey:">&nbsp;&nbsp;&nbsp;&nbsp;+ isEnumerableByKey:</option>
+	
 	<option value="//api/name/valueOf:forKey:">&nbsp;&nbsp;&nbsp;&nbsp;+ valueOf:forKey:</option>
 	
 	
@@ -87,6 +91,10 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsBool:">evaluateObjectAsBool:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/evaluateObjectAsInteger:">evaluateObjectAsInteger:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEnumerableByIndex:">isEnumerableByIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isEnumerableByKey:">isEnumerableByKey:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/valueOf:forKey:">valueOf:forKey:</a></span></li>
 	
@@ -168,8 +176,22 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/isEnumerableByIndex:">+&nbsp;isEnumerableByIndex:</a></code>
+		<span class="tooltip"><p>Test if a value can be enumerated as an array</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/arrayFromValue:">+&nbsp;arrayFromValue:</a></code>
 		<span class="tooltip"><p>Return an array containing the elements of an enumerable indexed value.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isEnumerableByKey:">+&nbsp;isEnumerableByKey:</a></code>
+		<span class="tooltip"><p>Test if a value can be enumerated as an dictionary</p></span>
 	</span>
 	
 	
@@ -435,6 +457,163 @@ It should be used in helpers implementation when returning a value.</p>
 </div>
 						
 						<div class="section-method">
+	<a name="//api/name/isEnumerableByIndex:" title="isEnumerableByIndex:"></a>
+	<h3 class="subsubtitle method-title">isEnumerableByIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Test if a value can be enumerated as an array</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isEnumerableByIndex:(id)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>the value to test</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>true if the value is an array-like value, false otherwise.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method tests several heuristics in order to determine if value is an array-like object.
+An object is considered as an array-like value by handlebars-objc if it&rsquo;s an NSArray subclass, an NSOrderedSet subclass or an NSSet subclass or if:
+&ndash; if conforms to the <a href="https://developer.apple.com/library/ios/documentation/cocoa/Reference/NSFastEnumeration_protocol/Reference/NSFastEnumeration.html">NSFastEnumeration</a> protocol
+&ndash; it responds to objectAtIndex: or to objectAtIndexedSubscript:</p>
+
+<p>Those object can then enumerated using NSFastEnumeration for (&hellip; in &hellip;) constructs.</p>
+
+<p>If calling this method on an object returns true, then <a href="#//api/name/arrayFromValue:">arrayFromValue:</a> can be used to retrieve convert the collection to a plain NSArray.
+This is for instance very useful in helpers doing some sorting on the collection.</p>
+
+<p>Note: even though NSSet is not an ordered collection, it is included here because in practice enumeration of a NSSet is the only way one could want to use it in a template.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/arrayFromValue:">+ arrayFromValue:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperUtils.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isEnumerableByKey:" title="isEnumerableByKey:"></a>
+	<h3 class="subsubtitle method-title">isEnumerableByKey:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Test if a value can be enumerated as an dictionary</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)isEnumerableByKey:(id)<em>value</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>value</em></dt>
+			<dd><p>the value to test</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>true if the value is enumerable by key, false otherwise.</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.0.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method tests several heuristics in order to determine if value is an dictionary-like object.
+An object is considered as an array-like value by handlebars-objc if:
+&ndash; if conforms to the <a href="https://developer.apple.com/library/ios/documentation/cocoa/Reference/NSFastEnumeration_protocol/Reference/NSFastEnumeration.html">NSFastEnumeration</a> protocol
+&ndash; it responds to objectForKeyedSubscript:</p>
+
+<p>Of course, NSDictionary and its subclasses meet this two conditions.</p>
+
+<p>Because of this definition, those object can then be iterated on like this:</p>
+
+<pre><code>if ([HBHelperUtils isEnumerableByKey:value]) {
+    id&lt;NSFastEnumeration&gt; dictionaryLike = value;
+    for (id key in dictionaryLike) {
+        id prop = dictionaryLike[key];
+        NSLog(@"value of key %@ is %@", key, prop);
+    }
+}
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">HBHelperUtils.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/valueOf:forKey:" title="valueOf:forKey:"></a>
 	<h3 class="subsubtitle method-title">valueOf:forKey:</h3>
 	
@@ -515,7 +694,7 @@ It should be used in helpers implementation when returning a value.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-14)</span><br />
+						<p><span class="copyright">&copy; 2013 Fotonauts. All rights reserved. (Last updated: 2013-10-17)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.1 (build 840)</a>.</span></p>
 						

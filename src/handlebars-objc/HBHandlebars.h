@@ -37,10 +37,11 @@
 #import "HBTemplate.h"
 #import "HBHelperUtils.h"
 #import "HBErrorHandling.h"
+#import "HBHandlebarsKVCValidation.h"
 
 /** 
  
- This class is the main entry point for beginners. Most methods declared here are just user-friendly facades
+ This class is the main entry point for simple uses of Handlebars. Most methods declared here are just user-friendly facades
  to functionality available in other dedicated classes. 
  
  Unless you have specific needs and want more fine-grained control over the API, using the methods declared
@@ -72,12 +73,6 @@
  
 */
 
-
-// Protocol your classes should implement to filter what keys can be accessed by Handlebars templates.
-// If you don't only objective-C properties will be accessible.
-@protocol HBHandlebarsKVCValidation
-+ (NSArray*) validKeysForHandlebars;
-@end
 
 
 // Logger type definition
