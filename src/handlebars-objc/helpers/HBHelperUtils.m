@@ -118,9 +118,9 @@
     if (!value) return NO;
     if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSOrderedSet class]] || [value isKindOfClass:[NSSet class]]) return true;
     
-    return [value conformsToProtocol:@protocol(NSFastEnumeration)] && ([value respondsToSelector:@selector(objectAtIndex:)] || [value respondsToSelecto@selector(objectAtIndexedSubscript:)]);
+    return [value conformsToProtocol:@protocol(NSFastEnumeration)] && ([value respondsToSelector:@selector(objectAtIndex:)] || [value respondsToSelector:@selector(objectAtIndexedSubscript:)]);
+    
 }
-
 
 + (NSArray*) arrayFromValue:(id)value
 {
@@ -135,6 +135,11 @@
     }
     
     return array;
+}
+
++ (BOOL) isEnumerableByKey:(id)value
+{
+    return value && [value conformsToProtocol:@protocol(NSFastEnumeration)] && [value respondsToSelector:@selector(objectForKeyedSubscript:)];
 }
 
 + (id) valueOf:(id)value forKey:(NSString*)key

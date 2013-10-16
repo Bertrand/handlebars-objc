@@ -79,16 +79,20 @@
  - if conforms to the [NSFastEnumeration](https://developer.apple.com/library/ios/documentation/cocoa/Reference/NSFastEnumeration_protocol/Reference/NSFastEnumeration.html) protocol
  - it responds to objectAtIndex: or to objectAtIndexedSubscript:
  
- If calling this method on an object returns true, then <arrayFromValue:> can be used to access the value as an array.
+ Those object can then enumerated using NSFastEnumeration for (... in ...) constructs.
+ 
+ If calling this method on an object returns true, then <arrayFromValue:> can be used to retrieve convert the collection to a plain NSArray.
+ This is for instance very useful in helpers doing some sorting on the collection.
  
  Note: even though NSSet is not an ordered collection, it is included here because in practice enumeration of a NSSet is the only way one could want to use it in a template. 
  
  @param value the value to test
- @return true is the value is an array-like value, false otherwise. 
+ @return true if the value is an array-like value, false otherwise.
  @see arrayFromValue:
  @since v1.0.0
  */
 + (BOOL) isArrayLikeValue:(id)value;
+
 
 /**
  Return an array containing the elements of an enumerable indexed value.
@@ -104,6 +108,33 @@
  @since v1.0
  */
 + (NSArray*) arrayFromValue:(id)value;
+
+
+/**
+ Test if a value can be enumerated as an dictionary
+ 
+ This method tests several heuristics in order to determine if value is an dictionary-like object.
+ An object is considered as an array-like value by handlebars-objc if:
+ - if conforms to the [NSFastEnumeration](https://developer.apple.com/library/ios/documentation/cocoa/Reference/NSFastEnumeration_protocol/Reference/NSFastEnumeration.html) protocol
+ - it responds to objectForKeyedSubscript:
+ 
+ Of course, NSDictionary and its subclasses meet this two conditions.
+ 
+ Because of this definition, those object can then be iterated on like this:
+ 
+    if ([HBHelperUtils isEnumerableByKey:value]) {
+        id<NSFastEnumeration> dictionaryLike = value;
+        for (id key in dictionaryLike) {
+            id prop = dictionaryLike[key];
+            NSLog(@"value of key %@ is %@", key, prop);
+        }
+    }
+ 
+ @param value the value to test
+ @return true if the value is enumerable by key, false otherwise.
+ @since v1.0.0
+ */
++ (BOOL) isEnumerableByKey:(id)value;
 
 /**
  Return the value of a dictionary-like object for a key

@@ -72,9 +72,8 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         id expression = callingInfo[0];
         HBDataContext* currentData = callingInfo.data;
         
-        if (expression && [expression respondsToSelector:@selector(objectAtIndexedSubscript:)]) {
+        if (expression && [HBHelperUtils isArrayLikeValue:expression]) {
             // Array-like context
-            if (![expression conformsToProtocol:@protocol(NSFastEnumeration)]) return (NSString*)nil;
             id<NSFastEnumeration> arrayLike = expression;
             
             NSInteger index = 0;
@@ -95,7 +94,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
                 return (NSString*)result;
             }
             
-        } else if (expression && [expression respondsToSelector:@selector(objectForKeyedSubscript:)]) {
+        } else if (expression && [HBHelperUtils isEnumerableByKey:expression]) {
             // Dictionary-like context
             if (![expression conformsToProtocol:@protocol(NSFastEnumeration)]) return (NSString*)nil;
             id<NSFastEnumeration> dictionaryLike = expression;
