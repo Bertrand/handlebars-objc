@@ -81,6 +81,8 @@
  
  If calling this method on an object returns true, then <arrayFromValue:> can be used to access the value as an array.
  
+ Note: even though NSSet is not an ordered collection, it is included here because in practice enumeration of a NSSet is the only way one could want to use it in a template. 
+ 
  @param value the value to test
  @return true is the value is an array-like value, false otherwise. 
  @see arrayFromValue:
