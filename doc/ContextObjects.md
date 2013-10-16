@@ -116,7 +116,7 @@ Then handlebars-objc will identify it as an iterable collection. It will then us
 
 ## FAQ ##
 
-### Can I use CoreData objects as contexts ###
+### Can I use CoreData objects as contexts? ###
 
 Yes!
 
