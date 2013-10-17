@@ -43,23 +43,10 @@ Getting Started
 Integrate handlebars-objc into your project
 -------------------------------------------
 
-CocoaPods submission coming soon. 
-
-In the meantime here's how to integrate HBHandlebars as a subproject. 
-
-  - copy the sources of handlebars-objc into your project directory (or best, use a git submodule)
-  - add handlebars-objc.xcodeproj to your project (no need to add the whole sources to your project)
-
-Then if your project targets iOS:
-
-  - modify your project build settings and add "$(TEMP_ROOT)/Headers" to your headers search path (without the quotes). 
-  - add handlebars-objc-ios as a target dependency to your target
-  - link against libhandlebars-objc-ios.a
-
-If your project targets MacOS 
-  
-  - add handlebars-objc-osx as a target dependency to your target
-  - link against handlebars-objc-osx.framework
+Install handlebars in your project. You have 3 options: 
+ - [CocoaPods](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md#cocoapods)
+ - [Binary distribution](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md#binary-distribution)
+ - [Include handlebars-objc in your sources](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md#include-handlebars-obj-as-a-subproject-in-xcode)
 
 Render your first template 
 --------------------------
@@ -87,6 +74,7 @@ If you like to read reference documentation, read the [public API reference docu
 
 The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
  - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md): This guide
+ - [Installation](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md): how to install handlebars-objc in your XCode project
  - [Context Objects](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ContextObjects.md): How Handlebars accesses data in your context objects
  - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md): Learn how to write your own helpers
 
