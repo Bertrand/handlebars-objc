@@ -1,7 +1,7 @@
 # Writing Helpers #
 
 The most important feature of handlebars is the ability for the hosting application to provide application-specific formatting features to templates. 
-This ability is provided by the use of helpers. 
+This ability is enabled by the use of helpers. 
 
 
 
@@ -10,17 +10,17 @@ There are two kinds of helpers. Handlebars.js documentation calls them "helpers"
  - Block Helpers generally provide iterative or conditional constructs. Like normal helpers, they are passed parameters, but they also enclose block statements. 
 
 For example, suppose the hosting application needs to display dates in a locale-dependent short format. 
-The application could define a helper named "short_date_format" that takes an iso8601 date value and tranforms it into a short date format in users locale. 
+The application could define a helper named "short_date_format" that takes an iso8601 date value and tranforms it into a short date format in user's locale. 
 
- Templates may then use it this way:
+Templates may then use it this way:
 
  ```
    Date is {{short_date_format model.date}}. 
  ```
 
-In this case, short_date_format is a simple helper that  transforms a parameter into a formatted date string. 
-The parameter value is model.date in our example and thus use values coming from the context. 
-As we'll see in later examples, parameters can also be litteral (string, numbers, boolean).
+In this case, short_date_format is a simple helper that transforms a parameter into a formatted date string. 
+In our example, the parameter value is 'model.date' and thus is a value coming from the context. 
+As we'll see in later examples, parameters can also be literal (string, numbers, boolean). 
 
 An application could also provide a helper named "reverse_each" that iterates over an array in reverse order and executes a block of statements at each step: 
 
@@ -33,7 +33,7 @@ Templates may then use it this way:
   {{/reverse_each}}
 ```
 
-In this case, reverse_each is a block helper that also take one parameter. 
+In this case, reverse_each is a block helper that takes one parameter. 
 
 Last, let's see a more complex example. 
 The hypothetical 'sort' helper would sort an array of elements based on values inside those elements. 
@@ -83,7 +83,7 @@ The ability to use litteral values in helpers is one of the features that make H
 
 ## Helper parameters ##
 
-Helpers can take as many parameters as they need. Those parameters can be either passed in sequence, or by name. For instance the short_date_format above could take an additional parameter named "with_year" that takes a boolean value: 
+Helpers can take as many parameters as they need. Those parameters can be either passed in sequence, or by name. For instance the short_date_format helper above could take an additional parameter named "with_year" taking a boolean value: 
 
 ```
   Date is {{short_date_format model.date with_year=false}}
@@ -91,7 +91,7 @@ Helpers can take as many parameters as they need. Those parameters can be either
 
 In this case model.date sets a positional parameter (with index 0) and with_year=false sets a named parameter with name "with_year". 
 
-Helpers can use as many parameters as they need. Positional parameters are obviously ordered, and the come first. Named parameters come then and can be given in any order. 
+Helpers can use as many parameters as they need. Positional parameters are obviously ordered, and they come first. Named parameters come then and can be given in any order. 
 
 ## Writing Helpers in Objective-C ##
 
@@ -105,7 +105,6 @@ NSString* (^HBHelperBlock)(HBHelperCallingInfo* callingInfo)
 ```
 
 All contextual information a helper can use is provided in the callingInfo object: 
-
 
  - positional parameters 
  - named parameters 
@@ -122,7 +121,7 @@ In addition, block helpers have access to the following block information:
 
 ### Our first helper ###
 
-Let's write a helper than simply prints the current date and registers it as a global helper available to all templates:
+Let's write a helper than simply prints the current date, and let register it as a global helper available to all templates:
 
 ```objc
 // helper implementation
@@ -146,7 +145,7 @@ HBHelperBlock formattedDateHelper = ^(HBHelperCallingInfo* callingInfo)
 [HBHandlebars registerHelperBlock:formattedDateHelper forName:@"formatted_date"];
 ```
 
-No let's use our new helper 
+Now let's use our new helper 
 
 ```objc
 // render a template using the helper
@@ -162,7 +161,7 @@ In your console, you should see:
 rendered value : 'Date is: Oct 13, 2013'
 ```
 
-Well, if you run this code on October 13 2013. 
+Well... if you run this code on October 13 2013. 
 
 ### Using positional parameters ###
 
@@ -207,7 +206,7 @@ Now let's render a template
     
     NSLog(@"rendered value : '%@'", renderedTemplate);
 ```
-And you should see the following in your console:
+You should see the following in your console:
 ```
 rendered value : 'Birthday is: Jan 23, 1862'
 ```
@@ -386,7 +385,7 @@ NSString* renderedTemplate = [HBHandlebars renderTemplateString:template withCon
 NSLog(@"rendered value : '%@'", renderedTemplate);
 ```
 
-In your console you should see: 
+In your console, you should see: 
 ```
 rendered value : 'Elements sorted by ascending first name:
 Alan Turing
@@ -400,7 +399,7 @@ Daniel Goossens
 '
 ```
 
-Let's come back to this new help implementation. 
+Let's come back to this new helper implementation. 
 
 Many things in this implementation are similar to what we've seen before. In the first part, we retrieve the parameters. We've done this in other helpers. Business as usual. However, one line is new:
 
@@ -416,33 +415,33 @@ Once we've got all the calling parameters, we actually sort the array. Once agai
 id value1 = [HBHelperUtils valueOf:obj1 forKey:criterion];
 ```
 
-The method <[HBHelperUtils valueOf:forKey:]> is what you should use when you try to access the key of a dictionary-like value in your helpers. 
+The method <[HBHelperUtils valueOf:forKey:]> is what you should use when you try to access a key of a dictionary-like value in your helpers. 
 
 The reason why you should use those methods form HBHelperUtils rather than directly cast parameters is beyond the scope of this article and will be covered elsewhere. For now, just keep in mind this is how to property write your helpers. 
 
-Once the array is properly sorted comes the moment to evaluate the block passed to our helper. After have created an empty string buffer, we iterate over the element array and at each iteration we call the passed block this way:
+Once the array is properly sorted, comes the moment to evaluate the block passed to our helper. After having created an empty string buffer, we iterate over the elements array, and at each iteration we render the passed block this way:
 
 ```objc
 NSString* iterationResult = callingInfo.statements(object, callingInfo.data);
 ```
 
-The 'statements' property in callingInfo is an objective-C block that you invoke each time you want to execute the block passed to your helper. It takes two parameters: 
+The 'statements' property in callingInfo is an objective-C block that you invoke each time you want to evaluate the handlebars block passed to your helper. It takes two parameters: 
  - a context 
- - a private data context
-    
-In our case, since we iterate over array elements, at each iteration we passed the current element as the context to the statements block. And since we don't add any private data, we simply pass the data context we received in callingInfo as is. 
+ - a private data context (handlebars private variables)
 
-When invoked, the block returns a string containing the evaluation of the block for the given context.
-In our helper, we take this string an concatenate it to our helper result string.
+In our case, since we iterate over array elements, at each iteration we pass the current element as the context to the statements block. And since we don't add any private data, we simply pass the data context we received in callingInfo as is. 
+
+When invoked, the objective-C block returns a string containing the evaluation of the handlebars block for the given context.
+In our helper, we take these strings and concatenate them to form our helper result string.
 
 ### Conditional block helpers - Inverse section - Private variables ###
 
 Block helpers can be used to implement conditional constructs. Since this is a quite obvious modification of the block helper implementation we've already seen, we'll use this example to see two other features:
  - inverse sections: block passed to the helper that is executed when a helper condition is not meant 
- - private variables: variables that helper can set and that is available to descendant scopes
- - 
-Let's write a helper that executes a block when its parameter is positive and execute another statement when it's negative. 
-In addition, a private data named @isZero is set to true when parameter is zero. 
+ - private variables: variables that helpers can set and that is available to descendant scopes
+
+Let's write a helper that executes a handlebars block when its parameter is positive and execute another block when it's negative. 
+In addition, a private data named @isZero is set to true when the parameter is equal to zero. 
 
 ```objc
 // helper implementation
