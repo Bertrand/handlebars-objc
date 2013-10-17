@@ -14,7 +14,7 @@ In general, you should use handlebars if you need to generate text documents (HT
 An increasingly popular option is to use Mustache for this purpose. Mustache is a very simple templating language available in most languages. 
 
 Unfortunately, using Mustache rapidly becomes an implementation nightmare when trying to implement localization, formating of dates and many other basic User Interface needs. 
-Developper quickly find themselves adding view-specific data into their model to circumvent the limitations of their templating system. 
+Developers quickly find themselves adding view-specific data into their model to circumvent the limitations of their templating system. 
 
 Handlebars is a pragmatic superset of Mustache that addresses most shortcomings of its ancestor with the addition of helpers and block helpers.
 
@@ -22,7 +22,8 @@ Helpers are small rendering functions provided by the hosting application that c
 
 Helpers generally help formatting raw data from your models (think iso 8601 dates) while block helpers provide support for custom iterators and conditional constructs. 
 
-Blocks helpers have even been used to implement a clean cache-compatible compositional view system in ruby-on-rails. 
+Blocks helpers have even been used to implement a clean cache-compatible compositional view system in ruby-on-rails at Fotonauts: the Reporter application (http://www.fotopedia.com/reporter) uses a compositional view system and is able to render its page exactly the same way server-side and client side. It is written in Ruby, renders server-side templates within a Java front end using Handlebars.java and renders the exact same templates client side using Handlebars.js.  
+All this thanks to Handlebars and a handful of very simple helpers shared between the Java and Javascript implementation. 
 
 Handlebars implementations are available for [Javascript](http://handlebarsjs.com/), [Java](https://github.com/jknack/handlebars.java), [Ruby](https://github.com/cowboyd/handlebars.rb)  (via [therubyracer](https://github.com/cowboyd/therubyracer)) and [PHP](https://github.com/XaminProject/handlebars.php). 
 
