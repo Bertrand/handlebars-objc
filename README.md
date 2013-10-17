@@ -43,7 +43,7 @@ Getting Started
 Integrate handlebars-objc into your project
 -------------------------------------------
 
-Install handlebars in your project. You have 3 options: 
+You have 3 options: 
  - [CocoaPods](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md#cocoapods)
  - [Binary distribution](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md#binary-distribution)
  - [Include handlebars-objc in your sources](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md#include-handlebars-obj-as-a-subproject-in-xcode)
