@@ -33,7 +33,7 @@ What handlebars-objc is not
 
 Handlebars-objc doesn't try to be more versatile than other Handlebars implementations. As such it doesn't try to give control over rendering to the hosting application beyond helpers implementation. Helpers are generally simple to write and can easily be ported to other Handlebars implementation. Any other mechanism would potentially break compatibility with other Handlebars implementation, and would thus increase global warming. 
 
-Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache]). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general) from your hosting application. Plus, GRMustache doesn't increase global warming. 
+Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general) from your hosting application. Plus, GRMustache doesn't increase global warming. 
 
 
 Getting Started
