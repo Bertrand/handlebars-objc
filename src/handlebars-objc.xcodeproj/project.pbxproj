@@ -74,7 +74,6 @@
 		06798D5617F5CA3500FC40D7 /* HBAstValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D4A17F5CA3500FC40D7 /* HBAstValue.m */; };
 		06798D5D17F5D7AD00FC40D7 /* HBAstRawText.h in Headers */ = {isa = PBXBuildFile; fileRef = 06798D5B17F5D7AD00FC40D7 /* HBAstRawText.h */; };
 		06798D5E17F5D7AD00FC40D7 /* HBAstRawText.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D5C17F5D7AD00FC40D7 /* HBAstRawText.m */; };
-		06798D6117F9A08000FC40D7 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 06798D6017F9A08000FC40D7 /* todo.txt */; };
 		06798D6417F9A12A00FC40D7 /* HBAstEvaluationVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 06798D6217F9A12A00FC40D7 /* HBAstEvaluationVisitor.h */; };
 		06798D6517F9A12A00FC40D7 /* HBAstEvaluationVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 06798D6317F9A12A00FC40D7 /* HBAstEvaluationVisitor.m */; };
 		06798D6917F9B22D00FC40D7 /* HBContextState.h in Headers */ = {isa = PBXBuildFile; fileRef = 06798D6717F9B22D00FC40D7 /* HBContextState.h */; };
@@ -257,7 +256,6 @@
 		06798D4A17F5CA3500FC40D7 /* HBAstValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstValue.m; sourceTree = "<group>"; };
 		06798D5B17F5D7AD00FC40D7 /* HBAstRawText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstRawText.h; sourceTree = "<group>"; };
 		06798D5C17F5D7AD00FC40D7 /* HBAstRawText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstRawText.m; sourceTree = "<group>"; };
-		06798D6017F9A08000FC40D7 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		06798D6217F9A12A00FC40D7 /* HBAstEvaluationVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstEvaluationVisitor.h; sourceTree = "<group>"; };
 		06798D6317F9A12A00FC40D7 /* HBAstEvaluationVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstEvaluationVisitor.m; sourceTree = "<group>"; };
 		06798D6717F9B22D00FC40D7 /* HBContextState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBContextState.h; sourceTree = "<group>"; };
@@ -290,6 +288,10 @@
 		06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestSimpleBlocks.m; sourceTree = "<group>"; };
 		06E4790817FC0CA90029C3D1 /* HBDataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBDataContext.h; sourceTree = "<group>"; };
 		06E4790917FC0CA90029C3D1 /* HBDataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBDataContext.m; sourceTree = "<group>"; };
+		06F3BEE0180FD4C200D4447B /* ContextObjects.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = ContextObjects.md; sourceTree = "<group>"; };
+		06F3BEE1180FD4C200D4447B /* Installation.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.md; sourceTree = "<group>"; };
+		06F3BEE2180FD50800D4447B /* build_binary_distribution.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_binary_distribution.sh; sourceTree = "<group>"; };
+		06F3BEE3180FD50800D4447B /* generate_github_pages.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_github_pages.sh; sourceTree = "<group>"; };
 		06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libhandlebars-objc-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F4933F1802D07F0055B5BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "handlebars-objc-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -519,7 +521,8 @@
 		06798D5F17F9A06900FC40D7 /* doc */ = {
 			isa = PBXGroup;
 			children = (
-				06798D6017F9A08000FC40D7 /* todo.txt */,
+				06F3BEE1180FD4C200D4447B /* Installation.md */,
+				06F3BEE0180FD4C200D4447B /* ContextObjects.md */,
 				06AB0B0F180BDA29005A7610 /* WritingHelpers.md */,
 			);
 			name = doc;
@@ -576,6 +579,8 @@
 				06AB0B12180BDA48005A7610 /* convert-js-test.rb */,
 				06AB0B13180BDA49005A7610 /* copy_public_headers.sh */,
 				06AB0B14180BDA49005A7610 /* generate_api_doc.sh */,
+				06F3BEE2180FD50800D4447B /* build_binary_distribution.sh */,
+				06F3BEE3180FD50800D4447B /* generate_github_pages.sh */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -782,7 +787,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06798D6117F9A08000FC40D7 /* todo.txt in Resources */,
 				0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

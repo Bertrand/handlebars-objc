@@ -30,12 +30,16 @@
 
 extern NSString* HBErrorDomain;
 
-/**
- pouet
+
+/** 
+    Error codes used in handlebars-obc
  */
 typedef NS_ENUM(NSInteger, HBErrorCode) {
+    /** used when a parse error occurs */
     HBErrorCodeGenericParseError    = 0,
+    /** used when a helper referenced in a template doesn't exist */
     HBErrorCodeHelperMissingError   = 100,
+    /** used when a partial references in a template doesn't exist */
     HBErrorCodePartialMissingError  = 200
 };
 
