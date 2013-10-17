@@ -30,7 +30,9 @@ cp -RPf "$ROOT_DIR/api_doc/html" "$TMP_FOLDER/api_doc"
 pushd . 
 cd "$ROOT_DIR"
 
-git checkout gh-pages
+git checkout gh-pages || { echo "error while checkouting gh-pages branch"; exit -1; }
+git clean -df
+
 cp -RPf "$TMP_FOLDER/"* .
 
 GIT_STATUS=`git status -s | grep -e "^\?\?"`
