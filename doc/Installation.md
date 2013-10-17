@@ -19,9 +19,17 @@ pod "handlebars-objc, "~> 1.0.0"
 
 ## Binary distribution ##
 
-(coming soon)
+Go to https://github.com/fotonauts/handlebars-objc/releases and download the latest release. 
+Uncompress the zip file. The resulting folder contains 
+ - an OS X framework in the osx folder
+ - an iOS framework in the ios folder
+ - an API documentation in the api_doc folder
+ - a higher level documentation in the doc folder
+ 
+To use the framework, copy the version you need (ios or osx) into your project and add it to the frameworks your project links against.
 
-## Include handlebars-obj as a subproject in XCode##
+
+## Include handlebars-obj as a subproject in XCode ##
 
  - copy the sources of handlebars-objc into your project directory (or best, use a git submodule)
  - add handlebars-objc.xcodeproj to your project (no need to add the whole sources to your project)
