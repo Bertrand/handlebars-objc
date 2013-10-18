@@ -75,10 +75,14 @@ For example, the following Handlebars template will perform different operations
 {{#object}}{{name}}{{/object}}
 
 // Case A
-@{ @"object" : @[ @{ @"name" : @"Allan" }, @{ @"name" : @"David" } ] }
+@{ @"object" : @[ @{ @"name" : @"Allan" }, 
+                  @{ @"name" : @"David" } 
+                ] 
+ }
 
 // Case B
-@{ @"object" : @{ @"name" : @"Daniel" } }
+@{ @"object" : @{ @"name" : @"Daniel" } 
+ }
 ```
 
 In case A, the object is an NSArray, and '{{#object}}' in the template means "iterate over the element of object".  

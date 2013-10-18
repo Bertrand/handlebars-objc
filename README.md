@@ -51,18 +51,19 @@ You have 3 options:
 
 Render your first template 
 --------------------------
-Add this import clause to your objective-C implementation 
+Add this import clause to your objective-C implementation:
 
 ```objc
 #import <HBHandlebars/HBHandlebars.h>
 ```
 
-Then add 
+Then add:
 
 ```objc
 NSError* error = nil;
 NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" 
-                                          withContext:@{ @"value" : @"Bertrand"} error:&error]; 
+                                          withContext:@{ @"value" : @"Bertrand"} 
+                                                error:&error]; 
 NSLog(@"handlebars template evaluated to : %@", result); 
 ```
 
