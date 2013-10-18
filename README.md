@@ -13,26 +13,27 @@ In general, you should use handlebars if you need to generate text documents (HT
 
 An increasingly popular option is to use Mustache for this purpose. Mustache is a very simple templating language available in most languages. 
 
-Unfortunately, using Mustache rapidly becomes an implementation nightmare when trying to implement localization, formating of dates and many other basic User Interface needs. 
+Unfortunately, using Mustache rapidly becomes an implementation nightmare when trying to implement localization, formatting of dates, and many other basic user interface needs. 
 Developers quickly find themselves adding view-specific data into their model to circumvent the limitations of their templating system. 
 
 Handlebars is a pragmatic superset of Mustache that addresses most shortcomings of its ancestor with the addition of helpers and block helpers.
 
 Helpers are small rendering functions provided by the hosting application that can be used in templates. 
 
-Helpers generally help formatting raw data from your models (think iso 8601 dates) while block helpers provide support for custom iterators and conditional constructs. 
+Helpers generally help formatting raw data from your models (think iso 8601 dates), while block helpers provide support for custom iterators and conditional constructs. 
 
-Blocks helpers have even been used to implement a clean cache-compatible compositional view system in ruby-on-rails at Fotonauts: the Reporter application (http://www.fotopedia.com/reporter) uses a compositional view system and is able to render its page exactly the same way server-side and client side. It is written in Ruby, renders server-side templates within a Java front end using Handlebars.java and renders the exact same templates client side using Handlebars.js.  
+Block helpers have even been used to implement a clean cache-compatible compositional view system in Ruby on Rails at Fotonauts: the Reporter application (http://www.fotopedia.com/reporter) uses a compositional view system and is able to render its page exactly the same way server-side and client-side. It is written in Ruby, renders server-side templates within a Java front end using Handlebars.java and renders the exact same templates client-side using Handlebars.js.
+
 All this thanks to Handlebars and a handful of very simple helpers shared between the Java and Javascript implementation. 
 
-Handlebars implementations are available for [Javascript](http://handlebarsjs.com/), [Java](https://github.com/jknack/handlebars.java), [Ruby](https://github.com/cowboyd/handlebars.rb)  (via [therubyracer](https://github.com/cowboyd/therubyracer)) and [PHP](https://github.com/XaminProject/handlebars.php). 
+Handlebars implementations are available for [Javascript](http://handlebarsjs.com/), [Java](https://github.com/jknack/handlebars.java), [Ruby](https://github.com/cowboyd/handlebars.rb) (via [therubyracer](https://github.com/cowboyd/therubyracer)) and [PHP](https://github.com/XaminProject/handlebars.php). 
 
-In short, if your looking for a templating system with a clean view/model separation and want to render them in Objective-C and in Javascript (or Java), Handlebars is probably what you need. 
+In short, if you're looking for a templating system with a clean view/model separation and want to render them in Objective-C and in Javascript (or Java), Handlebars is probably what you need. 
 
 What handlebars-objc is not 
 ===========================
 
-Handlebars-objc doesn't try to be more versatile than other Handlebars implementations. As such it doesn't try to give control over rendering to the hosting application beyond helpers implementation. Helpers are generally simple to write and can easily be ported to other Handlebars implementation. Any other mechanism would potentially break compatibility with other Handlebars implementation, and would thus increase global warming. 
+Handlebars-objc doesn't try to be more versatile than other Handlebars implementations. As such, it doesn't try to give control over rendering to the hosting application beyond helpers implementation. Helpers are generally simple to write and can easily be ported to other Handlebars implementations. Any other mechanism would potentially break compatibility with other Handlebars implementations, and would thus increase global warming. 
 
 Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general) from your hosting application. Plus, GRMustache doesn't increase global warming. 
 
@@ -60,17 +61,18 @@ Then add
 
 ```objc
 NSError* error = nil;
-NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" withContext:@{ @"value" : @"Bertrand"} error:&error]; 
+NSString* result = [HBHandlebars renderTemplateString:@"Hello {{value}}!" 
+                                          withContext:@{ @"value" : @"Bertrand"} error:&error]; 
 NSLog(@"handlebars template evaluated to : %@", result); 
 ```
 
-Run your application, and in your logs, you should see "Hello Bertrand!". 
+Run your application, and in your logs you should see "Hello Bertrand!". 
 
 Congratulations! You've just rendered your first Handlebars template. 
 
 Going Further
 -------------
-If you like to read reference documentation, read the [public API reference documentation](http://fotonauts.github.io/handlebars-objc/api_doc/).
+If you like to read reference documentation, read the [Handlebars public API reference documentation](http://fotonauts.github.io/handlebars-objc/api_doc/).
 
 The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
  - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md): This guide
