@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.8'
   s.source       = { :git => "https://github.com/fotonauts/handlebars-objc.git", :tag => "v#{s.version}" }
   s.source_files  = 'src/handlebars-objc', 'src/handlebars-objc/**/*.{h,m,ym,lm}'
-  s.public_header_files = %w(HBHandlebars.h runtime/HBTemplate.h runtime/HBExecutionContext.h context/HBDataContext.h context/HBHandlebarsKVCValidation.h helpers/HBHelper.h helpers/HBHelperRegistry.h helpers/HBHelperCallingInfo.h helpers/HBHelperUtils.h partials/HBPartial.h partials/HBPartialRegistry.h errorHandling/HBErrorHandling.h).map{|f| "handlebars-objc/#{f}"}
+  s.public_header_files = %w(HBHandlebars.h runtime/HBTemplate.h runtime/HBExecutionContext.h runtime/HBExecutionContextDelegate.h context/HBDataContext.h context/HBHandlebarsKVCValidation.h helpers/HBHelper.h helpers/HBHelperRegistry.h helpers/HBHelperCallingInfo.h helpers/HBHelperUtils.h partials/HBPartial.h partials/HBPartialRegistry.h errorHandling/HBErrorHandling.h).map{|f| "handlebars-objc/#{f}"}
   s.header_dir = "HBHandlebars"
 
 end

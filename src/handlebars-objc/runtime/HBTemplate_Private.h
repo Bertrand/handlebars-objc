@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-#import <HBTemplate.h>
+#import "HBTemplate.h"
 
 @class HBAstProgram;
 @class HBExecutionContext;

@@ -30,6 +30,7 @@
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
 #import "HBTemplate_Private.h"
+#import "HBPartial.h"
 
 @implementation HBExecutionContext
 
@@ -78,6 +79,24 @@
     [self.helpers removeAllHelpers];
 }
 
+- (HBHelper*) helperForName:(NSString*)name
+{
+    HBHelper* helper = nil;
+    if ([self.delegate respondsToSelector:@selector(helperBlockWithName:forExecutionContext:)]) {
+        HBHelperBlock helperBlock = [self.delegate helperBlockWithName:name forExecutionContext:self];
+        if (helperBlock) {
+            helper = [[HBHelper new] autorelease];
+            helper.block = helperBlock;
+        }
+    }
+    
+    if (!helper) {
+        helper = self.helpers[name];
+    }
+    
+    return helper;
+}
+
 
 
 #pragma mark -
@@ -110,6 +129,24 @@
 - (void) unregisterAllPartials
 {
     [self.partials unregisterAllPartials];
+}
+
+- (HBPartial*) partialForName:(NSString*)name
+{
+    HBPartial* partial = nil;
+    if ([self.delegate respondsToSelector:@selector(partialStringWithName:forExecutionContext:)]) {
+        NSString* partialString = [self.delegate partialStringWithName:name forExecutionContext:self];
+        if (partialString) {
+            partial = [[HBPartial new] autorelease];
+            partial.string = partialString;
+        }
+    }
+    
+    if (!partial) {
+        partial = self.partials[name];
+    }
+    
+    return partial;
 }
 
 #pragma mark -

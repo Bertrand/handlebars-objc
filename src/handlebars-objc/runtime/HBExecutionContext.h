@@ -27,6 +27,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HBHelper.h"
+#import "HBExecutionContextDelegate.h"
 
 @class HBHelperRegistry;
 @class HBPartialRegistry;
@@ -59,6 +60,11 @@
  Partial registry. This is the actual place where partials of the execution context are registered.
 */
 @property (retain, nonatomic) HBPartialRegistry* partials;
+
+/**
+ Delegate. Please see <HBExecutionContextDelegate> for details of what you can control with the delegate 
+ */
+@property (assign, nonatomic) id<HBExecutionContextDelegate> delegate;
 
 /**
  Access the global execution context. 
@@ -112,6 +118,15 @@
  */
 - (void) unregisterAllHelpers;
 
+/**
+ Get a helper by name
+ 
+ This method tries to find a helper matching a name. 
+ @return the helper if found, nil otherwise. 
+ @since v1.1.0
+ */
+- (HBHelper*) helperForName:(NSString*)name;
+
 /** @name managing partials */
 
 /** 
@@ -148,5 +163,15 @@
  @since v1.0.0
  */
 - (void) unregisterAllPartials;
+
+/** 
+ Get a partial by name
+ 
+ This method tries to find a partial in the receiving execution context. 
+ @param name name of the partial 
+ @return the partial if found, nil otherwise. 
+ @since v1.1.0
+ */
+- (HBPartial*) partialForName:(NSString*)name;
 
 @end

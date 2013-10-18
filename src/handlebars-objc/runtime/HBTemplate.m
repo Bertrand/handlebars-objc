@@ -98,8 +98,8 @@
     HBHelper* helper = nil;
     
     helper = self.helpers[name];
-    if (!helper && self.sharedExecutionContext) helper = self.sharedExecutionContext.helpers[name];
-    if (!helper) helper = [HBExecutionContext globalExecutionContext].helpers[name];
+    if (!helper && self.sharedExecutionContext) helper = [self.sharedExecutionContext helperForName:name];
+    if (!helper) helper = [[HBExecutionContext globalExecutionContext] helperForName:name];
     if (!helper) helper = [HBBuiltinHelpersRegistry builtinRegistry][name];
     
     return helper;
@@ -121,8 +121,8 @@
     HBPartial* partial = nil;
     
     partial = self.partials[name];
-    if (!partial && self.sharedExecutionContext) partial = self.sharedExecutionContext.partials[name];
-    if (!partial) partial = [HBExecutionContext globalExecutionContext].partials[name];
+    if (!partial && self.sharedExecutionContext) partial = [self.sharedExecutionContext partialForName:name];
+    if (!partial) partial = [[HBExecutionContext globalExecutionContext] partialForName:name];
     
     return partial;
 }
