@@ -18,7 +18,7 @@ In many cases, you'll want context objects to be existing objects from your appl
 
 ## How handlebars-objc accesses Objects properties ##
 
-Handlebars tries several methods when accessing a property on an object: 
+Handlebars tries several methods to access a property on an object in this order: 
 
  1. using keyed subscripting operators 
  2. using safe Key-Value Coding 
@@ -40,7 +40,7 @@ The one exception to this principle is that all Core Data properties are also ac
 If this doesn't fit your needs, **you can override that behaviour** by implementing the following method on your object class: 
 
 ```objc
-+ (NSArray *) validKeysForHandlebars;
++ (NSArray*) validKeysForHandlebars;
 ```
 
 This method should return an array listing all the keys that you want to allow access to.
@@ -114,13 +114,11 @@ Yes!
 
 Handlebars-objc considers Core Data properties as valid for Key-Value Coding access (attributes, relationships, and fetched properties).  Since Core Data proxies to-many relationships as NSSet subclasses (if the relationship is unordered) or NSArray subclasses (if the relationship is ordered), handlebars-objc will also happily iterate over your to-many relationships. 
 
-### Why is access limited to attributes accessible using Key-Value Coding? ###
+### Why does Handlebars limit access to some attributes that are normally accessible using Key-Value Coding? ###
 
 Allowing arbitrary access from templates to properties of an object through Key-Value Coding is rather dangerous.
 
-When trying to get an object property using Key-Value Coding, Foundation will search for a method with the same name as the property.  If found, this method will be invoked and its return value will be used as the property value. 
-
-This means that any method with no argument can easily be invoked by trying to access a property with the same name using KVC.
+One way that Foundation tries to access an object property with Key-Value Coding is to search for a method with the same name as the property. If found, this method will be invoked and its return value will be used as the property value.  This means that any method with no argument can easily be invoked by trying to access a property with the same name using KVC.
 
 Consider this example: 
 
