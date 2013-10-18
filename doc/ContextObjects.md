@@ -47,8 +47,6 @@ If this doesn't fit your needs, **you can override that behaviour** by implement
 
 This method should return an array listing all the keys that you want to allow access to.
 
-Let's see some example that will help understand what works out of the box and what doesn't. 
-
 ### Accessing properties using subscripting operators ###
 
 If an object responds to the following keyed subscripting operator method: 
