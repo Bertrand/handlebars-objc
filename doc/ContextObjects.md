@@ -18,7 +18,7 @@ In many cases, you'll want context objects to be existing objects from your appl
 
 ## How handlebars-objc accesses Objects properties ##
 
-Handlebars tries several methods to access a property on an object in this order: 
+Handlebars tries several methods in order to access a property on an object in this order: 
 
  1. using keyed subscripting operators 
  2. using safe Key-Value Coding 
