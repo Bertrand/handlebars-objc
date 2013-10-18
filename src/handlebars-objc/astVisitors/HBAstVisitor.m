@@ -35,15 +35,19 @@
 + (SEL)visitorMethodForAstClassName:(NSString*)classname;
 {
     static NSMutableDictionary* methodNames = nil;
-    if (methodNames == nil) {
+
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
         methodNames = [[NSMutableDictionary alloc] init];
-    }
+    });
     
-    if (methodNames[classname] == nil) {
-        NSAssert([classname hasPrefix:@"HBAst"], @"Ast class names must all start with 'HBAst' (%@)", classname);
-        NSString* shortenedNodeClass = [classname substringFromIndex:5];
-        NSString* methodName = [NSString stringWithFormat:@"visit%@:", shortenedNodeClass];
-        methodNames[classname] = methodName;
+    @synchronized(methodNames) {
+        if (methodNames[classname] == nil) {
+            NSAssert([classname hasPrefix:@"HBAst"], @"Ast class names must all start with 'HBAst' (%@)", classname);
+            NSString* shortenedNodeClass = [classname substringFromIndex:5];
+            NSString* methodName = [NSString stringWithFormat:@"visit%@:", shortenedNodeClass];
+            methodNames[classname] = methodName;
+        }
     }
     
     return NSSelectorFromString(methodNames[classname]);
