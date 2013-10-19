@@ -32,6 +32,7 @@
 @class HBHelperRegistry;
 @class HBPartialRegistry;
 @class HBTemplate;
+@class HBPartial;
 
 /**
  
