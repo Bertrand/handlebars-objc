@@ -44,5 +44,5 @@ If your project targets iOS:
 If your project targets OS X:
   
   - add handlebars-objc-osx as a target dependency to your target
-  - link against handlebars-objc-osx.framework
+  - link against Handlebars.framework
 

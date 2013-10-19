@@ -33,7 +33,7 @@
 		0630B1D917F466B800EA7018 /* HBParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0630B1D717F466B800EA7018 /* HBParser.h */; };
 		0630B1DA17F466B800EA7018 /* HBParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1D817F466B800EA7018 /* HBParser.m */; };
 		06345248180F473A003C0B7C /* HBHandlebarsKVCValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 06345247180F45EE003C0B7C /* HBHandlebarsKVCValidation.h */; };
-		06345249180F473C003C0B7C /* HBHandlebarsKVCValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 06345247180F45EE003C0B7C /* HBHandlebarsKVCValidation.h */; };
+		06345249180F473C003C0B7C /* HBHandlebarsKVCValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 06345247180F45EE003C0B7C /* HBHandlebarsKVCValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06556D7F17FEFB0C00070907 /* HBPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D7D17FEFB0C00070907 /* HBPartial.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06556D8017FEFB0C00070907 /* HBPartial.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D7E17FEFB0C00070907 /* HBPartial.m */; };
 		06556D8317FEFB7C00070907 /* HBPartialRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8117FEFB7C00070907 /* HBPartialRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
