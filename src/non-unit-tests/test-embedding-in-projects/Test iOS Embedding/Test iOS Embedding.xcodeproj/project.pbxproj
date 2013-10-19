@@ -501,6 +501,7 @@
 				06AB0B9F180BDEA4005A7610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		06AB0BA0180BDEA4005A7610 /* Build configuration list for PBXNativeTarget "Test iOS EmbeddingTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +510,7 @@
 				06AB0BA2180BDEA4005A7610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

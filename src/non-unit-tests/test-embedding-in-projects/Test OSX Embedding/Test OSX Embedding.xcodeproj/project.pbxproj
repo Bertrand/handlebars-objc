@@ -400,6 +400,7 @@
 				06AB0B51180BDB9B005A7610 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
