@@ -1,0 +1,12 @@
+# Release Notes #
+
+## v1.0.1 ##
+
+ - Fix public headers in OS X framework
+ - Fix installation documentation (including project sources) 
+
+
+ ## v1.0.0 ##
+
+ - Initial release
+ 
