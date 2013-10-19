@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>HBParseError Class Reference</title>
+		<title>HBExecutionContextDelegate Protocol Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<meta name="viewport" content="width=550" />
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">HBParseError Class Reference</h1>
+				<h1 class="hideInXcode">HBExecutionContextDelegate Protocol Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -44,13 +44,9 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/contextInBuffer">&nbsp;&nbsp;&nbsp;&nbsp;- contextInBuffer</option>
+	<option value="//api/name/helperBlockWithName:forExecutionContext:">&nbsp;&nbsp;&nbsp;&nbsp;- helperBlockWithName:forExecutionContext:</option>
 	
-	<option value="//api/name/lineNumber">&nbsp;&nbsp;&nbsp;&nbsp;- lineNumber</option>
-	
-	<option value="//api/name/lowLevelParserDescription">&nbsp;&nbsp;&nbsp;&nbsp;- lowLevelParserDescription</option>
-	
-	<option value="//api/name/positionInBuffer">&nbsp;&nbsp;&nbsp;&nbsp;- positionInBuffer</option>
+	<option value="//api/name/partialStringWithName:forExecutionContext:">&nbsp;&nbsp;&nbsp;&nbsp;- partialStringWithName:forExecutionContext:</option>
 	
 	
 	
@@ -80,13 +76,9 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/contextInBuffer">contextInBuffer</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/helperBlockWithName:forExecutionContext:">helperBlockWithName:forExecutionContext:</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lineNumber">lineNumber</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lowLevelParserDescription">lowLevelParserDescription</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/positionInBuffer">positionInBuffer</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/partialStringWithName:forExecutionContext:">partialStringWithName:forExecutionContext:</a></span></li>
 	
 </ul></li>
 
@@ -95,7 +87,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="HBParseError Class Reference" name="top"></a>
+				<a title="HBExecutionContextDelegate Protocol Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -104,18 +96,18 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">HBParseError Class Reference</h1>
+						<h1 class="title title-header">HBExecutionContextDelegate Protocol Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSError</td>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">HBErrorHandling.h</td>
+	<td class="specification-value">HBExecutionContextDelegate.h</td>
 </tr>
 						</tbody></table></div>
 					
@@ -125,7 +117,16 @@
 					<div class="section section-overview">
 						<a title="Overview" name="overview"></a>
 						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>HBParseError errors can be generated when a template file contains errors.</p>
+						<p>HBExecutionContext delegate protocol</p>
+
+<p>By implementing an execution context delegate you can control certain of its behaviours.
+All the methods from this protocol are optional.</p>
+
+<h1>Tasks</h1>
+
+<p>Provide your own helper provisioning mechanism using <a href="#//api/name/helperBlockWithName:forExecutionContext:">helperBlockWithName:forExecutionContext:</a></p>
+
+<p>Provide your own partial provisioning mechanism by implementing <a href="#//api/name/partialStringWithName:forExecutionContext:">partialStringWithName:forExecutionContext:</a></p>
 					</div>
 					
 					
@@ -143,29 +144,15 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/lineNumber">&ndash;&nbsp;lineNumber</a></code>
-		<span class="tooltip"><p>line number where error can be found</p></span>
+		<code><a href="#//api/name/helperBlockWithName:forExecutionContext:">&ndash;&nbsp;helperBlockWithName:forExecutionContext:</a></code>
+		<span class="tooltip"><p>return a helper block with a given name</p></span>
 	</span>
 	
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/positionInBuffer">&ndash;&nbsp;positionInBuffer</a></code>
-		<span class="tooltip"><p>position in buffer of error</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/contextInBuffer">&ndash;&nbsp;contextInBuffer</a></code>
-		<span class="tooltip"><p>string containing the buffer area around error</p></span>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/lowLevelParserDescription">&ndash;&nbsp;lowLevelParserDescription</a></code>
-		<span class="tooltip"><p>a detailed error string returned by low-level parser.</p></span>
+		<code><a href="#//api/name/partialStringWithName:forExecutionContext:">&ndash;&nbsp;partialStringWithName:forExecutionContext:</a></code>
+		<span class="tooltip"><p>return a partial string with a given name</p></span>
 	</span>
 	
 	
@@ -187,26 +174,56 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/contextInBuffer" title="contextInBuffer"></a>
-	<h3 class="subsubtitle method-title">contextInBuffer</h3>
+	<a name="//api/name/helperBlockWithName:forExecutionContext:" title="helperBlockWithName:forExecutionContext:"></a>
+	<h3 class="subsubtitle method-title">helperBlockWithName:forExecutionContext:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>string containing the buffer area around error</p>
+		<p>return a helper block with a given name</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (NSString *)contextInBuffer</code></div>
+	<div class="method-subsection method-declaration"><code>- (HBHelperBlock)helperBlockWithName:(NSString *)<em>name</em> forExecutionContext:(HBExecutionContext *)<em>executionContext</em></code></div>
 
     
 	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the helper</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>executionContext</em></dt>
+			<dd><p>the execution context requesting the helper. Useful if your delegate is the delegate of serveral execution contexts.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a helper block</p>
+	</div>
 	
 	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Implement this method if you want to implement your own helper organization mechanism.</p>
+	</div>
 	
 	
 	
@@ -216,33 +233,63 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBErrorHandling.h</code><br />
+		<code class="declared-in-ref">HBExecutionContextDelegate.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/lineNumber" title="lineNumber"></a>
-	<h3 class="subsubtitle method-title">lineNumber</h3>
+	<a name="//api/name/partialStringWithName:forExecutionContext:" title="partialStringWithName:forExecutionContext:"></a>
+	<h3 class="subsubtitle method-title">partialStringWithName:forExecutionContext:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>line number where error can be found</p>
+		<p>return a partial string with a given name</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (NSInteger)lineNumber</code></div>
+	<div class="method-subsection method-declaration"><code>- (NSString *)partialStringWithName:(NSString *)<em>name</em> forExecutionContext:(HBExecutionContext *)<em>executionContext</em></code></div>
 
     
 	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>name</em></dt>
+			<dd><p>name of the partial</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>executionContext</em></dt>
+			<dd><p>the execution context requesting the partial string. Useful if your delegate is the delegate of serveral execution contexts.</p></dd>
+		</dl>
+		
+	</div>
 	
 	
 	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>a partial string</p>
+	</div>
 	
 	
+	
+	<div class="method-subsection availability">
+		<h4 class="method-subtitle parameter-title">Availability</h4>
+		<p>v1.1.0</p>
+	</div>
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Implement this method if you want to implement your own partial organization mechanism.</p>
+	</div>
 	
 	
 	
@@ -252,79 +299,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBErrorHandling.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/lowLevelParserDescription" title="lowLevelParserDescription"></a>
-	<h3 class="subsubtitle method-title">lowLevelParserDescription</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>a detailed error string returned by low-level parser.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NSString *)lowLevelParserDescription</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBErrorHandling.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/positionInBuffer" title="positionInBuffer"></a>
-	<h3 class="subsubtitle method-title">positionInBuffer</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>position in buffer of error</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (NSInteger)positionInBuffer</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">HBErrorHandling.h</code><br />
+		<code class="declared-in-ref">HBExecutionContextDelegate.h</code><br />
 	</div>				
 	
 	

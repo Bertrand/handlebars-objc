@@ -11,6 +11,19 @@
 
 @class HBExecutionContext;
 
+/** 
+ HBExecutionContext delegate protocol
+ 
+ By implementing an execution context delegate you can control certain of its behaviours. 
+ All the methods from this protocol are optional. 
+ 
+ # Tasks #
+ 
+ Provide your own helper provisioning mechanism using <helperBlockWithName:forExecutionContext:>
+ 
+ Provide your own partial provisioning mechanism by implementing <partialStringWithName:forExecutionContext:>
+ 
+ */
 
 @protocol HBExecutionContextDelegate <NSObject>
 

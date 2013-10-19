@@ -123,6 +123,7 @@
  Get a helper by name
  
  This method tries to find a helper matching a name. 
+ @param name name of the helper to look up
  @return the helper if found, nil otherwise. 
  @since v1.1.0
  */
