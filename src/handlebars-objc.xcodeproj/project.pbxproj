@@ -32,8 +32,9 @@
 		0630B1CF17F33EDA00EA7018 /* HBAstProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1CD17F33EDA00EA7018 /* HBAstProgram.m */; };
 		0630B1D917F466B800EA7018 /* HBParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0630B1D717F466B800EA7018 /* HBParser.h */; };
 		0630B1DA17F466B800EA7018 /* HBParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0630B1D817F466B800EA7018 /* HBParser.m */; };
-		063452C81811DAC3003C0B7C /* HBTestExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 063452C61811DAC3003C0B7C /* HBTestExecutionContext.m */; };
 		06345249180F473C003C0B7C /* HBHandlebarsKVCValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 06345247180F45EE003C0B7C /* HBHandlebarsKVCValidation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		063452C81811DAC3003C0B7C /* HBTestExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 063452C61811DAC3003C0B7C /* HBTestExecutionContext.m */; };
+		063FA2941812D61A004FBA94 /* HBTestExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 063452C61811DAC3003C0B7C /* HBTestExecutionContext.m */; };
 		06556D7F17FEFB0C00070907 /* HBPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D7D17FEFB0C00070907 /* HBPartial.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06556D8017FEFB0C00070907 /* HBPartial.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D7E17FEFB0C00070907 /* HBPartial.m */; };
 		06556D8317FEFB7C00070907 /* HBPartialRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8117FEFB7C00070907 /* HBPartialRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -670,7 +671,6 @@
 				06F493861802D1820055B5BC /* HBHelper.h in Headers */,
 				061ACEA2180C1C8E00081763 /* HBErrorHandling.h in Headers */,
 				06F4938A1802D1820055B5BC /* HBPartialRegistry.h in Headers */,
-				06345248180F473A003C0B7C /* HBHandlebarsKVCValidation.h in Headers */,
 				06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */,
 				06F493841802D1820055B5BC /* HBHandlebars.h in Headers */,
 				06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */,
@@ -886,7 +886,7 @@
 				06E478F617FAC87A0029C3D1 /* HBTestSimpleBlocks.m in Sources */,
 				06E478F217FAC2CB0029C3D1 /* HBTestSimpleTags.m in Sources */,
 				06D426C317FC6CC500C41476 /* HBTestHelpers.m in Sources */,
-				063452C71811DAC3003C0B7C /* HBTestExecutionContext.m in Sources */,
+				063FA2941812D61A004FBA94 /* HBTestExecutionContext.m in Sources */,
 				06A81A9E17F87FFD0006F16A /* HBTestParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
