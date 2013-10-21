@@ -10,6 +10,7 @@
 #import "HBHelper.h" 
 
 @class HBExecutionContext;
+@class HBPartial;
 
 /** 
  HBExecutionContext delegate protocol
@@ -52,5 +53,18 @@
  @since v1.1.0
  */
 - (NSString*) partialStringWithName:(NSString*)name forExecutionContext:(HBExecutionContext*)executionContext;
+
+
+/**
+ return a partial with a given name
+ 
+ Implement this method if you want to implement your own partial organization mechanism.
+ 
+ @param name name of the partial
+ @param executionContext the execution context requesting the partial. Useful if your delegate is the delegate of serveral execution contexts.
+ @return the partial (can be nil)
+ @since v1.1.0
+ */
+- (HBPartial*) partialWithName:(NSString*)name forExecutionContext:(HBExecutionContext*)executionContext;
 
 @end

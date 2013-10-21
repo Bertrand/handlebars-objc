@@ -134,7 +134,12 @@
 - (HBPartial*) partialForName:(NSString*)name
 {
     HBPartial* partial = nil;
-    if ([self.delegate respondsToSelector:@selector(partialStringWithName:forExecutionContext:)]) {
+
+    if ([self.delegate respondsToSelector:@selector(partialWithName:forExecutionContext:)]) {
+        partial = [self.delegate partialWithName:name forExecutionContext:self];
+    }
+    
+    if (!partial && [self.delegate respondsToSelector:@selector(partialStringWithName:forExecutionContext:)]) {
         NSString* partialString = [self.delegate partialStringWithName:name forExecutionContext:self];
         if (partialString) {
             partial = [[HBPartial new] autorelease];
