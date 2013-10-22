@@ -29,6 +29,7 @@
 #import "HBHelper.h"
 
 @class HBDataContext;
+@class HBTemplate;
 
 typedef NSString* (^HBStatementsEvaluator)(id context, HBDataContext* data);
 
@@ -214,7 +215,14 @@ typedef NSString* (^HBStatementsEvaluator)(id context, HBDataContext* data);
  */
 @property (readonly, copy, nonatomic) HBStatementsEvaluator inverseStatements;
 
-
+/** 
+ template being evaluated when helper is invoked
+ 
+ @return the template being evaluated
+ @since v1.1
+ */
+@property (readonly, retain, nonatomic) HBTemplate* template;
+    
 /** @name Accessing calling parameters using Objective-C subscripting notation */
 
 /**

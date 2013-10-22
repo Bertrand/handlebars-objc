@@ -38,4 +38,6 @@
 @property (readwrite, copy, nonatomic) HBStatementsEvaluator statements;
 @property (readwrite, copy, nonatomic) HBStatementsEvaluator inverseStatements;
 
+@property (readwrite, retain, nonatomic) HBTemplate* template;
+
 @end

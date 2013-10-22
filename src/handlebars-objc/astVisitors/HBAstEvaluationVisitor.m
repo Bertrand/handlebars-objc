@@ -189,6 +189,7 @@
         callingInfo.namedParameters = namedParameters;
         callingInfo.statements = forwardStatementsEvaluator;
         callingInfo.inverseStatements = inverseStatementsEvaluator;
+        callingInfo.template = self.template;
         
         NSString* helperResult = helper.block(callingInfo);
         [callingInfo release];
@@ -333,7 +334,8 @@
         callingInfo.namedParameters = namedParameters;
         callingInfo.statements = [self noopStatementsEvaluator];
         callingInfo.inverseStatements = [self noopStatementsEvaluator];
-        
+        callingInfo.template = self.template;
+
         NSString* helperResult = helper.block(callingInfo);
         [callingInfo release];
 
