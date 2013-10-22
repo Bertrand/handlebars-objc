@@ -17,6 +17,7 @@
 @interface SimpleExecutionContextDelegate : NSObject<HBExecutionContextDelegate>
 @property (nonatomic, retain) NSMutableDictionary* helperBlocks;
 @property (nonatomic, retain) NSMutableDictionary* partialStrings;
+@property (nonatomic, retain) NSMutableDictionary* partials;
 
 @end
 
@@ -68,6 +69,36 @@
     
     XCTAssertEqualObjects(evaluation, @"p1-p2");
 }
+
+- (void)testPartialsDelegationOnExecutionContext
+{
+    SimpleExecutionContextDelegate* delegate = [[SimpleExecutionContextDelegate new] autorelease];
+    HBExecutionContext* executionContext = [[HBExecutionContext new] autorelease];
+    executionContext.delegate = delegate;
+    HBTemplate* template = [executionContext templateWithString:@"{{>partial1}}-{{>partial2}}"];
+    
+    NSString* s1 = @"p1";
+    NSString* s2 = @"p2";
+    
+    HBPartial* p1 = [[HBPartial new] autorelease];
+    p1.string = s1;
+    
+    HBPartial* p2 = [[HBPartial new] autorelease];
+    p2.string = s2;
+    
+    delegate.partials[@"partial1"] = p1;
+    delegate.partials[@"partial2"] = p2;
+    
+    XCTAssertEqual(s1, [executionContext partialForName:@"partial1"].string);
+    XCTAssertEqual(s2, [executionContext partialForName:@"partial2"].string);
+    
+    NSError* error = nil;
+    NSString* evaluation = [template renderWithContext:nil error:&error];
+    XCTAssertNil(error);
+    
+    XCTAssertEqualObjects(evaluation, @"p1-p2");
+}
+
 @end
 
 
@@ -79,6 +110,7 @@
     if (self) {
         _helperBlocks = [[NSMutableDictionary alloc] init];
         _partialStrings = [[NSMutableDictionary alloc] init];
+        _partials = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -93,4 +125,10 @@
     return self.partialStrings[name];
 }
 
+    
+- (HBPartial*) partialWithName:(NSString*)name forExecutionContext:(HBExecutionContext*)executionContext
+{
+    return self.partials[name];
+}
+    
 @end
