@@ -32,15 +32,31 @@
 #import "HBTemplate_Private.h"
 #import "HBPartial.h"
 
+@interface _HBGlobalExecutionContext : HBExecutionContext
+- (NSString*) localizedString:(NSString*)string;
+@end
+
+@implementation _HBGlobalExecutionContext
+- (NSString*) localizedString:(NSString*)string
+{
+    NSString* localizedVersion = [super localizedString:string];
+    if (!localizedVersion) {
+        localizedVersion = [[NSBundle mainBundle] localizedStringForKey:string value:nil table:nil];
+    }
+    return localizedVersion;
+}
+@end
+
+
 @implementation HBExecutionContext
 
 + (instancetype) globalExecutionContext
 {
     static dispatch_once_t pred;
-    static HBExecutionContext* _globalExecutionContext = nil;
+    static _HBGlobalExecutionContext* _globalExecutionContext = nil;
     
     dispatch_once(&pred, ^{
-        _globalExecutionContext = [[HBExecutionContext alloc] init];
+        _globalExecutionContext = [[_HBGlobalExecutionContext alloc] init];
     });
     
     return _globalExecutionContext;
@@ -166,5 +182,17 @@
     return [template autorelease];
 }
 
+    
+#pragma mark -
+#pragma mark Localization
+
+- (NSString*) localizedString:(NSString*)string
+{
+    if ([self.delegate respondsToSelector:@selector(localizedString:forExecutionContext:)]) {
+        return [self.delegate localizedString:string forExecutionContext:self];
+    }
+    
+    return nil;
+}
 
 @end

@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSMutableDictionary* helperBlocks;
 @property (nonatomic, retain) NSMutableDictionary* partialStrings;
 @property (nonatomic, retain) NSMutableDictionary* partials;
+@property (nonatomic, retain) NSMutableDictionary* localizedStrings;
 
 @end
 
@@ -99,6 +100,31 @@
     XCTAssertEqualObjects(evaluation, @"p1-p2");
 }
 
+
+- (void)testLocalizationDelegationOnExecutionContext
+{
+    SimpleExecutionContextDelegate* delegate = [[SimpleExecutionContextDelegate new] autorelease];
+    HBExecutionContext* executionContext = [[HBExecutionContext new] autorelease];
+    executionContext.delegate = delegate;
+    HBTemplate* template = [executionContext templateWithString:@"{{localize 'hello'}} {{localize 'handlebars'}}!"];
+    
+    NSString* s1 = @"bonjour";
+    NSString* s2 = @"guidon";
+
+    
+    delegate.localizedStrings[@"hello"] = s1;
+    delegate.localizedStrings[@"handlebars"] = s2;
+    
+    XCTAssertEqual(s1, [executionContext localizedString:@"hello"]);
+    XCTAssertEqual(s2, [executionContext localizedString:@"handlebars"]);
+    
+    NSError* error = nil;
+    NSString* evaluation = [template renderWithContext:nil error:&error];
+    XCTAssertNil(error);
+    
+    XCTAssertEqualObjects(evaluation, @"bonjour guidon!");
+}
+
 @end
 
 
@@ -111,6 +137,7 @@
         _helperBlocks = [[NSMutableDictionary alloc] init];
         _partialStrings = [[NSMutableDictionary alloc] init];
         _partials = [[NSMutableDictionary alloc] init];
+        _localizedStrings = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -130,5 +157,10 @@
 {
     return self.partials[name];
 }
-    
+
+- (NSString*) localizedString:(NSString*)string forExecutionContext:(HBExecutionContext*)executionContext
+{
+    return self.localizedStrings[string];
+}
+
 @end

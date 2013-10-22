@@ -67,4 +67,18 @@
  */
 - (HBPartial*) partialWithName:(NSString*)name forExecutionContext:(HBExecutionContext*)executionContext;
 
+
+/** 
+ Return the localized version of a string. 
+ 
+ Implement this method if you want to provide you own localization mechanism. 
+ This method is called by helpers using the built-in localization mechanism in handlebars-objc. One such helper is the "localize" built-in helper.
+ 
+ @param string the string to localize
+ @param executionContext the execution context requesting the localized string. 
+ @return the localized version of the string 
+ @since v1.1.0
+ */
+- (NSString*) localizedString:(NSString*)string forExecutionContext:(HBExecutionContext*)executionContext;
+
 @end

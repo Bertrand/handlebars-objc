@@ -127,4 +127,17 @@
     return partial;
 }
 
+#pragma mark -
+#pragma mark Localization of strings
+
+- (NSString*) localizedString:(NSString*)string
+{
+    NSString* localizedVersion = nil;
+    if (self.sharedExecutionContext) localizedVersion = [self.sharedExecutionContext localizedString:string];
+    if (!localizedVersion) localizedVersion = [[HBExecutionContext globalExecutionContext] localizedString:string];
+    if (!localizedVersion) localizedVersion = string;
+    
+    return localizedVersion;
+}
+
 @end

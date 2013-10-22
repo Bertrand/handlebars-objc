@@ -38,7 +38,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerEachHelper;
 + (void) registerWithBlock;
 + (void) registerLogBlock;
-
++ (void) registerLocalizeBlock;
 @end
 
 @implementation HBBuiltinHelpersRegistry
@@ -57,6 +57,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     [self registerEachHelper];
     [self registerWithBlock];
     [self registerLogBlock];
+    [self registerLocalizeBlock];
 }
 
 + (void) registerIfBlock
@@ -162,6 +163,20 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         return (NSString*)nil;
     };
     [_builtinHelpersRegistry registerHelperBlock:logBlock forName:@"log"];
+}
+
++ (void) registerLocalizeBlock
+{
+    HBHelperBlock localizeBlock = ^(HBHelperCallingInfo* callingInfo) {
+        NSString* result = nil;
+        if (callingInfo.positionalParameters.count > 0) {
+            NSString* key = callingInfo[0];
+            NSString* localizedVersion = [callingInfo.template localizedString:key];
+            return localizedVersion;
+        }
+        return result;
+    };
+    [_builtinHelpersRegistry registerHelperBlock:localizeBlock forName:@"localize"];
 }
 
 @end
