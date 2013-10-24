@@ -27,6 +27,7 @@
 
 #import "HBAstContextualValue.h"
 #import "HBAstKeyPathComponent.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstContextualValue
 
@@ -48,4 +49,10 @@
     }
     return result;
 }
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitContextualValue:self];
+}
+
 @end

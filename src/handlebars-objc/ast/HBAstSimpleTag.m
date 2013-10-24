@@ -26,7 +26,13 @@
 //
 
 #import "HBAstSimpleTag.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstSimpleTag
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitSimpleTag:self];
+}
 
 @end

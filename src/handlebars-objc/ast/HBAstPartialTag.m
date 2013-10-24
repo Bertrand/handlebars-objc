@@ -26,8 +26,13 @@
 //
 
 #import "HBAstPartialTag.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstPartialTag
 
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitPartialTag:self];
+}
 
 @end

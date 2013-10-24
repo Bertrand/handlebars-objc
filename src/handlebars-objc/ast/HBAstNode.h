@@ -27,8 +27,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class HBAstVisitor;
+
 @interface HBAstNode : NSObject
 
 - (NSString*)formalDump;
+
+// help visitors be fast
+
+- (id) accept:(HBAstVisitor*)visitor;
 
 @end

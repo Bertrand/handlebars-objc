@@ -26,6 +26,7 @@
 //
 
 #import "HBAstNode.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstNode
 
@@ -33,5 +34,12 @@
 {
     return nil;
 }
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    NSAssert(false, @"abstract method. Must be overloaded by concrete subclasses");
+    return nil;
+}
+
 
 @end

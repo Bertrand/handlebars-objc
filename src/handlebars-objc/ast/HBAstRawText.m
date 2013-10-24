@@ -26,7 +26,13 @@
 //
 
 #import "HBAstRawText.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstRawText
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitRawText:self];
+}
 
 @end

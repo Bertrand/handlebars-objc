@@ -27,7 +27,13 @@
 
 
 #import "HBAstBlockTag.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstBlockTag
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitBlockTag:self];
+}
 
 @end

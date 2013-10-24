@@ -26,7 +26,13 @@
 //
 
 #import "HBAstComment.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstComment
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitComment:self];
+}
 
 @end

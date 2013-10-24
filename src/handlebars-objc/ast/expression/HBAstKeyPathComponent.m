@@ -26,6 +26,7 @@
 //
 
 #import "HBAstKeyPathComponent.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstKeyPathComponent
 
@@ -37,6 +38,11 @@
 - (NSString*) sourceRepresentation
 {
     return [NSString stringWithFormat:@"%@%@", self.leadingSeparator ? self.leadingSeparator : @"", self.key];
+}
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitKeyPathComponent:self];
 }
 
 @end

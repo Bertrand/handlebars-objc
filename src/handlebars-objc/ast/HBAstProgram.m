@@ -26,12 +26,18 @@
 //
 
 #import "HBAstProgram.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstProgram
 
 - (NSString*)formalDump
 {
     return @"";
+}
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitProgram:self];
 }
 
 @end

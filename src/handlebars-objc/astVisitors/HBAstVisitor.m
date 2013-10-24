@@ -28,30 +28,7 @@
 #import "HBAstVisitor.h"
 #import "HBAst.h" 
 
-
-
 @implementation HBAstVisitor
-
-+ (SEL)visitorMethodForAstClassName:(NSString*)classname;
-{
-    static NSMutableDictionary* methodNames = nil;
-
-    static dispatch_once_t pred;
-    dispatch_once(&pred, ^{
-        methodNames = [[NSMutableDictionary alloc] init];
-    });
-    
-    @synchronized(methodNames) {
-        if (methodNames[classname] == nil) {
-            NSAssert([classname hasPrefix:@"HBAst"], @"Ast class names must all start with 'HBAst' (%@)", classname);
-            NSString* shortenedNodeClass = [classname substringFromIndex:5];
-            NSString* methodName = [NSString stringWithFormat:@"visit%@:", shortenedNodeClass];
-            methodNames[classname] = methodName;
-        }
-    }
-    
-    return NSSelectorFromString(methodNames[classname]);
-}
 
 - (id) initWithRootAstNode:(HBAstNode*) rootNode;
 {
@@ -62,21 +39,7 @@
 
 - (id) visitNode:(HBAstNode*)node
 {
-    NSString* nodeClass = NSStringFromClass([node class]);
-    SEL visitorMethodSelector = [[self class] visitorMethodForAstClassName:nodeClass];
-    NSMethodSignature* visitorMethodSignature = [self methodSignatureForSelector:visitorMethodSelector];
-    
-    id returnValue = nil;
-    
-    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:visitorMethodSignature];
-    [invocation setTarget:self];
-    [invocation setSelector:visitorMethodSelector];
-    [invocation setArgument:&node atIndex:2]; // first 2 args are hidden arguments in objc dispatch.
-    [invocation invoke];
-    [invocation getReturnValue:&returnValue];
-    [[returnValue retain] autorelease];
-
-    return returnValue;
+    return [node accept:self];
 }
 
 

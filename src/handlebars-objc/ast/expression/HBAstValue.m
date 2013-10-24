@@ -26,7 +26,14 @@
 //
 
 #import "HBAstValue.h"
+#import "HBAstVisitor.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstValue
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitValue:self];
+}
 
 @end

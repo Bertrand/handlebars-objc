@@ -26,6 +26,7 @@
 //
 
 #import "HBAstExpression.h"
+#import "HBAstVisitor.h"
 
 @implementation HBAstExpression
 
@@ -41,6 +42,11 @@
     if (self.orderedNamedParameterNames == nil) self.orderedNamedParameterNames = [NSMutableArray array];
     self.namedParameters[key] = parameter;
     [self.orderedNamedParameterNames addObject:key];
+}
+
+- (id) accept:(HBAstVisitor*)visitor
+{
+    return [visitor visitExpression:self];
 }
 
 @end
