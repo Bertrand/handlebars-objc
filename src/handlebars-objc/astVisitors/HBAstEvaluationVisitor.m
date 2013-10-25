@@ -46,6 +46,40 @@
 @property (retain, nonatomic) HBContextStack* contextStack;
 @end
 
+//
+//
+// The following two macros are a trick to circumvent NSMutableString ignoring the
+// capacity in initWithCapacity: initializer
+//
+// Instead, we use a CFMutableString with capped length. Those are optimized for real
+// and will show much better performances. But they do not autogrow beyond the capped
+// length.
+//
+// So we use a capped CF string until we reach its max size and then fallback to
+// normal NSMutableString beyond.
+//
+// The key of course is to properly evaluate resulting string length.
+//
+// We use macros instead of a method call since benchmark gave much better results this
+// way.
+//
+//
+
+#define CREATE_FASTER_MUTABLE_STRING(__buffer_name__, __estimated_length__) \
+    BOOL __buffer_name__##usingCappedString = true; \
+    NSInteger __buffer_name__##cappedLength = (__estimated_length__); \
+    NSMutableString* __buffer_name__ = (NSMutableString*)CFStringCreateMutable(0, __buffer_name__##cappedLength)
+
+#define APPEND_STRING_TO_FASTER_MUTABLE_STRING(__buffer_name__, __string_to_append__) \
+    if (__buffer_name__##usingCappedString && ([__buffer_name__ length] + [__string_to_append__ length] > __buffer_name__##cappedLength)) { \
+        NSMutableString* __buffer_name__##newBuffer = [__buffer_name__ mutableCopy]; \
+        [__buffer_name__ release]; \
+        __buffer_name__ = __buffer_name__##newBuffer; \
+        __buffer_name__##usingCappedString = false; \
+    } \
+    [buffer appendString:result]
+
+
 @implementation HBAstEvaluationVisitor
 
 #pragma mark -
@@ -295,14 +329,21 @@
 
 - (id) visitProgram:(HBAstProgram*)node
 {
-    NSMutableString* buffer = [NSMutableString string];
-    for (HBAstNode* statement in node.statements) {
-        id result = [self visitNode:statement];
-        if (result && [result isKindOfClass:[NSString class]])
-            [buffer appendString:result];
+    CREATE_FASTER_MUTABLE_STRING(buffer, 1.2 * self.template.templateString.length);
+    
+    @autoreleasepool {
+        for (HBAstNode* statement in node.statements) {
+            id result = [self visitNode:statement];
+            if (result && [result isKindOfClass:[NSString class]]) {
+                APPEND_STRING_TO_FASTER_MUTABLE_STRING(buffer, result);
+            }
+        }
     }
+    
+    [buffer autorelease];
     return buffer;
 }
+
 
 - (id) visitRawText:(HBAstRawText*)node
 {
