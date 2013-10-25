@@ -155,7 +155,7 @@
 		06F493B91802D75E0055B5BC /* HBTestSimpleBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */; };
 		06F493BA1802D75E0055B5BC /* HBTestSimpleTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F117FAC2CB0029C3D1 /* HBTestSimpleTags.m */; };
 		06F493BB1802D75E0055B5BC /* HBTestBuiltinBlockHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E478F317FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m */; };
-		06F601FE1812D0CD0019D9C1 /* HBExecutionContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06F601FD1812D0CD0019D9C1 /* HBExecutionContextDelegate.h */; };
+		06F601FE1812D0CD0019D9C1 /* HBExecutionContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06F601FD1812D0CD0019D9C1 /* HBExecutionContextDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06F601FF1812D0CD0019D9C1 /* HBExecutionContextDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 06F601FD1812D0CD0019D9C1 /* HBExecutionContextDelegate.h */; };
 /* End PBXBuildFile section */
 
