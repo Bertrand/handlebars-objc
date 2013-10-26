@@ -45,5 +45,15 @@
     return self.namedParameters[key];
 }
 
+#pragma mark -
 
+- (void) dealloc
+{
+    self.context = nil;
+    self.data = nil;
+    self.positionalParameters = nil;
+    self.namedParameters = nil;
+    self.template = nil;
+    [super dealloc];
+}
 @end

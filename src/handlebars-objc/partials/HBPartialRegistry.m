@@ -118,4 +118,12 @@
 }
 
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.partials = nil;
+    [super dealloc];
+}
+
 @end

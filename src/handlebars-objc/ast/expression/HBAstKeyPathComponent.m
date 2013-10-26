@@ -45,4 +45,10 @@
     return [visitor visitKeyPathComponent:self];
 }
 
+- (void) dealloc
+{
+    self.leadingSeparator = nil;
+    self.key = nil;
+    [super dealloc];
+}
 @end

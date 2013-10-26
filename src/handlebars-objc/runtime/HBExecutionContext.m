@@ -195,4 +195,15 @@
     return nil;
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.helpers = nil;
+    self.partials = nil;
+    self.delegate = nil;
+    
+    [super dealloc];
+}
+
 @end

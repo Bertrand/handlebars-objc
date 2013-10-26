@@ -115,6 +115,13 @@
     return nil;
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.rootNode = nil;
+    [super dealloc];
+}
 
 
 @end

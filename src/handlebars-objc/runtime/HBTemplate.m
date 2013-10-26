@@ -140,4 +140,16 @@
     return localizedVersion;
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.templateString = nil;
+    self.program = nil;
+    self.templateLocalExecutionContext = nil;
+    self.sharedExecutionContext = nil;
+
+    [super dealloc];
+}
+
 @end

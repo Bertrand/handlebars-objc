@@ -29,4 +29,10 @@
 
 @implementation HBAstTag
 
+
+- (void) dealloc
+{
+    self.expression = nil;
+    [super dealloc];
+}
 @end

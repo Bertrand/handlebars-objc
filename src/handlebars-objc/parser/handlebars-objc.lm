@@ -104,7 +104,7 @@ WS	[ \t]*
 
 NSString* nsString(char* utf8String)
 {
-    return [[NSString alloc] initWithUTF8String:utf8String];
+    return [[[NSString alloc] initWithUTF8String:utf8String] autorelease];
 }
 
 NSString* nsStringFromQuotedString(char* quotedString, NSString* escapeSequence, NSString* replacement)

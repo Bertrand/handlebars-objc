@@ -35,4 +35,10 @@
     return [visitor visitString:self];
 }
 
+- (void) dealloc
+{
+    self.litteralValue = nil;
+    [super dealloc];
+}
+
 @end

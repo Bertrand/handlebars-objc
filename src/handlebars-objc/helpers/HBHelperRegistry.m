@@ -119,5 +119,12 @@
     }
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.helpers = nil;
+    [super dealloc];
+}
 
 @end

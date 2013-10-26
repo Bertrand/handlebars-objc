@@ -35,4 +35,10 @@
     return [visitor visitRawText:self];
 }
 
+- (void) dealloc
+{
+    self.litteralValue = nil;
+    [super dealloc];
+}
+
 @end

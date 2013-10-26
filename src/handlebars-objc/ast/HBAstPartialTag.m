@@ -35,4 +35,10 @@
     return [visitor visitPartialTag:self];
 }
 
+- (void) dealloc
+{
+    self.partialName = nil;
+    self.context = nil;
+    [super dealloc];
+}
 @end

@@ -36,4 +36,11 @@
     return [visitor visitBlockTag:self];
 }
 
+- (void) dealloc
+{
+    self.statements = nil;
+    self.inverseStatements = nil;
+    [super dealloc];
+}
+
 @end

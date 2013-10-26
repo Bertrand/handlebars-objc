@@ -97,4 +97,14 @@
     return [HBDataContext new];
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.context = nil;
+    self.dataContext = nil;
+    self.parent = nil;
+    [super dealloc];
+}
+
 @end

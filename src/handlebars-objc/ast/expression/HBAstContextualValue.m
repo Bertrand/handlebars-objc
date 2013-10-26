@@ -55,4 +55,10 @@
     return [visitor visitContextualValue:self];
 }
 
+- (void) dealloc
+{
+    self.keyPath = nil;
+    [super dealloc];
+}
+
 @end

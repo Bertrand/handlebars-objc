@@ -49,4 +49,14 @@
     return [visitor visitExpression:self];
 }
 
+- (void) dealloc
+{
+    self.mainValue = nil;
+    self.positionalParameters = nil;
+    self.namedParameters = nil;
+    self.orderedNamedParameterNames = nil;
+    
+    [super dealloc];
+}
+
 @end

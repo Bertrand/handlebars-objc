@@ -35,4 +35,9 @@
     return [visitor visitComment:self];
 }
 
+- (void) dealloc
+{
+    self.litteralValue = nil;
+    [super dealloc];
+}
 @end

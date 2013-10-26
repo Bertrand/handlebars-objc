@@ -435,4 +435,14 @@
     return nil;
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.template = nil;
+    self.error = nil;
+    self.contextStack = nil;
+    [super dealloc];
+}
+
 @end

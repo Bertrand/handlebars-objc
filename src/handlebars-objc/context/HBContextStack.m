@@ -63,4 +63,11 @@
     }
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.current = nil;
+    [super dealloc];
+}
 @end

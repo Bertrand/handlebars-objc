@@ -45,4 +45,13 @@
     return self._program.statements;
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.string = nil;
+    self._program = nil;
+    [super dealloc];
+}
+
 @end

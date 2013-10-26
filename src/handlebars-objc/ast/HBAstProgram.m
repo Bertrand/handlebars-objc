@@ -40,4 +40,11 @@
     return [visitor visitProgram:self];
 }
 
+- (void) dealloc
+{
+    self.statements = nil;
+    self.parseError = nil;
+    [super dealloc];
+}
+
 @end

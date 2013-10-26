@@ -69,4 +69,11 @@
     [self setData:object forKey:(NSString*)aKey];
 }
 
+#pragma mark -
+
+- (void) dealloc
+{
+    self.data = nil;
+    [super dealloc];
+}
 @end
