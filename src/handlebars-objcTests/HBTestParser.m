@@ -47,7 +47,6 @@ extern int hb_debug;
     }
     
     HBAstParserTestVisitor* visitor = [[HBAstParserTestVisitor alloc] initWithRootAstNode:program];
-    [program release];
     NSString* parsedString = [visitor testStringRepresentation];
     [visitor release];
     
