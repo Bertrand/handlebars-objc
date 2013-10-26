@@ -198,7 +198,6 @@
 - (void) dealloc
 {
     self.result = nil;
-    self.indentation = nil;
     [super dealloc];
 }
 
