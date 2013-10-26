@@ -54,6 +54,8 @@
     self.positionalParameters = nil;
     self.namedParameters = nil;
     self.template = nil;
+    self.statements = nil;
+    self.inverseStatements = nil;
     [super dealloc];
 }
 @end
