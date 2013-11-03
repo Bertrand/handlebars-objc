@@ -28,6 +28,8 @@
 
 #import "HBBuiltinHelpersRegistry.h"
 #import "HBHandlebars.h"
+#import "HBHelperCallingInfo_Private.h"
+#import "HBAstEvaluationVisitor.h"
 
 static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 
@@ -58,6 +60,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     [self registerWithBlock];
     [self registerLogBlock];
     [self registerLocalizeBlock];
+    [self registerSetEscapingBlock];
 }
 
 + (void) registerIfBlock
@@ -177,6 +180,30 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         return result;
     };
     [_builtinHelpersRegistry registerHelperBlock:localizeBlock forName:@"localize"];
+}
+
++ (void) registerSetEscapingBlock
+{
+    HBHelperBlock setEscapingBlock = ^(HBHelperCallingInfo* callingInfo) {
+        NSString* result = nil;
+        NSString* mode = nil;
+        if (callingInfo.positionalParameters.count > 0) {
+            NSString* param = callingInfo.positionalParameters[0];
+            if ([param isKindOfClass:[NSString class]]) mode = param;
+        }
+        
+        if (mode) {
+            [callingInfo.evaluationVisitor pushEscapingMode:mode];
+        }
+        
+        result = callingInfo.statements(callingInfo.context, callingInfo.data);
+        
+        if (mode) {
+            [callingInfo.evaluationVisitor popEscapingMode];
+        }
+        return result;
+    };
+    [_builtinHelpersRegistry registerHelperBlock:setEscapingBlock forName:@"setEscaping"];
 }
 
 @end

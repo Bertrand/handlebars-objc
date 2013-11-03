@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HBHelper.h" 
+#import "HBEscapingFunctions.h"
 
 @class HBExecutionContext;
 @class HBPartial;
@@ -80,5 +81,19 @@
  @since v1.1.0
  */
 - (NSString*) localizedString:(NSString*)string forExecutionContext:(HBExecutionContext*)executionContext;
+
+/**
+ Return the escaped version of a string for a target text mode
+ 
+ Implement this method if you want to provide a specific escaping mechanism for a target format. If your delegate does not support the escaping of a format, this function should return nil. 
+ 
+ @param rawString string to escape
+ @param formatName the name of current mode. When mode is a well-known text format, it is generally a mime-type ("text/html" for html, "application/javascript" for javascript, ...).
+ @param executionContext the execution context requesting the escaped string
+ @return the escaped string or nil if this format is not supported by the delegate
+ @since v1.1.0
+ */
+- (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName forExecutionContext:(HBExecutionContext*)executionContext;
+
 
 @end

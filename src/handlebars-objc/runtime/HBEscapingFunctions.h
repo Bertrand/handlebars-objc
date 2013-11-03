@@ -1,8 +1,8 @@
 //
-//  HBAstEvaluationVisitor.h
+//  HBEscapingFunctions.h
 //  handlebars-objc
 //
-//  Created by Bertrand Guiheneuf on 9/30/13.
+//  Created by Bertrand Guiheneuf on 10/29/13.
 //
 //  The MIT License
 //
@@ -25,24 +25,13 @@
 //  THE SOFTWARE.
 //
 
-#import "HBAstVisitor.h"
+#import <Foundation/Foundation.h>
 
-@class HBHelperRegistry;
-@class HBTemplate;
+typedef NSString* (^HBEscapingFunction)(NSString* string);
 
-@interface HBAstEvaluationVisitor : HBAstVisitor
+@interface HBEscapingFunctions : NSObject
 
-@property (retain, nonatomic) HBTemplate* template;
-@property (retain, nonatomic) NSError* error;
++ (HBEscapingFunction) htmlEscapingFunction;
 
-- (id) initWithTemplate:(HBTemplate*)template;
-
-- (NSString*) evaluateWithContext:(id)context;
-
-// escaping
-
-- (void) pushEscapingMode:(NSString*)mode;
-- (void) popEscapingMode;
-- (NSString*) currentEscapingMode;
-- (NSString*) escapeStringAccordingToCurrentMode:(NSString*)rawString;
 @end
+

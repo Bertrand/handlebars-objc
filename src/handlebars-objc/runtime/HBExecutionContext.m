@@ -26,6 +26,7 @@
 //
 
 #import "HBExecutionContext.h"
+#import "HBExecutionContext_Private.h"
 #import "HBHelperRegistry.h"
 #import "HBPartialRegistry.h"
 #import "HBTemplate.h"
@@ -190,6 +191,18 @@
 {
     if ([self.delegate respondsToSelector:@selector(localizedString:forExecutionContext:)]) {
         return [self.delegate localizedString:string forExecutionContext:self];
+    }
+    
+    return nil;
+}
+
+#pragma mark -
+#pragma mark Escaping
+
+- (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName;
+{
+    if ([self.delegate respondsToSelector:@selector(escapeString:forTargetFormat:forExecutionContext:)]) {
+        return [self.delegate escapeString:rawString forTargetFormat:formatName forExecutionContext:self];
     }
     
     return nil;

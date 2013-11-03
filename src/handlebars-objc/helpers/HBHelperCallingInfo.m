@@ -27,7 +27,7 @@
 
 #import "HBHelperCallingInfo.h"
 #import "HBHelperCallingInfo_Private.h"
-
+#import "HBAstEvaluationVisitor.h"
 
 @implementation HBHelperCallingInfo
 
@@ -43,6 +43,11 @@
 {
     if (!self.namedParameters) return nil;
     return self.namedParameters[key];
+}
+
+- (NSString*) escapeString:(NSString*)rawString
+{
+    return [self.evaluationVisitor escapeStringAccordingToCurrentMode:rawString];
 }
 
 #pragma mark -

@@ -176,17 +176,11 @@
  */
 - (HBPartial*) partialForName:(NSString*)name;
 
-/**
- Return the localized version of a string.
+
+
  
- Used by helpers which want to benefit from the built-in localization mechanisms in handlebars-objc. 
  
- @param string the string to localize
- @return the localized version of the string
- @since v1.1.0
- */
-- (NSString*) localizedString:(NSString*)string;
-    
+
 @end
 
 

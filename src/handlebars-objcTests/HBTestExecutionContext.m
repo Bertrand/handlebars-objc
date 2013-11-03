@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "HBHandlebars.h"
+#import "HBExecutionContext_Private.h"
 
 @interface HBTestExecutionContext : XCTestCase
 

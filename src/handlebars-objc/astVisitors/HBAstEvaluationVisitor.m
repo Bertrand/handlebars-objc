@@ -44,6 +44,7 @@
 
 @interface HBAstEvaluationVisitor()
 @property (retain, nonatomic) HBContextStack* contextStack;
+@property (retain, nonatomic) NSMutableArray* escapingModeStack;
 @end
 
 //
@@ -103,6 +104,31 @@
     NSString* result = [self visitNode:self.rootNode];
     
     return result;
+}
+
+#pragma mark -
+#pragma Escaping Modes
+
+- (void) pushEscapingMode:(NSString*)mode
+{
+    if (nil == self.escapingModeStack) self.escapingModeStack = [[[NSMutableArray alloc] init] autorelease];
+    [self.escapingModeStack addObject:mode];
+}
+
+- (void) popEscapingMode
+{
+    NSAssert(self.escapingModeStack && self.escapingModeStack.count > 0, @"Escaping mode stack is empty");
+    [self.escapingModeStack removeLastObject];
+}
+
+- (NSString*) currentEscapingMode
+{
+    return [self.escapingModeStack lastObject];
+}
+
+- (NSString*) escapeStringAccordingToCurrentMode:(NSString*)rawString
+{
+    return [self.template escapeString:rawString forTargetFormat:[self currentEscapingMode]];
 }
 
 
@@ -224,6 +250,7 @@
         callingInfo.statements = forwardStatementsEvaluator;
         callingInfo.inverseStatements = inverseStatementsEvaluator;
         callingInfo.template = self.template;
+        callingInfo.evaluationVisitor = self;
         
         NSString* helperResult = helper.block(callingInfo);
         [callingInfo release];
@@ -376,6 +403,7 @@
         callingInfo.statements = [self noopStatementsEvaluator];
         callingInfo.inverseStatements = [self noopStatementsEvaluator];
         callingInfo.template = self.template;
+        callingInfo.evaluationVisitor = self;
 
         NSString* helperResult = helper.block(callingInfo);
         [callingInfo release];
@@ -388,7 +416,7 @@
         id evaluatedExpression = [self visitExpression:node.expression];
         if (evaluatedExpression) {
             NSString* renderedValue = renderForHandlebars(evaluatedExpression);
-            if (node.escape) renderedValue = [HBHelperUtils escapeHTML:renderedValue];
+            if (node.escape) renderedValue = [self escapeStringAccordingToCurrentMode:renderedValue];
             return renderedValue;
         }
     }

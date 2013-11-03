@@ -26,6 +26,7 @@
 //
 
 #import "HBHelperCallingInfo.h"
+#import "HBAstEvaluationVisitor.h"
 
 @interface HBHelperCallingInfo ()
 
@@ -39,5 +40,7 @@
 @property (readwrite, copy, nonatomic) HBStatementsEvaluator inverseStatements;
 
 @property (readwrite, retain, nonatomic) HBTemplate* template;
+
+@property (readwrite, retain, nonatomic) HBAstEvaluationVisitor* evaluationVisitor;
 
 @end

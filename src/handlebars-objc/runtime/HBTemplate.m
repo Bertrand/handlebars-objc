@@ -33,9 +33,9 @@
 #import "HBHelperRegistry.h"
 #import "HBBuiltinHelpersRegistry.h"
 #import "HBExecutionContext.h"
+#import "HBExecutionContext_Private.h"
 #import "HBPartial.h"
 #import "HBPartialRegistry.h"
-
 
 @implementation HBTemplate
 
@@ -138,6 +138,24 @@
     if (!localizedVersion) localizedVersion = string;
     
     return localizedVersion;
+}
+
+#pragma mark -
+#pragma mark Escaping 
+
+- (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName
+{
+    NSString* escapedString = nil;
+    
+    if (self.sharedExecutionContext) escapedString = [self.sharedExecutionContext escapeString:rawString forTargetFormat:formatName];
+    if (!escapedString) escapedString = [[HBExecutionContext globalExecutionContext] escapeString:rawString forTargetFormat:formatName];
+    
+    // well known formats
+    if (!escapedString && (formatName == nil || [formatName isEqualToString:@"text/html"])) {
+        return [HBEscapingFunctions htmlEscapingFunction](rawString);
+    }
+    
+    return escapedString;
 }
 
 #pragma mark -

@@ -26,6 +26,7 @@
 //
 
 #import "HBTemplate.h"
+#import "HBEscapingFunctions.h"
 
 @class HBAstProgram;
 @class HBExecutionContext;
@@ -40,5 +41,7 @@
 
 - (HBHelper*) helperForName:(NSString*)name;
 - (HBPartial*) partialForName:(NSString*)name;
+
+- (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName;
 
 @end
