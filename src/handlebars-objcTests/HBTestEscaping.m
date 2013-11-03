@@ -68,7 +68,7 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
-- (void) testCascadedCustomDefaultEscaping
+- (void) testNestedCustomDefaultEscaping
 {
     NSError* error = nil;
 
@@ -77,7 +77,7 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
-- (void) testCascadedCustomCustomEscaping
+- (void) testNestedCustomCustomEscaping
 {
     NSError* error = nil;
     
@@ -86,7 +86,14 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+- (void) testExpressionEscaping
+{
+    NSError* error = nil;
 
+    XCTAssertEqualObjects([self renderWithDelegate:@"{{escape 'text/format1' awesome}}" withContext:@{ @"awesome": @"&\"'`\\<>"} error:&error],
+                          @"format1");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
 @end
 
 @implementation HBTestEscapingDelegate

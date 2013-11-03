@@ -33,7 +33,17 @@
 
 typedef NSString* (^HBStatementsEvaluator)(id context, HBDataContext* data);
 
-/** 
+/**
+ Invocation kind. Lets helper know if it was invoked as a block helper or an expression helper.
+ */
+typedef NS_ENUM(NSUInteger, HBHelperInvocationKind) {
+    /** helper invoked as expression helper */
+    HBHelperInvocationExpression    = 0,
+    /** helper invoked as block helper */
+    HBHelperInvocationBlock         = 1,
+};
+
+/**
  
  Understanding HBHelperCallingInfo is central to the development of Handlebars helpers in handlebars-objc. If you're not trying to develop a helper, you don't need to read this document. 
  
@@ -164,6 +174,15 @@ typedef NSString* (^HBStatementsEvaluator)(id context, HBDataContext* data);
  @since v1.0
  */
 @property (readonly, retain, nonatomic) NSDictionary* namedParameters;
+
+/**
+ block invocation kind
+ 
+ Handlebars supports expression helpers and block helpers. Some helpers can be called as block helpers or as expression helper. This property lets helpers know how they are invoked.
+ 
+ @since v1.1.0
+ */
+@property (readonly, assign, nonatomic) HBHelperInvocationKind invocationKind;
 
 /**
  block statements (block helpers only)

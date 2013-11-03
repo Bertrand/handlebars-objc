@@ -36,6 +36,8 @@
 @property (readwrite, retain, nonatomic) NSArray* positionalParameters;
 @property (readwrite, retain, nonatomic) NSDictionary* namedParameters;
 
+@property (readwrite, assign, nonatomic) HBHelperInvocationKind invocationKind;
+
 @property (readwrite, copy, nonatomic) HBStatementsEvaluator statements;
 @property (readwrite, copy, nonatomic) HBStatementsEvaluator inverseStatements;
 

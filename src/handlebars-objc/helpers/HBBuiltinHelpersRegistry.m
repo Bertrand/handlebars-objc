@@ -30,6 +30,7 @@
 #import "HBHandlebars.h"
 #import "HBHelperCallingInfo_Private.h"
 #import "HBAstEvaluationVisitor.h"
+#import "HBTemplate_Private.h"
 
 static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 
@@ -41,6 +42,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerWithBlock;
 + (void) registerLogBlock;
 + (void) registerLocalizeBlock;
+
 @end
 
 @implementation HBBuiltinHelpersRegistry
@@ -61,6 +63,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     [self registerLogBlock];
     [self registerLocalizeBlock];
     [self registerSetEscapingBlock];
+    [self registerEscapeBlock];
 }
 
 + (void) registerIfBlock
@@ -204,6 +207,25 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         return result;
     };
     [_builtinHelpersRegistry registerHelperBlock:setEscapingBlock forName:@"setEscaping"];
+}
+
++ (void) registerEscapeBlock
+{
+    HBHelperBlock escapeBlock = ^(HBHelperCallingInfo* callingInfo) {
+        NSString* mode = nil;
+        if (callingInfo.positionalParameters.count > 0) {
+            NSString* param = callingInfo.positionalParameters[0];
+            if ([param isKindOfClass:[NSString class]]) mode = param;
+        }
+        
+        if (!mode) {
+            return @"";
+        }
+        
+        NSString* value = callingInfo.positionalParameters[1];
+        return [callingInfo.template escapeString:value forTargetFormat:mode];
+    };
+    [_builtinHelpersRegistry registerHelperBlock:escapeBlock forName:@"escape"];
 }
 
 @end

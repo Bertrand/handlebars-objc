@@ -32,6 +32,7 @@ typedef NSString* (^HBEscapingFunction)(NSString* string);
 @interface HBEscapingFunctions : NSObject
 
 + (HBEscapingFunction) htmlEscapingFunction;
++ (HBEscapingFunction) urlParameterEscapingFunction;
 
 @end
 

@@ -251,7 +251,8 @@
         callingInfo.inverseStatements = inverseStatementsEvaluator;
         callingInfo.template = self.template;
         callingInfo.evaluationVisitor = self;
-        
+        callingInfo.invocationKind = HBHelperInvocationBlock;
+
         NSString* helperResult = helper.block(callingInfo);
         [callingInfo release];
         
@@ -404,6 +405,7 @@
         callingInfo.inverseStatements = [self noopStatementsEvaluator];
         callingInfo.template = self.template;
         callingInfo.evaluationVisitor = self;
+        callingInfo.invocationKind = HBHelperInvocationExpression;
 
         NSString* helperResult = helper.block(callingInfo);
         [callingInfo release];

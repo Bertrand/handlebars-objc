@@ -151,8 +151,15 @@
     if (!escapedString) escapedString = [[HBExecutionContext globalExecutionContext] escapeString:rawString forTargetFormat:formatName];
     
     // well known formats
-    if (!escapedString && (formatName == nil || [formatName isEqualToString:@"text/html"])) {
+    
+    // html
+    if (!escapedString && (formatName == nil || [formatName isEqualToString:@"text/html"] || [formatName isEqual:@"html"])) {
         return [HBEscapingFunctions htmlEscapingFunction](rawString);
+    }
+    
+    // url params
+    if (!escapedString && [formatName isEqual:@"urlParam"]) {
+        return [HBEscapingFunctions urlParameterEscapingFunction](rawString);
     }
     
     return escapedString;

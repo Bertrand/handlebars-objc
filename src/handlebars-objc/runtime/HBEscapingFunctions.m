@@ -32,9 +32,33 @@
 
 + (HBEscapingFunction) htmlEscapingFunction
 {
-    return ^(NSString* string) {
-        return [HBHelperUtils escapeHTML:string];
-    };
+    static dispatch_once_t pred;
+    static HBEscapingFunction _htmlEscapingFunction = nil;
+    
+    dispatch_once(&pred, ^{
+        _htmlEscapingFunction = ^(NSString* string) {
+            return [HBHelperUtils escapeHTML:string];
+        };
+    });
+    
+    return _htmlEscapingFunction;
+}
+
++ (HBEscapingFunction) urlParameterEscapingFunction
+{
+    
+    static dispatch_once_t pred;
+    static HBEscapingFunction _urlParameterEscapingFunction = nil;
+    
+    dispatch_once(&pred, ^{
+        _urlParameterEscapingFunction = ^(NSString* string) {
+            NSString* result = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)string, NULL, (CFStringRef)@"!*';:@&=+$,/?%#\"", kCFStringEncodingUTF8);
+            
+            return [result autorelease];
+        };
+    });
+    
+    return _urlParameterEscapingFunction;
 }
 
 @end
