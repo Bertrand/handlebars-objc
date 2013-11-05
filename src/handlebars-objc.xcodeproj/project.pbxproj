@@ -13,7 +13,7 @@
 		060EEF58180D7460009F2C0A /* HBObjectPropertyAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF54180D7460009F2C0A /* HBObjectPropertyAccess.m */; };
 		060EEF5A180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */; };
 		060EEF5B180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */; };
-		061884DF18205AD300D1012F /* HBEscapingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 061884DD18205AD300D1012F /* HBEscapingFunctions.h */; };
+		061884DF18205AD300D1012F /* HBEscapingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 061884DD18205AD300D1012F /* HBEscapingFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		061884E018205AD300D1012F /* HBEscapingFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 061884DD18205AD300D1012F /* HBEscapingFunctions.h */; };
 		061884E118205AD300D1012F /* HBEscapingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 061884DE18205AD300D1012F /* HBEscapingFunctions.m */; };
 		061884E218205AD300D1012F /* HBEscapingFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 061884DE18205AD300D1012F /* HBEscapingFunctions.m */; };
