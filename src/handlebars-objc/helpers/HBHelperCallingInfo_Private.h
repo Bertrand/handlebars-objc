@@ -43,6 +43,6 @@
 
 @property (readwrite, retain, nonatomic) HBTemplate* template;
 
-@property (readwrite, retain, nonatomic) HBAstEvaluationVisitor* evaluationVisitor;
+@property (readwrite, assign, nonatomic) HBAstEvaluationVisitor* evaluationVisitor;
 
 @end
