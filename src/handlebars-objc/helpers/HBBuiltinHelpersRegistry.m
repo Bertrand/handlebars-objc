@@ -42,6 +42,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerWithBlock;
 + (void) registerLogBlock;
 + (void) registerLocalizeBlock;
++ (void) registerIsBlock;
 
 @end
 
@@ -62,6 +63,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     [self registerWithBlock];
     [self registerLogBlock];
     [self registerLocalizeBlock];
+    [self registerIsBlock];
     [self registerSetEscapingBlock];
     [self registerEscapeBlock];
 }
@@ -183,6 +185,62 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         return result;
     };
     [_builtinHelpersRegistry registerHelperBlock:localizeBlock forName:@"localize"];
+}
+
+
++ (void) registerIsBlock
+{
+    HBHelperBlock isBlock = ^(HBHelperCallingInfo* callingInfo) {
+        BOOL eqEval;
+        if (2 == [[callingInfo positionalParameters] count]) {
+            if ([callingInfo[0] isKindOfClass:[NSString class]]) {
+                NSString* val = callingInfo[0];
+                NSString* test = nil;
+                BOOL ok = YES;
+                
+                if ([callingInfo[1] isKindOfClass:[NSString class]]) {
+                    test = callingInfo[1];
+                } else if ([callingInfo[1] isKindOfClass:[NSNumber class]]) {
+                    test = [callingInfo[1] stringValue];
+                } else {
+                    ok = NO;
+                }
+                eqEval = ok && [val isEqualToString:test];
+            } else if ([callingInfo[0] isKindOfClass:[NSNumber class]]) {
+                NSNumber* val = callingInfo[0];
+                NSNumber* test = nil;
+                BOOL ok = YES;
+                
+                if ([callingInfo[1] isKindOfClass:[NSNumber class]]) {
+                    test = callingInfo[1];
+                } else if ([callingInfo[1] isKindOfClass:[NSString class]]) {
+                    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+                    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+                    
+                    test = [f numberFromString:callingInfo[1]];
+                    
+                    [f release];
+                } else {
+                    ok = NO;
+                }
+                
+
+                eqEval = ok && [val isEqualToNumber:test];
+            } else {
+                eqEval = NO;
+            }
+
+        } else {
+            eqEval = NO;
+        }
+
+        if (eqEval) {
+            return callingInfo.statements(callingInfo.context, callingInfo.data);
+        } else {
+            return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
+        }
+    };
+    [_builtinHelpersRegistry registerHelperBlock:isBlock forName:@"is"];
 }
 
 + (void) registerSetEscapingBlock
