@@ -43,7 +43,10 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerLogBlock;
 + (void) registerLocalizeBlock;
 + (void) registerIsBlock;
-
++ (void) registerGtBlock;
++ (void) registerGteBlock;
++ (void) registerLtBlock;
++ (void) registerLteBlock;
 @end
 
 @implementation HBBuiltinHelpersRegistry
@@ -64,6 +67,10 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     [self registerLogBlock];
     [self registerLocalizeBlock];
     [self registerIsBlock];
+    [self registerGtBlock];
+    [self registerGteBlock];
+    [self registerLtBlock];
+    [self registerLteBlock];
     [self registerSetEscapingBlock];
     [self registerEscapeBlock];
 }
@@ -188,59 +195,131 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 }
 
 
++ (NSComparisonResult) compare2FirstPositionalParameters:(HBHelperCallingInfo*)callingInfo validity:(BOOL*)comparisonValid
+{
+    BOOL valid = true;
+    id obj0 = nil;
+    id obj1 = nil;
+    
+    if (2 != [[callingInfo positionalParameters] count]) {
+        *comparisonValid = false;
+        return NSOrderedAscending;
+    }
+    
+    if ([callingInfo[1] isKindOfClass:[NSString class]]) {
+        obj1 = callingInfo[1];
+        
+        if ([callingInfo[0] isKindOfClass:[NSString class]]) {
+            obj0 = callingInfo[0];
+        } else if ([callingInfo[0] isKindOfClass:[NSNumber class]]) {
+            obj0 = [callingInfo[0] stringValue];
+        } else {
+            valid = NO;
+        }
+    } else if ([callingInfo[1] isKindOfClass:[NSNumber class]]) {
+        obj1 = callingInfo[1];
+        
+        if ([callingInfo[0] isKindOfClass:[NSNumber class]]) {
+            obj0 = callingInfo[0];
+        } else if ([callingInfo[0] isKindOfClass:[NSString class]]) {
+            NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+            [f setNumberStyle:NSNumberFormatterDecimalStyle];
+            
+            obj0 = [f numberFromString:callingInfo[0]];
+            
+            [f release];
+        } else {
+            valid = NO;
+        }
+    }
+    
+    *comparisonValid = valid;
+    if (!valid) {
+        return NSOrderedAscending;
+    }
+    
+    return [obj0 compare:obj1];
+}
+
+
 + (void) registerIsBlock
 {
     HBHelperBlock isBlock = ^(HBHelperCallingInfo* callingInfo) {
-        BOOL eqEval;
-        if (2 == [[callingInfo positionalParameters] count]) {
-            if ([callingInfo[0] isKindOfClass:[NSString class]]) {
-                NSString* val = callingInfo[0];
-                NSString* test = nil;
-                BOOL ok = YES;
-                
-                if ([callingInfo[1] isKindOfClass:[NSString class]]) {
-                    test = callingInfo[1];
-                } else if ([callingInfo[1] isKindOfClass:[NSNumber class]]) {
-                    test = [callingInfo[1] stringValue];
-                } else {
-                    ok = NO;
-                }
-                eqEval = ok && [val isEqualToString:test];
-            } else if ([callingInfo[0] isKindOfClass:[NSNumber class]]) {
-                NSNumber* val = callingInfo[0];
-                NSNumber* test = nil;
-                BOOL ok = YES;
-                
-                if ([callingInfo[1] isKindOfClass:[NSNumber class]]) {
-                    test = callingInfo[1];
-                } else if ([callingInfo[1] isKindOfClass:[NSString class]]) {
-                    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-                    [f setNumberStyle:NSNumberFormatterDecimalStyle];
-                    
-                    test = [f numberFromString:callingInfo[1]];
-                    
-                    [f release];
-                } else {
-                    ok = NO;
-                }
-                
-
-                eqEval = ok && [val isEqualToNumber:test];
-            } else {
-                eqEval = NO;
-            }
-
-        } else {
-            eqEval = NO;
-        }
-
-        if (eqEval) {
+        BOOL comparisonIsValid;
+        NSComparisonResult comparisonResult = [[self class] compare2FirstPositionalParameters:callingInfo validity:&comparisonIsValid];
+        
+        if (comparisonIsValid && comparisonResult == NSOrderedSame) {
             return callingInfo.statements(callingInfo.context, callingInfo.data);
         } else {
             return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
         }
     };
+    
     [_builtinHelpersRegistry registerHelperBlock:isBlock forName:@"is"];
+}
+
++ (void) registerGtBlock
+{
+    HBHelperBlock gtBlock = ^(HBHelperCallingInfo* callingInfo) {
+        BOOL comparisonIsValid;
+        NSComparisonResult comparisonResult = [[self class] compare2FirstPositionalParameters:callingInfo validity:&comparisonIsValid];
+        
+        if (comparisonIsValid && comparisonResult == NSOrderedDescending) {
+            return callingInfo.statements(callingInfo.context, callingInfo.data);
+        } else {
+            return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
+        }
+    };
+    
+    [_builtinHelpersRegistry registerHelperBlock:gtBlock forName:@"gt"];
+}
+
++ (void) registerGteBlock
+{
+    HBHelperBlock gtBlock = ^(HBHelperCallingInfo* callingInfo) {
+        BOOL comparisonIsValid;
+        NSComparisonResult comparisonResult = [[self class] compare2FirstPositionalParameters:callingInfo validity:&comparisonIsValid];
+        
+        if (comparisonIsValid && (comparisonResult == NSOrderedDescending || comparisonResult == NSOrderedSame)) {
+            return callingInfo.statements(callingInfo.context, callingInfo.data);
+        } else {
+            return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
+        }
+    };
+    
+    [_builtinHelpersRegistry registerHelperBlock:gtBlock forName:@"gte"];
+}
+
++ (void) registerLtBlock
+{
+    HBHelperBlock gtBlock = ^(HBHelperCallingInfo* callingInfo) {
+        BOOL comparisonIsValid;
+        NSComparisonResult comparisonResult = [[self class] compare2FirstPositionalParameters:callingInfo validity:&comparisonIsValid];
+        
+        if (comparisonIsValid && comparisonResult == NSOrderedAscending) {
+            return callingInfo.statements(callingInfo.context, callingInfo.data);
+        } else {
+            return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
+        }
+    };
+    
+    [_builtinHelpersRegistry registerHelperBlock:gtBlock forName:@"lt"];
+}
+
++ (void) registerLteBlock
+{
+    HBHelperBlock gtBlock = ^(HBHelperCallingInfo* callingInfo) {
+        BOOL comparisonIsValid;
+        NSComparisonResult comparisonResult = [[self class] compare2FirstPositionalParameters:callingInfo validity:&comparisonIsValid];
+        
+        if (comparisonIsValid && (comparisonResult == NSOrderedAscending || comparisonResult == NSOrderedSame)) {
+            return callingInfo.statements(callingInfo.context, callingInfo.data);
+        } else {
+            return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
+        }
+    };
+    
+    [_builtinHelpersRegistry registerHelperBlock:gtBlock forName:@"lte"];
 }
 
 + (void) registerSetEscapingBlock
