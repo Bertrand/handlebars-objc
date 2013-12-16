@@ -111,6 +111,8 @@
 		06E4790A17FC0CA90029C3D1 /* HBDataContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E4790817FC0CA90029C3D1 /* HBDataContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06E4790B17FC0CA90029C3D1 /* HBDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 06E4790917FC0CA90029C3D1 /* HBDataContext.m */; };
 		06E89C061802E24900A6F461 /* libhandlebars-objc-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */; };
+		06F40AA2185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F40AA1185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m */; };
+		06F40AA3185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F40AA1185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m */; };
 		06F493401802D07F0055B5BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4933F1802D07F0055B5BC /* Foundation.framework */; };
 		06F4934D1802D07F0055B5BC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
 		06F4934E1802D07F0055B5BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F4933F1802D07F0055B5BC /* Foundation.framework */; };
@@ -308,6 +310,7 @@
 		06F3BEE1180FD4C200D4447B /* Installation.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = Installation.md; sourceTree = "<group>"; };
 		06F3BEE2180FD50800D4447B /* build_binary_distribution.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build_binary_distribution.sh; sourceTree = "<group>"; };
 		06F3BEE3180FD50800D4447B /* generate_github_pages.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_github_pages.sh; sourceTree = "<group>"; };
+		06F40AA1185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestExtraHelpersLibrary.m; sourceTree = "<group>"; };
 		06F4933E1802D07F0055B5BC /* libhandlebars-objc-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libhandlebars-objc-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		06F4933F1802D07F0055B5BC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		06F4934C1802D07F0055B5BC /* handlebars-objc-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "handlebars-objc-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,6 +460,7 @@
 			children = (
 				060EEF59180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m */,
 				063452C61811DAC3003C0B7C /* HBTestExecutionContext.m */,
+				06F40AA1185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m */,
 				061884E6182570B100D1012F /* HBTestEscaping.m */,
 				06D426B817FC554800C41476 /* HBTestHelpers.m */,
 				06A81A9D17F87FFD0006F16A /* HBTestParser.m */,
@@ -915,6 +919,7 @@
 				06E478F617FAC87A0029C3D1 /* HBTestSimpleBlocks.m in Sources */,
 				06E478F217FAC2CB0029C3D1 /* HBTestSimpleTags.m in Sources */,
 				06D426C317FC6CC500C41476 /* HBTestHelpers.m in Sources */,
+				06F40AA2185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m in Sources */,
 				063FA2941812D61A004FBA94 /* HBTestExecutionContext.m in Sources */,
 				06A81A9E17F87FFD0006F16A /* HBTestParser.m in Sources */,
 				061884E7182570B100D1012F /* HBTestEscaping.m in Sources */,
@@ -975,6 +980,7 @@
 				06F493B81802D75E0055B5BC /* HBTestPartials.m in Sources */,
 				06F493BB1802D75E0055B5BC /* HBTestBuiltinBlockHelpers.m in Sources */,
 				06F493BA1802D75E0055B5BC /* HBTestSimpleTags.m in Sources */,
+				06F40AA3185F5E4300EC3463 /* HBTestExtraHelpersLibrary.m in Sources */,
 				063452C81811DAC3003C0B7C /* HBTestExecutionContext.m in Sources */,
 				06F493B61802D75E0055B5BC /* HBTestHelpers.m in Sources */,
 				061884E8182570B100D1012F /* HBTestEscaping.m in Sources */,
