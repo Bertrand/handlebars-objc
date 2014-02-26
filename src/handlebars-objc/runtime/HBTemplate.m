@@ -76,13 +76,15 @@
     return renderedString;
 }
 
-- (void) compile:(NSError**)error
+- (BOOL) compile:(NSError**)error
 {
-    if (self.program) return;
-    self.program = [HBParser astFromString:self.templateString error:error];
+    if (nil == self.program) {
+        self.program = [HBParser astFromString:self.templateString error:error];
+    }
+    return (nil != self.program);
 }
 
-#pragma mark - 
+#pragma mark -
 #pragma mark Helpers
 
 - (HBHelperRegistry*) helpers
