@@ -38,7 +38,7 @@
 
 + (id /* NSSet or nil */) objectiveCPropertyNamesForClass:(Class)class
 {
-    NSMutableSet* propertySet = [NSMutableSet new];
+    NSMutableSet* propertySet = [NSMutableSet set];
     
     while (class) {
         
