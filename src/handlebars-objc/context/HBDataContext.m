@@ -37,7 +37,7 @@
 - (id)copy
 {
     HBDataContext* other = [[[self class] alloc] init];
-    other.data = [self.data mutableCopy];
+    other.data = [[self.data mutableCopy] autorelease];
     return other;
 }
 
