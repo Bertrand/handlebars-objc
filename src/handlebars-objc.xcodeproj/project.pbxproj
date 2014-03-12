@@ -293,7 +293,7 @@
 		06AB0B12180BDA48005A7610 /* convert-js-test.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = "convert-js-test.rb"; sourceTree = "<group>"; };
 		06AB0B13180BDA49005A7610 /* copy_public_headers.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = copy_public_headers.sh; sourceTree = "<group>"; };
 		06AB0B14180BDA49005A7610 /* generate_api_doc.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = generate_api_doc.sh; sourceTree = "<group>"; };
-		06C5F6F6180C722200AD9210 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		06C5F6F6180C722200AD9210 /* README.md */ = {isa = PBXFileReference; explicitFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		06D426B817FC554800C41476 /* HBTestHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestHelpers.m; sourceTree = "<group>"; };
 		06D426BB17FC5E4200C41476 /* HBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelper.h; sourceTree = "<group>"; };
 		06D426BC17FC5E4200C41476 /* HBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelper.m; sourceTree = "<group>"; };
