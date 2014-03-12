@@ -79,9 +79,10 @@
  
  This method compiles the template string. This method can be safely called multiple time, template will only be compiled once. There is no need to call it before rendering, it'll be called lazily if needed, at render time. Calling this method provides a way to control when compilation should occur in your application lifetime. 
  @param error pointer to an error object that is set in case of parsing error.
+ @return YES if the template was compiled. Returns NO if an error occurred.
  @since v1.0
  */
-- (void) compile:(NSError**)error; // done automatically when rendering. Can be called at will, upfront if wanted.
+- (BOOL) compile:(NSError**)error; // done automatically when rendering. Can be called at will, upfront if wanted.
 
 /** @name Helpers and partials */
 
