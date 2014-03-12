@@ -40,6 +40,6 @@
 
 - (id) evaluateContextualValue:(HBAstContextualValue*)value;
 
-- (HBDataContext*) dataContextCopyOrNew; // must be released by sender as per usual conventions on copy and new
+- (HBDataContext*) newDataContextOrCopy; // must be released by sender as per usual conventions on copy and new
 
 @end
