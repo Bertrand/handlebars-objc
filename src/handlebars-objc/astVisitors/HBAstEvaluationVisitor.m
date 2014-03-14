@@ -267,7 +267,7 @@
             // Array-like context
             id<NSFastEnumeration> arrayLike = evaluatedExpression;
             NSInteger index = 0;
-            HBDataContext* arrayData = [[self.contextStack current] newDataContextOrCopy];
+            HBDataContext* arrayData = [[self.contextStack current] dataContextCopyOrNew];
             NSMutableString* result = [NSMutableString string];
             for (id arrayElement in arrayLike) {
                 arrayData[@"index"] = @(index);

@@ -91,7 +91,7 @@
     return nil; // please compiler
 }
 
-- (HBDataContext*) newDataContextOrCopy
+- (HBDataContext*) dataContextCopyOrNew 
 {
     if (self.dataContext) return [self.dataContext copy];
     return [HBDataContext new];
