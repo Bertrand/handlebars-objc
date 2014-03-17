@@ -78,6 +78,8 @@
 %token CLOSE_UNESCAPED
 %token EQUALS
 %token DATA
+%token LPARENT
+%token RPARENT
 %token UNKNOWN
 
 %pure-parser
@@ -215,7 +217,8 @@ expression
 ;
 
 value
-: path { $$ = $1; }
+: LPARENT expression RPARENT { $$ = $2; }
+| path { $$ = $1; }
 | string { $$ = $1; }
 | integer { $$ = $1; }
 | boolean { $$ = $1; }

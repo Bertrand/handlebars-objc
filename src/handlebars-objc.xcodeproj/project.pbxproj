@@ -96,6 +96,8 @@
 		06A81A9E17F87FFD0006F16A /* HBTestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81A9D17F87FFD0006F16A /* HBTestParser.m */; };
 		06A81AA117F8D3750006F16A /* HBAstComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 06A81A9F17F8D3750006F16A /* HBAstComment.h */; };
 		06A81AA217F8D3750006F16A /* HBAstComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 06A81AA017F8D3750006F16A /* HBAstComment.m */; };
+		06AAAF6218D7A03B001E2859 /* HBTestSubexpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AAAF6118D7A03B001E2859 /* HBTestSubexpressions.m */; };
+		06AAAF6318D7A03B001E2859 /* HBTestSubexpressions.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AAAF6118D7A03B001E2859 /* HBTestSubexpressions.m */; };
 		06D426BD17FC5E4200C41476 /* HBHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BB17FC5E4200C41476 /* HBHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06D426BE17FC5E4200C41476 /* HBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D426BC17FC5E4200C41476 /* HBHelper.m */; };
 		06D426C117FC62A000C41476 /* HBHelperRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06D426BF17FC62A000C41476 /* HBHelperRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -288,6 +290,7 @@
 		06A81A9D17F87FFD0006F16A /* HBTestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestParser.m; sourceTree = "<group>"; };
 		06A81A9F17F8D3750006F16A /* HBAstComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstComment.h; sourceTree = "<group>"; };
 		06A81AA017F8D3750006F16A /* HBAstComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstComment.m; sourceTree = "<group>"; };
+		06AAAF6118D7A03B001E2859 /* HBTestSubexpressions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestSubexpressions.m; sourceTree = "<group>"; };
 		06AB0B0F180BDA29005A7610 /* WritingHelpers.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = WritingHelpers.md; sourceTree = "<group>"; };
 		06AB0B11180BDA48005A7610 /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		06AB0B12180BDA48005A7610 /* convert-js-test.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = "convert-js-test.rb"; sourceTree = "<group>"; };
@@ -467,6 +470,7 @@
 				06556D8617FF0B7600070907 /* HBTestPartials.m */,
 				06E478F517FAC87A0029C3D1 /* HBTestSimpleBlocks.m */,
 				06E478F117FAC2CB0029C3D1 /* HBTestSimpleTags.m */,
+				06AAAF6118D7A03B001E2859 /* HBTestSubexpressions.m */,
 				06E478F317FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m */,
 				0630B1A717F2EF9100EA7018 /* Supporting Files */,
 			);
@@ -914,6 +918,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06E478F417FAC84D0029C3D1 /* HBTestBuiltinBlockHelpers.m in Sources */,
+				06AAAF6218D7A03B001E2859 /* HBTestSubexpressions.m in Sources */,
 				060EEF5A180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */,
 				06556D8717FF0B7600070907 /* HBTestPartials.m in Sources */,
 				06E478F617FAC87A0029C3D1 /* HBTestSimpleBlocks.m in Sources */,
@@ -975,6 +980,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06F493B71802D75E0055B5BC /* HBTestParser.m in Sources */,
+				06AAAF6318D7A03B001E2859 /* HBTestSubexpressions.m in Sources */,
 				060EEF5B180D7BA8009F2C0A /* HBTestAccessToObjectProperties.m in Sources */,
 				06F493B91802D75E0055B5BC /* HBTestSimpleBlocks.m in Sources */,
 				06F493B81802D75E0055B5BC /* HBTestPartials.m in Sources */,

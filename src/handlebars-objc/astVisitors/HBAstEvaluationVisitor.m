@@ -382,48 +382,10 @@
 {
     if (!node.expression) return nil;
     
-    // helpers
-    if ([self expressionIsHelperCall:node.expression]) {
-        HBHelper* helper = (HBHelper*)[self helperForExpression:node.expression];
-        if (!helper) {
-            if (!self.error) // we report only one error for now.
-                self.error = [HBHelperMissingError HBHelperMissingErrorWithHelperName:[node.expression.mainValue.keyPath[0] key]];
-            return nil;
-        }
-        
-        NSArray* positionalParameters = nil;
-        NSDictionary* namedParameters = nil;
-        [self evaluateContextualParametersInExpression:node.expression positionalParameters:&positionalParameters namedParameters:&namedParameters];
+    NSString* renderedValue = renderForHandlebars([self visitExpression:node.expression]);
+    if (node.escape) renderedValue = [self escapeStringAccordingToCurrentMode:renderedValue];
 
-        HBHelperCallingInfo* callingInfo = [[HBHelperCallingInfo alloc] init];
-
-        callingInfo.context = self.contextStack.current.context;
-        callingInfo.data = self.contextStack.current.dataContext;
-        callingInfo.positionalParameters = positionalParameters;
-        callingInfo.namedParameters = namedParameters;
-        callingInfo.statements = [self noopStatementsEvaluator];
-        callingInfo.inverseStatements = [self noopStatementsEvaluator];
-        callingInfo.template = self.template;
-        callingInfo.evaluationVisitor = self;
-        callingInfo.invocationKind = HBHelperInvocationExpression;
-
-        NSString* helperResult = helper.block(callingInfo);
-        [callingInfo release];
-
-        return helperResult;
-    }
-    
-    // native expressions
-    {
-        id evaluatedExpression = [self visitExpression:node.expression];
-        if (evaluatedExpression) {
-            NSString* renderedValue = renderForHandlebars(evaluatedExpression);
-            if (node.escape) renderedValue = [self escapeStringAccordingToCurrentMode:renderedValue];
-            return renderedValue;
-        }
-    }
-
-    return nil;
+    return renderedValue;
 }
 
 - (id) visitTag:(HBAstTag*)node
@@ -440,9 +402,42 @@
     return [self.contextStack.current evaluateContextualValue:node];
 }
 
-- (id) visitExpression:(HBAstExpression*)node
+- (id) visitExpression:(HBAstExpression*)expression
 {
-    return [self visitContextualValue:node.mainValue];
+    // helpers
+    if ([self expressionIsHelperCall:expression]) {
+        HBHelper* helper = (HBHelper*)[self helperForExpression:expression];
+        if (!helper) {
+            if (!self.error) // we report only one error for now.
+                self.error = [HBHelperMissingError HBHelperMissingErrorWithHelperName:[expression.mainValue.keyPath[0] key]];
+            return nil;
+        }
+        
+        NSArray* positionalParameters = nil;
+        NSDictionary* namedParameters = nil;
+        [self evaluateContextualParametersInExpression:expression positionalParameters:&positionalParameters namedParameters:&namedParameters];
+        
+        HBHelperCallingInfo* callingInfo = [[HBHelperCallingInfo alloc] init];
+        
+        callingInfo.context = self.contextStack.current.context;
+        callingInfo.data = self.contextStack.current.dataContext;
+        callingInfo.positionalParameters = positionalParameters;
+        callingInfo.namedParameters = namedParameters;
+        callingInfo.statements = [self noopStatementsEvaluator];
+        callingInfo.inverseStatements = [self noopStatementsEvaluator];
+        callingInfo.template = self.template;
+        callingInfo.evaluationVisitor = self;
+        callingInfo.invocationKind = HBHelperInvocationExpression;
+        
+        NSString* helperResult = helper.block(callingInfo);
+        [callingInfo release];
+        
+        return helperResult;
+    }
+    
+    // simple contextual expression
+    return [self visitContextualValue:expression.mainValue];
+    
 }
 
 - (id) visitKeyPathComponent:(HBAstKeyPathComponent*)node
