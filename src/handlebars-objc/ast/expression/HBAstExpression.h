@@ -25,10 +25,10 @@
 //  THE SOFTWARE.
 //
 
-#import "HBAstNode.h"
+#import "HBAstValue.h"
 #import "HBAstContextualValue.h"
 
-@interface HBAstExpression : HBAstNode
+@interface HBAstExpression : HBAstValue
 
 @property (retain, nonatomic) HBAstContextualValue* mainValue;
 @property (retain, nonatomic) NSMutableArray* /* HBAstValue */ positionalParameters;
