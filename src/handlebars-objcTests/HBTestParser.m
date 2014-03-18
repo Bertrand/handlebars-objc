@@ -296,4 +296,11 @@ extern int hb_debug;
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+- (void) testParsesSubexpressionsWithMultipleBooleanParams
+{
+    NSError* error = nil;
+    XCTAssertEqualObjects([self astString:@"{{foo (bar true true)}}" error:&error], @"{{ ID:foo [ID:bar [BOOLEAN{true}, BOOLEAN{true}]] }}\n");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
 @end

@@ -89,10 +89,10 @@ WS	[ \t]*
 	"@"					{ found(DATA); }
     "("                 { found(LPARENT); }
     ")"                 { found(RPARENT); }
-	\-?[0-9]+/[ \t\}]	{ yylval->ival = atoi(yytext); found(INTEGER); }
-	"true"/[ \t\}]		{ yylval->ival = 1; found(BOOLEAN); }
-	"false"/[ \t\}]		{ yylval->ival = 0; found(BOOLEAN); }
-	"."/[\}\/ \t]       { yylval->nsString = nsString(yytext); found(ID); }
+	\-?[0-9]+/[ \t\}\)]	{ yylval->ival = atoi(yytext); found(INTEGER); }
+	"true"/[ \t\}\)]		{ yylval->ival = 1; found(BOOLEAN); }
+	"false"/[ \t\}\)]		{ yylval->ival = 0; found(BOOLEAN); }
+	"."/[\}\/ \t\)]       { yylval->nsString = nsString(yytext); found(ID); }
 	".."                { yylval->nsString = nsString(yytext); found(ID); }
 	[\/\.]				{ yylval->nsString = nsString(yytext); found(PATH_SEPARATOR); }
 	{ID}+/[=\/\. \t\}\)]       { yylval->nsString = nsString(yytext); found(ID); }
