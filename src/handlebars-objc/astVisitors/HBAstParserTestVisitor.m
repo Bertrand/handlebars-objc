@@ -113,9 +113,9 @@
 
 - (id) visitSimpleTag:(HBAstSimpleTag*)node
 {
-    [_result appendString:@"{{ "];
+    [_result appendString:node.left_wsc ? @"{{~ " : @"{{ "];
     if (node.expression) [self visitNode:node.expression];
-    [_result appendString:@" }}"];
+    [_result appendString:node.right_wsc ? @" ~}}": @" }}"];
     return nil;
 }
 

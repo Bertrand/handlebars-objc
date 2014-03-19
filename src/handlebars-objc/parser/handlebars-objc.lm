@@ -65,22 +65,32 @@ WS	[ \t]*
 <DASHED_COMMENT>\-\-\}\}	{ yy_pop_state(yyscanner); found(DASHED_COMMENT_END); }
 
 
-\{\{			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN); }
+\{\{			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN); }
+\{\{~			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN); }
 
-\{\{>			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_PARTIAL); }
-\{\{#			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_BLOCK); }
-\{\{\/			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_ENDBLOCK); }
-\{\{^			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_INVERSE); }
-\{\{[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_INVERSE); }
-\{\{\{			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_UNESCAPED); }
-\{\{&			{ yy_push_state(EXPRESSION, yyscanner); found(OPEN_UNESCAPED_AMPERSAND); }
+\{\{>			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_PARTIAL); }
+\{\{~>			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_PARTIAL); }
+\{\{#			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_BLOCK); }
+\{\{~#			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_BLOCK); }
+\{\{\/			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_ENDBLOCK); }
+\{\{~\/			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_ENDBLOCK); }
+\{\{^			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_INVERSE); }
+\{\{~^			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_INVERSE); }
+\{\{[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_INVERSE); }
+\{\{~[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_INVERSE); }
+\{\{\{			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_UNESCAPED); }
+\{\{~\{			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_UNESCAPED); }
+\{\{&			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_UNESCAPED_AMPERSAND); }
+\{\{~&			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_UNESCAPED_AMPERSAND); }
 
 
 
 <EXPRESSION>{
 
-	\}\}	{ yy_pop_state(yyscanner); found(CLOSE); }
-	\}\}\}	{ yy_pop_state(yyscanner); found(CLOSE_UNESCAPED); }
+	\}\}	{ yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE); }
+    ~\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE); }
+	\}\}\}	{ yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE_UNESCAPED); }
+    ~\}\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE_UNESCAPED); }
 
 	\"(\\\"|[^\"])*\"	{ yylval->nsString = nsStringFromQuotedString(yytext, @"\\\"", @"\""); found(STRING); } /* strings like "aaa". '"' character can be backslash escaped */
 	'(\\'|[^'])*'		{ yylval->nsString = nsStringFromQuotedString(yytext, @"\\'", @"'"); found(STRING); } /* strings like 'aaa'. "'" character can be backslash escaped */

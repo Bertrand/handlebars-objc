@@ -67,19 +67,22 @@
 %token COMMENT_END
 %token DASHED_COMMENT_START
 %token DASHED_COMMENT_END
-%token OPEN
-%token OPEN_PARTIAL
-%token OPEN_BLOCK
-%token OPEN_ENDBLOCK
-%token OPEN_INVERSE
-%token OPEN_UNESCAPED
-%token OPEN_UNESCAPED_AMPERSAND
-%token CLOSE
-%token CLOSE_UNESCAPED
+
+%token <ival> OPEN
+%token <ival> OPEN_PARTIAL
+%token <ival> OPEN_BLOCK
+%token <ival> OPEN_ENDBLOCK
+%token <ival> OPEN_INVERSE
+%token <ival> OPEN_UNESCAPED
+%token <ival> OPEN_UNESCAPED_AMPERSAND
+%token <ival> CLOSE
+%token <ival> CLOSE_UNESCAPED
+
 %token EQUALS
 %token DATA
 %token LPARENT
 %token RPARENT
+%token TILDE
 %token UNKNOWN
 
 %pure-parser
@@ -141,14 +144,14 @@ raw_text
 ;
 
 simple_tag
-: OPEN expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; tag.escape = true; $$ = tag; }
-| OPEN_UNESCAPED expression CLOSE_UNESCAPED { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; $$ = tag; }
-| OPEN_UNESCAPED_AMPERSAND expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; $$ = tag; }
+: OPEN expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; tag.escape = true; $$ = tag; }
+| OPEN_UNESCAPED expression CLOSE_UNESCAPED { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
+| OPEN_UNESCAPED_AMPERSAND expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
 partial_tag
-: OPEN_PARTIAL partial_name CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; p.partialName = $2; $$ = p; }
-| OPEN_PARTIAL partial_name path CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; p.partialName = $2; p.context = $3; $$ = p; }
+: OPEN_PARTIAL partial_name CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; p.partialName = $2; $$ = p; }
+| OPEN_PARTIAL partial_name path CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; p.partialName = $2; p.context = $3; $$ = p; }
 ;
 
 block_tag_open

@@ -303,4 +303,10 @@ extern int hb_debug;
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+- (void) testParsesWhiteSpaceControlChars
+{
+    NSError* error = nil;
+    XCTAssertEqualObjects([self astString:@"{{~foo}}" error:&error], @"{{~ ID:foo [] }}\n");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
 @end

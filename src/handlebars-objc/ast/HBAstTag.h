@@ -31,5 +31,7 @@
 @interface HBAstTag : HBAstNode
 
 @property (retain, nonatomic) HBAstExpression* expression;
+@property (assign, nonatomic) BOOL left_wsc;
+@property (assign, nonatomic) BOOL right_wsc;
 
 @end
