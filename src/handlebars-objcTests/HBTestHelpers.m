@@ -511,6 +511,34 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
     XCTAssert(nil != error, @"using an undefined helper should return an error at render time");
 }
 
+// https://github.com/fotonauts/handlebars-objc/issues/5
+- (void) testIssue5
+{
+    
+    HBHelperBlock ifCondBlock = ^(HBHelperCallingInfo* callingInfo) {
+        BOOL operatorResult = false;
+        
+        id operand1 = callingInfo[0];
+        id operator = callingInfo[1];
+        id operand2 = callingInfo[2];
+        
+        if ([operator isEqual:@"=="]) {
+            operatorResult = (operand1 == operand2) || [operand1 isEqual:operand2];
+        }
+        
+        if (operatorResult) {
+            return callingInfo.statements(callingInfo.context, callingInfo.data);
+        } else {
+            return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
+        }
+    };
+    
+    id string = @"(a == b): {{#ifCond a '==' b}}true{{^}}false{{/ifCond}}, (a == c): {{#ifCond a '==' c}}true{{^}}false{{/ifCond}}";
+    id hash = @{  @"a": @1, @"b" : @1, @"c" : @2 };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"ifCond" : ifCondBlock});
+    XCTAssertEqualObjects(result, @"(a == b): true, (a == c): false");
+}
 
 
 
