@@ -514,7 +514,6 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 // https://github.com/fotonauts/handlebars-objc/issues/5
 - (void) testIssue5
 {
-    
     HBHelperBlock ifCondBlock = ^(HBHelperCallingInfo* callingInfo) {
         BOOL operatorResult = false;
         
