@@ -26,10 +26,10 @@
 //
 
 
-#import "HBAstBlockTag.h"
+#import "HBAstBlock.h"
 #import "HBAstVisitor.h"
 
-@implementation HBAstBlockTag
+@implementation HBAstBlock
 
 - (id) accept:(HBAstVisitor*)visitor
 {

@@ -47,7 +47,7 @@
 
 // High-level nodes
 
-- (id) visitBlockTag:(HBAstBlockTag*)node;
+- (id) visitBlockTag:(HBAstBlock*)node;
 - (id) visitPartialTag:(HBAstPartialTag*)node;
 - (id) visitComment:(HBAstComment*)node;
 - (id) visitProgram:(HBAstProgram*)node;

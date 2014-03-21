@@ -201,7 +201,7 @@
 #pragma mark -
 #pragma mark Visiting High-level nodes
 
-- (id) visitBlockTag:(HBAstBlockTag*)node
+- (id) visitBlockTag:(HBAstBlock*)node
 {
     NSString* (^evaluateStatements)(id, HBDataContext*, NSArray*, BOOL) = ^(id context, HBDataContext* data, NSArray* statements, BOOL pushContext) {
         NSMutableString* result = [NSMutableString string];

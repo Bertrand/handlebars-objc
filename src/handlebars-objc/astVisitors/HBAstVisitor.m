@@ -46,7 +46,7 @@
 #pragma mark -
 #pragma mark High-level nodes
 
-- (id) visitBlockTag:(HBAstBlockTag*)node
+- (id) visitBlockTag:(HBAstBlock*)node
 {
     return nil;
 }

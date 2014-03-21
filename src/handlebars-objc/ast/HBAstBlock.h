@@ -25,10 +25,14 @@
 //  THE SOFTWARE.
 //
 
-#import "HBAstTag.h"
+#import "HBAstNode.h"
 #import "HBAstProgram.h"
 
-@interface HBAstBlockTag : HBAstTag
+@interface HBAstBlock : HBAstNode
+
+@property (retain, nonatomic) HBAstTag* startTag;
+@property (retain, nonatomic) HBAstTag* elseTag;
+@property (retain, nonatomic) HBAstTag* endTag;
 
 @property (retain, nonatomic) NSMutableArray* statements;
 @property (retain, nonatomic) NSMutableArray* inverseStatements;

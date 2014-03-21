@@ -52,7 +52,7 @@
 #pragma mark -
 #pragma mark High-level nodes
 
-- (id) visitBlockTag:(HBAstBlockTag*)node
+- (id) visitBlockTag:(HBAstBlock*)node
 {
     [_result appendString:@"BLOCK:\n  {{ "];
     if (node.expression) [self visitNode:node.expression];

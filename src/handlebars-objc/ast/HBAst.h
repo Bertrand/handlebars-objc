@@ -27,7 +27,7 @@
 
 // High-level nodes
 
-#import "HBAstBlockTag.h"
+#import "HBAstBlock.h"
 #import "HBAstNode.h"
 #import "HBAstComment.h"
 #import "HBAstPartialTag.h"
