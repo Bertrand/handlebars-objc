@@ -31,6 +31,11 @@
 
 @implementation HBAstBlock
 
+- (HBAstExpression*) expression
+{
+    return self.openTag ? self.openTag.expression : nil;
+}
+
 - (id) accept:(HBAstVisitor*)visitor
 {
     return [visitor visitBlockTag:self];
@@ -38,8 +43,13 @@
 
 - (void) dealloc
 {
+    self.openTag = nil;
+    self.elseTag = nil;
+    self.closeTag = nil;
+    
     self.statements = nil;
     self.inverseStatements = nil;
+    
     [super dealloc];
 }
 

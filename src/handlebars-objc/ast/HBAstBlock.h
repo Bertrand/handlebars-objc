@@ -28,11 +28,16 @@
 #import "HBAstNode.h"
 #import "HBAstProgram.h"
 
+@class HBAstTag;
+@class HBAstExpression;
+
 @interface HBAstBlock : HBAstNode
 
-@property (retain, nonatomic) HBAstTag* startTag;
+@property (retain, nonatomic) HBAstTag* openTag;
 @property (retain, nonatomic) HBAstTag* elseTag;
-@property (retain, nonatomic) HBAstTag* endTag;
+@property (retain, nonatomic) HBAstTag* closeTag;
+
+@property (readonly, nonatomic) HBAstExpression* expression; // computed
 
 @property (retain, nonatomic) NSMutableArray* statements;
 @property (retain, nonatomic) NSMutableArray* inverseStatements;
