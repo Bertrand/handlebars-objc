@@ -13,4 +13,7 @@
 - (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)blocks error:(NSError**)error;
 - (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)blocks;
 
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context error:(NSError**)error;
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context;
+
 @end

@@ -18,7 +18,7 @@ yylloc->first_column = hb_column; \
 yylloc->last_column = hb_column + (int)yyleng - 1; \
 hb_column += yyleng;
 
-#define TRACE_LEXER 0
+#define TRACE_LEXER 1
 
 #if TRACE_LEXER
 #define found(_token_) printf("Lexer found " #_token_ " (%s)\n", yytext); return _token_
@@ -90,7 +90,7 @@ WS	[ \t]*
 	\}\}	{ yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE); }
     ~\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE); }
 	\}\}\}	{ yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE_UNESCAPED); }
-    ~\}\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE_UNESCAPED); }
+    \}~\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE_UNESCAPED); }
 
 	\"(\\\"|[^\"])*\"	{ yylval->nsString = nsStringFromQuotedString(yytext, @"\\\"", @"\""); found(STRING); } /* strings like "aaa". '"' character can be backslash escaped */
 	'(\\'|[^'])*'		{ yylval->nsString = nsStringFromQuotedString(yytext, @"\\'", @"'"); found(STRING); } /* strings like 'aaa'. "'" character can be backslash escaped */
@@ -102,10 +102,10 @@ WS	[ \t]*
 	\-?[0-9]+/[ \t\}\)]	{ yylval->ival = atoi(yytext); found(INTEGER); }
 	"true"/[ \t\}\)]		{ yylval->ival = 1; found(BOOLEAN); }
 	"false"/[ \t\}\)]		{ yylval->ival = 0; found(BOOLEAN); }
-	"."/[\}\/ \t\)]       { yylval->nsString = nsString(yytext); found(ID); }
+	"."/[\}\/ \t\)~]       { yylval->nsString = nsString(yytext); found(ID); }
 	".."                { yylval->nsString = nsString(yytext); found(ID); }
 	[\/\.]				{ yylval->nsString = nsString(yytext); found(PATH_SEPARATOR); }
-	{ID}+/[=\/\. \t\}\)]       { yylval->nsString = nsString(yytext); found(ID); }
+	{ID}+/[=\/\. \t\}\)~]       { yylval->nsString = nsString(yytext); found(ID); }
 	\[[^\[]*\]			{ NSString* s = nsString(yytext); yylval->nsString = [s substringWithRange:NSMakeRange(1, s.length -2)]; found(ID); } /* XXX must remove [] */
 	{WS}*				{}
     .                   { found(UNKNOWN); }

@@ -1,8 +1,9 @@
 //
-//  HBAstBlockTag.m
+//  HBAstParserPostprocessingVisitor.h
 //  handlebars-objc
 //
-//  Created by Bertrand Guiheneuf on 9/27/13.
+//  Created by Bertrand Guiheneuf on 3/23/14.
+//  Copyright (c) 2014 Fotonauts. All rights reserved.
 //
 //  The MIT License
 //
@@ -25,32 +26,8 @@
 //  THE SOFTWARE.
 //
 
-
-#import "HBAstBlock.h"
 #import "HBAstVisitor.h"
 
-@implementation HBAstBlock
-
-- (HBAstExpression*) expression
-{
-    return self.openTag ? self.openTag.expression : nil;
-}
-
-- (id) accept:(HBAstVisitor*)visitor
-{
-    return [visitor visitBlock:self];
-}
-
-- (void) dealloc
-{
-    self.openTag = nil;
-    self.elseTag = nil;
-    self.closeTag = nil;
-    
-    self.statements = nil;
-    self.inverseStatements = nil;
-    
-    [super dealloc];
-}
+@interface HBAstParserPostprocessingVisitor : HBAstVisitor
 
 @end

@@ -27,4 +27,14 @@
     return [self renderTemplate:template withContext:context withHelpers:blocks error:nil];
 }
 
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context error:(NSError**)error
+{
+    return [self renderTemplate:template withContext:context withHelpers:nil error:error];
+}
+
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context
+{
+    return [self renderTemplate:template withContext:context withHelpers:nil error:nil];
+}
+
 @end
