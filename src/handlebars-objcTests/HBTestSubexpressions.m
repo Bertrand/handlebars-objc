@@ -62,6 +62,24 @@
     };
 }
 
+- (HBHelperBlock) tHelper
+{
+    return ^(HBHelperCallingInfo* callingInfo) {
+        id defaultString = callingInfo[0];
+        return defaultString;
+    };
+}
+
+- (HBHelperBlock) inputHelper
+{
+    return ^(HBHelperCallingInfo* callingInfo) {
+        id ariaLabel = callingInfo[@"aria-label"];
+        id placeholder = callingInfo[@"placeholder"];
+        return [NSString stringWithFormat:@"<input aria-label=\"%@\" placeholder=\"%@\" />", ariaLabel, placeholder];
+    };
+}
+
+
 #pragma mark -
 #pragma mark Tests from Handlebars.js
 
@@ -135,6 +153,18 @@
     NSString* result = [self renderTemplate:string withContext:hash withHelpers:helpers error:&error];
     XCTAssert(!error, @"evaluation should not generate an error");
     XCTAssertEqualObjects(result, @"val is true");
+}
+
+- (void) testMultipleSubexpressionsInAHash
+{
+    NSError* error = nil;
+    id string = @"{{{input aria-label=(t \"Name\") placeholder=(t \"Example User\")}}}";
+    id hash = @{};
+    NSDictionary* helpers = @{ @"t" : [self tHelper], @"input" : [self inputHelper]};
+    
+    NSString* result = [self renderTemplate:string withContext:hash withHelpers:helpers error:&error];
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects(result, @"<input aria-label=\"Name\" placeholder=\"Example User\" />");
 }
 
 @end
