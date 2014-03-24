@@ -313,4 +313,13 @@ extern int hb_debug;
     XCTAssertEqualObjects([self astString:@"{{foo~}}" error:&error], @"{{ ID:foo [] ~}}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
 }
+
+- (void) testSupportsEscapedEscapeCharactersAfterEscapedMustaches
+{
+    NSError* error = nil;
+    
+    XCTAssertEqualObjects([self astString:@"{{foo}} \\{{bar}} \\\\{{baz}}" error:&error], @"{{ ID:foo [] }}\nCONTENT[ ' ' ]\nCONTENT[ '{{' ]\nCONTENT[ 'bar}} ' ]\nCONTENT[ '\\' ]\n{{ ID:baz [] }}\n");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
 @end

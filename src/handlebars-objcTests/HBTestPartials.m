@@ -196,4 +196,15 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
     XCTAssertEqualObjects(result, @"Dudes: Jeepers");
 }
 
+// Handle empty partial
+- (void) testHandleEmptyPartial
+{
+    id string = @"Dudes: {{#dudes}}{{> dude}}{{/dudes}}";
+    id partial = @"";
+    id hash = @{ @"dudes": @[ @{ @"name": @"Yehuda", @"url": @"http://yehuda" } ,@{ @"name": @"Alan", @"url": @"http://alan" } ] };
+    
+    NSString* result = renderWithPartials(string, hash, @{@"dude": partial});
+    XCTAssertEqualObjects(result, @"Dudes: ");
+}
+
 @end

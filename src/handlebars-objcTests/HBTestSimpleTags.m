@@ -63,8 +63,14 @@
     XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\{{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
                           @"{{foo}}");
     XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"content \\{{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
+                          @"content {{foo}}");
+    XCTAssert(!error, @"evaluation should not generate an error");
     XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\\\{{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
                           @"\\food");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"content \\\\{{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
+                          @"content \\food");
     XCTAssert(!error, @"evaluation should not generate an error");
     XCTAssertEqualObjects([HBHandlebars renderTemplateString:@"\\\\ {{foo}}" withContext:@{ @"foo" : @"food" } error:&error],
                           @"\\\\ food");
