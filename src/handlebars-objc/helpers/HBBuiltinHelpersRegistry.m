@@ -110,7 +110,13 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 {
     HBHelperBlock eachBlock = ^(HBHelperCallingInfo* callingInfo) {
 
-        id expression = callingInfo[0];
+        id expression = nil;
+        if ([callingInfo.positionalParameters count] > 0) {
+            expression = callingInfo[0];
+        } else {
+            expression = callingInfo.context;
+        }
+        
         HBDataContext* currentData = callingInfo.data;
         
         if (expression && [HBHelperUtils isEnumerableByIndex:expression]) {

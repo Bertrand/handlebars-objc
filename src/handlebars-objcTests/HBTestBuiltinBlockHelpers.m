@@ -192,6 +192,16 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+// each on implicit context
+- (void) testEachOnImplicitContext
+{
+    NSError* error = nil;
+    id string = @"{{#each}}{{text}}! {{/each}}cruel world!";
+    id hash = @[ @{ @"text": @"goodbye" } ,@{ @"text": @"Goodbye" } ,@{ @"text": @"GOODBYE" } ];
+    XCTAssertEqualObjects([HBHandlebars renderTemplateString:string withContext:hash error:&error],
+                          @"goodbye! Goodbye! GOODBYE! cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
 
 // #log
 - (void) testLog
