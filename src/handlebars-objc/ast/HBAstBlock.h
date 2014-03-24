@@ -1,5 +1,5 @@
 //
-//  HBAstBlockTag.m
+//  HBAstBlockTag.h
 //  handlebars-objc
 //
 //  Created by Bertrand Guiheneuf on 9/27/13.
@@ -25,22 +25,23 @@
 //  THE SOFTWARE.
 //
 
+#import "HBAstNode.h"
+#import "HBAstProgram.h"
 
-#import "HBAstBlockTag.h"
-#import "HBAstVisitor.h"
+@class HBAstTag;
+@class HBAstExpression;
 
-@implementation HBAstBlockTag
+@interface HBAstBlock : HBAstNode
 
-- (id) accept:(HBAstVisitor*)visitor
-{
-    return [visitor visitBlockTag:self];
-}
+@property (retain, nonatomic) HBAstTag* openTag;
+@property (retain, nonatomic) HBAstTag* elseTag;
+@property (retain, nonatomic) HBAstTag* closeTag;
 
-- (void) dealloc
-{
-    self.statements = nil;
-    self.inverseStatements = nil;
-    [super dealloc];
-}
+@property (readonly, nonatomic) HBAstExpression* expression; // computed
+
+@property (retain, nonatomic) NSMutableArray* statements;
+@property (retain, nonatomic) NSMutableArray* inverseStatements;
+
+@property BOOL invertedBlock;
 
 @end

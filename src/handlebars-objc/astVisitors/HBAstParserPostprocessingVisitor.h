@@ -1,8 +1,9 @@
 //
-//  HBAstVisitor.h
+//  HBAstParserPostprocessingVisitor.h
 //  handlebars-objc
 //
-//  Created by Bertrand Guiheneuf on 9/29/13.
+//  Created by Bertrand Guiheneuf on 3/23/14.
+//  Copyright (c) 2014 Fotonauts. All rights reserved.
 //
 //  The MIT License
 //
@@ -25,43 +26,8 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "HBAstVisitor.h"
 
-#import "HBAst.h"
-
-@interface HBAstVisitor : NSObject
-
-@property (retain, nonatomic) HBAstNode* rootNode;
-
-// designated initializer
-
-- (id) initWithRootAstNode:(HBAstNode*)rootNode;
-
-// visiting a node
-
-- (id) visitNode:(HBAstNode*)node;
-
-
-// -- Methods that must be implemented by concrete subclasses --
-
-
-// High-level nodes
-
-- (id) visitBlock:(HBAstBlock*)node;
-- (id) visitPartialTag:(HBAstPartialTag*)node;
-- (id) visitComment:(HBAstComment*)node;
-- (id) visitProgram:(HBAstProgram*)node;
-- (id) visitRawText:(HBAstRawText*)node;
-- (id) visitSimpleTag:(HBAstSimpleTag*)node;
-- (id) visitTag:(HBAstTag*)node;
-
-// Expressions
-
-- (id) visitContextualValue:(HBAstContextualValue*)node;
-- (id) visitExpression:(HBAstExpression*)node;
-- (id) visitKeyPathComponent:(HBAstKeyPathComponent*)node;
-- (id) visitNumber:(HBAstNumber*)node;
-- (id) visitString:(HBAstString*)node;
-- (id) visitValue:(HBAstValue*)node;
+@interface HBAstParserPostprocessingVisitor : HBAstVisitor
 
 @end

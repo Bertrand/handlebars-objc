@@ -24,12 +24,13 @@
     HBAstValue* astValue;
     HBAstContextualValue* astContextualValue;
     HBAstExpression* astExpression;
+    HBAstTag* astTag;
     HBAstSimpleTag* astSimpleTag;
     HBAstRawText* astRawText;
     HBAstString* astString;
     HBAstNumber* astNumber;
     HBAstPartialTag* astPartialTag;
-    HBAstBlockTag* astBlockTag;
+    HBAstBlock* astBlock;
     HBAstComment* astComment;
 }
 
@@ -41,13 +42,14 @@
 %token <nsString> PATH_SEPARATOR
 %token <nsString> COMMENT_CONTENT
 
-%type <astArray> statements else_tag_block;
+%type <astArray> statements;
 %type <astNode> program statement;
 %type <astPathComponent> path_component;
 %type <astValue> value;
 %type <astContextualValue> path contextual_value;
-%type <astExpression> expression block_tag_open block_tag_close inverse_tag_open;
+%type <astTag>  block_tag_open block_tag_close inverse_tag_open else_tag;
 %type <astSimpleTag> simple_tag;
+%type <astExpression> expression;
 %type <astRawText> raw_text;
 %type <astString> string;
 %type <astNumber> integer;
@@ -55,7 +57,7 @@
 %type <astContextualValue> data;
 %type <astValue> partial_name;
 %type <astPartialTag> partial_tag;
-%type <astBlockTag> block_tag;
+%type <astBlock> block_tag else_tag_block;
 %type <astComment> comment
 %type <nsString> comment_content;
 
@@ -67,19 +69,22 @@
 %token COMMENT_END
 %token DASHED_COMMENT_START
 %token DASHED_COMMENT_END
-%token OPEN
-%token OPEN_PARTIAL
-%token OPEN_BLOCK
-%token OPEN_ENDBLOCK
-%token OPEN_INVERSE
-%token OPEN_UNESCAPED
-%token OPEN_UNESCAPED_AMPERSAND
-%token CLOSE
-%token CLOSE_UNESCAPED
+
+%token <ival> OPEN
+%token <ival> OPEN_PARTIAL
+%token <ival> OPEN_BLOCK
+%token <ival> OPEN_ENDBLOCK
+%token <ival> OPEN_INVERSE
+%token <ival> OPEN_UNESCAPED
+%token <ival> OPEN_UNESCAPED_AMPERSAND
+%token <ival> CLOSE
+%token <ival> CLOSE_UNESCAPED
+
 %token EQUALS
 %token DATA
 %token LPARENT
 %token RPARENT
+%token TILDE
 %token UNKNOWN
 
 %pure-parser
@@ -141,74 +146,86 @@ raw_text
 ;
 
 simple_tag
-: OPEN expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; tag.escape = true; $$ = tag; }
-| OPEN_UNESCAPED expression CLOSE_UNESCAPED { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; $$ = tag; }
-| OPEN_UNESCAPED_AMPERSAND expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.expression = $2; $$ = tag; }
+: OPEN expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; tag.escape = true; $$ = tag; }
+| OPEN_UNESCAPED expression CLOSE_UNESCAPED { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
+| OPEN_UNESCAPED_AMPERSAND expression CLOSE { HBAstSimpleTag* tag = [[HBAstSimpleTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
 partial_tag
-: OPEN_PARTIAL partial_name CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; p.partialName = $2; $$ = p; }
-| OPEN_PARTIAL partial_name path CLOSE { HBAstPartialTag* p = [[HBAstPartialTag new] autorelease]; p.partialName = $2; p.context = $3; $$ = p; }
+: OPEN_PARTIAL partial_name CLOSE { HBAstPartialTag* tag = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.partialName = $2; $$ = tag; }
+| OPEN_PARTIAL partial_name path CLOSE { HBAstPartialTag* tag = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $4; tag.partialName = $2; tag.context = $3; $$ = tag; }
 ;
 
 block_tag_open
-: OPEN_BLOCK expression CLOSE { $$ = $2; }
+: OPEN_BLOCK expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
 block_tag_close
-: OPEN_ENDBLOCK expression CLOSE { }
+: OPEN_ENDBLOCK expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
 else_tag
-: OPEN_INVERSE CLOSE {}
+: OPEN_INVERSE CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $2; $$ = tag;}
 ;
 
 inverse_tag_open
-: OPEN_INVERSE expression CLOSE { $$ = $2; }
+: OPEN_INVERSE expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
 block_tag
 : block_tag_open statements block_tag_close {
-    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
-    b.expression = $1;
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
     b.statements = $2;
+    b.closeTag = $3;
     $$ = b;
     }
 | block_tag_open block_tag_close {
-    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
-    b.expression = $1;
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.closeTag = $2;
     $$ = b;
     }
 | block_tag_open statements else_tag_block {
-    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
-    b.expression = $1;
+    HBAstBlock* b = $3;
+    b.openTag = $1;
     b.statements = $2;
-    b.inverseStatements = $3;
     $$ = b;
     }
 | block_tag_open else_tag_block {
-    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
-    b.expression = $1;
-    b.inverseStatements = $2;
+    HBAstBlock* b = $2;
+    b.openTag = $1;
     $$ = b;
     }
 | inverse_tag_open statements block_tag_close {
-    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
-    b.expression = $1;
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
     b.inverseStatements = $2;
+    b.closeTag = $3;
     $$ = b;
     }
 | inverse_tag_open block_tag_close {
-    HBAstBlockTag* b = [[HBAstBlockTag new] autorelease];
-    b.expression = $1;
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.closeTag = $2;
     $$ = b;
     }
 ;
 
 else_tag_block
-: else_tag statements block_tag_close { $$ = $2; }
-| else_tag block_tag_close { $$ = nil; }
-;
+: else_tag statements block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.elseTag = $1;
+    b.inverseStatements = $2;
+    b.closeTag = $3;
+    $$ = b;
+    }
+| else_tag block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.elseTag = $1;
+    b.closeTag = $2;
+    $$ = b;
+};
 
 expression
 : contextual_value { HBAstExpression* expression = [[HBAstExpression new] autorelease]; expression.mainValue = $1; $$ = expression;  }

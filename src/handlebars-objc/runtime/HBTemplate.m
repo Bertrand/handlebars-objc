@@ -36,6 +36,7 @@
 #import "HBExecutionContext_Private.h"
 #import "HBPartial.h"
 #import "HBPartialRegistry.h"
+#import "HBAstParserPostprocessingVisitor.h"
 
 @implementation HBTemplate
 
@@ -80,6 +81,11 @@
 {
     if (nil == self.program) {
         self.program = [HBParser astFromString:self.templateString error:error];
+        if (!*error && self.program) {
+            HBAstParserPostprocessingVisitor* postProcessingVisitor = [[HBAstParserPostprocessingVisitor alloc] init];
+            [postProcessingVisitor visitNode:self.program];
+            [postProcessingVisitor release];
+        }
     }
     return (nil != self.program);
 }
