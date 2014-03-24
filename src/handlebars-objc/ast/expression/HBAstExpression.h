@@ -27,16 +27,14 @@
 
 #import "HBAstValue.h"
 #import "HBAstContextualValue.h"
+#import "HBAstParametersHash.h"
 
 @interface HBAstExpression : HBAstValue
 
 @property (retain, nonatomic) HBAstContextualValue* mainValue;
 @property (retain, nonatomic) NSMutableArray* /* HBAstValue */ positionalParameters;
-@property (retain, nonatomic) NSMutableDictionary* /* (NSString -> HBAstValue) */namedParameters;
-@property (retain, nonatomic) NSMutableArray* /* (NSString) */ orderedNamedParameterNames;
-
+@property (retain, nonatomic) HBAstParametersHash* namedParameters;
 
 - (void) addPositionalParameter:(HBAstValue*)parameter;
-- (void) appendParameter:(HBAstValue*)parameter forKey:(NSString*)key;
-- (void) appendNamedParameters:(NSDictionary*)namedParameters;
+
 @end

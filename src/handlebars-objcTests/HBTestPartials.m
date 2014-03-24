@@ -69,6 +69,17 @@ NSString* renderWithPartials(NSString* string, id context, NSDictionary* partial
     XCTAssertEqualObjects(result, @"Dudes: Yehuda (http://yehuda) Alan (http://alan) ");
 }
 
+// partials with parameters
+- (void) testPartialsWithParameters
+{
+    id string = @"Dudes: {{#dudes}}{{> dude others=..}}{{/dudes}}";
+    id partial = @"{{others.foo}}{{name}} ({{url}}) ";
+    id hash = @{ @"foo": @"bar", @"dudes": @[ @{ @"name": @"Yehuda", @"url": @"http://yehuda" } ,@{ @"name": @"Alan", @"url": @"http://alan" } ] };
+    
+    NSString* result = renderWithPartials(string, hash, @{@"dude": partial});
+    XCTAssertEqualObjects(result, @"Dudes: barYehuda (http://yehuda) barAlan (http://alan) ");
+}
+
 // partial in a partial
 - (void) testPartialInAPartial
 {

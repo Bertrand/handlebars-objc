@@ -40,11 +40,14 @@
     return result;
 }
 
-- (id) valueForKey:(NSString*)key context:(id)context
+- (id) valueForKey:(NSString*)key context:(id)context includeMergedAttributes:(BOOL)includeMergedAttributes
 {
     if (!context) return nil;
     id result;
-
+    if (includeMergedAttributes && self.mergedAttributes && self.mergedAttributes[key]) {
+        return self.mergedAttributes[key];
+    }
+        
     @try {
         result = [HBObjectPropertyAccess valueForKey:key onObject:context];
     }
@@ -79,9 +82,11 @@
         
         // consume remaining "normal" keypath
         id current = startState.context;
+        BOOL atRootLevel = true;
         while (index < pathComponents.count && current) {
             NSString* key = [pathComponents[index] key];
-            current = [self valueForKey:key context:current];
+            current = [self valueForKey:key context:current includeMergedAttributes:atRootLevel];
+            atRootLevel = false;
             index++;
         }
         
@@ -103,6 +108,7 @@
 {
     self.context = nil;
     self.dataContext = nil;
+    self.mergedAttributes = nil;
     self.parent = nil;
     [super dealloc];
 }

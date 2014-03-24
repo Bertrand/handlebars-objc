@@ -63,5 +63,6 @@
 - (id) visitNumber:(HBAstNumber*)node;
 - (id) visitString:(HBAstString*)node;
 - (id) visitValue:(HBAstValue*)node;
+- (id) visitParametersHash:(HBAstParametersHash*)node;
 
 @end

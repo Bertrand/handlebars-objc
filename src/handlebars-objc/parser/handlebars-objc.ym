@@ -19,7 +19,7 @@
 	int ival;
     NSString* nsString;
     NSMutableArray* astArray;
-    NSMutableDictionary* astDictionary;
+    HBAstParametersHash* astHash;
     HBAstNode* astNode;
     HBAstKeyPathComponent* astPathComponent;
     HBAstValue* astValue;
@@ -61,7 +61,7 @@
 %type <astBlock> block_tag else_tag_block;
 %type <astComment> comment
 %type <nsString> comment_content;
-%type <astDictionary> hash;
+%type <astHash> hash;
 
 %token BACKSLASH
 %token LEFT_MUSTACHE
@@ -233,12 +233,12 @@ else_tag_block
 expression
 : contextual_value { HBAstExpression* expression = [[HBAstExpression new] autorelease]; expression.mainValue = $1; $$ = expression;  }
 | expression value { [$1 addPositionalParameter:$2]; $$ = $1; }
-| expression hash { [$1 appendNamedParameters:$2]; $$ = $1; }
+| expression hash { $1.namedParameters = $2; $$ = $1; }
 ;
 
 hash
-: ID EQUALS value { NSMutableDictionary* d = [NSMutableDictionary dictionaryWithObject:$3 forKey:$1]; $$ = d; }
-| hash ID EQUALS value { [$1 setObject:$4 forKey:$2]; $$ = $1; }
+: ID EQUALS value { HBAstParametersHash* h = [[HBAstParametersHash new] autorelease]; [h appendParameter:$3 forKey:$1]; $$ = h; }
+| hash ID EQUALS value { [$1 appendParameter:$4 forKey:$2]; $$ = $1; }
 ;
 
 value

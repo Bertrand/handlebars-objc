@@ -36,21 +36,6 @@
     [self.positionalParameters addObject:parameter];
 }
 
-- (void) appendParameter:(HBAstValue*)parameter forKey:(NSString*)key
-{
-    if (self.namedParameters == nil) self.namedParameters = [NSMutableDictionary dictionary];
-    if (self.orderedNamedParameterNames == nil) self.orderedNamedParameterNames = [NSMutableArray array];
-    self.namedParameters[key] = parameter;
-    [self.orderedNamedParameterNames addObject:key];
-}
-
-- (void) appendNamedParameters:(NSDictionary*)namedParameters
-{
-    for (NSString* name in namedParameters) {
-        [self appendParameter:namedParameters[name] forKey:name];
-    }
-}
-
 - (id) accept:(HBAstVisitor*)visitor
 {
     return [visitor visitExpression:self];
@@ -61,7 +46,6 @@
     self.mainValue = nil;
     self.positionalParameters = nil;
     self.namedParameters = nil;
-    self.orderedNamedParameterNames = nil;
     
     [super dealloc];
 }

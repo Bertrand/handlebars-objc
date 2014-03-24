@@ -334,6 +334,11 @@
         shouldPopContext = true;
     }
     
+    if (node.namedParameters) {
+        NSDictionary* partialParams = [self visitNode:node.namedParameters];
+        self.contextStack.current.mergedAttributes = partialParams;
+    }
+    
     NSMutableString* buffer = [NSMutableString string];
     for (HBAstNode* statement in partial.astStatements) {
         id result = [self visitNode:statement];
@@ -449,6 +454,19 @@
 - (id) visitValue:(HBAstValue*)node
 {
     return nil;
+}
+
+- (id) visitParametersHash:(HBAstParametersHash*)node
+{
+    NSMutableDictionary* namedParameters = [NSMutableDictionary dictionary];
+    for (NSString* paramName in node) {
+        HBAstValue* param = node[paramName];
+        id evaluatedParam = [self visitNode:param];
+        if (nil == evaluatedParam) evaluatedParam = [NSNull null];
+        namedParameters[paramName] = evaluatedParam;
+    }
+    
+    return namedParameters;
 }
 
 #pragma mark -

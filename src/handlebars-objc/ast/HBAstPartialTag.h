@@ -28,11 +28,12 @@
 #import "HBAstTag.h"
 #import "HBAstValue.h"
 #import "HBAstContextualValue.h"
+#import "HBAstParametersHash.h"
 
 @interface HBAstPartialTag : HBAstTag
 
 @property (retain, nonatomic) HBAstValue* partialName;
 @property (retain, nonatomic) HBAstContextualValue* context;
-@property (retain, nonatomic) NSDictionary* namedParameters;
+@property (retain, nonatomic) HBAstParametersHash* namedParameters;
 
 @end

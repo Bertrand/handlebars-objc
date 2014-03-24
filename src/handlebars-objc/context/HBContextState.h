@@ -34,6 +34,7 @@
 
 @property (retain, nonatomic) id context;
 @property (retain, nonatomic) HBDataContext* dataContext;
+@property (retain, nonatomic) NSDictionary* mergedAttributes;
 @property (retain, nonatomic) HBContextState* parent;
 
 + (instancetype)stateWithContext:(id)context data:(HBDataContext*)data;

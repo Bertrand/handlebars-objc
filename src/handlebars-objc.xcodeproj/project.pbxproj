@@ -31,6 +31,10 @@
 		06279A0318DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 062799FF18DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m */; };
 		06279A0518DF9A5300DB552E /* HBTestWhitespaceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 06279A0418DF9A5300DB552E /* HBTestWhitespaceControl.m */; };
 		06279A0618DF9A5300DB552E /* HBTestWhitespaceControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 06279A0418DF9A5300DB552E /* HBTestWhitespaceControl.m */; };
+		06279A0918E0CFF000DB552E /* HBAstParametersHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 06279A0718E0CFF000DB552E /* HBAstParametersHash.h */; };
+		06279A0A18E0CFF000DB552E /* HBAstParametersHash.h in Headers */ = {isa = PBXBuildFile; fileRef = 06279A0718E0CFF000DB552E /* HBAstParametersHash.h */; };
+		06279A0B18E0CFF000DB552E /* HBAstParametersHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 06279A0818E0CFF000DB552E /* HBAstParametersHash.m */; };
+		06279A0C18E0CFF000DB552E /* HBAstParametersHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 06279A0818E0CFF000DB552E /* HBAstParametersHash.m */; };
 		0630B18C17F2EF9100EA7018 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B18B17F2EF9100EA7018 /* Cocoa.framework */; };
 		0630B19617F2EF9100EA7018 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0630B19417F2EF9100EA7018 /* InfoPlist.strings */; };
 		0630B1A117F2EF9100EA7018 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0630B1A017F2EF9100EA7018 /* XCTest.framework */; };
@@ -222,6 +226,8 @@
 		062799FE18DF49BF00DB552E /* HBAstParserPostprocessingVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstParserPostprocessingVisitor.h; sourceTree = "<group>"; };
 		062799FF18DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstParserPostprocessingVisitor.m; sourceTree = "<group>"; };
 		06279A0418DF9A5300DB552E /* HBTestWhitespaceControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestWhitespaceControl.m; sourceTree = "<group>"; };
+		06279A0718E0CFF000DB552E /* HBAstParametersHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAstParametersHash.h; sourceTree = "<group>"; };
+		06279A0818E0CFF000DB552E /* HBAstParametersHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBAstParametersHash.m; sourceTree = "<group>"; };
 		0630B18817F2EF9100EA7018 /* HBHandlebars.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HBHandlebars.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0630B18B17F2EF9100EA7018 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		0630B18E17F2EF9100EA7018 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -569,6 +575,8 @@
 				06798D4817F5CA3500FC40D7 /* HBAstString.m */,
 				06798D4917F5CA3500FC40D7 /* HBAstValue.h */,
 				06798D4A17F5CA3500FC40D7 /* HBAstValue.m */,
+				06279A0718E0CFF000DB552E /* HBAstParametersHash.h */,
+				06279A0818E0CFF000DB552E /* HBAstParametersHash.m */,
 			);
 			path = expression;
 			sourceTree = "<group>";
@@ -668,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06798D4F17F5CA3500FC40D7 /* HBAstKeyPathComponent.h in Headers */,
+				06279A0918E0CFF000DB552E /* HBAstParametersHash.h in Headers */,
 				06798D3B17F5C5AE00FC40D7 /* HBAstPartialTag.h in Headers */,
 				06556D9217FF177700070907 /* HBTemplate_Private.h in Headers */,
 				0630B1CE17F33EDA00EA7018 /* HBAstProgram.h in Headers */,
@@ -717,6 +726,7 @@
 				06F493891802D1820055B5BC /* HBPartial.h in Headers */,
 				06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */,
 				06279A0118DF49BF00DB552E /* HBAstParserPostprocessingVisitor.h in Headers */,
+				06279A0A18E0CFF000DB552E /* HBAstParametersHash.h in Headers */,
 				060EEF56180D7460009F2C0A /* HBObjectPropertyAccess.h in Headers */,
 				06D4DBD8180B4E4700278279 /* HBHelperUtils.h in Headers */,
 				061884E018205AD300D1012F /* HBEscapingFunctions.h in Headers */,
@@ -915,6 +925,7 @@
 				06D4DBD9180B4E4700278279 /* HBHelperUtils.m in Sources */,
 				06E4790B17FC0CA90029C3D1 /* HBDataContext.m in Sources */,
 				0630B1C117F2EFE600EA7018 /* handlebars-objc.lm in Sources */,
+				06279A0B18E0CFF000DB552E /* HBAstParametersHash.m in Sources */,
 				06798D5617F5CA3500FC40D7 /* HBAstValue.m in Sources */,
 				06279A0218DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m in Sources */,
 				06798D3C17F5C5AE00FC40D7 /* HBAstPartialTag.m in Sources */,
@@ -980,6 +991,7 @@
 				06D4DBDA180B4E4700278279 /* HBHelperUtils.m in Sources */,
 				06F493701802D1500055B5BC /* HBAstValue.m in Sources */,
 				06F493811802D1500055B5BC /* HBExecutionContext.m in Sources */,
+				06279A0C18E0CFF000DB552E /* HBAstParametersHash.m in Sources */,
 				06F493631802D1500055B5BC /* HBAstBlock.m in Sources */,
 				06279A0318DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m in Sources */,
 				06F4936D1802D1500055B5BC /* HBAstKeyPathComponent.m in Sources */,

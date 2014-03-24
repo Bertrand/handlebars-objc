@@ -39,6 +39,8 @@
 {
     self.partialName = nil;
     self.context = nil;
+    self.namedParameters = nil;
+    
     [super dealloc];
 }
 @end

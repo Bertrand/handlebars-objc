@@ -88,11 +88,19 @@
 {
     [_result appendString:@"{{> "];
     if (node.partialName) [self visitNode:node.partialName];
+    [_result appendString:@" "];
     if (node.context) {
-        [_result appendString:@" "];
         [self visitNode:node.context];
+        [_result appendString:@" "];
     }
-    [_result appendString:@" }}"];
+    
+    if (node.namedParameters) {
+        [self visitNode:node.namedParameters];
+        [_result appendString:@" "];
+    }
+    
+    [_result appendString:@"}}"];
+
     return nil;
 }
 
@@ -151,16 +159,8 @@
     }
     [_result appendString:@"]"];
     
-    if (node.orderedNamedParameterNames) {
-        [_result appendString:@" HASH{"];
-        BOOL firstNamedParameter = true;
-        for (HBAstValue* parameterName in node.orderedNamedParameterNames) {
-            if (!firstNamedParameter) [_result appendString:@", "];
-            firstNamedParameter = false;
-            [_result appendFormat:@"%@=", parameterName];
-            [self visitNode:node.namedParameters[parameterName]];
-        }
-        [_result appendString:@"}"];
+    if (node.namedParameters) {
+        [self visitNode:node.namedParameters];
     }
     return nil;
 }
@@ -192,6 +192,22 @@
 {
     return nil;
 }
+
+- (id) visitParametersHash:(HBAstParametersHash*)node
+{
+    [_result appendString:@" HASH{"];
+    BOOL firstNamedParameter = true;
+    for (HBAstValue* parameterName in node) {
+        if (!firstNamedParameter) [_result appendString:@", "];
+        firstNamedParameter = false;
+        [_result appendFormat:@"%@=", parameterName];
+        [self visitNode:node[parameterName]];
+    }
+    [_result appendString:@"}"];
+    
+    return nil;
+}
+
 
 #pragma mark -
 

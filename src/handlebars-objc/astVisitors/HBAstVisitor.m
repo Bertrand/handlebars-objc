@@ -115,6 +115,11 @@
     return nil;
 }
 
+- (id) visitParametersHash:(HBAstParametersHash*)node
+{
+    return nil;
+}
+
 #pragma mark -
 
 - (void) dealloc
