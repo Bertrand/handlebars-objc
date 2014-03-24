@@ -36,8 +36,6 @@
 
 @property BOOL isDataValue;
 
-//
 
-- (NSString*) sourceRepresentation;
 
 @end

@@ -33,5 +33,6 @@
 
 @property (retain, nonatomic) HBAstValue* partialName;
 @property (retain, nonatomic) HBAstContextualValue* context;
+@property (retain, nonatomic) NSDictionary* namedParameters;
 
 @end

@@ -30,5 +30,6 @@
 @interface HBAstString : HBAstValue
 
 @property (retain, nonatomic) NSString* litteralValue;
+@property (retain, readwrite, nonatomic) NSString* sourceRepresentation;
 
 @end

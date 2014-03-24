@@ -30,6 +30,9 @@
 
 @implementation HBAstString
 
+// we need to synthetise the property manually to override superclass readonly version
+@synthesize sourceRepresentation;
+
 - (id) accept:(HBAstVisitor*)visitor
 {
     return [visitor visitString:self];

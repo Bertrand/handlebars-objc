@@ -27,9 +27,17 @@
 
 #import "HBAstValue.h"
 
+
+typedef struct HBParserIntegerValue HBParserIntegerValue;
+struct HBParserIntegerValue {
+    int value;
+    NSString* source;
+};
+
 @interface HBAstNumber : HBAstValue
 
 @property (retain, nonatomic) NSNumber* litteralValue;
 @property BOOL isBoolean;
+@property (retain, readwrite, nonatomic) NSString* sourceRepresentation;
 
 @end

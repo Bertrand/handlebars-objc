@@ -31,9 +31,8 @@
 
 @property (retain, nonatomic) NSString* key;
 @property (retain, nonatomic) NSString* leadingSeparator;
+@property (readonly, nonatomic) NSString* sourceRepresentation;
 
 - (NSString*)formalDump;
-
-- (NSString*) sourceRepresentation;
 
 @end

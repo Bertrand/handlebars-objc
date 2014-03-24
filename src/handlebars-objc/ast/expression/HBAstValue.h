@@ -29,4 +29,6 @@
 
 @interface HBAstValue : HBAstNode
 
+@property (readonly, nonatomic) NSString* sourceRepresentation;
+
 @end

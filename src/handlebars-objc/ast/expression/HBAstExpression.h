@@ -38,5 +38,5 @@
 
 - (void) addPositionalParameter:(HBAstValue*)parameter;
 - (void) appendParameter:(HBAstValue*)parameter forKey:(NSString*)key;
-
+- (void) appendNamedParameters:(NSDictionary*)namedParameters;
 @end

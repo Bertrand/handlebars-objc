@@ -10,15 +10,16 @@
 
 #define YYDEBUG 0
 
+
 %}
 
 
 
 %union {
 	int ival;
-	char *sval;
     NSString* nsString;
     NSMutableArray* astArray;
+    NSMutableDictionary* astDictionary;
     HBAstNode* astNode;
     HBAstKeyPathComponent* astPathComponent;
     HBAstValue* astValue;
@@ -34,8 +35,8 @@
     HBAstComment* astComment;
 }
 
-%token <ival> INTEGER
-%token <ival> BOOLEAN
+%token <nsString> INTEGER
+%token <nsString> BOOLEAN
 %token <nsString> TEXT_CONTENT
 %token <nsString> ID
 %token <nsString> STRING
@@ -60,6 +61,7 @@
 %type <astBlock> block_tag else_tag_block;
 %type <astComment> comment
 %type <nsString> comment_content;
+%type <astDictionary> hash;
 
 %token BACKSLASH
 %token LEFT_MUSTACHE
@@ -154,7 +156,8 @@ simple_tag
 partial_tag
 : OPEN_PARTIAL partial_name CLOSE { HBAstPartialTag* tag = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.partialName = $2; $$ = tag; }
 | OPEN_PARTIAL partial_name path CLOSE { HBAstPartialTag* tag = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $4; tag.partialName = $2; tag.context = $3; $$ = tag; }
-;
+| OPEN_PARTIAL partial_name path hash CLOSE { HBAstPartialTag* tag = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $5; tag.partialName = $2; tag.context = $3; tag.namedParameters = $4; $$ = tag; }
+| OPEN_PARTIAL partial_name hash CLOSE { HBAstPartialTag* tag = [[HBAstPartialTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $4; tag.partialName = $2; tag.namedParameters = $3; $$ = tag; };
 
 block_tag_open
 : OPEN_BLOCK expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
@@ -230,7 +233,12 @@ else_tag_block
 expression
 : contextual_value { HBAstExpression* expression = [[HBAstExpression new] autorelease]; expression.mainValue = $1; $$ = expression;  }
 | expression value { [$1 addPositionalParameter:$2]; $$ = $1; }
-| expression ID EQUALS value   { [$1 appendParameter:$4 forKey:$2]; $$ = $1; }
+| expression hash { [$1 appendNamedParameters:$2]; $$ = $1; }
+;
+
+hash
+: ID EQUALS value { NSMutableDictionary* d = [NSMutableDictionary dictionaryWithObject:$3 forKey:$1]; $$ = d; }
+| hash ID EQUALS value { [$1 setObject:$4 forKey:$2]; $$ = $1; }
 ;
 
 value
@@ -270,15 +278,15 @@ path_component
 ;
 
 string
-: STRING { HBAstString* s = [[HBAstString new] autorelease]; s.litteralValue = $1; $$ = s; }
+: STRING { HBAstString* s = [[HBAstString new] autorelease]; s.litteralValue = $1; s.sourceRepresentation = $1; $$ = s; }
 ;
 
 integer
-: INTEGER { HBAstNumber* i = [[HBAstNumber new] autorelease]; i.litteralValue = @($1); $$ = i; }
+: INTEGER { HBAstNumber* i = [[HBAstNumber new] autorelease]; i.litteralValue = [NSNumber numberWithInteger:[$1 integerValue]]; i.sourceRepresentation = $1; $$ = i; }
 ;
 
 boolean
-: BOOLEAN { HBAstNumber* b = [[HBAstNumber new] autorelease]; b.litteralValue = ($1 ? @true : @false); b.isBoolean = true; $$ = b; }
+: BOOLEAN { HBAstNumber* b = [[HBAstNumber new] autorelease]; b.litteralValue = ([$1 isEqual:@"true"] ? @true : @false); b.isBoolean = true; b.sourceRepresentation = $1; $$ = b; }
 ;
 
 data

@@ -44,6 +44,13 @@
     [self.orderedNamedParameterNames addObject:key];
 }
 
+- (void) appendNamedParameters:(NSDictionary*)namedParameters
+{
+    for (NSString* name in namedParameters) {
+        [self appendParameter:namedParameters[name] forKey:name];
+    }
+}
+
 - (id) accept:(HBAstVisitor*)visitor
 {
     return [visitor visitExpression:self];

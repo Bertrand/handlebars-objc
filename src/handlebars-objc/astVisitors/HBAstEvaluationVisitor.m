@@ -308,16 +308,7 @@
 {
     if (self.error) return nil;
     HBAstValue* partialNameNode = node.partialName;
-    NSString* partialName = nil;
-    
-    // XXX - use sourceRepresentation method once it's defined on all astNodes
-    if ([partialNameNode isKindOfClass:[HBAstNumber class]]) {
-        partialName = [[(HBAstNumber*)partialNameNode litteralValue] stringValue];
-    } else if ([partialNameNode isKindOfClass:[HBAstString class]]) {
-        partialName = [(HBAstString*)partialNameNode litteralValue];
-    } else if ([partialNameNode isKindOfClass:[HBAstContextualValue class]]) {
-        partialName = [(HBAstContextualValue*)partialNameNode sourceRepresentation];
-    }
+    NSString* partialName = [partialNameNode sourceRepresentation];
 
     HBPartial* partial = [self.template partialForName:partialName];
     if (!partial) {

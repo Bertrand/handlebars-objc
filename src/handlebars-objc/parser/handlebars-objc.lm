@@ -87,28 +87,28 @@ WS	[ \t]*
 
 <EXPRESSION>{
 
-	\}\}	{ yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE); }
-    ~\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE); }
-	\}\}\}	{ yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE_UNESCAPED); }
-    \}~\}\}	{ yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE_UNESCAPED); }
+	\}\}                    { yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE); }
+    ~\}\}                   { yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE); }
+	\}\}\}                  { yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE_UNESCAPED); }
+    \}~\}\}                 { yy_pop_state(yyscanner); yylval->ival = 1; found(CLOSE_UNESCAPED); }
 
-	\"(\\\"|[^\"])*\"	{ yylval->nsString = nsStringFromQuotedString(yytext, @"\\\"", @"\""); found(STRING); } /* strings like "aaa". '"' character can be backslash escaped */
-	'(\\'|[^'])*'		{ yylval->nsString = nsStringFromQuotedString(yytext, @"\\'", @"'"); found(STRING); } /* strings like 'aaa'. "'" character can be backslash escaped */
+	\"(\\\"|[^\"])*\"       { yylval->nsString = nsStringFromQuotedString(yytext, @"\\\"", @"\""); found(STRING); } /* strings like "aaa". '"' character can be backslash escaped */
+	'(\\'|[^'])*'           { yylval->nsString = nsStringFromQuotedString(yytext, @"\\'", @"'"); found(STRING); } /* strings like 'aaa'. "'" character can be backslash escaped */
 
-	"="					{ found(EQUALS); }
-	"@"					{ found(DATA); }
-    "("                 { found(LPARENT); }
-    ")"                 { found(RPARENT); }
-	\-?[0-9]+/[ \t\}\)]	{ yylval->ival = atoi(yytext); found(INTEGER); }
-	"true"/[ \t\}\)]		{ yylval->ival = 1; found(BOOLEAN); }
-	"false"/[ \t\}\)]		{ yylval->ival = 0; found(BOOLEAN); }
-	"."/[\}\/ \t\)~]       { yylval->nsString = nsString(yytext); found(ID); }
-	".."                { yylval->nsString = nsString(yytext); found(ID); }
-	[\/\.]				{ yylval->nsString = nsString(yytext); found(PATH_SEPARATOR); }
-	{ID}+/[=\/\. \t\}\)~]       { yylval->nsString = nsString(yytext); found(ID); }
-	\[[^\[]*\]			{ NSString* s = nsString(yytext); yylval->nsString = [s substringWithRange:NSMakeRange(1, s.length -2)]; found(ID); } /* XXX must remove [] */
-	{WS}*				{}
-    .                   { found(UNKNOWN); }
+	"="                     { found(EQUALS); }
+	"@"                     { found(DATA); }
+    "("                     { found(LPARENT); }
+    ")"                     { found(RPARENT); }
+	\-?[0-9]+/[ \t\}\)]     { yylval->nsString = nsString(yytext); found(INTEGER); }
+	"true"/[ \t\}\)]		{ yylval->nsString = nsString(yytext); found(BOOLEAN); }
+	"false"/[ \t\}\)]		{ yylval->nsString = nsString(yytext); found(BOOLEAN); }
+	"."/[\}\/ \t\)~]        { yylval->nsString = nsString(yytext); found(ID); }
+	".."                    { yylval->nsString = nsString(yytext); found(ID); }
+	[\/\.]                  { yylval->nsString = nsString(yytext); found(PATH_SEPARATOR); }
+	{ID}+/[=\/\. \t\}\)~]   { yylval->nsString = nsString(yytext); found(ID); }
+	\[[^\[]*\]              { NSString* s = nsString(yytext); yylval->nsString = [s substringWithRange:NSMakeRange(1, s.length -2)]; found(ID); } /* XXX must remove [] */
+	{WS}*                   {}
+    .                       { found(UNKNOWN); }
 }
 
 %%
