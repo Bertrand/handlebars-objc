@@ -46,6 +46,13 @@
     };
 }
 
+- (HBHelperBlock) blogWith3ParamsHelper
+{
+    return ^(HBHelperCallingInfo* callingInfo) {
+        return [NSString stringWithFormat:@"val is %@, %@ and %@", callingInfo[0], callingInfo[1], callingInfo[2]];
+    };
+}
+
 - (HBHelperBlock) equalHelper
 {
     return ^(HBHelperCallingInfo* callingInfo) {
@@ -80,6 +87,18 @@
     NSString* result = [self renderTemplate:string withContext:hash withHelpers:helpers error:&error];
     XCTAssert(!error, @"evaluation should not generate an error");
     XCTAssertEqualObjects(result, @"val is true");
+}
+
+- (void) testMixedPathsAndHelpers
+{
+    NSError* error = nil;
+    id string = @"{{blog baz.bat (equal a b) baz.bar}}";
+    id hash = @{ @"bar" : @"LOL", @"baz": @{ @"bat": @"foo!", @"bar": @"bar!"} };
+    NSDictionary* helpers = @{ @"blog": [self blogWith3ParamsHelper], @"equal" : [self equalHelper]};
+    
+    NSString* result = [self renderTemplate:string withContext:hash withHelpers:helpers error:&error];
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects(result, @"val is foo!, true and bar!");
 }
 
 - (void) testSupportsMuchNesting
