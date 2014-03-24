@@ -78,7 +78,12 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerIfBlock
 {
     HBHelperBlock ifBlock = ^(HBHelperCallingInfo* callingInfo) {
-        BOOL boolarg = [HBHelperUtils evaluateObjectAsBool:callingInfo[0]];
+        id value = callingInfo[0];
+
+        BOOL includeZero = [HBHelperUtils evaluateObjectAsBool:callingInfo[@"includeZero"]];
+        BOOL zeroAndIncludeZero = includeZero && value && [value isKindOfClass:[NSNumber class]] && ([value integerValue] == 0);
+        
+        BOOL boolarg = [HBHelperUtils evaluateObjectAsBool:value] || zeroAndIncludeZero;
         if (boolarg) {
             return callingInfo.statements(callingInfo.context, callingInfo.data);
         } else {

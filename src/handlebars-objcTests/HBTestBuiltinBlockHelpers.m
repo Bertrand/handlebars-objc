@@ -64,16 +64,14 @@
     XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[], @"world": @"world"} error:&error]),
                           @"cruel world!");
     XCTAssert(!error, @"evaluation should not generate an error");
-
-    /*
-     We don't pass this handlebars.js test, but it makes no sense. I don't think I'll fix it, there is no way 0 should eval to true,
-     except in ruby, and this is the dumbest choice one could imagine.
-     */
     
-    /*
-     XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @0, @"world": @"world"}]),
-     @"GOODBYE cruel world!");
-     */
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @0, @"world": @"world"} error:&error]),
+                          @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:@"{{#if goodbye includeZero=true}}GOODBYE {{/if}}cruel {{world}}!" withContext:@{@"goodbye": @0, @"world": @"world"} error:&error]),
+                          @"GOODBYE cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
 }
 
 // with
