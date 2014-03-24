@@ -18,7 +18,7 @@ yylloc->first_column = hb_column; \
 yylloc->last_column = hb_column + (int)yyleng - 1; \
 hb_column += yyleng;
 
-#define TRACE_LEXER 1
+#define TRACE_LEXER 0
 
 #if TRACE_LEXER
 #define found(_token_) printf("Lexer found " #_token_ " (%s)\n", yytext); return _token_

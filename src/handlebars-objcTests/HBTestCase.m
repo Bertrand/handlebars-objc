@@ -11,30 +11,44 @@
 
 @implementation HBTestCase
 
-- (NSString*) renderTemplate:(NSString*)string withContext:(id)context withHelpers:(NSDictionary*)blocks error:(NSError**)error
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)helpers withPartials:(NSDictionary*)partials error:(NSError**)error
 {
-    HBTemplate* template = [[HBTemplate alloc] initWithString:string];
-    [template.helpers registerHelperBlocks:blocks];
-    
-    NSString* result = [template renderWithContext:context error:error];
-    [template release];
-    
-    return result;
+    return [HBHandlebars renderTemplateString:template withContext:context withHelperBlocks:helpers withPartialStrings:partials error:error];
 }
 
-- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)blocks
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)helpers withPartials:(NSDictionary*)partials
 {
-    return [self renderTemplate:template withContext:context withHelpers:blocks error:nil];
+    return [self renderTemplate:template withContext:context withHelpers:helpers withPartials:partials error:nil];
+}
+
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withPartials:(NSDictionary*)partials error:(NSError**)error
+{
+    return [self renderTemplate:template withContext:context withHelpers:nil withPartials:partials error:error];
+}
+
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withPartials:(NSDictionary*)partials
+{
+    return [self renderTemplate:template withContext:context withHelpers:nil withPartials:partials error:nil];
+}
+
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)helpers error:(NSError**)error
+{
+    return [self renderTemplate:template withContext:context withHelpers:helpers withPartials:nil error:error];
+}
+
+- (NSString*) renderTemplate:(NSString*)template withContext:(id)context withHelpers:(NSDictionary*)helpers
+{
+    return [self renderTemplate:template withContext:context withHelpers:helpers withPartials:nil error:nil];
 }
 
 - (NSString*) renderTemplate:(NSString*)template withContext:(id)context error:(NSError**)error
 {
-    return [self renderTemplate:template withContext:context withHelpers:nil error:error];
+    return [self renderTemplate:template withContext:context withHelpers:nil withPartials:nil error:error];
 }
 
 - (NSString*) renderTemplate:(NSString*)template withContext:(id)context
 {
-    return [self renderTemplate:template withContext:context withHelpers:nil error:nil];
+    return [self renderTemplate:template withContext:context withHelpers:nil withPartials:nil error:nil];
 }
 
 @end
