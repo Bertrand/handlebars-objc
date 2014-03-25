@@ -60,17 +60,19 @@
 
 - (id) evaluateContextualValue:(HBAstContextualValue*)value
 {
+    NSUInteger index = 0;
+    id current = nil;
+    NSArray* pathComponents = value.keyPath;
+
     if (value.isDataValue) {
-        NSAssert(value.keyPath && value.keyPath.count > 0, @"no keypath in data value");
-        NSAssert(value.keyPath.count == 1, @"keypath in data value can not have multiple components");
+        NSAssert(pathComponents && pathComponents.count > 0, @"no keypath in data value");
         NSString* key = [value.keyPath[0] key];
-        return self.dataContext ? self.dataContext[key] : nil;
+        current = self.dataContext ? self.dataContext[key] : nil;
+        index++;
+        
     } else {
-        NSArray* pathComponents = value.keyPath;
-        
         HBContextState* startState = self;
-        NSUInteger index = 0;
-        
+    
         if (pathComponents.count > 0 && ([[pathComponents[0] key] isEqualToString:@"this"] || [[pathComponents[0] key] isEqualToString:@"."])) index++;
         
         // consume all ".."
@@ -79,21 +81,19 @@
             startState = startState.parent;
         }
         if (!startState) return nil;
-        
-        // consume remaining "normal" keypath
-        id current = startState.context;
-        BOOL atRootLevel = true;
-        while (index < pathComponents.count && current) {
-            NSString* key = [pathComponents[index] key];
-            current = [self valueForKey:key context:current includeMergedAttributes:atRootLevel];
-            atRootLevel = false;
-            index++;
-        }
-        
-        return current;
+        current = startState.context;
     }
     
-    return nil; // please compiler
+    // consume remaining "normal" keypath
+    BOOL atRootLevel = true;
+    while (index < pathComponents.count && current) {
+        NSString* key = [pathComponents[index] key];
+        current = [self valueForKey:key context:current includeMergedAttributes:atRootLevel];
+        atRootLevel = false;
+        index++;
+    }
+    
+    return current;
 }
 
 - (HBDataContext*) dataContextCopyOrNew 

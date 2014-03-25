@@ -96,9 +96,16 @@
 
 - (NSString*) evaluateWithContext:(id)context
 {
+    // Root data context
+    HBDataContext* dataContext = nil;
+    if (context) {
+        dataContext = [HBDataContext new];
+        dataContext[@"root"] = context;
+    }
+    
     // prepare context stack
     self.contextStack = [[HBContextStack new] autorelease];
-    [self.contextStack push:[HBContextState stateWithContext:context data:nil]];
+    [self.contextStack push:[HBContextState stateWithContext:context data:dataContext]];
 
     // visit for real now
     NSString* result = [self visitNode:self.rootNode];
