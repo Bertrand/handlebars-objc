@@ -125,7 +125,14 @@ extern int hb_debug;
 - (void) testParsesMustachesWithIntegerParameters
 {
     NSError* error = nil;
-    XCTAssertEqualObjects([self astString:@"{{foo 1}}" error:&error], @"{{ ID:foo [INTEGER{1}] }}\n");
+    XCTAssertEqualObjects([self astString:@"{{foo 1}}" error:&error], @"{{ ID:foo [NUMBER{1}] }}\n");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+    
+- (void) testParsesMustachesWithFloatParameters
+{
+    NSError* error = nil;
+    XCTAssertEqualObjects([self astString:@"{{foo 3.14159}}" error:&error], @"{{ ID:foo [NUMBER{3.14159}] }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
@@ -150,7 +157,7 @@ extern int hb_debug;
     NSError* error = nil;
     XCTAssertEqualObjects([self astString:@"{{foo bar=baz}}" error:&error], @"{{ ID:foo [] HASH{bar=ID:baz} }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
-    XCTAssertEqualObjects([self astString:@"{{foo bar=1}}" error:&error], @"{{ ID:foo [] HASH{bar=INTEGER{1}} }}\n");
+    XCTAssertEqualObjects([self astString:@"{{foo bar=1}}" error:&error], @"{{ ID:foo [] HASH{bar=NUMBER{1}} }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
     XCTAssertEqualObjects([self astString:@"{{foo bar=true}}" error:&error], @"{{ ID:foo [] HASH{bar=BOOLEAN{true}} }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
@@ -169,7 +176,7 @@ extern int hb_debug;
     
     XCTAssertEqualObjects([self astString:@"{{foo omg bar=baz bat=\"bam\"}}" error:&error], @"{{ ID:foo [ID:omg] HASH{bar=ID:baz, bat=\"bam\"} }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
-    XCTAssertEqualObjects([self astString:@"{{foo omg bar=baz bat=\"bam\" baz=1}}" error:&error], @"{{ ID:foo [ID:omg] HASH{bar=ID:baz, bat=\"bam\", baz=INTEGER{1}} }}\n");
+    XCTAssertEqualObjects([self astString:@"{{foo omg bar=baz bat=\"bam\" baz=1}}" error:&error], @"{{ ID:foo [ID:omg] HASH{bar=ID:baz, bat=\"bam\", baz=NUMBER{1}} }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");
     XCTAssertEqualObjects([self astString:@"{{foo omg bar=baz bat=\"bam\" baz=true}}" error:&error], @"{{ ID:foo [ID:omg] HASH{bar=ID:baz, bat=\"bam\", baz=BOOLEAN{true}} }}\n");
     XCTAssert(!error, @"evaluation should not generate an error");

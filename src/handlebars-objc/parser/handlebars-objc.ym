@@ -36,6 +36,7 @@
 }
 
 %token <nsString> INTEGER
+%token <nsString> FLOAT
 %token <nsString> BOOLEAN
 %token <nsString> TEXT_CONTENT
 %token <nsString> ID
@@ -54,6 +55,8 @@
 %type <astRawText> raw_text;
 %type <astString> string;
 %type <astNumber> integer;
+%type <astNumber> float;
+%type <astNumber> number;
 %type <astNumber> boolean;
 %type <astContextualValue> data;
 %type <astValue> partial_name;
@@ -245,7 +248,7 @@ value
 : LPARENT expression RPARENT { $$ = $2; }
 | path { $$ = $1; }
 | string { $$ = $1; }
-| integer { $$ = $1; }
+| number { $$ = $1; }
 | boolean { $$ = $1; }
 | data { $$ = $1; }
 ;
@@ -281,8 +284,17 @@ string
 : STRING { HBAstString* s = [[HBAstString new] autorelease]; s.litteralValue = $1; s.sourceRepresentation = $1; $$ = s; }
 ;
 
+number
+: integer
+| float
+;
+
 integer
 : INTEGER { HBAstNumber* i = [[HBAstNumber new] autorelease]; i.litteralValue = [NSNumber numberWithInteger:[$1 integerValue]]; i.sourceRepresentation = $1; $$ = i; }
+;
+
+float
+: FLOAT { HBAstNumber* i = [[HBAstNumber new] autorelease]; i.litteralValue = [NSNumber numberWithDouble:[$1 doubleValue]]; i.sourceRepresentation = $1; $$ = i; }
 ;
 
 boolean

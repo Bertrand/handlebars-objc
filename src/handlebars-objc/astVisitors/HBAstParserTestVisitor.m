@@ -177,7 +177,7 @@
     if (node.isBoolean) {
         [node.litteralValue boolValue] ? [_result appendString:@"BOOLEAN{true}"] : [_result appendString:@"BOOLEAN{false}"];
     } else {
-        [_result appendFormat:@"INTEGER{%ld}", (long)[node.litteralValue integerValue]];
+        [_result appendFormat:@"NUMBER{%@}", [node.litteralValue stringValue]];
     }
     return nil;
 }

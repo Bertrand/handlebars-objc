@@ -52,7 +52,7 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 
 
 @implementation HBTestHelpers
-
+    
 - (HBHelperBlock) worldStringHelper
 {
     return ^(HBHelperCallingInfo* callingInfo) {
@@ -332,6 +332,19 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 }
 
 
+- (void) testDecimalNumberLiteralsWork
+{
+    HBHelperBlock helloHelper = ^(HBHelperCallingInfo* callingInfo) {
+        id times = callingInfo[0];
+        return [times isKindOfClass:[NSNumber class]] ? [NSString stringWithFormat:@"Hello %@ times", times] : @"Nan";
+    };
+    
+    id string = @"Message: {{hello -12.24}}";
+    id hash = @{  };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"hello" : helloHelper});
+    XCTAssertEqualObjects(result, @"Message: Hello -12.24 times");
+}
 
 // negative number literals work
 - (void) testNegativeNumberLiteralsWork
