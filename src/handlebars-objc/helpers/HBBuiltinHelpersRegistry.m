@@ -75,16 +75,21 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
     [self registerEscapeBlock];
 }
 
++ (BOOL) _firstParamEvaluatesToTrue:(HBHelperCallingInfo*) callingInfo
+{
+    id value = callingInfo[0];
+    
+    BOOL includeZero = [HBHelperUtils evaluateObjectAsBool:callingInfo[@"includeZero"]];
+    BOOL zeroAndIncludeZero = includeZero && value && [value isKindOfClass:[NSNumber class]] && ([value integerValue] == 0);
+    
+    return [HBHelperUtils evaluateObjectAsBool:value] || zeroAndIncludeZero;
+}
+
 + (void) registerIfBlock
 {
     HBHelperBlock ifBlock = ^(HBHelperCallingInfo* callingInfo) {
-        id value = callingInfo[0];
-
-        BOOL includeZero = [HBHelperUtils evaluateObjectAsBool:callingInfo[@"includeZero"]];
-        BOOL zeroAndIncludeZero = includeZero && value && [value isKindOfClass:[NSNumber class]] && ([value integerValue] == 0);
         
-        BOOL boolarg = [HBHelperUtils evaluateObjectAsBool:value] || zeroAndIncludeZero;
-        if (boolarg) {
+        if ([HBBuiltinHelpersRegistry _firstParamEvaluatesToTrue:callingInfo]) {
             return callingInfo.statements(callingInfo.context, callingInfo.data);
         } else {
             return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);
@@ -96,8 +101,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 + (void) registerUnlessBlock
 {
     HBHelperBlock unlessBlock = ^(HBHelperCallingInfo* callingInfo) {
-        BOOL boolarg = [HBHelperUtils evaluateObjectAsBool:callingInfo[0]];
-        if (!boolarg) {
+        if (![HBBuiltinHelpersRegistry _firstParamEvaluatesToTrue:callingInfo]) {
             return callingInfo.statements(callingInfo.context, callingInfo.data);
         } else {
             return callingInfo.inverseStatements(callingInfo.context, callingInfo.data);

@@ -80,7 +80,7 @@
     // if node is a value, first component (after "." and ".." components) is a data value
     if (value.isDataValue) {
         NSAssert(pathComponents && pathComponents.count > index, @"no keypath in data value");
-        NSString* key = [value.keyPath[indexy] key];
+        NSString* key = [value.keyPath[index] key];
         current = startState.dataContext ? startState.dataContext[key] : nil;
         index++;
     }

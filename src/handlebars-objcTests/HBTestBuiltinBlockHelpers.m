@@ -74,6 +74,45 @@
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+// unless
+- (void) testUnless
+{
+    id string = @"{{#unless goodbye}}GOODBYE {{/unless}}cruel {{world}}!";
+    NSError* error = nil;
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{ @"world": @"world", @"goodbye" : @"true"} error:&error]),
+                          @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @"dummy", @"world": @"world"} error:&error]),
+                          @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @false, @"world": @"world"} error:&error]),
+                          @"GOODBYE cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"world": @"world"} error:&error]),
+                          @"GOODBYE cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[@"foo"], @"world": @"world"} error:&error]),
+                          @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @[], @"world": @"world"} error:&error]),
+                          @"GOODBYE cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:string withContext:@{@"goodbye": @0, @"world": @"world"} error:&error]),
+                          @"GOODBYE cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+    
+    XCTAssertEqualObjects(([HBHandlebars renderTemplateString:@"{{#unless goodbye includeZero=true}}GOODBYE {{/unless}}cruel {{world}}!" withContext:@{@"goodbye": @0, @"world": @"world"} error:&error]),
+                          @"cruel world!");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
+
 // with
 - (void) testWith
 {
