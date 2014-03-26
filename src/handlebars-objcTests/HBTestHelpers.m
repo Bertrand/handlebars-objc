@@ -96,6 +96,17 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
     };
 }
 
+- (HBHelperBlock) rawHelper
+{
+    return ^(HBHelperCallingInfo* callingInfo) {
+        NSString* result = callingInfo.statements(callingInfo.context, callingInfo.data);
+        for (NSString* param in callingInfo.positionalParameters) {
+            result = [result stringByAppendingFormat:@" %@", param];
+        }
+        return result;
+    };
+}
+
 - (void) testBasicValueHelper
 {
     
@@ -138,6 +149,27 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
     
     NSString* result = renderWithHelpers(string, hash, @{ @"link" : [self linkHelper]});
     XCTAssertEqualObjects(result, @"<a href='/root/goodbye'>Goodbye</a>");
+}
+
+
+// helper with complex lookup
+- (void) testHelperForRawBlockGetsRawContent
+{
+    id string = @"{{{{raw}}}} {{test}} {{{{/raw}}}}";
+    id hash = @{ @"test" : @"hello" };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"raw" : [self rawHelper]});
+    XCTAssertEqualObjects(result, @" {{test}} ");
+}
+
+// helper for raw block gets parameters
+- (void) testHelperForRawBlockGetsParameters
+{
+    id string = @"{{{{ raw 1 2 3 }}}} {{test}} {{{{/raw}}}}";
+    id hash = @{ @"test" : @"hello" };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"raw" : [self rawHelper]});
+    XCTAssertEqualObjects(result, @" {{test}}  1 2 3");
 }
 
 // helper block with complex lookup expression
