@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: src/handlebars-objc.xcodeproj
+xcode_scheme: handlebars-objc-ios
