@@ -84,6 +84,10 @@
 %token <ival> OPEN_UNESCAPED_AMPERSAND
 %token <ival> CLOSE
 %token <ival> CLOSE_UNESCAPED
+%token <ival> OPEN_RAW
+%token <ival> CLOSE_RAW
+%token <ival> OPEN_ENDRAW
+%token <ival> CLOSE_ENDRAW
 
 %token EQUALS
 %token DATA

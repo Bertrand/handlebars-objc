@@ -336,4 +336,11 @@ extern int hb_debug;
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 
+- (void) testRawBlockParsing
+{
+    NSError* error = nil;
+    
+    XCTAssertEqualObjects([self astString:@"aaa{{{{foo}}}} {{a}} {{{{/foo}}}}" error:&error], @"\n");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
 @end
