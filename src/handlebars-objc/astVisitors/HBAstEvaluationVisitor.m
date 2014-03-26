@@ -99,7 +99,7 @@
     // Root data context
     HBDataContext* dataContext = nil;
     if (context) {
-        dataContext = [HBDataContext new];
+        dataContext = [[HBDataContext new] autorelease];
         dataContext[@"root"] = context;
     }
     
