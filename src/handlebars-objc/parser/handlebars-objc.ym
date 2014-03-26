@@ -49,7 +49,7 @@
 %type <astPathComponent> path_component;
 %type <astValue> value;
 %type <astContextualValue> path contextual_value;
-%type <astTag>  block_tag_open block_tag_close inverse_tag_open else_tag;
+%type <astTag>  block_tag_open block_tag_close inverse_tag_open else_tag rawblock_tag_open rawblock_tag_close;
 %type <astSimpleTag> simple_tag;
 %type <astExpression> expression;
 %type <astRawText> raw_text;
@@ -182,6 +182,14 @@ inverse_tag_open
 : OPEN_INVERSE expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
+rawblock_tag_open
+: OPEN_RAW expression CLOSE_RAW { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
+;
+
+rawblock_tag_close
+: OPEN_ENDRAW expression CLOSE_ENDRAW { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
+;
+
 block_tag
 : block_tag_open statements block_tag_close {
     HBAstBlock* b = [[HBAstBlock new] autorelease];
@@ -218,6 +226,13 @@ block_tag
     HBAstBlock* b = [[HBAstBlock new] autorelease];
     b.openTag = $1;
     b.closeTag = $2;
+    $$ = b;
+    }
+| rawblock_tag_open statements rawblock_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.statements = $2;
+    b.closeTag = $3;
     $$ = b;
     }
 ;

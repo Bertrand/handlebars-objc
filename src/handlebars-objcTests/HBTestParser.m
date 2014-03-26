@@ -340,7 +340,7 @@ extern int hb_debug;
 {
     NSError* error = nil;
     
-    XCTAssertEqualObjects([self astString:@"aaa{{{{foo}}}} {{a}} {{{{/foo}}}}" error:&error], @"\n");
+    XCTAssertEqualObjects([self astString:@"aaa {{{{foo}}}} {{a}} {{{{/foo}}}} bbbb" error:&error], @"CONTENT[ 'aaa ' ]\nBLOCK:\n  {{ ID:foo [] }}\n  PROGRAM:\n    CONTENT[ ' {{a}} ' ]\n\nCONTENT[ ' bbbb' ]\n");
     XCTAssert(!error, @"evaluation should not generate an error");
 }
 @end

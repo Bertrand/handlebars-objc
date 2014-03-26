@@ -18,7 +18,7 @@ yylloc->first_column = hb_column; \
 yylloc->last_column = hb_column + (int)yyleng - 1; \
 hb_column += yyleng;
 
-#define TRACE_LEXER 0
+#define TRACE_LEXER 1
 
 #if TRACE_LEXER
 #define found(_token_) printf("Lexer found " #_token_ " (%s)\n", yytext); return _token_
@@ -40,6 +40,7 @@ hb_column += yyleng;
 %x COMMENT
 %x DASHED_COMMENT
 %x RAW
+%x RAW_EXPRESSION
 
 
 ID 	[^ \t!"#%-,\.\/;->@\[-\^`\{-~\]/\[=}\/.]
@@ -118,11 +119,14 @@ WS	[ \t]*
 }
 
 <RAW>{
-    .*/\{\{\{\{\/   { yylval->nsString = nsString(yytext); found(TEXT_CONTENT); }
-    \{\{\{\{\/      { yylval->ival = 0; found(OPEN_ENDRAW); }
-    \}\}\}\}        { yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE_ENDRAW); }
+    .+/\{\{\{\{\/           { yylval->nsString = nsString(yytext); found(TEXT_CONTENT); }
+    \{\{\{\{\/              { yy_pop_state(yyscanner); yy_push_state(RAW_EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_ENDRAW); }
 
+}
+    
+<RAW_EXPRESSION>{
     {ID}+/[=\/\. \t\}\)~]   { yylval->nsString = nsString(yytext); found(ID); }
+    \}\}\}\}                { yy_pop_state(yyscanner); yylval->ival = 0; found(CLOSE_ENDRAW); }
     {WS}*                   {}
 }
 
