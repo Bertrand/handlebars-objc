@@ -64,24 +64,25 @@
     id current = nil;
     NSArray* pathComponents = value.keyPath;
 
-    if (value.isDataValue) {
-        NSAssert(pathComponents && pathComponents.count > 0, @"no keypath in data value");
-        NSString* key = [value.keyPath[0] key];
-        current = self.dataContext ? self.dataContext[key] : nil;
-        index++;
-        
-    } else {
-        HBContextState* startState = self;
+    HBContextState* startState = self;
+
+    // consume "." components if any
+    if (pathComponents.count > 0 && ([[pathComponents[0] key] isEqualToString:@"this"] || [[pathComponents[0] key] isEqualToString:@"."])) index++;
     
-        if (pathComponents.count > 0 && ([[pathComponents[0] key] isEqualToString:@"this"] || [[pathComponents[0] key] isEqualToString:@"."])) index++;
-        
-        // consume all ".."
-        while (index < pathComponents.count && [[pathComponents[index] key] isEqualToString:@".."] && startState) {
-            index++;
-            startState = startState.parent;
-        }
-        if (!startState) return nil;
-        current = startState.context;
+    // consume ".." components if any
+    while (index < pathComponents.count && [[pathComponents[index] key] isEqualToString:@".."] && startState) {
+        index++;
+        startState = startState.parent;
+    }
+    if (!startState) return nil;
+    current = startState.context;
+    
+    // if node is a value, first component (after "." and ".." components) is a data value
+    if (value.isDataValue) {
+        NSAssert(pathComponents && pathComponents.count > index, @"no keypath in data value");
+        NSString* key = [value.keyPath[indexy] key];
+        current = startState.dataContext ? startState.dataContext[key] : nil;
+        index++;
     }
     
     // consume remaining "normal" keypath

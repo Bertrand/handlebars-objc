@@ -75,4 +75,17 @@
     XCTAssertEqualObjects(result, @"hello");
 }
 
+- (void) testDataContextCanBeClimbedUp
+{
+    NSError* error = nil;
+    id string = @"{{#let foo=1}}{{#let foo=2}}{{#let foo=3}} {{ @foo }} {{ @./foo }} {{ @../foo }} {{ @../../foo }} {{/let}}{{/let}}{{/let}}";
+    id hash = @{};
+    NSDictionary* helpers = @{ @"let" : [self letHelper]};
+    
+    NSString* result = [self renderTemplate:string withContext:hash withHelpers:helpers error:&error];
+    XCTAssert(!error, @"evaluation should not generate an error");
+    XCTAssertEqualObjects(result, @" 3 3 2 1 ");
+}
+
+
 @end
