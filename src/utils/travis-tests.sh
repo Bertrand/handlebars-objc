@@ -18,5 +18,6 @@ ROOT_DIR="$SCRIPT_DIR/../.."
 # The bug seems to be fixed in XCode 5.1
 #
 
+brew upgrade xctool || echo "xctool upgrade failed"
 xctool --version
 xctool -project "$ROOT_DIR/src/handlebars-objc.xcodeproj" -scheme handlebars-objc-ios  -sdk iphonesimulator -destination name=iPad build test
