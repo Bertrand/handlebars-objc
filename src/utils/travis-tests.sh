@@ -18,7 +18,13 @@ ROOT_DIR="$SCRIPT_DIR/../.."
 # The bug seems to be fixed in XCode 5.1
 #
 
-brew update 
+# unfortunately, -destination is only supported in xctool 0.1.14 and travis boxes have 0.1.13
+# so first, let's upgrade brew
+brew update > /dev/null
+# then upgrade xctool
 brew upgrade xctool || echo "xctool upgrade failed"
+# and check current version
 xctool --version
+
+# now launch the actual tests
 xctool -project "$ROOT_DIR/src/handlebars-objc.xcodeproj" -scheme handlebars-objc-ios  -sdk iphonesimulator -destination name=iPad build test
