@@ -256,6 +256,7 @@
 		063452C61811DAC3003C0B7C /* HBTestExecutionContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestExecutionContext.m; sourceTree = "<group>"; };
 		0638A5C818D837130090D490 /* HBTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBTestCase.h; sourceTree = "<group>"; };
 		0638A5C918D837130090D490 /* HBTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestCase.m; sourceTree = "<group>"; };
+		063FE3F618E420DA002F6738 /* travis-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "travis-tests.sh"; sourceTree = "<group>"; };
 		06556D7D17FEFB0C00070907 /* HBPartial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPartial.h; sourceTree = "<group>"; };
 		06556D7E17FEFB0C00070907 /* HBPartial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBPartial.m; sourceTree = "<group>"; };
 		06556D8117FEFB7C00070907 /* HBPartialRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPartialRegistry.h; sourceTree = "<group>"; };
@@ -650,6 +651,7 @@
 				06AB0B14180BDA49005A7610 /* generate_api_doc.sh */,
 				06F3BEE2180FD50800D4447B /* build_binary_distribution.sh */,
 				06F3BEE3180FD50800D4447B /* generate_github_pages.sh */,
+				063FE3F618E420DA002F6738 /* travis-tests.sh */,
 			);
 			path = utils;
 			sourceTree = "<group>";
