@@ -1,3 +1,5 @@
+[![Travis Build Status](https://api.travis-ci.org/fotonauts/handlebars-objc.png?branch=master)](https://api.travis-ci.org/fotonauts/handlebars-objc)
+
 handlebars-objc
 ===============
 
