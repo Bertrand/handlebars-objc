@@ -51,7 +51,7 @@
 %type <astContextualValue> path contextual_value;
 %type <astTag>  block_tag_open block_tag_close inverse_tag_open else_tag rawblock_tag_open rawblock_tag_close;
 %type <astSimpleTag> simple_tag;
-%type <astExpression> expression;
+%type <astExpression> simple_expression expression_with_positional_values expression;
 %type <astRawText> raw_text;
 %type <astString> string;
 %type <astNumber> integer;
@@ -252,10 +252,18 @@ else_tag_block
     $$ = b;
 };
 
-expression
+simple_expression
 : contextual_value { HBAstExpression* expression = [[HBAstExpression new] autorelease]; expression.mainValue = $1; $$ = expression;  }
-| expression value { [$1 addPositionalParameter:$2]; $$ = $1; }
-| expression hash { $1.namedParameters = $2; $$ = $1; }
+;
+
+expression_with_positional_values
+: simple_expression  { $$ = $1; }
+| expression_with_positional_values value { [$1 addPositionalParameter:$2]; $$ = $1; }
+;
+
+expression
+: expression_with_positional_values
+| expression_with_positional_values hash { $1.namedParameters = $2; $$ = $1; }
 ;
 
 hash
