@@ -3,7 +3,7 @@
 handlebars-objc
 ===============
 
-handlebars-objc is a feature complete implementation of Handlebars.js for Objective-C that is and will remain 100% compatible with the Javascript version. 
+handlebars-objc is a feature complete implementation of Handlebars.js v2.0 for Objective-C that is and will remain 100% compatible with the Javascript version. 
 
 
 What is Handlebars?
@@ -32,12 +32,7 @@ Handlebars implementations are available for [Javascript](http://handlebarsjs.co
 
 In short, if you're looking for a templating system with a clean view/model separation and want to render them in Objective-C and in Javascript (or Java), Handlebars is probably what you need. 
 
-What handlebars-objc is not 
-===========================
-
-Handlebars-objc doesn't try to be more versatile than other Handlebars implementations. As such, it doesn't try to give control over rendering to the hosting application beyond helpers implementation. Helpers are generally simple to write and can easily be ported to other Handlebars implementations. Any other mechanism would potentially break compatibility with other Handlebars implementations, and would thus increase global warming. 
-
-Some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache). GRMustache is a fantastic library if you're looking for more control over rendering (and more control in general) from your hosting application. Plus, GRMustache doesn't increase global warming. 
+Please note that some implementations of Mustache provide extensions similar to Handlebars, and if you intend to render your templates only on a Mac or an iPhone, I strongly suggest you take a look at [GRMustache](https://github.com/groue/GRMustache). GRMustache is a fantastic library. 
 
 
 Getting Started
@@ -76,6 +71,8 @@ Congratulations! You've just rendered your first Handlebars template.
 Going Further
 -------------
 If you like to read reference documentation, read the [Handlebars public API reference documentation](http://fotonauts.github.io/handlebars-objc/api_doc/).
+
+Since handlebars-objc if fully compatible with handlebars.js, please refer to [handlebars.js documentation](http://handlebarsjs.com/) for a complete description of handlebars syntax. 
 
 The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
  - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md): This guide
