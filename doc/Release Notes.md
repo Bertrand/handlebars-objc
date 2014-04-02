@@ -17,7 +17,7 @@
  - Support for custom escaping modes 
  - Support for string localization
  - Travis CI support 
- - Fix some memory leaks 
+ - Fix a memory leak (@randomsequence) 
  
 ## v1.0.1 ##
 
