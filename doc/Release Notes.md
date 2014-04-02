@@ -25,7 +25,7 @@
  - Fix installation documentation (including project sources) 
 
 
- ## v1.0.0 ##
+## v1.0.0 ##
 
  - Initial release
  
