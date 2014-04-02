@@ -94,6 +94,15 @@
                           @"format1");
     XCTAssert(!error, @"evaluation should not generate an error");
 }
+    
+- (void) testQueryParamEscaping
+{
+    NSError* error = nil;
+    
+    XCTAssertEqualObjects([self renderWithDelegate:@"http://google.com/?q={{escape 'text/x-query-parameter' word}}" withContext:@{ @"word": @"R&D"} error:&error],
+                          @"http://google.com/?q=R%26D");
+    XCTAssert(!error, @"evaluation should not generate an error");
+}
 @end
 
 @implementation HBTestEscapingDelegate

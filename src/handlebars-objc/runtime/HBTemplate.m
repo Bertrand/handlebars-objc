@@ -166,7 +166,7 @@
     }
     
     // url params
-    if (!escapedString && [formatName isEqual:@"urlParam"]) {
+    if (!escapedString && ([formatName isEqual:@"urlParam"] || [formatName isEqual:@"text/x-query-parameter"])) {
         return [HBEscapingFunctions urlParameterEscapingFunction](rawString);
     }
     
