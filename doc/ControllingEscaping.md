@@ -2,9 +2,9 @@
 
 ## Warning 
 
-This document describes an extension to handlebars available only in handlebars-objc. While most is implemented using helpers, those helpers leverage an internal mechanism that, to our knowledge, is not available yet in other implementations. 
+This document describes an extension to handlebars that is available only in handlebars-objc. While most is implemented using helpers, those helpers leverage internal APIs that are not yet available in other implementations of handlebars. 
 
-## The need for some control 
+## The need for some control over escaping
 
 By default, handlebars escapes content so that generated text can be safely and correctly rendered when inserted within an HTML node. And this is fine, since handlebars is mostly used to generate html documents. 
 
@@ -21,11 +21,11 @@ Unfortunately, "HTML escaping" is an ill-defined notion. HTML documents are made
 
 Let's illustrate this with a simple example: the ampersand character ('&').
 
-The ampersand char must be escaped in HTML Text nodes. The 'R&D' word must is thus be escaped this way
+The ampersand char must be escaped in HTML Text nodes. The 'R&D' word must thus be escaped this way
 
 	<span> R&amp;D </span>
     
-So far, handlebars does this perfectly: template 
+So far, handlebars does this perfectly: the template 
 
 	<span> {{ word } </span
     
