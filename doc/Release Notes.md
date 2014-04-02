@@ -17,7 +17,7 @@
  - Support for custom escaping modes 
  - Support for string localization
  - Travis CI support 
- - Fix a memory leak (@randomsequence) 
+ - [#4](https://github.com/fotonauts/handlebars-objc/pull/4) Fix a memory leak ([@randomsequence](https://github.com/randomsequence)) 
  
 ## v1.0.1 ##
 
