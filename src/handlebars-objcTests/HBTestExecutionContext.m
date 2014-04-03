@@ -178,20 +178,25 @@
     return self.localizedStrings[string];
 }
     
+- (void) replaceString:(NSString*)source withString:(NSString*)target inMutableString:(NSMutableString*)string
+{
+    [string replaceOccurrencesOfString:source withString:target options:NSCaseInsensitiveSearch range:NSMakeRange(0, [string length])];
+}
+
 - (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName forExecutionContext:(HBExecutionContext*)executionContext
 {
     NSString* result = nil;
     
     if ([formatName isEqual:@"application/x-json-string"]) {
-        // copied from http://www.codza.com/converting-nsstring-to-json-string
+        // mostly copied from http://www.codza.com/converting-nsstring-to-json-string
         NSMutableString *s = [NSMutableString stringWithString:rawString];
-        [s replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-        [s replaceOccurrencesOfString:@"/"  withString:@"\\/"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-        [s replaceOccurrencesOfString:@"\n" withString:@"\\n"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-        [s replaceOccurrencesOfString:@"\b" withString:@"\\b"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-        [s replaceOccurrencesOfString:@"\f" withString:@"\\f"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-        [s replaceOccurrencesOfString:@"\r" withString:@"\\r"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
-        [s replaceOccurrencesOfString:@"\t" withString:@"\\t"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [self replaceString:@"\"" withString:@"\\\"" inMutableString:s];
+        [self replaceString:@"/"  withString:@"\\/"  inMutableString:s];
+        [self replaceString:@"\n" withString:@"\\n"  inMutableString:s];
+        [self replaceString:@"\b" withString:@"\\b"  inMutableString:s];
+        [self replaceString:@"\f" withString:@"\\f"  inMutableString:s];
+        [self replaceString:@"\r" withString:@"\\r"  inMutableString:s];
+        [self replaceString:@"\t" withString:@"\\t"  inMutableString:s];
         result = [NSString stringWithString:s];
     }
     

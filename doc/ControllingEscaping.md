@@ -135,9 +135,64 @@ The ambient escaping mode is implemented as a stack, meaning you can safely call
 	content... {{! back to html escaping }}
     
 
+## Adding support for custom escaping modes
 
+Handlebars.objc supports two escaping modes by default: 
+ - html escaping mode 
+ - url query parameters escaping mode 
 
+You might need a totally different escape mode, for instance to escape values within JSON strings. 
 
+You can implement your own escaping mode by adding a delegate to your execution context. All you need is to implement a method in your delegate  
+
+	// Declaration of a simple delegate
+	@interface SimpleExecutionContextDelegate
+    
+        - (void)replaceString:(NSString*)source withString:(NSString*)target inMutableString:(NSMutableString*)string;
+        
+    @end
+        
+    // Implementation of delegate class
+	@implementation SimpleExecutionContextDelegate
+    
+        - (void)replaceString:(NSString*)source withString:(NSString*)target inMutableString:(NSMutableString*)string
+        {
+            [string replaceOccurrencesOfString:source withString:target options:NSCaseInsensitiveSearch range:NSMakeRange(0, [string length])];
+        }
+
+        - (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName forExecutionContext:(HBExecutionContext*)executionContext
+        {
+            NSString* result = nil;
+
+            if ([formatName isEqual:@"application/x-json-string"]) {
+                // mostly copied from http://www.codza.com/converting-nsstring-to-json-string
+                NSMutableString *s = [NSMutableString stringWithString:rawString];
+                [self replaceString:@"\"" withString:@"\\\"" inMutableString:s];
+                [self replaceString:@"/"  withString:@"\\/"  inMutableString:s];
+                [self replaceString:@"\n" withString:@"\\n"  inMutableString:s];
+                [self replaceString:@"\b" withString:@"\\b"  inMutableString:s];
+                [self replaceString:@"\f" withString:@"\\f"  inMutableString:s];
+                [self replaceString:@"\r" withString:@"\\r"  inMutableString:s];
+                [self replaceString:@"\t" withString:@"\\t"  inMutableString:s];
+                result = [NSString stringWithString:s];
+            }
+
+            return result;
+        }
+
+	@end
+
+Now we can use this delegate to get support for json string escaping:
+
+    SimpleExecutionContextDelegate* delegate = [[SimpleExecutionContextDelegate new] autorelease];
+    HBExecutionContext* executionContext = [[HBExecutionContext new] autorelease];
+    executionContext.delegate = delegate;
+    HBTemplate* template = [executionContext templateWithString:@"{{escape 'application/x-json-string' 'hel\"lo'}}"];
+    NSLog("template renders as: '%@'", [template renderWithContext:nil error:nil]);
+
+And in your console you should see: 
+
+	template renders as: 'hel\"lo'
 
 
 
