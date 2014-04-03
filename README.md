@@ -79,5 +79,5 @@ The doc folder contains some guides that will help you learn how to use handleba
  - [Installation](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md): how to install handlebars-objc in your XCode project
  - [Context Objects](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ContextObjects.md): How Handlebars accesses data in your context objects
  - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md): Learn how to write your own helpers
- - [Controlling Escaping](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ControllingEscaping.md): Learn how to control escaping of value within your templates
+ - [Controlling Escaping](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ControllingEscaping.md): Learn how to control escaping of values within your templates
  
