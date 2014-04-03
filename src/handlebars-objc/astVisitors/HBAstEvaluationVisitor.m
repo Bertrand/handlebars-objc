@@ -41,6 +41,8 @@
 #import "HBPartial.h"
 #import "HBPartial_Private.h"
 #import "HBErrorHandling_Private.h"
+#import "HBEscapedString.h"
+#import "HBEscapedString_Private.h"
 
 @interface HBAstEvaluationVisitor()
 @property (retain, nonatomic) HBContextStack* contextStack;
@@ -78,7 +80,12 @@
         __buffer_name__ = __buffer_name__##newBuffer; \
         __buffer_name__##usingCappedString = false; \
     } \
-    [buffer appendString:result]
+    if ([__string_to_append__ isKindOfClass:[HBEscapedString class]]) { \
+        [__buffer_name__ appendString:[__string_to_append__ actualString]]; \
+    } else { \
+        [__buffer_name__ appendString:__string_to_append__]; \
+    } \
+    do {} while(0)
 
 
 @implementation HBAstEvaluationVisitor
@@ -386,7 +393,8 @@
     if (!node.expression) return nil;
     
     NSString* renderedValue = renderForHandlebars([self visitExpression:node.expression]);
-    if (node.escape) renderedValue = [self escapeStringAccordingToCurrentMode:renderedValue];
+    if (node.escape && (![renderedValue isKindOfClass:[HBEscapedString class]]))
+        renderedValue = [self escapeStringAccordingToCurrentMode:renderedValue];
 
     return renderedValue;
 }

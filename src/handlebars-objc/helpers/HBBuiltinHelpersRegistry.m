@@ -31,6 +31,7 @@
 #import "HBHelperCallingInfo_Private.h"
 #import "HBAstEvaluationVisitor.h"
 #import "HBTemplate_Private.h"
+#import "HBEscapedString.h"
 
 static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 
@@ -375,7 +376,8 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         }
         
         NSString* value = callingInfo.positionalParameters[1];
-        return [callingInfo.template escapeString:value forTargetFormat:mode];
+        NSString* result = [callingInfo.template escapeString:value forTargetFormat:mode];
+        return (NSString*)[[[HBEscapedString alloc] initWithString:result] autorelease];
     };
     [_builtinHelpersRegistry registerHelperBlock:escapeBlock forName:@"escape"];
 }

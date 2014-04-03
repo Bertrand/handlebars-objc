@@ -126,6 +126,20 @@
     XCTAssertEqualObjects(evaluation, @"bonjour guidon!");
 }
 
+- (void)testEscapingDelegationOnExecutionContext
+{
+    SimpleExecutionContextDelegate* delegate = [[SimpleExecutionContextDelegate new] autorelease];
+    HBExecutionContext* executionContext = [[HBExecutionContext new] autorelease];
+    executionContext.delegate = delegate;
+    HBTemplate* template = [executionContext templateWithString:@"{{escape 'application/x-json-string' 'hel\"lo'}}"];
+    
+    NSError* error = nil;
+    NSString* evaluation = [template renderWithContext:nil error:&error];
+    XCTAssertNil(error);
+    
+    XCTAssertEqualObjects(evaluation, @"hel\\\"lo");
+}
+    
 @end
 
 
@@ -163,5 +177,26 @@
 {
     return self.localizedStrings[string];
 }
+    
+- (NSString*) escapeString:(NSString*)rawString forTargetFormat:(NSString*)formatName forExecutionContext:(HBExecutionContext*)executionContext
+{
+    NSString* result = nil;
+    
+    if ([formatName isEqual:@"application/x-json-string"]) {
+        // copied from http://www.codza.com/converting-nsstring-to-json-string
+        NSMutableString *s = [NSMutableString stringWithString:rawString];
+        [s replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [s replaceOccurrencesOfString:@"/"  withString:@"\\/"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [s replaceOccurrencesOfString:@"\n" withString:@"\\n"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [s replaceOccurrencesOfString:@"\b" withString:@"\\b"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [s replaceOccurrencesOfString:@"\f" withString:@"\\f"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [s replaceOccurrencesOfString:@"\r" withString:@"\\r"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        [s replaceOccurrencesOfString:@"\t" withString:@"\\t"  options:NSCaseInsensitiveSearch range:NSMakeRange(0, [s length])];
+        result = [NSString stringWithString:s];
+    }
+    
+    return result;
+}
+
 
 @end

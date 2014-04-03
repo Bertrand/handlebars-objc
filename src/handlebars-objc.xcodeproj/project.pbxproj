@@ -55,6 +55,12 @@
 		0638A5CA18D837130090D490 /* HBTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0638A5C918D837130090D490 /* HBTestCase.m */; };
 		0638A5CB18D837130090D490 /* HBTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 0638A5C918D837130090D490 /* HBTestCase.m */; };
 		063FA2941812D61A004FBA94 /* HBTestExecutionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 063452C61811DAC3003C0B7C /* HBTestExecutionContext.m */; };
+		063FE3F918EDA51B002F6738 /* HBEscapedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 063FE3F718EDA51B002F6738 /* HBEscapedString.h */; };
+		063FE3FA18EDA51B002F6738 /* HBEscapedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 063FE3F718EDA51B002F6738 /* HBEscapedString.h */; };
+		063FE3FB18EDA51B002F6738 /* HBEscapedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 063FE3F818EDA51B002F6738 /* HBEscapedString.m */; };
+		063FE3FC18EDA51B002F6738 /* HBEscapedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 063FE3F818EDA51B002F6738 /* HBEscapedString.m */; };
+		063FE3FE18EDB430002F6738 /* HBEscapedString_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 063FE3FD18EDB430002F6738 /* HBEscapedString_Private.h */; };
+		063FE3FF18EDB430002F6738 /* HBEscapedString_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 063FE3FD18EDB430002F6738 /* HBEscapedString_Private.h */; };
 		06556D7F17FEFB0C00070907 /* HBPartial.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D7D17FEFB0C00070907 /* HBPartial.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06556D8017FEFB0C00070907 /* HBPartial.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D7E17FEFB0C00070907 /* HBPartial.m */; };
 		06556D8317FEFB7C00070907 /* HBPartialRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 06556D8117FEFB7C00070907 /* HBPartialRegistry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -257,6 +263,9 @@
 		0638A5C818D837130090D490 /* HBTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBTestCase.h; sourceTree = "<group>"; };
 		0638A5C918D837130090D490 /* HBTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestCase.m; sourceTree = "<group>"; };
 		063FE3F618E420DA002F6738 /* travis-tests.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "travis-tests.sh"; sourceTree = "<group>"; };
+		063FE3F718EDA51B002F6738 /* HBEscapedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HBEscapedString.h; path = "handlebars-objc/helpers/HBEscapedString.h"; sourceTree = SOURCE_ROOT; };
+		063FE3F818EDA51B002F6738 /* HBEscapedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HBEscapedString.m; path = "handlebars-objc/helpers/HBEscapedString.m"; sourceTree = SOURCE_ROOT; };
+		063FE3FD18EDB430002F6738 /* HBEscapedString_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBEscapedString_Private.h; sourceTree = "<group>"; };
 		06556D7D17FEFB0C00070907 /* HBPartial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPartial.h; sourceTree = "<group>"; };
 		06556D7E17FEFB0C00070907 /* HBPartial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBPartial.m; sourceTree = "<group>"; };
 		06556D8117FEFB7C00070907 /* HBPartialRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBPartialRegistry.h; sourceTree = "<group>"; };
@@ -387,13 +396,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		061884DC18205A7900D1012F /* escaping */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = escaping;
-			sourceTree = "<group>";
-		};
 		061ACE9B180C1B1100081763 /* errorHandling */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,7 +462,6 @@
 				06A81A9417F86EAF0006F16A /* astVisitors */,
 				06798D6617F9B1F800FC40D7 /* context */,
 				061ACE9B180C1B1100081763 /* errorHandling */,
-				061884DC18205A7900D1012F /* escaping */,
 				06D426BA17FC5DDD00C41476 /* helpers */,
 				0630B1B617F2EFE600EA7018 /* parser */,
 				0698F01E17FEA5EF005203F6 /* partials */,
@@ -659,6 +660,9 @@
 		06D426BA17FC5DDD00C41476 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				063FE3F718EDA51B002F6738 /* HBEscapedString.h */,
+				063FE3FD18EDB430002F6738 /* HBEscapedString_Private.h */,
+				063FE3F818EDA51B002F6738 /* HBEscapedString.m */,
 				06D426BB17FC5E4200C41476 /* HBHelper.h */,
 				06D426BC17FC5E4200C41476 /* HBHelper.m */,
 				0698F02317FEC78A005203F6 /* HBHelperCallingInfo.h */,
@@ -696,6 +700,8 @@
 				06F601FE1812D0CD0019D9C1 /* HBExecutionContextDelegate.h in Headers */,
 				06798D5117F5CA3500FC40D7 /* HBAstNumber.h in Headers */,
 				06798D5517F5CA3500FC40D7 /* HBAstValue.h in Headers */,
+				063FE3F918EDA51B002F6738 /* HBEscapedString.h in Headers */,
+				063FE3FE18EDB430002F6738 /* HBEscapedString_Private.h in Headers */,
 				0698F02517FEC78A005203F6 /* HBHelperCallingInfo.h in Headers */,
 				06556D9017FF177700070907 /* HBTemplate.h in Headers */,
 				06798D3317F5B6EF00FC40D7 /* HBAstBlock.h in Headers */,
@@ -732,6 +738,7 @@
 				06F493891802D1820055B5BC /* HBPartial.h in Headers */,
 				06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */,
 				06279A0118DF49BF00DB552E /* HBAstParserPostprocessingVisitor.h in Headers */,
+				063FE3FA18EDA51B002F6738 /* HBEscapedString.h in Headers */,
 				06279A0A18E0CFF000DB552E /* HBAstParametersHash.h in Headers */,
 				060EEF56180D7460009F2C0A /* HBObjectPropertyAccess.h in Headers */,
 				06D4DBD8180B4E4700278279 /* HBHelperUtils.h in Headers */,
@@ -745,6 +752,7 @@
 				061884E41825660000D1012F /* HBExecutionContext_Private.h in Headers */,
 				06F4938B1802D1820055B5BC /* HBExecutionContext.h in Headers */,
 				06F493841802D1820055B5BC /* HBHandlebars.h in Headers */,
+				063FE3FF18EDB430002F6738 /* HBEscapedString_Private.h in Headers */,
 				06F493871802D1820055B5BC /* HBHelperCallingInfo.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -911,6 +919,7 @@
 			files = (
 				06556D9117FF177700070907 /* HBTemplate.m in Sources */,
 				06798D6A17F9B22D00FC40D7 /* HBContextState.m in Sources */,
+				063FE3FB18EDA51B002F6738 /* HBEscapedString.m in Sources */,
 				06A81A9817F86ECE0006F16A /* HBAstVisitor.m in Sources */,
 				06798D6517F9A12A00FC40D7 /* HBAstEvaluationVisitor.m in Sources */,
 				0630B1DA17F466B800EA7018 /* HBParser.m in Sources */,
@@ -978,6 +987,7 @@
 			files = (
 				06F493791802D1500055B5BC /* HBHelperCallingInfo.m in Sources */,
 				06F493751802D1500055B5BC /* HBContextState.m in Sources */,
+				063FE3FC18EDA51B002F6738 /* HBEscapedString.m in Sources */,
 				06F4937A1802D1500055B5BC /* HBHelperRegistry.m in Sources */,
 				06F493771802D1500055B5BC /* HBDataContext.m in Sources */,
 				06F4937C1802D1500055B5BC /* handlebars-objc.lm in Sources */,
