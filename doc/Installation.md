@@ -15,7 +15,7 @@ Please read the instructions at http://cocoapods.org to get started.
 To use handlebars-objc in your project, simply add the handlebars-objc pod to your Podfile: 
 
 ```
-pod "handlebars-objc, "~> 1.0.0"
+pod 'handlebars-objc', '~> 1.0.0'
 ```
  
 
