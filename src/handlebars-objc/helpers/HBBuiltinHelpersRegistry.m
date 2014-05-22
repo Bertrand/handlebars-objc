@@ -208,6 +208,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
         return result;
     };
     [_builtinHelpersRegistry registerHelperBlock:localizeBlock forName:@"localize"];
+    [_builtinHelpersRegistry registerHelperBlock:localizeBlock forName:@"i18n"];
 }
 
 

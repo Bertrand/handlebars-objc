@@ -23,6 +23,12 @@
 
 @end
 
+@interface SimpleLocalizationDelegate : NSObject<HBExecutionContextDelegate>
+
+- (NSString*) localizedString:(NSString*)string forExecutionContext:(HBExecutionContext*)executionContext;
+
+@end
+
 @implementation HBTestExecutionContext
 
 - (void)testHelperBlocksDelegationOnExecutionContext
@@ -126,6 +132,11 @@
     XCTAssertEqualObjects(evaluation, @"bonjour guidon!");
 }
 
+- (void)testSimpleLocalizationDelegationOnExecutionContext
+{
+0
+}
+
 - (void)testEscapingDelegationOnExecutionContext
 {
     SimpleExecutionContextDelegate* delegate = [[SimpleExecutionContextDelegate new] autorelease];
@@ -203,5 +214,18 @@
     return result;
 }
 
+
+@end
+
+
+@implementation SimpleLocalizationDelegate
+
+- (NSString*) localizedString:(NSString*)string forExecutionContext:(HBExecutionContext*)executionContext
+{
+    // if string to translate is "handlebars", return french translation
+    if ([string isEqual:@"handlebars"]) return @"guidon";
+    // otherwise, provide no translation at all. Handlebars-objc will then fallback to other mechanisms
+    else return nil;
+}
 
 @end
