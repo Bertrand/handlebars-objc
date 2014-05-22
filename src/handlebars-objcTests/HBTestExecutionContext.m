@@ -134,7 +134,20 @@
 
 - (void)testSimpleLocalizationDelegationOnExecutionContext
 {
-0
+    // create a new execution context
+    HBExecutionContext* executionContext = [[HBExecutionContext new] autorelease];
+    
+    // set its delegate (will provide localization of "handlebars" string)
+    executionContext.delegate = [[SimpleLocalizationDelegate new] autorelease];
+    
+    // render template
+    HBTemplate* template = [executionContext templateWithString:@"hello {{localize 'handlebars'}}!"];
+    
+    NSError* error = nil;
+    NSString* evaluation = [template renderWithContext:nil error:&error];
+    XCTAssertNil(error);
+    
+    XCTAssertEqualObjects(evaluation, @"hello guidon!");
 }
 
 - (void)testEscapingDelegationOnExecutionContext
