@@ -10,6 +10,10 @@
 
 #define YYDEBUG 0
 
+// those are needed to avoid warnings about @"", @true and @false in yacc blocks
+#define AT @
+#define AT_TRUE @true
+#define AT_FALSE @false
 
 %}
 
@@ -325,7 +329,7 @@ float
 ;
 
 boolean
-: BOOLEAN { HBAstNumber* b = [[HBAstNumber new] autorelease]; b.litteralValue = ([$1 isEqual:@"true"] ? @true : @false); b.isBoolean = true; b.sourceRepresentation = $1; $$ = b; }
+: BOOLEAN { HBAstNumber* b = [[HBAstNumber new] autorelease]; b.litteralValue = ([$1 isEqual:AT"true"] ? AT_TRUE : AT_FALSE); b.isBoolean = true; b.sourceRepresentation = $1; $$ = b; }
 ;
 
 data

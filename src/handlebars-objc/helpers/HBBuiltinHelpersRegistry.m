@@ -131,8 +131,13 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             NSInteger index = 0;
             HBDataContext* arrayData = currentData ? [currentData copy] : [HBDataContext new];
             NSMutableString* result = [NSMutableString string];
+            
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
             NSInteger objectCount = 0;
             for (id arrayElement in arrayLike) { objectCount++; } // compute element counts. Should be in helper utils and optimized in trivial cases.
+#pragma clang diagnostic pop
+
             for (id arrayElement in arrayLike) {
                 arrayData[@"index"] = @(index);
                 arrayData[@"first"] = @(index == 0);
