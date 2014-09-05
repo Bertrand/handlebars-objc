@@ -41,6 +41,7 @@
 - (void) dealloc
 {
     self.litteralValue = nil;
+    self.sourceRepresentation = nil;
     [super dealloc];
 }
 @end

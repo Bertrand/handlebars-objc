@@ -30,5 +30,12 @@
 
 @implementation HBHelper
 
+- (void)dealloc
+{
+    self.block = nil;
+
+    [super dealloc];
+}
+
 @end
 
