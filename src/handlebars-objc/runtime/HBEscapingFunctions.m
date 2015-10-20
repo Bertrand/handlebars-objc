@@ -52,9 +52,7 @@
     
     dispatch_once(&pred, ^{
         _urlParameterEscapingFunction = ^(NSString* string) {
-            NSString* result = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)string, NULL, (CFStringRef)@"!*';:@&=+$,/?%#\"", kCFStringEncodingUTF8);
-            
-            return [result autorelease];
+            return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
         };
     });
     

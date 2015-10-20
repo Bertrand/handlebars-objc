@@ -221,7 +221,7 @@
 	}
     
 	// create MOC
-	NSManagedObjectContext* managedObjectContext = [[NSManagedObjectContext alloc] init];
+    NSManagedObjectContext* managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 	[managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     
     NSManagedObject* person = [[NSManagedObject alloc]
