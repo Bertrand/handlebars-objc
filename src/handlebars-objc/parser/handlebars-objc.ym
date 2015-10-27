@@ -48,14 +48,14 @@
 %token <nsString> PATH_SEPARATOR
 %token <nsString> COMMENT_CONTENT
 
-%type <astArray> statements;
+%type <astArray> statements list_of_ids;
 %type <astNode> program statement;
 %type <astPathComponent> path_component;
 %type <astValue> value;
 %type <astContextualValue> path contextual_value;
 %type <astTag>  block_tag_open block_tag_close inverse_tag_open else_tag rawblock_tag_open rawblock_tag_close;
 %type <astSimpleTag> simple_tag;
-%type <astExpression> simple_expression expression_with_positional_values expression;
+%type <astExpression> simple_expression expression_with_positional_values expression expression_with_positional_values_and_hash;
 %type <astRawText> raw_text;
 %type <astString> string;
 %type <astNumber> integer;
@@ -98,6 +98,8 @@
 %token LPARENT
 %token RPARENT
 %token TILDE
+%token AS
+%token PIPE
 %token UNKNOWN
 
 %pure-parser
@@ -265,9 +267,14 @@ expression_with_positional_values
 | expression_with_positional_values value { [$1 addPositionalParameter:$2]; $$ = $1; }
 ;
 
-expression
+expression_with_positional_values_and_hash
 : expression_with_positional_values
 | expression_with_positional_values hash { $1.namedParameters = $2; $$ = $1; }
+;
+
+expression
+: expression_with_positional_values_and_hash
+| expression_with_positional_values_and_hash AS list_of_ids PIPE { $1.namedBlockParameters = $3; $$ = $1;}
 ;
 
 hash
@@ -309,6 +316,11 @@ path
 
 path_component
 : ID { HBAstKeyPathComponent* component = [[HBAstKeyPathComponent new] autorelease] ; component.key = $1; $$ = component; }
+;
+
+list_of_ids
+: ID { NSMutableArray* listOfIds = [NSMutableArray arrayWithObject:$1]; $$ = listOfIds; }
+| list_of_ids ID { [$1 addObject:$2]; $$ = $1; }
 ;
 
 string

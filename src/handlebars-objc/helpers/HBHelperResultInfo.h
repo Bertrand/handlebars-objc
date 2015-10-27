@@ -1,8 +1,8 @@
 //
-//  HBAstExpression.m
+//  HBHelperReturnInfo.h
 //  handlebars-objc
 //
-//  Created by Bertrand Guiheneuf on 9/27/13.
+//  Created by Bertrand Guiheneuf on 26/10/15.
 //
 //  The MIT License
 //
@@ -25,30 +25,10 @@
 //  THE SOFTWARE.
 //
 
-#import "HBAstExpression.h"
-#import "HBAstVisitor.h"
+#import <Foundation/Foundation.h>
 
-@implementation HBAstExpression
+@interface HBHelperResultInfo : NSObject
 
-- (void) addPositionalParameter:(HBAstValue*)parameter
-{
-    if (self.positionalParameters == nil) self.positionalParameters = [NSMutableArray array];
-    [self.positionalParameters addObject:parameter];
-}
-
-- (id) accept:(HBAstVisitor*)visitor
-{
-    return [visitor visitExpression:self];
-}
-
-- (void) dealloc
-{
-    self.mainValue = nil;
-    self.positionalParameters = nil;
-    self.namedParameters = nil;
-    self.namedBlockParameters = nil;
-    
-    [super dealloc];
-}
+- (void) addGeneratedValue:(id)result;
 
 @end

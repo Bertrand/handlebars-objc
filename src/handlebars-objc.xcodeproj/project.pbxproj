@@ -75,6 +75,12 @@
 		06556D9617FF178300070907 /* HBHandlebars.m in Sources */ = {isa = PBXBuildFile; fileRef = 06556D9417FF178300070907 /* HBHandlebars.m */; };
 		065C287C17FA166C00894DD4 /* HBContextStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 065C287A17FA166C00894DD4 /* HBContextStack.h */; };
 		065C287D17FA166C00894DD4 /* HBContextStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 065C287B17FA166C00894DD4 /* HBContextStack.m */; };
+		0661BDBF1BDE8C450000DBED /* HBHelperResultInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0661BDBD1BDE8C450000DBED /* HBHelperResultInfo.h */; };
+		0661BDC01BDE8C450000DBED /* HBHelperResultInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 0661BDBD1BDE8C450000DBED /* HBHelperResultInfo.h */; };
+		0661BDC11BDE8C450000DBED /* HBHelperResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661BDBE1BDE8C450000DBED /* HBHelperResultInfo.m */; };
+		0661BDC21BDE8C450000DBED /* HBHelperResultInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0661BDBE1BDE8C450000DBED /* HBHelperResultInfo.m */; };
+		0661BDC91BDE8DDD0000DBED /* HBHelperResultInfo_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0661BDC81BDE8DDD0000DBED /* HBHelperResultInfo_Private.h */; };
+		0661BDCA1BDE8DDD0000DBED /* HBHelperResultInfo_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0661BDC81BDE8DDD0000DBED /* HBHelperResultInfo_Private.h */; };
 		066AC1AF18E1B9B5000B5A53 /* HBTestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 066AC1AE18E1B9B5000B5A53 /* HBTestData.m */; };
 		066AC1B018E1B9B5000B5A53 /* HBTestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 066AC1AE18E1B9B5000B5A53 /* HBTestData.m */; };
 		06743FB517FB572B001793F7 /* HBContextRendering.h in Headers */ = {isa = PBXBuildFile; fileRef = 06743FB317FB572B001793F7 /* HBContextRendering.h */; };
@@ -281,6 +287,9 @@
 		06556D9417FF178300070907 /* HBHandlebars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHandlebars.m; sourceTree = "<group>"; };
 		065C287A17FA166C00894DD4 /* HBContextStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBContextStack.h; sourceTree = "<group>"; };
 		065C287B17FA166C00894DD4 /* HBContextStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBContextStack.m; sourceTree = "<group>"; };
+		0661BDBD1BDE8C450000DBED /* HBHelperResultInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelperResultInfo.h; sourceTree = "<group>"; };
+		0661BDBE1BDE8C450000DBED /* HBHelperResultInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBHelperResultInfo.m; sourceTree = "<group>"; };
+		0661BDC81BDE8DDD0000DBED /* HBHelperResultInfo_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBHelperResultInfo_Private.h; sourceTree = "<group>"; };
 		066AC1AE18E1B9B5000B5A53 /* HBTestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBTestData.m; sourceTree = "<group>"; };
 		06743FB317FB572B001793F7 /* HBContextRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBContextRendering.h; sourceTree = "<group>"; };
 		06743FB417FB572B001793F7 /* HBContextRendering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBContextRendering.m; sourceTree = "<group>"; };
@@ -670,6 +679,9 @@
 				0698F02417FEC78A005203F6 /* HBHelperCallingInfo.m */,
 				06D426BF17FC62A000C41476 /* HBHelperRegistry.h */,
 				06D426C017FC62A000C41476 /* HBHelperRegistry.m */,
+				0661BDBD1BDE8C450000DBED /* HBHelperResultInfo.h */,
+				0661BDC81BDE8DDD0000DBED /* HBHelperResultInfo_Private.h */,
+				0661BDBE1BDE8C450000DBED /* HBHelperResultInfo.m */,
 				06D4DBD5180B4E4700278279 /* HBHelperUtils.h */,
 				06D4DBD6180B4E4700278279 /* HBHelperUtils.m */,
 				06743FB718005CFB001793F7 /* HBBuiltinHelpersRegistry.h */,
@@ -700,11 +712,13 @@
 				06F601FE1812D0CD0019D9C1 /* HBExecutionContextDelegate.h in Headers */,
 				06798D5117F5CA3500FC40D7 /* HBAstNumber.h in Headers */,
 				06798D5517F5CA3500FC40D7 /* HBAstValue.h in Headers */,
+				0661BDC91BDE8DDD0000DBED /* HBHelperResultInfo_Private.h in Headers */,
 				063FE3F918EDA51B002F6738 /* HBEscapedString.h in Headers */,
 				063FE3FE18EDB430002F6738 /* HBEscapedString_Private.h in Headers */,
 				0698F02517FEC78A005203F6 /* HBHelperCallingInfo.h in Headers */,
 				06556D9017FF177700070907 /* HBTemplate.h in Headers */,
 				06798D3317F5B6EF00FC40D7 /* HBAstBlock.h in Headers */,
+				0661BDBF1BDE8C450000DBED /* HBHelperResultInfo.h in Headers */,
 				0630B1D917F466B800EA7018 /* HBParser.h in Headers */,
 				06279A0018DF49BF00DB552E /* HBAstParserPostprocessingVisitor.h in Headers */,
 				06798D4D17F5CA3500FC40D7 /* HBAstExpression.h in Headers */,
@@ -735,6 +749,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0661BDCA1BDE8DDD0000DBED /* HBHelperResultInfo_Private.h in Headers */,
+				0661BDC01BDE8C450000DBED /* HBHelperResultInfo.h in Headers */,
 				06F493891802D1820055B5BC /* HBPartial.h in Headers */,
 				06F4938C1802D1820055B5BC /* HBTemplate.h in Headers */,
 				06279A0118DF49BF00DB552E /* HBAstParserPostprocessingVisitor.h in Headers */,
@@ -943,6 +959,7 @@
 				06279A0B18E0CFF000DB552E /* HBAstParametersHash.m in Sources */,
 				06798D5617F5CA3500FC40D7 /* HBAstValue.m in Sources */,
 				06279A0218DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m in Sources */,
+				0661BDC11BDE8C450000DBED /* HBHelperResultInfo.m in Sources */,
 				06798D3C17F5C5AE00FC40D7 /* HBAstPartialTag.m in Sources */,
 				06A81AA217F8D3750006F16A /* HBAstComment.m in Sources */,
 				061ACEA3180C1C8E00081763 /* HBErrorHandling.m in Sources */,
@@ -1011,6 +1028,7 @@
 				06279A0C18E0CFF000DB552E /* HBAstParametersHash.m in Sources */,
 				06F493631802D1500055B5BC /* HBAstBlock.m in Sources */,
 				06279A0318DF49BF00DB552E /* HBAstParserPostprocessingVisitor.m in Sources */,
+				0661BDC21BDE8C450000DBED /* HBHelperResultInfo.m in Sources */,
 				06F4936D1802D1500055B5BC /* HBAstKeyPathComponent.m in Sources */,
 				06F493691802D1500055B5BC /* HBAstSimpleTag.m in Sources */,
 				061ACEA4180C1C8E00081763 /* HBErrorHandling.m in Sources */,

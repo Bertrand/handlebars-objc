@@ -34,6 +34,7 @@
 @property (retain, nonatomic) HBAstContextualValue* mainValue;
 @property (retain, nonatomic) NSMutableArray* /* HBAstValue */ positionalParameters;
 @property (retain, nonatomic) HBAstParametersHash* namedParameters;
+@property (retain, nonatomic) NSMutableArray* /* NSString */ namedBlockParameters;
 
 - (void) addPositionalParameter:(HBAstValue*)parameter;
 

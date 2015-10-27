@@ -32,6 +32,7 @@
 @class HBTemplate;
 
 typedef NSString* (^HBStatementsEvaluator)(id context, HBDataContext* data);
+typedef NSString* (^HBStatementsEvaluatorWithMultipleContextualValues)(NSArray* contextualValues, HBDataContext* data);
 
 /**
  Invocation kind. Lets helper know if it was invoked as a block helper or an expression helper.
@@ -51,7 +52,7 @@ typedef NS_ENUM(NSUInteger, HBHelperInvocationKind) {
  
  ## Prerequisites ##
  
- This page assumes you know enough about herlps and their usage in Handlebars templates.
+ This page assumes you know enough about helpers and their usage in Handlebars templates.
 
  Please see [Handlebars.js documentation](http://handlebars.js) for details about helpers. In particular, please read the "Helpers" section in Handlebars.js documentation of [expressions](http://handlebarsjs.com/expressions.html) and the page specific to [block helpers](http://handlebarsjs.com/block_helpers.html).
  
@@ -85,7 +86,7 @@ typedef NS_ENUM(NSUInteger, HBHelperInvocationKind) {
     NSString* authorName = callingInfo.context[@"author_name"]; 
     ...
 
- Contexts are usual objective-C objects, provided by the application using handlebars-objc, and your application should consider those objects immutable. It is a *huge* mistake to modify contexts passed to your helper. You can try to copy them, you can even replace them by new objects when evaluating blocks passed to the helper, but you should never modify the context you do not own. Really. 
+ Contexts are usual objective-C objects, provided by the application that is using handlebars-objc, and your application helpers should consider those objects immutable. It is a *huge* mistake to modify contexts passed to your helper. You can try to copy them, you can even replace them by new objects when evaluating blocks passed to the helper, but you should never modify the context you do not own. Really. 
  
  ## Helper parameters ##
  
@@ -223,6 +224,13 @@ typedef NS_ENUM(NSUInteger, HBHelperInvocationKind) {
  @since v1.0
  */
 @property (readonly, copy, nonatomic) HBStatementsEvaluator statements;
+
+/**
+ block statements with multiple contextual values(block helpers only)
+ 
+ @since v4.0
+ */
+@property (readonly, copy, nonatomic) HBStatementsEvaluatorWithMultipleContextualValues statementsWithMultipleContextualValues;
 
 /** 
  inverse block statements (block helpers only)
