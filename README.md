@@ -1,4 +1,4 @@
-[![Travis Build Status](https://api.travis-ci.org/fotonauts/handlebars-objc.png?branch=master)](https://travis-ci.org/fotonauts/handlebars-objc)
+[![Build Status](https://travis-ci.org/Bertrand/handlebars-objc.svg?branch=master)](https://travis-ci.org/Bertrand/handlebars-objc)
 
 handlebars-objc
 ===============
