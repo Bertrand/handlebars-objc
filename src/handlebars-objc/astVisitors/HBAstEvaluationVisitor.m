@@ -174,6 +174,11 @@
     
     if (![self expressionCanBeHelperCall:expression]) return false;
     
+    // In Handlebars.js 3.0, named block params take precedence over helpers 
+    HBContextState* contextState = self.contextStack.current;
+    NSString* expressionLabel = [expression.mainValue.keyPath[0] key]; // this is fine, we've just tested above that expression can be a helper call, meaning expression main value exists and is a simple string
+    if (contextState && contextState.mergedAttributes && contextState.mergedAttributes[expressionLabel]) return false;
+    
     // now, the only way to know is to search for the helper in registry.
     return [self helperForExpression:expression] != nil;
     
@@ -217,11 +222,33 @@
 
 - (id) visitBlock:(HBAstBlock*)node
 {
-    NSString* (^evaluateStatements)(id, HBDataContext*, NSArray*, BOOL) = ^(id context, HBDataContext* data, NSArray* statements, BOOL pushContext) {
-        NSMutableString* result = [NSMutableString string];
+    NSString* (^evaluateStatements)(id, HBDataContext*, NSArray*, BOOL) = ^(NSArray* contextualValues, HBDataContext* data, NSArray* statements, BOOL pushContext) {
         if (!statements || statements.count == 0) return (NSString*)nil;
+        NSMutableString* result = [NSMutableString string];
         
-        if (pushContext) [self.contextStack push:[HBContextState stateWithContext:context data:data]];
+        id context = nil;
+        if (contextualValues && contextualValues.count) context = contextualValues[0];
+        
+        
+        
+        if (pushContext) {
+            // create a new state
+            HBContextState* state = [HBContextState stateWithContext:context data:data];
+            
+            // see if block node contains named contextual values. If so, merge them (http://handlebarsjs.com/block_helpers.html#block-params)
+            if (node.expression && node.expression.namedBlockContextualValues && node.expression.namedBlockContextualValues.count && contextualValues && contextualValues.count) {
+                NSArray* contextualValueNames = node.expression.namedBlockContextualValues;
+                NSMutableDictionary* namedContextualValues = [[NSMutableDictionary alloc] initWithCapacity:node.expression.namedBlockContextualValues.count];
+                NSUInteger namedContextualValuesCount = MIN(node.expression.namedBlockContextualValues.count, contextualValues.count);
+                for (NSUInteger paramIndex = 0; paramIndex < namedContextualValuesCount; paramIndex++) {
+                    namedContextualValues[contextualValueNames[paramIndex]] = contextualValues[paramIndex];
+                }
+                state.mergedAttributes = namedContextualValues;
+                [namedContextualValues release];
+            }
+            [self.contextStack push:state];
+        }
+        
         for (HBAstNode* statement in statements) {
             id statementResult = [self visitNode:statement];
             if (statementResult && [statementResult isKindOfClass:[NSString class]])
@@ -233,13 +260,18 @@
     };
     
     HBStatementsEvaluator forwardStatementsEvaluator = ^(id context, HBDataContext* data) {
-        return evaluateStatements(context, data, node.statements, true);
+        return evaluateStatements(@[context], data, node.statements, true);
     };
     
     HBStatementsEvaluator inverseStatementsEvaluator = ^(id context, HBDataContext* data) {
         return evaluateStatements(nil, nil, node.inverseStatements, false);
     };
     
+    
+    HBStatementsEvaluatorWithMultipleContextualValues forwardStatementsWithMultipleContextualValuesEvaluator = ^(NSArray* contextualValues, HBDataContext* data) {
+        return evaluateStatements(contextualValues, data, node.statements, true);
+    };
+
     
     if ([self expressionIsHelperCall:node.expression]) {
         // This is a block helper. Evaluate expression params and invoke helper
@@ -262,6 +294,7 @@
         callingInfo.positionalParameters = positionalParameters;
         callingInfo.namedParameters = namedParameters;
         callingInfo.statements = forwardStatementsEvaluator;
+        callingInfo.statementsWithMultipleContextualValues = forwardStatementsWithMultipleContextualValuesEvaluator;
         callingInfo.inverseStatements = inverseStatementsEvaluator;
         callingInfo.template = self.template;
         callingInfo.evaluationVisitor = self;

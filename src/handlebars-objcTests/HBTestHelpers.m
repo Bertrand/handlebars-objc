@@ -556,6 +556,56 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
     XCTAssert(nil != error, @"using an undefined helper should return an error at render time");
 }
 
+// Block params
+
+- (void) testBlockParamsBasics
+{
+    id string = @"{{#setValues 1 2 3 as | val1 val2 val3|}}{{val1}}-{{val3}}-{{val2}}{{/setValues}}";
+    id hash = @{ @"anArray" : @[@"a", @"b", @"c"] };
+    HBHelperBlock setValuesHelper = ^(HBHelperCallingInfo* callingInfo) {
+        return callingInfo.statementsWithMultipleContextualValues(callingInfo.positionalParameters, callingInfo.data);
+    };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"setValues" : setValuesHelper});
+    XCTAssertEqualObjects(result, @"1-3-2");
+}
+
+- (void) testBlockParamsOnLegacyHelpers
+{
+    id string = @"{{#iterateOver 1 2 3 as | value |}}{{this}}-{{value}} {{/iterateOver}}";
+    id hash = @{};
+    HBHelperBlock iterateOverHelper = ^(HBHelperCallingInfo* callingInfo) {
+        NSMutableString* result = [[[NSMutableString alloc] init] autorelease];
+        
+        for (id value in callingInfo.positionalParameters)
+            [result appendString:callingInfo.statements(value, callingInfo.data)];
+        return result;
+    };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"iterateOver" : iterateOverHelper});
+    XCTAssertEqualObjects(result, @"1-1 2-2 3-3 ");
+}
+
+- (void) testBlockParamsPrecedence
+{
+    id string = @"{{#iterateOver 1 2 3 as | value |}}{{value}}{{/iterateOver}} - {{value}}";
+    id hash = @{};
+    HBHelperBlock iterateOverHelper = ^(HBHelperCallingInfo* callingInfo) {
+        NSMutableString* result = [[[NSMutableString alloc] init] autorelease];
+        
+        for (id value in callingInfo.positionalParameters)
+            [result appendString:callingInfo.statements(value, callingInfo.data)];
+        return result;
+    };
+    
+    HBHelperBlock valueHelper = ^(HBHelperCallingInfo* callingInfo) {
+        return @"value helper result";
+    };
+    
+    NSString* result = renderWithHelpers(string, hash, @{ @"iterateOver" : iterateOverHelper, @"value" : valueHelper});
+    XCTAssertEqualObjects(result, @"123 - value helper result");
+}
+
 // https://github.com/fotonauts/handlebars-objc/issues/5
 - (void) testIssue5
 {

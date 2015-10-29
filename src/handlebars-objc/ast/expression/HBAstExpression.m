@@ -46,7 +46,7 @@
     self.mainValue = nil;
     self.positionalParameters = nil;
     self.namedParameters = nil;
-    self.namedBlockParameters = nil;
+    self.namedBlockContextualValues = nil;
     
     [super dealloc];
 }

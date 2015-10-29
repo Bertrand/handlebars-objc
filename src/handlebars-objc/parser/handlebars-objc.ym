@@ -274,7 +274,7 @@ expression_with_positional_values_and_hash
 
 expression
 : expression_with_positional_values_and_hash
-| expression_with_positional_values_and_hash AS list_of_ids PIPE { $1.namedBlockParameters = $3; $$ = $1;}
+| expression_with_positional_values_and_hash AS list_of_ids PIPE { $1.namedBlockContextualValues = $3; $$ = $1;}
 ;
 
 hash
