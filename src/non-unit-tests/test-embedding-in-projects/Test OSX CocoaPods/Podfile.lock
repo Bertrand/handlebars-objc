@@ -6,9 +6,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   handlebars-objc:
-    :path: ../../../../
+    :path: "../../../../"
 
 SPEC CHECKSUMS:
-  handlebars-objc: f91164ee8b4f6c4ce8df7067847e5adf8f0f110f
+  handlebars-objc: 2a89c9d2a7d5711f74daa06c90613840464d0072
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.39.0
