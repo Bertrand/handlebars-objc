@@ -15,6 +15,10 @@
 #define AT_TRUE @true
 #define AT_FALSE @false
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunreachable-code"
+
+
 %}
 
 
@@ -348,6 +352,7 @@ void yyerror(YYLTYPE* loc, yyscan_t scanner, HBAstProgram** root, NSError** erro
 }
 
 
+#pragma clang diagnostic push
 
 
 
