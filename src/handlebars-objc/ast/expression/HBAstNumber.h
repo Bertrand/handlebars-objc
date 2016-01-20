@@ -28,11 +28,11 @@
 #import "HBAstValue.h"
 
 
-typedef struct HBParserIntegerValue HBParserIntegerValue;
-struct HBParserIntegerValue {
-    int value;
-    NSString* source;
-};
+//typedef struct HBParserIntegerValue HBParserIntegerValue;
+//struct HBParserIntegerValue {
+//    int value;
+//    NSString* source;
+//};
 
 @interface HBAstNumber : HBAstValue
 
