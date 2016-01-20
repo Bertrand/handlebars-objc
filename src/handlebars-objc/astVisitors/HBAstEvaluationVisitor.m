@@ -491,6 +491,7 @@
     self.template = nil;
     self.error = nil;
     self.contextStack = nil;
+    self.escapingModeStack = nil;
     [super dealloc];
 }
 
