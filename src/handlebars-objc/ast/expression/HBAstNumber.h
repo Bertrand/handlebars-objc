@@ -31,7 +31,7 @@
 typedef struct HBParserIntegerValue HBParserIntegerValue;
 struct HBParserIntegerValue {
     int value;
-    NSString* source;
+    __unsafe_unretained NSString* source; //Get rid of 'Arc forbids' error
 };
 
 @interface HBAstNumber : HBAstValue
