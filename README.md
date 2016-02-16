@@ -76,7 +76,7 @@ Since handlebars-objc if fully compatible with handlebars.js, please refer to [h
 
 The doc folder contains some guides that will help you learn how to use handlebars-objc step by step:
  - [Introduction](https://github.com/fotonauts/handlebars-objc/blob/master/README.md): This guide
- - [Installation](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md): how to install handlebars-objc in your XCode project
+ - [Installation](https://github.com/fotonauts/handlebars-objc/blob/master/doc/Installation.md): how to install handlebars-objc in your Xcode project
  - [Context Objects](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ContextObjects.md): How Handlebars accesses data in your context objects
  - [Writing Helpers](https://github.com/fotonauts/handlebars-objc/blob/master/doc/WritingHelpers.md): Learn how to write your own helpers
  - [Controlling Escaping](https://github.com/fotonauts/handlebars-objc/blob/master/doc/ControllingEscaping.md): Learn how to control escaping of values within your templates
