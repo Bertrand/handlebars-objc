@@ -211,6 +211,36 @@
     }
 }
 
+-(NSString*)evaluateHelperCallExpression:(HBAstBlock*)node forwardStatementsEvaluator:(HBStatementsEvaluator)forwardStatementsEvaluator inverseStatementsEvaluator:(HBStatementsEvaluator)inverseStatementsEvaluator
+{
+    HBHelper* helper = (HBHelper*)[self helperForExpression:node.expression];
+    if (!helper) {
+        if (!self.error) // we report only one error for now.
+            self.error = [HBHelperMissingError HBHelperMissingErrorWithHelperName:[node.expression.mainValue.keyPath[0] key]];
+        return nil;
+    }
+
+    NSArray* positionalParameters = nil;
+    NSDictionary* namedParameters = nil;
+    [self evaluateContextualParametersInExpression:node.expression positionalParameters:&positionalParameters namedParameters:&namedParameters];
+
+    HBHelperCallingInfo* callingInfo = [[HBHelperCallingInfo alloc] init];
+
+    callingInfo.context = self.contextStack.current.context;
+    callingInfo.data = self.contextStack.current.dataContext;
+    callingInfo.positionalParameters = positionalParameters;
+    callingInfo.namedParameters = namedParameters;
+    callingInfo.statements = forwardStatementsEvaluator;
+    callingInfo.inverseStatements = inverseStatementsEvaluator;
+    callingInfo.template = self.template;
+    callingInfo.evaluationVisitor = self;
+    callingInfo.invocationKind = HBHelperInvocationBlock;
+
+    NSString* helperResult = helper.block(callingInfo);
+    [callingInfo release];
+
+    return helperResult;
+}
 
 #pragma mark -
 #pragma mark Visiting High-level nodes
@@ -237,6 +267,42 @@
     };
     
     HBStatementsEvaluator inverseStatementsEvaluator = ^(id context, HBDataContext* data) {
+        for( HBAstBlock *elseBlock in node.elseBlocks ) {
+
+            if( elseBlock.expression == nil )
+            {
+                // else only case
+                return evaluateStatements(nil, nil, elseBlock.inverseStatements, false);
+            }
+            else if( [self expressionIsHelperCall:elseBlock.expression]) {
+
+                // This is a block helper. Evaluate expression params and invoke helper
+                id result = [self evaluateHelperCallExpression:elseBlock forwardStatementsEvaluator:^NSString*(id context, HBDataContext* data){ return @"!"; } inverseStatementsEvaluator:^NSString*(id context, HBDataContext* data){ return @""; }];
+                if( [HBHelperUtils evaluateObjectAsBool:result] )
+                    return evaluateStatements(nil, nil, elseBlock.statements, false);
+            }
+            else
+            {
+                id evaluatedExpression = [self visitExpression:elseBlock.expression];
+
+                if ([HBHelperUtils isEnumerableByIndex:evaluatedExpression] ) {
+                    // Array-like context
+                    id<NSFastEnumeration> arrayLike = evaluatedExpression;
+                    for( id something in arrayLike )
+                    {
+                        (void)something; // make compiler happy
+                        return evaluateStatements(nil, nil, elseBlock.statements, false);
+                    }
+                } else {
+                    // String of scalar context
+                    if ([HBHelperUtils evaluateObjectAsBool:evaluatedExpression]) {
+                        return evaluateStatements(nil, nil, elseBlock.statements, false);
+                    }
+                }
+            }
+            // try next else block
+        }
+        // no else block, try inverseStatements
         return evaluateStatements(nil, nil, node.inverseStatements, false);
     };
     
@@ -244,33 +310,7 @@
     if ([self expressionIsHelperCall:node.expression]) {
         // This is a block helper. Evaluate expression params and invoke helper
         
-        HBHelper* helper = (HBHelper*)[self helperForExpression:node.expression];
-        if (!helper) {
-            if (!self.error) // we report only one error for now.
-                self.error = [HBHelperMissingError HBHelperMissingErrorWithHelperName:[node.expression.mainValue.keyPath[0] key]];
-            return nil;
-        }
-        
-        NSArray* positionalParameters = nil;
-        NSDictionary* namedParameters = nil;
-        [self evaluateContextualParametersInExpression:node.expression positionalParameters:&positionalParameters namedParameters:&namedParameters];
-        
-        HBHelperCallingInfo* callingInfo = [[HBHelperCallingInfo alloc] init];
-        
-        callingInfo.context = self.contextStack.current.context;
-        callingInfo.data = self.contextStack.current.dataContext;
-        callingInfo.positionalParameters = positionalParameters;
-        callingInfo.namedParameters = namedParameters;
-        callingInfo.statements = forwardStatementsEvaluator;
-        callingInfo.inverseStatements = inverseStatementsEvaluator;
-        callingInfo.template = self.template;
-        callingInfo.evaluationVisitor = self;
-        callingInfo.invocationKind = HBHelperInvocationBlock;
-
-        NSString* helperResult = helper.block(callingInfo);
-        [callingInfo release];
-        
-        return helperResult;
+        return [self evaluateHelperCallExpression:node forwardStatementsEvaluator:forwardStatementsEvaluator inverseStatementsEvaluator:inverseStatementsEvaluator];
     } else {
         // This is a normal block.
         

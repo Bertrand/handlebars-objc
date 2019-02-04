@@ -33,6 +33,8 @@
 #import "HBTemplate_Private.h"
 #import "HBEscapedString.h"
 
+#import <objc/message.h>
+
 static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
 
 @interface HBBuiltinHelpersRegistry()
@@ -165,7 +167,7 @@ static HBBuiltinHelpersRegistry* _builtinHelpersRegistry = nil;
             NSMutableString* result = [NSMutableString string];
             for (id key in dictionaryLike) {
                 dictionaryData[@"key"] = key;
-                id statementEvaluation = callingInfo.statements(dictionaryLike[key], dictionaryData);
+                id statementEvaluation = callingInfo.statements(((id(*)(id, SEL,NSString*))objc_msgSend)(dictionaryLike,@selector(objectForKeyedSubscript:),key), dictionaryData);
                 if (statementEvaluation) [result appendString:statementEvaluation];
             }
             [dictionaryData release];

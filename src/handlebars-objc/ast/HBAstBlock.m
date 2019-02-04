@@ -46,6 +46,7 @@
     self.openTag = nil;
     self.elseTag = nil;
     self.closeTag = nil;
+    self.elseBlocks = nil;
     
     self.statements = nil;
     self.inverseStatements = nil;

@@ -66,6 +66,11 @@ WS	[ \t]*
 \{\{!\-\-		{ yy_push_state(DASHED_COMMENT, yyscanner); found(DASHED_COMMENT_START); }
 <DASHED_COMMENT>\-\-\}\}	{ yy_pop_state(yyscanner); found(DASHED_COMMENT_END); }
 
+    /* skip empty inverse sections */
+\{\{~?^~?\}\}\{\{\/   { yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_ENDBLOCK); }
+\{\{~?^~?\}\}\{\{~\/  { yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_ENDBLOCK); }
+\{\{~?else~?\}\}\{\{\/   { yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_ENDBLOCK); }
+\{\{~?else~?\}\}\{\{~\/  { yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_ENDBLOCK); }
 
 \{\{			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN); }
 \{\{~			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN); }
@@ -78,8 +83,13 @@ WS	[ \t]*
 \{\{~\/			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_ENDBLOCK); }
 \{\{^			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_INVERSE); }
 \{\{~^			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_INVERSE); }
-\{\{[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_INVERSE); }
-\{\{~[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_INVERSE); }
+\{\{[ ]*else[ ]*\}\}    { yylval->ival = 0; found(INVERSE); }
+\{\{~[ ]*else[ ]*\}\}    { yylval->ival = 1; found(INVERSE); }
+\{\{[ ]*else[ ]*~\}\}    { yylval->ival = 2; found(INVERSE); }
+\{\{~[ ]*else[ ]*~\}\}    { yylval->ival = 3; found(INVERSE); }
+
+\{\{[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_INVERSE_CHAIN); }
+\{\{~?[ ]*else	{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_INVERSE_CHAIN); }
 \{\{\{			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_UNESCAPED); }
 \{\{~\{			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 1; found(OPEN_UNESCAPED); }
 \{\{&			{ yy_push_state(EXPRESSION, yyscanner); yylval->ival = 0; found(OPEN_UNESCAPED_AMPERSAND); }

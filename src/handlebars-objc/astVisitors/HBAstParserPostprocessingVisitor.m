@@ -105,9 +105,12 @@
             [self visitNode:statement];
         }
     }
-    
+
+    for( HBAstBlock *elseBlock in node.elseBlocks )
+        [self visitBlock:elseBlock];
+
     [self processTag:node.closeTag];
-    
+
     return nil;
 }
 

@@ -52,12 +52,12 @@
 %token <nsString> PATH_SEPARATOR
 %token <nsString> COMMENT_CONTENT
 
-%type <astArray> statements;
+%type <astArray> statements inverseChain;
 %type <astNode> program statement;
 %type <astPathComponent> path_component;
 %type <astValue> value;
 %type <astContextualValue> path contextual_value;
-%type <astTag>  block_tag_open block_tag_close inverse_tag_open else_tag rawblock_tag_open rawblock_tag_close;
+%type <astTag>  block_tag_open block_tag_close inverse_tag_open inverse_chain_tag_open   rawblock_tag_open rawblock_tag_close;
 %type <astSimpleTag> simple_tag;
 %type <astExpression> simple_expression expression_with_positional_values expression;
 %type <astRawText> raw_text;
@@ -69,7 +69,7 @@
 %type <astContextualValue> data;
 %type <astValue> partial_name;
 %type <astPartialTag> partial_tag;
-%type <astBlock> block_tag else_tag_block;
+%type <astBlock> block_tag inverseAndProgram_tag;
 %type <astComment> comment
 %type <nsString> comment_content;
 %type <astHash> hash;
@@ -88,6 +88,8 @@
 %token <ival> OPEN_BLOCK
 %token <ival> OPEN_ENDBLOCK
 %token <ival> OPEN_INVERSE
+%token <ival> OPEN_INVERSE_CHAIN
+%token <ival> INVERSE
 %token <ival> OPEN_UNESCAPED
 %token <ival> OPEN_UNESCAPED_AMPERSAND
 %token <ival> CLOSE
@@ -182,12 +184,27 @@ block_tag_close
 : OPEN_ENDBLOCK expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
 ;
 
-else_tag
-: OPEN_INVERSE CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $2; $$ = tag;}
+inverse_chain_tag_open
+: OPEN_INVERSE_CHAIN expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.expression = $2; tag.right_wsc = $3; $$ = tag;}
+;
+
+inverseAndProgram_tag
+: INVERSE statements {
+
+    HBAstTag* b = [[HBAstTag new] autorelease];
+    b.left_wsc = $1 == 1 || $1 == 3;
+    b.right_wsc = $1 == 2 || $1 == 3;
+
+    HBAstBlock *e = [[HBAstBlock new] autorelease];
+    e.openTag = b;
+    e.inverseStatements = $2;
+
+    $$ = e; }
 ;
 
 inverse_tag_open
 : OPEN_INVERSE expression CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $3; tag.expression = $2; $$ = tag; }
+| OPEN_INVERSE CLOSE { HBAstTag* tag = [[HBAstTag new] autorelease]; tag.left_wsc = $1; tag.right_wsc = $2; $$ = tag; }
 ;
 
 rawblock_tag_open
@@ -212,17 +229,55 @@ block_tag
     b.closeTag = $2;
     $$ = b;
     }
-| block_tag_open statements else_tag_block {
-    HBAstBlock* b = $3;
+| block_tag_open statements inverseAndProgram_tag block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
     b.openTag = $1;
+    b.closeTag = $4;
     b.statements = $2;
+    b.inverseStatements = $3.inverseStatements;
+    b.elseTag = $3.openTag;
     $$ = b;
     }
-| block_tag_open else_tag_block {
-    HBAstBlock* b = $2;
+| block_tag_open inverseAndProgram_tag block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
     b.openTag = $1;
+    b.closeTag = $3;
+    b.inverseStatements = $2.inverseStatements;
+    b.elseTag = $2.openTag;
     $$ = b;
     }
+| block_tag_open statements inverseChain inverseAndProgram_tag block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.closeTag = $5;
+    b.statements = $2;
+    b.elseBlocks = $3;
+    [b.elseBlocks addObject:$4];
+    $$ = b;
+}
+| block_tag_open inverseChain inverseAndProgram_tag block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.closeTag = $4;
+    b.elseBlocks = $2;
+    [b.elseBlocks addObject:$3];
+    $$ = b;
+}
+| block_tag_open statements inverseChain block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.closeTag = $4;
+    b.statements = $2;
+    b.elseBlocks = $3;
+    $$ = b;
+}
+| block_tag_open inverseChain block_tag_close {
+    HBAstBlock* b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.closeTag = $3;
+    b.elseBlocks = $2;
+    $$ = b;
+}
 | inverse_tag_open statements block_tag_close {
     HBAstBlock* b = [[HBAstBlock new] autorelease];
     b.openTag = $1;
@@ -243,22 +298,68 @@ block_tag
     b.closeTag = $3;
     $$ = b;
     }
-;
-
-else_tag_block
-: else_tag statements block_tag_close {
+| block_tag_open inverse_tag_open statements block_tag_close {
     HBAstBlock* b = [[HBAstBlock new] autorelease];
-    b.elseTag = $1;
-    b.inverseStatements = $2;
-    b.closeTag = $3;
+    b.openTag = $1;
+    b.closeTag = $4;
+
+    if( $2.expression == nil )
+    {
+        b.inverseStatements = $3;
+        b.elseTag = $2;
+    }
+    else
+    {
+        HBAstBlock *e = [[HBAstBlock new] autorelease];
+        e.openTag = $2;
+        e.inverseStatements = $3;
+
+        b.elseBlocks = [NSMutableArray arrayWithObject:e];
+    }
+
     $$ = b;
     }
-| else_tag block_tag_close {
+| block_tag_open statements inverse_tag_open statements block_tag_close {
+
     HBAstBlock* b = [[HBAstBlock new] autorelease];
-    b.elseTag = $1;
-    b.closeTag = $2;
+    b.openTag = $1;
+    b.closeTag = $5;
+    b.statements = $2;
+
+    if( $3.expression == nil )
+    {
+        b.inverseStatements = $4;
+        b.elseTag = $3;
+    }
+    else
+    {
+        HBAstBlock *e = [[HBAstBlock new] autorelease];
+        e.openTag = $3;
+        e.inverseStatements = $4;
+
+        b.elseBlocks = [NSMutableArray arrayWithObject:e];
+    }
+
     $$ = b;
-};
+}
+;
+
+
+inverseChain
+: inverseChain inverse_chain_tag_open statements {
+    HBAstBlock *b = [[HBAstBlock new] autorelease];
+    b.openTag = $2;
+    b.statements = $3;
+    [$1 addObject:b];
+    $$ = $1;
+    }
+| inverse_chain_tag_open statements {
+    HBAstBlock *b = [[HBAstBlock new] autorelease];
+    b.openTag = $1;
+    b.statements = $2;
+    $$ = [NSMutableArray arrayWithObject:b];
+    }
+;
 
 simple_expression
 : contextual_value { HBAstExpression* expression = [[HBAstExpression new] autorelease]; expression.mainValue = $1; $$ = expression;  }
