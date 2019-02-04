@@ -112,7 +112,7 @@ WS	[ \t]*
 	"."/[\}\/ \t\)~]        { yylval->nsString = nsString(yytext); found(ID); }
 	".."                    { yylval->nsString = nsString(yytext); found(ID); }
 	[\/\.]                  { yylval->nsString = nsString(yytext); found(PATH_SEPARATOR); }
-	{ID}+/[=\/\. \t\}\)~]   { yylval->nsString = nsString(yytext); found(ID); }
+	{ID}+/[=\/\. \t\}\)~\(]   { yylval->nsString = nsString(yytext); found(ID); }
 	\[[^\[]*\]              { NSString* s = nsString(yytext); yylval->nsString = [s substringWithRange:NSMakeRange(1, s.length -2)]; found(ID); } /* XXX must remove [] */
 	{WS}*                   {}
     .                       { found(UNKNOWN); }
