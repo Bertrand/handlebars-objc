@@ -101,6 +101,8 @@
     if ([object isKindOfClass:[NSNumber class]]) return [object boolValue];
     if ([object isKindOfClass:[NSString class]]) return [object length] > 0;
     if ([object isKindOfClass:[NSArray class]]) return [object count] > 0;
+    if ([object isKindOfClass:[NSDictionary class]]) return [object count] > 0;
+    if ([object isKindOfClass:[NSSet class]]) return [object count] > 0;
     return false;
 }
 
@@ -110,6 +112,8 @@
     if ([object isKindOfClass:[NSNumber class]]) return [object integerValue];
     if ([object isKindOfClass:[NSString class]]) return [object length];
     if ([object isKindOfClass:[NSArray class]]) return [object count];
+    if ([object isKindOfClass:[NSDictionary class]]) return [object count];
+    if ([object isKindOfClass:[NSSet class]]) return [object count];
     return 0;
 }
 
