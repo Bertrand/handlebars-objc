@@ -37,11 +37,11 @@
 @property (retain, nonatomic) HBAstTag* elseTag;
 @property (retain, nonatomic) HBAstTag* closeTag;
 
+@property (retain, nonatomic) NSMutableArray* elseBlocks;
+
 @property (readonly, nonatomic) HBAstExpression* expression; // computed
 
 @property (retain, nonatomic) NSMutableArray* statements;
 @property (retain, nonatomic) NSMutableArray* inverseStatements;
-
-@property BOOL invertedBlock;
 
 @end

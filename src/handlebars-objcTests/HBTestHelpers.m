@@ -586,6 +586,23 @@ NSString* renderWithHelpers(NSString* string, id context, NSDictionary* blocks)
 
 
 
+- (void) testElseIf
+{
+    id string = @"{{#if para1}}one{{else if para2}}two{{else if para3}}three{{else}}none{{/ifeq}}";
+
+    NSString* result = renderWithHelpers(string, @{ @"para1" : @1 }, nil);
+    XCTAssertEqualObjects(result, @"one");
+
+    result = renderWithHelpers(string, @{ @"para2" : @1 }, nil);
+    XCTAssertEqualObjects(result, @"two");
+
+    result = renderWithHelpers(string, @{ @"para3" : @1 }, nil);
+    XCTAssertEqualObjects(result, @"three");
+
+    result = renderWithHelpers(string, @{ }, nil);
+    XCTAssertEqualObjects(result, @"none");
+}
+
 /// Unported tests from handlebars.js
 
 #if 0

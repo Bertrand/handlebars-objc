@@ -66,7 +66,7 @@
             add_cr();
         }
     }
-    
+
     if (node.inverseStatements) {
         [_result appendString:@"  {{^}}\n"];
         for (HBAstNode* statement in node.inverseStatements) {
@@ -75,6 +75,16 @@
             add_cr();
         }
     }
+
+    if( node.elseBlocks.count > 0 ) {
+        [_result appendString:@"  {{else}}\n"];
+        for( HBAstBlock *elseBlock in node.elseBlocks ) {
+            [_result appendString:@"    "];
+            [self visitNode:elseBlock];
+            add_cr();
+        }
+    }
+
     return nil;
 }
 
